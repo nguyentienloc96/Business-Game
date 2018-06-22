@@ -1,4 +1,5 @@
 {
+  "TimeScale": 4, 
   "DollarStart": 50000,
   "BitCoinStart": 10,
   "Level": {
@@ -8,5 +9,20 @@
     "crazy": "4"
   },
   "TimeInterAds": 300,
-  "OffInterAds": false
+  "OffInterAds": false,
+  
+
+  "InMin": 10000,
+  "InMax": 50000,
+  "Ipc": 0.1,
+  
+
+  "HP.etx": 200,
+  "TC.tax": 0.8, 
+  "TC.wx": 0.7, 
+  "SC.bx": 0.1,
+  "SC.ax": 0.8, 
+  "SC.ox": 0.1,
+  
+  "Dtime": 720
 }

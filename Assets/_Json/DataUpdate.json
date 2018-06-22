@@ -1,0 +1,51 @@
+{
+  "NhanSu": {
+    "Self training": "Deep major learning",
+    "Self training 2": "Join some institutes, build relationship with entrepreneurs and politicians",
+    "Human resource": "Build up the HP dept and source of candidate",
+    "People hiring": "Hire employees and pay them",
+    "Company culture": "Build up the culture of company",
+    "Annually event": "Build up the coalition inside company",
+    "Internal company fund": "To help the unfortunate employees",
+    "Employee training": "Train the employees",
+    "Curriculum for employee training": "Create the curriculum for employee"
+  },
+  "TransportChain": {
+    "Transport agent": "Connect agents to transport commodity",
+    "Warehouse Storage": "Storage",
+    "Vehicles": "Self transport"
+  },
+  "ProcedureProcess": {
+    "R&D": "Sometimes R&D tobe the game changer, they create the innovative product",
+    "Factory/workshop": "Build factory/workshop to create the product, it costs time but effective",
+    "Outsource": "Hiring other company or freelancers to build the product, a fast way to build product but not so effective",
+    "Buying other factory/workshop": "The fastest way to build product but cost money",
+    "Service": "Maintain machines, help your factories/workshops work well"
+  },
+  "Spreading": {
+    "User behaviour research": "...",
+    "Policy and law": "Study policy, law, the certification your company needs",
+    "Competitor research": "Tracing and study about your competitors",
+    "Buy a competitor": "at least 400.000 $",
+    "Local Economy research": "Purchasing power, market, trending.... "
+  },
+  "Ads": {
+    "Traditional ads": "Video, viral, sport….take time but some thing make a trend",
+    "Social network ads": "facebook, twitter, snap",
+    "Website & affiliate": "Website, affiliate, search ads: take time but stable"
+  },
+  "SalesChain": {
+    "Build a shop": "at lest 10.000 $",
+    "Link with agencies shop": "...",
+    "Online shop": "...",
+    "Sales culture": "..."
+  },
+  "RiskManagement ": {
+    "Media crisis": "...",
+    "Law crisis": "...",
+    "Employee crisis": "..."
+  },
+  "Funding": {
+    "easy": "1"
+  }
+}

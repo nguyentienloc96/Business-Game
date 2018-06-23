@@ -24,6 +24,7 @@ public class News : MonoBehaviour
     {
         public string content;
         public bool isUseful;
+        public string major;
     }
 
     public List<NewItems> lstNews = new List<NewItems>();

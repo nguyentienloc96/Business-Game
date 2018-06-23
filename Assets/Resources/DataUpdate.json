@@ -1,51 +1,182 @@
 {
   "NhanSu": {
-    "Self training": "Deep major learning",
-    "Self training 2": "Join some institutes, build relationship with entrepreneurs and politicians",
-    "Human resource": "Build up the HP dept and source of candidate",
-    "People hiring": "Hire employees and pay them",
-    "Company culture": "Build up the culture of company",
-    "Annually event": "Build up the coalition inside company",
-    "Internal company fund": "To help the unfortunate employees",
-    "Employee training": "Train the employees",
-    "Curriculum for employee training": "Create the curriculum for employee"
+    "ns0":
+    {
+        "name": "Self training",
+        "content": "Deep major learning"
+    },
+    "ns1":
+    {
+        "name": "Self training 2",
+        "content": "Join some institutes, build relationship with entrepreneurs and politicians"
+    },
+    "ns2":
+    {
+        "name": "Human resource",
+        "content": "Build up the HP dept and source of candidate"
+    },
+    "ns3":
+    {
+        "name": "People hiring",
+        "content": "Hire employees and pay them"
+    },
+    "ns4":
+    {
+        "name": "Company culture",
+        "content": "Build up the culture of company"
+    },
+    "ns5":
+    {
+        "name": "Annually event",
+        "content": "Build up the coalition inside company"
+    },
+    "ns6":
+    {
+        "name": "Internal company fund",
+        "content": "To help the unfortunate employees"
+    },
+    "ns7":
+    {
+        "name": "Employee training",
+        "content": "Train the employees"
+    },
+    "ns8":
+    {
+        "name": "Curriculum for employee training",
+        "content": "Create the curriculum for employee"
+    }
   },
-  "TransportChain": {
-    "Transport agent": "Connect agents to transport commodity",
-    "Warehouse Storage": "Storage",
-    "Vehicles": "Self transport"
+  "TransportChain":
+  {
+    "tc0":
+    {
+        "name": "Transport agent",
+        "content": "Connect agents to transport commodity"
+    },
+    "tc1":
+    {
+        "name": "Warehouse Storage",
+        "content": "Storage"
+    },
+    "tc2":
+    {
+        "name": "Vehicles",
+        "content": "Self transport"
+    }
   },
-  "ProcedureProcess": {
-    "R&D": "Sometimes R&D tobe the game changer, they create the innovative product",
-    "Factory/workshop": "Build factory/workshop to create the product, it costs time but effective",
-    "Outsource": "Hiring other company or freelancers to build the product, a fast way to build product but not so effective",
-    "Buying other factory/workshop": "The fastest way to build product but cost money",
-    "Service": "Maintain machines, help your factories/workshops work well"
+  "ProcedureProcess":
+  {
+    "pp0":
+    {
+        "name": "R&D",
+        "content": "Sometimes R&D tobe the game changer, they create the innovative product"
+    },
+    "pp1":
+    {
+        "name": "Factory/workshop",
+        "content": "Build factory/workshop to create the product, it costs time but effective"
+    },
+    "pp2":
+    {
+        "name": "Outsource",
+        "content": "Hiring other company or freelancers to build the product, a fast way to build product but not so effective"
+    },
+    "pp3":
+    {
+        "name": "Buying other factory/workshop",
+        "content": "The fastest way to build product but cost money"
+    },
+    "pp4":
+    {
+        "name": "Service",
+        "content": "Maintain machines, help your factories/workshops work well"
+    }
   },
-  "Spreading": {
-    "User behaviour research": "...",
-    "Policy and law": "Study policy, law, the certification your company needs",
-    "Competitor research": "Tracing and study about your competitors",
-    "Buy a competitor": "at least 400.000 $",
-    "Local Economy research": "Purchasing power, market, trending.... "
+  "Spreading":
+  {
+    "s0":
+    {
+        "name": "User behaviour research",
+        "content": "..."
+    },
+    "s1":
+    {
+        "name": "Policy and law",
+        "content": "Study policy, law, the certification your company needs"
+    },
+    "s2":
+    {
+        "name": "Competitor research",
+        "content": "Tracing and study about your competitors"
+    },
+    "s3":
+    {
+        "name": "Buy a competitor",
+        "content": "at least 400.000 $"
+    },
+    "s4":
+    {
+        "name": "Local Economy research",
+        "content": "Purchasing power, market, trending...."
+    }
   },
-  "Ads": {
-    "Traditional ads": "Video, viral, sport….take time but some thing make a trend",
-    "Social network ads": "facebook, twitter, snap",
-    "Website & affiliate": "Website, affiliate, search ads: take time but stable"
+  "Ads":
+  {
+    "a0":
+    {
+        "name": "Traditional ads",
+        "content": "Video, viral, sport….take time but some thing make a trend"
+    },
+    "a1":
+    {
+        "name": "Social network ads",
+        "content": "facebook, twitter, snap"
+    },
+    "a2":
+    {
+        "name": "Website & affiliate",
+        "content": "Website, affiliate, search ads: take time but stable"
+    }
   },
-  "SalesChain": {
-    "Build a shop": "at lest 10.000 $",
-    "Link with agencies shop": "...",
-    "Online shop": "...",
-    "Sales culture": "..."
+  "SalesChain":
+  {
+    "sc0":
+    {
+        "name": "Build a shop",
+        "content": "at lest 10.000 $"
+    },
+    "sc1":
+    {
+        "name": "Link with agencies shop",
+        "content": "..."
+    },
+    "sc2":
+    {
+        "name": "Online shop",
+        "content": "..."
+    },
+    "sc3":
+    {
+        "name": "Sales culture",
+        "content": "..."
+    }
   },
-  "RiskManagement ": {
-    "Media crisis": "...",
-    "Law crisis": "...",
-    "Employee crisis": "..."
-  },
-  "Funding": {
-    "easy": "1"
+  "RiskManagement":
+  {
+    "rm0":
+    {
+        "name": "Media crisis",
+        "content": "..."
+    },
+    "rm1":
+    {
+        "name": "Law crisis",
+        "content": "..."
+    },
+    "rm2":
+    {
+        "name": "Employee crisis",
+        "content": "..."
+    }
   }
 }

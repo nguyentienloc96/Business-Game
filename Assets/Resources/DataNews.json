@@ -1,14 +1,17 @@
 {
   "New0": {
     "Content": "The government taxed higher ",
-    "isUseful": false
+    "isUseful": false,
+	"major": "SP1"
   },
   "New1": {
     "Content": "The petrol prices were increased by ",
-    "isUseful": false
+    "isUseful": false,
+	"major": "Lo1"
   },
   "New2": {
     "Content": "The crime rates are reduced by  ",
-    "isUseful": true
+    "isUseful": true,
+	"major": "Mkt1"
   }
 }

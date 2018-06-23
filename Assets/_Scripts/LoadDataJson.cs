@@ -18,7 +18,8 @@ public class LoadDataJson : MonoBehaviour
 
     private void Start()
     {
-        //LoadDataNewsJson();
+        LoadDataStartGameJson();
+        LoadDataUpdateJson();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
         DataPlayer.Instance.LoadDataPlayer();
@@ -39,6 +40,7 @@ public class LoadDataJson : MonoBehaviour
                 News.NewItems tmp = new News.NewItems();
                 tmp.content = objJson["New" + i.ToString()][0];
                 tmp.isUseful = objJson["New" + i.ToString()][1].AsBool;
+                tmp.major = objJson["New" + i.ToString()][2];
                 News.Instance.lstNews.Add(tmp);
             }
         }
@@ -51,8 +53,69 @@ public class LoadDataJson : MonoBehaviour
         Debug.Log(objJson);
         if (objJson != null)
         {
-            
-        }
+            var objNS = objJson["NhanSu"];
+            for (int i = 0; i < objNS.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_NhanSu.Add(data);
+            }
+
+            var objTC = objJson["TransportChain"];
+            for (int i = 0; i < objTC.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_TransportChain.Add(data);
+            }
+
+            var objPP = objJson["ProcedureProcess"];
+            for (int i = 0; i < objPP.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_ProcedureProcess.Add(data);
+            }
+
+            var objSpreading = objJson["Spreading"];
+            for (int i = 0; i < objSpreading.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_Spreading.Add(data);
+            }
+
+            var objAds = objJson["Ads"];
+            for (int i = 0; i < objAds.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_Ads.Add(data);
+            }
+
+            var objSC = objJson["SalesChain"];
+            for (int i = 0; i < objAds.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_SalesChain.Add(data);
+            }
+
+            var objRM = objJson["RiskManagement"];
+            for (int i = 0; i < objRM.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objNS[i]["name"];
+                data.content = objNS[i]["content"];
+                DataUpdate.Instance.lstData_RiskManagement.Add(data);
+            }
+        }       
     }
 
     public void LoadDataStartGameJson()

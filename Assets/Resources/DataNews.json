@@ -5,10 +5,10 @@
   },
   "New1": {
     "Content": "The petrol prices were increased by ",
-    "Value": false
+    "isUseful": false
   },
   "New2": {
     "Content": "The crime rates are reduced by  ",
-    "Value": true
+    "isUseful": true
   }
 }

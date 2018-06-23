@@ -12,7 +12,7 @@ public class GameConfig : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     public float timeScale = 4;

@@ -36,5 +36,22 @@ public class DataPlayer : MonoBehaviour
         data.isOffAds = PlayerPrefs.GetInt(KeyPlayerPrefs.ISOFFADS,0);
         string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
+        File.ReadAllText(_path);
+    }
+
+    public void LoadDataPlayer()
+    {
+        string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
+        string dataAsJson = File.ReadAllText(_path);
+        var objJson = SimpleJSON.JSON.Parse(dataAsJson);
+        Debug.Log(objJson);
+        if (objJson != null)
+        {
+            this.modePlay = objJson["modePlay"].AsInt;
+            this.srd = objJson["srd"].AsInt;
+            this.dollars = objJson["dollars"].AsDouble;
+            this.btc = objJson["btc"].AsDouble;
+            this.isOffAds = objJson["isOffAds"].AsInt;          
+        }            
     }
 }

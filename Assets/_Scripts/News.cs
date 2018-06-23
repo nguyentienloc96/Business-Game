@@ -29,7 +29,7 @@ public class News : MonoBehaviour
     public List<NewItems> lstNews = new List<NewItems>();
     public NewItems NewChoosed;
     //List<int> lstPercent = new List<int> { 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 };
-    public int valueNews;
+    public int valueNews = 0;
 
     public void GetNews()
     {

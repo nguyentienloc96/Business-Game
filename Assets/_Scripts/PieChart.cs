@@ -38,45 +38,26 @@ public class PieChart : MonoBehaviour
             peiObj.GetComponent<Image>().SetNativeSize();
             peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 1f);
             GameObject noteObj = Instantiate(notePrefab, noteParent);
-            noteObj.GetComponent<Image>().sprite = dataPei[i].spPei;
-            noteObj.transform.GetChild(0).GetComponent<Text>().text = dataPei[i].namePei;
+            noteObj.transform.GetChild(0).GetComponent<RawImage>().texture = textureFromSprite(dataPei[i].spPei);
+            noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei;
             sumValue += dataPei[i].valuePei;
             yield return new WaitForSeconds(1f);
         }
     }
 
-    public Vector2 positionPei(float angle, float R)
+    public Texture2D textureFromSprite(Sprite sprite)
     {
-        Vector2 kq;
-        float angleDelta = 0;
-        if (angle > 180)
+        if (sprite.rect.width != sprite.texture.width)
         {
-            angleDelta = angle - 180f;
+            Texture2D newText = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+            Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                         (int)sprite.textureRect.y,
+                                                         (int)sprite.textureRect.width,
+                                                         (int)sprite.textureRect.height);
+            newText.SetPixels(newColors);
+            newText.Apply();
+            return newText;
         }
-        float deltaY = R * Mathf.Cos(Mathf.Deg2Rad * angleDelta);
-        float deltaX = R * Mathf.Sin(Mathf.Deg2Rad * angleDelta);
-        if (angle > 180)
-        {
-            if (angle > 90 && angle < 270)
-            {
-                kq = new Vector2(deltaX, deltaY);
-            }
-            else
-            {
-                kq = new Vector2(deltaX, -deltaY);
-            }
-        }
-        else
-        {
-            if (angle > 90 && angle < 270)
-            {
-                kq = new Vector2(-deltaX, deltaY);
-            }
-            else
-            {
-                kq = new Vector2(-deltaX, -deltaY);
-            }
-        }
-        return kq;
+        return sprite.texture;
     }
 }

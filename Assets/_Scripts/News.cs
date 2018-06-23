@@ -15,6 +15,11 @@ public class News : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        
+    }
+
     public struct NewItems
     {
         public string content;
@@ -29,9 +34,9 @@ public class News : MonoBehaviour
     public void GetNews()
     {
         int r = Random.Range(0, lstNews.Count);
-        valueNews = GameConfig.Instance.srd * Random.Range(1, 15);
+        valueNews = GameConfig.Instance.Srd * Random.Range(1, 10);
 
         NewChoosed = lstNews[r];
-        Debug.Log("<color =red> News: </color>" + NewChoosed.content + " " + valueNews + "%");
+        Debug.Log("<color=yellow> News: </color>" + NewChoosed.content + valueNews + "%");
     }
 }

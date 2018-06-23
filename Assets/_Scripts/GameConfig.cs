@@ -19,7 +19,7 @@ public class GameConfig : MonoBehaviour
     public double dollarStartGame = 50000;
     public double bitcoinStartGame = 10;
 
-    public int srd;
+    public int Srd = 1;
     public float timeInterAds;
     public double InMin = 10000;
     public double InMax = 50000;

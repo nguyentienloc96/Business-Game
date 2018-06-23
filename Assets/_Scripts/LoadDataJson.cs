@@ -15,6 +15,11 @@ public class LoadDataJson : MonoBehaviour
         //DontDestroyOnLoad(this);
     }
 
+    private void Start()
+    {
+        //LoadDataNewsJson();
+    }
+
     private string newsJson = "DataNews";
     private string dataUpdateJson = "DataUpdate";
     private string startGameJson = "StartGameEditor";
@@ -22,11 +27,19 @@ public class LoadDataJson : MonoBehaviour
     public void LoadDataNewsJson()
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(newsJson));
-        Debug.Log(objJson);
+        //Debug.Log(objJson);
         if (objJson != null)
         {
-
+            for (int i = 0; i < objJson.Count; i++)
+            {
+                News.NewItems tmp = new News.NewItems();
+                tmp.content = objJson["New" + i.ToString()][0];
+                tmp.isUseful = objJson["New" + i.ToString()][1].AsBool;
+                News.Instance.lstNews.Add(tmp);
+            }
         }
+
+        News.Instance.GetNews();
     }
     public void LoadDataUpdateJson()
     {
@@ -34,7 +47,7 @@ public class LoadDataJson : MonoBehaviour
         Debug.Log(objJson);
         if (objJson != null)
         {
-
+            
         }
     }
 

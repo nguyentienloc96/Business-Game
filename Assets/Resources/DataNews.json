@@ -1,13 +1,13 @@
 {
-  "New1": {
+  "New0": {
     "Content": "The government taxed higher ",
     "isUseful": false
   },
-  "New2": {
+  "New1": {
     "Content": "The petrol prices were increased by ",
     "Value": false
   },
-  "New3": {
+  "New2": {
     "Content": "The crime rates are reduced by  ",
     "Value": true
   }

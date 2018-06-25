@@ -20,6 +20,7 @@ public class LoadDataJson : MonoBehaviour
     {
         LoadDataStartGameJson();
         LoadDataUpdateJson();
+        LoadDataNameCountry();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
         DataPlayer.Instance.LoadDataPlayer();
@@ -28,6 +29,7 @@ public class LoadDataJson : MonoBehaviour
     private string newsJson = "DataNews";
     private string dataUpdateJson = "DataUpdate";
     private string startGameJson = "StartGameEditor";
+    private string listNameCountryJson = "ListNameCountry";
 
     public void LoadDataNewsJson()
     {
@@ -142,6 +144,23 @@ public class LoadDataJson : MonoBehaviour
 
             GameConfig.Instance.dTime = objJson["Dtime"].AsInt;
         }
+    }
+
+    public void LoadDataNameCountry()
+    {
+        var objJson = SimpleJSON.JSON.Parse(loadJson(listNameCountryJson));
+        Debug.Log(objJson);
+        if (objJson != null)
+        {
+            for (int i = 0; i < objJson.Count; i++)
+            {
+                DataUpdate.DataNameCountry data = new DataUpdate.DataNameCountry();
+                data.name = objJson[i]["name"];
+                data.code = objJson[i]["code"];
+                DataUpdate.Instance.lstData_NameCountry.Add(data);
+            }
+        }
+        Debug.Log(objJson[1]);
     }
 
     string loadJson(string _nameJson)

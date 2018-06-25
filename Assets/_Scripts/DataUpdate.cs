@@ -21,6 +21,12 @@ public class DataUpdate : MonoBehaviour
         public string content;
     }
 
+    public struct DataNameCountry
+    {
+        public string name;
+        public string code;
+    }
+
     public List<DataItems> lstData_NhanSu = new List<DataItems>();
     public List<DataItems> lstData_TransportChain = new List<DataItems>();
     public List<DataItems> lstData_ProcedureProcess = new List<DataItems>();
@@ -28,4 +34,6 @@ public class DataUpdate : MonoBehaviour
     public List<DataItems> lstData_Ads = new List<DataItems>();
     public List<DataItems> lstData_SalesChain = new List<DataItems>();
     public List<DataItems> lstData_RiskManagement = new List<DataItems>();
+
+    public List<DataNameCountry> lstData_NameCountry = new List<DataNameCountry>();
 }

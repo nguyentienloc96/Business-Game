@@ -38,6 +38,6 @@ public class News : MonoBehaviour
         valueNews = GameConfig.Instance.Srd * Random.Range(1, 10);
 
         NewChoosed = lstNews[r];
-        Debug.Log("<color=yellow> News: </color>" + NewChoosed.content + valueNews + "%");
+        Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + valueNews + "%");
     }
 }

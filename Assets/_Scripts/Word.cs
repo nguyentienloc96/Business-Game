@@ -1,7 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+[Serializable]
+public class CountryJSON
+{
+    public string name;
+    public string code;
+}
+
+[Serializable]
+public class WordJSON
+{
+    public CountryJSON[] world;
+}
 
 public class Word : MonoBehaviour
 {
@@ -10,7 +24,6 @@ public class Word : MonoBehaviour
     public int idSelectWord;
 
     [Header("Word")]
-    string word = "Afghanistan,Albania,Algeria,Andorra,Angola,Antigua & Barbuda,Argentina,Armenia,Australia,Austria,Azerbaijan";
     public GameObject itemWord;
     public Transform contentWord;
     public Slider seltTraining;
@@ -24,25 +37,25 @@ public class Word : MonoBehaviour
         Instance = this;
     }
 
-    IEnumerator Start()
+    void Start()
     {
-        string[] arrWord = word.Split(',');
-        for (int i = 0; i < arrWord.Length; i++)
+        TextAsset asset = Resources.Load<TextAsset>("ListNameCountry");
+        WordJSON info = JsonUtility.FromJson<WordJSON>(asset.text);
+        for (int i = 0; i < info.world.Length; i++)
         {
             Transform item = Instantiate(itemWord, contentWord).transform;
-            item.name = arrWord[i];
+            item.name = info.world[i].name;
             if (i == 0)
             {
                 idSelectWord = 0;
                 item.GetChild(3).gameObject.SetActive(true);
             }
             item.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:000}", i);
-            item.GetChild(1).GetComponent<Text>().text = arrWord[i];
+            item.GetChild(1).GetComponent<Text>().text = info.world[i].name;
             lsCountry.Add(item.GetComponent<Country>());
             item.GetComponent<Country>().ID = i;
-            item.GetComponent<Country>().nameCountry = arrWord[i];
-            item.GetComponent<Country>().Mn = Random.Range(50, 200);
-            yield return new WaitForSeconds(0.15f);
+            item.GetComponent<Country>().nameCountry = info.world[i].name;
+            item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
         }
     }
 

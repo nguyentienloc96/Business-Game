@@ -9,12 +9,12 @@
   "InMax": 50000,
   "Ipc": 0.1,
   
-  "HP.etx": 200,
-  "TC.tax": 0.8, 
-  "TC.wx": 0.7, 
-  "SC.bx": 0.1,
-  "SC.ax": 0.8, 
-  "SC.ox": 0.1,
+  "HP_etx": 200,
+  "TC_tax": 0.8, 
+  "TC_wx": 0.7, 
+  "SC_bx": 0.1,
+  "SC_ax": 0.8, 
+  "SC_ox": 0.1,
   
   "Dtime": 720
 }

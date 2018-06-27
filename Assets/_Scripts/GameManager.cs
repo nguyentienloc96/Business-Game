@@ -70,4 +70,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void UpdateDataUser(BusinessMan man)
+    {
+        
+    }
 }

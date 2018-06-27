@@ -153,7 +153,6 @@ public class Country : MonoBehaviour
     public float Mn;
     public float I;
 
-    private const float ipc = 0.001f;
     private float I0 = 0f;
     private float SP0 = 20f;
     private float MKT0 = 15f;
@@ -166,7 +165,7 @@ public class Country : MonoBehaviour
     public void Interest()
     {
         I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
-        I = L * ipc + I0 * Mn;
+        I = L * GameConfig.Instance.Ipc + I0 * Mn;
     }
 
     public void OnClickItemWord()

@@ -6,20 +6,16 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
-    public int SRD = 1;
+    public int SRD;
 
+    #region DateTime  
     public DateTime dateGame;
-    public Text txtday1;
-    public Text txtday2;
-    public Text txtmonth1;
-    public Text txtmonth2;
-    public Text txtyear1;
-    public Text txtyear2;
-    public Text txtyear3;
-    public Text txtyear4;
-
     private float time;
+    #endregion
 
+    [Header("BusinessMan")]
+    public BusinessMan main;
+    public BusinessMan competitors;
 
     void Awake()
     {
@@ -28,43 +24,41 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    // Use this for initialization
     void Start()
     {
         dateGame = new DateTime(1996, 10, 27);
         SetDate();
     }
 
-
     void SetDate()
     {
         if (dateGame.Day >= 10)
         {
-            txtday1.text = (dateGame.Day / 10).ToString();
-            txtday2.text = (dateGame.Day - (dateGame.Day / 10) * 10).ToString();
+            UIManager.Instance.txtday1.text = (dateGame.Day / 10).ToString();
+            UIManager.Instance.txtday2.text = (dateGame.Day - (dateGame.Day / 10) * 10).ToString();
         }
         else
         {
-            txtday1.text = "0";
-            txtday2.text = dateGame.Day.ToString();
+            UIManager.Instance.txtday1.text = "0";
+            UIManager.Instance.txtday2.text = dateGame.Day.ToString();
         }
         if (dateGame.Month >= 10)
         {
-            txtmonth1.text = (dateGame.Month / 10).ToString();
-            txtmonth2.text = (dateGame.Month - (dateGame.Month / 10) * 10).ToString();
+            UIManager.Instance.txtmonth1.text = (dateGame.Month / 10).ToString();
+            UIManager.Instance.txtmonth2.text = (dateGame.Month - (dateGame.Month / 10) * 10).ToString();
         }
         else
         {
-            txtmonth1.text = "0";
-            txtmonth2.text = dateGame.Month.ToString();
+            UIManager.Instance.txtmonth1.text = "0";
+            UIManager.Instance.txtmonth2.text = dateGame.Month.ToString();
         }
         string yearstring = dateGame.Year.ToString();
-        txtyear1.text = yearstring.Substring(0, 1);
-        txtyear2.text = yearstring.Substring(1, 1);
-        txtyear3.text = yearstring.Substring(2, 1);
-        txtyear4.text = yearstring.Substring(3, 1);
+        UIManager.Instance.txtyear1.text = yearstring.Substring(0, 1);
+        UIManager.Instance.txtyear2.text = yearstring.Substring(1, 1);
+        UIManager.Instance.txtyear3.text = yearstring.Substring(2, 1);
+        UIManager.Instance.txtyear4.text = yearstring.Substring(3, 1);
     }
-    // Update is called once per frame
+
     void Update()
     {
         time += Time.deltaTime;
@@ -72,8 +66,8 @@ public class GameManager : MonoBehaviour
         {
             dateGame = dateGame.AddDays(1f);
             SetDate();
-            Debug.Log(dateGame);
             time = 0;
         }
     }
+
 }

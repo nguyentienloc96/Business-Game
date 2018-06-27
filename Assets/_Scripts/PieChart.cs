@@ -20,9 +20,20 @@ public class PieChart : MonoBehaviour
     public GameObject peiPrefab;
     public GameObject notePrefab;
     public List<DataPeiChart> dataPei = new List<DataPeiChart>();
-    IEnumerator Start()
+
+    public void LoadData()
+    {
+        StartCoroutine(IELoadData());
+    }
+
+    IEnumerator IELoadData()
     {
         float sumValue = 0;
+        for (int i = 0; i < dataPei.Count; i++)
+        {
+            Destroy(peiParent.GetChild(dataPei.Count - i - 1).gameObject);
+            Destroy(noteParent.GetChild(dataPei.Count - i - 1).gameObject);
+        }
         for (int i = 0; i < dataPei.Count; i++)
         {
             GameObject peiObj = Instantiate(peiPrefab, peiParent);

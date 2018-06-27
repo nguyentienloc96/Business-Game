@@ -21,6 +21,7 @@ public class LoadDataJson : MonoBehaviour
         LoadDataStartGameJson();
         LoadDataUpdateJson();
         LoadDataNameCountry();
+        LoadDataNewsJson();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
         DataPlayer.Instance.LoadDataPlayer();
@@ -35,6 +36,7 @@ public class LoadDataJson : MonoBehaviour
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(newsJson));
         //Debug.Log(objJson);
+        Debug.Log("<color=yellow>Done: </color>LoadDataNewsJson !");
         if (objJson != null)
         {
             for (int i = 0; i < objJson.Count; i++)
@@ -47,12 +49,13 @@ public class LoadDataJson : MonoBehaviour
             }
         }
 
-        News.Instance.GetNews();
+        //News.Instance.GetNews();
     }
     public void LoadDataUpdateJson()
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(dataUpdateJson));
-        Debug.Log(objJson);
+        //Debug.Log(objJson);
+        Debug.Log("<color=yellow>Done: </color>LoadDataUpdateJson !");
         if (objJson != null)
         {
             var objNS = objJson["NhanSu"];
@@ -123,7 +126,8 @@ public class LoadDataJson : MonoBehaviour
     public void LoadDataStartGameJson()
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(startGameJson));
-        Debug.Log(objJson);
+        //Debug.Log(objJson);
+        Debug.Log("<color=yellow>Done: </color>LoadDataStartGameJson !");
         if (objJson != null)
         {
             GameConfig.Instance.timeScale = objJson["TimeScale"].AsFloat;
@@ -149,18 +153,19 @@ public class LoadDataJson : MonoBehaviour
     public void LoadDataNameCountry()
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(listNameCountryJson));
-        Debug.Log(objJson);
-        if (objJson != null)
+        //Debug.Log(objJson);
+        Debug.Log("<color=yellow>Done: </color>LoadDataNameCountry !");
+        if (objJson["world"] != null)
         {
-            for (int i = 0; i < objJson.Count; i++)
+            for (int i = 0; i < objJson["world"].Count; i++)
             {
                 DataUpdate.DataNameCountry data = new DataUpdate.DataNameCountry();
-                data.name = objJson[i]["name"];
-                data.code = objJson[i]["code"];
+                data.name = objJson["world"][i]["name"];
+                data.code = objJson["world"][i]["code"];
                 DataUpdate.Instance.lstData_NameCountry.Add(data);
             }
         }
-        Debug.Log(objJson[1]);
+        //Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ DataUpdate.Instance.lstData_NameCountry[0].code);
     }
 
     string loadJson(string _nameJson)

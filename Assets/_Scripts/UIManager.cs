@@ -43,12 +43,16 @@ public class UIManager : MonoBehaviour
     public Text txtBitCoin;
 
     [Header("ButtomMenu")]
+    public Button btnWORD;
     public Button btnTHONGSO;
     public Button btnNHOM1;
     public Button btnNHOM2;
+    public Button btnNHOM3;
 
     [Header("Branch")]
-    public Button branch1;
+    public Button btnBRANCH1;
+    public Button btnBRANCH2;
+    public Button btnBRANCH3;
 
 
     void Awake()
@@ -58,46 +62,84 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnclickTHONGSO()
+    public void OnclickWORD()
     {
-        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
+        btnWORD.transform.GetChild(1).gameObject.SetActive(true);
+        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM2.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM3.transform.GetChild(1).gameObject.SetActive(false);
         MAP.SetActive(true);
-        PieChart1.SetActive(true);
+        PieChart1.SetActive(false);
         COLCHART.SetActive(false);
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
-        StartCoroutine(Word.Instance.OnEnableWord(true));
+        Word.Instance.OnEnableWord(true);
+    }
+
+    public void OnclickTHONGSO()
+    {
+        btnWORD.transform.GetChild(1).gameObject.SetActive(false);
+        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
+        btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM2.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM3.transform.GetChild(1).gameObject.SetActive(false);
+        MAP.SetActive(false);
+        PieChart1.SetActive(false);
+        COLCHART.SetActive(true);
+        PieChart2.SetActive(false);
+        SELFTRAINING.SetActive(false);
+        SelfTraining.SetActive(false);
+        Word.Instance.OnEnableWord(false);
     }
 
     public void OnclickNHOM1()
     {
+        btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(true);
         btnNHOM2.transform.GetChild(1).gameObject.SetActive(false);
-        MAP.SetActive(false);
-        PieChart1.SetActive(false);
-        COLCHART.SetActive(true);
-        PieChart2.SetActive(true);
-        SELFTRAINING.SetActive(false);
-        SelfTraining.SetActive(false);
-        StartCoroutine(Word.Instance.OnEnableWord(false));
-    }
-
-    public void OnclickNHOM2()
-    {
-        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
-        btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
-        btnNHOM2.transform.GetChild(1).gameObject.SetActive(true);
+        btnNHOM3.transform.GetChild(1).gameObject.SetActive(false);
         MAP.SetActive(false);
         PieChart1.SetActive(false);
         COLCHART.SetActive(false);
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
-        SelfTraining.SetActive(true);
-        StartCoroutine(Word.Instance.OnEnableWord(false));
+        SelfTraining.SetActive(false);
+        Word.Instance.OnEnableWord(false);
+    }
+
+    public void OnclickNHOM2()
+    {
+        btnWORD.transform.GetChild(1).gameObject.SetActive(false);
+        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM2.transform.GetChild(1).gameObject.SetActive(true);
+        btnNHOM3.transform.GetChild(1).gameObject.SetActive(false);
+        MAP.SetActive(false);
+        PieChart1.SetActive(false);
+        COLCHART.SetActive(false);
+        PieChart2.SetActive(false);
+        SELFTRAINING.SetActive(true);
+        SelfTraining.SetActive(false);
+        Word.Instance.OnEnableWord(false);
+    }
+
+    public void OnclickNHOM3()
+    {
+        btnWORD.transform.GetChild(1).gameObject.SetActive(false);
+        btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM2.transform.GetChild(1).gameObject.SetActive(false);
+        btnNHOM3.transform.GetChild(1).gameObject.SetActive(true);
+        MAP.SetActive(false);
+        PieChart1.SetActive(false);
+        COLCHART.SetActive(false);
+        PieChart2.SetActive(false);
+        SELFTRAINING.SetActive(true);
+        SelfTraining.SetActive(false);
+        Word.Instance.OnEnableWord(false);
     }
 
     public void PlayGame(int SRD)
@@ -106,7 +148,7 @@ public class UIManager : MonoBehaviour
         menuGame.SetActive(false);
         GameManager.Instance.main.bitCoin = 1000 * SRD;
         GameManager.Instance.main.gold = 50000 * SRD;
-        OnclickTHONGSO();
+        OnclickWORD();
     }
 
     public void Update()

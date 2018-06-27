@@ -21,7 +21,7 @@ public class Word : MonoBehaviour
 {
 
     public static Word Instance;
-    public int idSelectWord;
+    public int idSelectWord = 0;
 
     [Header("Word")]
     public GameObject itemWord;
@@ -45,11 +45,7 @@ public class Word : MonoBehaviour
         {
             Transform item = Instantiate(itemWord, contentWord).transform;
             item.name = info.world[i].name;
-            if (i == 0)
-            {
-                idSelectWord = 0;
-                item.GetChild(3).gameObject.SetActive(true);
-            }
+            
             item.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:000}", i);
             item.GetChild(1).GetComponent<Text>().text = info.world[i].name;
             lsCountry.Add(item.GetComponent<Country>());
@@ -65,7 +61,13 @@ public class Word : MonoBehaviour
         seltGold.text = lsCountry[idSelectWord].L.ToString();
     }
 
-    public IEnumerator OnEnableWord(bool isWord)
+    public void OnEnableWord(bool isWord)
+    {
+        StopAllCoroutines();
+        StartCoroutine(IEOnEnableWord(isWord));
+    }
+
+    IEnumerator IEOnEnableWord(bool isWord)
     {
         if (isWord)
         {
@@ -73,12 +75,12 @@ public class Word : MonoBehaviour
             {
                 lsCountry[i].gameObject.SetActive(false);
             }
+            yield return new WaitForEndOfFrame();
             for (int i = 0; i < lsCountry.Count; i++)
             {
                 if (i == 0)
                 {
                     lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
-                    lsCountry[i].transform.GetChild(3).gameObject.SetActive(true);
                     idSelectWord = 0;
                 }
                 lsCountry[i].gameObject.SetActive(true);
@@ -91,6 +93,7 @@ public class Word : MonoBehaviour
             {
                 lsCountry[i].gameObject.SetActive(false);
             }
+            yield return new WaitForEndOfFrame();
             for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
             {
                 if (i == 0)

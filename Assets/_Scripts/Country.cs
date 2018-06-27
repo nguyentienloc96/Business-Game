@@ -35,13 +35,11 @@ public struct PROCEDUREPROCESS
 
     public void SetFactoryWorkshop(float SP0) // Setup it with the Month
     {
-        if (f.postage > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays >= 365)
+        if (f.postage > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays > 365)
         {
-            if ((long)((TimeSpan)(GameManager.Instance.dateGame - f.dayOfInvestment)).TotalDays >= 30)
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) % 30 == 0)
             {
-                SP0 += (f.postage - 100000) * 0.08f;
-                f.postage -= 50;
-                f.dayOfInvestment = GameManager.Instance.dateGame;
+                SP0 += (f.postage - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) / 30 - 1);
             }
         }
     }
@@ -63,6 +61,7 @@ public struct PROCEDUREPROCESS
             f.isReadyed = true;
         }
     }
+
 
 }
 
@@ -170,6 +169,7 @@ public class Country : MonoBehaviour
 
     public void OnClickItemWord()
     {
+        UIManager.Instance.PieChart1.SetActive(true);
         Word.Instance.lsCountry[Word.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
         Word.Instance.idSelectWord = ID;

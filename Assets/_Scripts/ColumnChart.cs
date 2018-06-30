@@ -16,13 +16,16 @@ public class ColumnChart : MonoBehaviour
     public Transform posChart;
     public Text[] arrayX;
     public DataColChart[] dataCol;
-    public void LoadData()
+    public void Start()
     {
         int maxX = 0;
         Vector3 posItemChart = Vector3.zero;
         for (int i = 0; i < dataCol.Length; i++)
         {
-            Destroy(posChart.GetChild(dataCol.Length - i - 1).gameObject);
+            if (posChart.childCount > 0)
+            {
+                Destroy(posChart.GetChild(dataCol.Length - i - 1).gameObject);
+            }
             for (int j = 0; j < dataCol[i].valueCol.Length; j++)
             {
                 if (maxX < dataCol[i].valueCol[j])
@@ -32,9 +35,12 @@ public class ColumnChart : MonoBehaviour
             }
         }
 
-        if (maxX % 1000 != 0)
+        if (maxX > 10000 && maxX % 10000 != 0)
         {
-            maxX = ((int)(maxX / 1000)) * 1000 + 1000;
+            maxX = ((int)(maxX / 10000)) * 10000 + 10000;
+        }else if(maxX <= 10000)
+        {
+            maxX = 10000;
         }
 
         for (int i = 0; i <= 10; i++)

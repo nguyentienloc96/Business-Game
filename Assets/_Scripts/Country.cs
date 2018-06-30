@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public struct BASIC
 {
-    public int postage;
+    public string name;
+    public int initialInvestmentMoney;
+    public int investmentMoneyLater;
     public DateTime startDate;
-    public DateTime dayOfInvestment;
-    public bool isReadyed;
+    public bool isRunning;
 }
 
 public struct PROCEDUREPROCESS
@@ -18,51 +19,82 @@ public struct PROCEDUREPROCESS
     public BASIC b;     //Buying other factory/workshop
     public BASIC s;     //Service
 
-    public void SetRANDD(float SP0) // Setup it with the day
+    void SetRAndD(float SP0) // Setup it with the day
     {
-        if (rdb.postage > 10000)
+        if (rdb.initialInvestmentMoney > 10000)
         {
             if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
             {
-                if (!rdb.isReadyed)
+                SP0 += 1000000;
+                rdb.initialInvestmentMoney = 0;
+            }
+        }
+    }
+
+    void SetFactoryWorkshop(float SP0) // Setup it with the Month
+    {
+        if (f.initialInvestmentMoney > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays > 365)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) % 30 == 0)
+            {
+                float money = (f.investmentMoneyLater - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) / 30 - 1);
+                if (money <= 0)
                 {
-                    SP0 += 1000000;
-                    rdb.isReadyed = true;
+                    f.investmentMoneyLater = 0;
+                }
+                else
+                {
+                    SP0 += money;
                 }
             }
         }
     }
 
-    public void SetFactoryWorkshop(float SP0) // Setup it with the Month
+    void SetOutsource(float SP0)
     {
-        if (f.postage > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays > 365)
+        SP0 += o.initialInvestmentMoney * 0.7f;
+        o.initialInvestmentMoney = 0;
+    }
+
+    void SetBuyingSotherFactoryWorkshop(float SP0)
+    {
+        if (b.initialInvestmentMoney > 200000)
         {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) % 30 == 0)
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) % 30 == 0)
             {
-                SP0 += (f.postage - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) / 30 - 1);
+                float money = (b.investmentMoneyLater - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) / 30 - 1);
+                if (money <= 0)
+                {
+                    b.investmentMoneyLater = 0;
+                    b.isRunning = false;
+                }
+                else
+                {
+                    SP0 += money;
+                }
             }
         }
     }
 
-    public void Outsource(float SP0)
+    void SetService(float SP0)
     {
-        if (!o.isReadyed)
+        if(((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) / 30 > 1)
         {
-            SP0 += o.postage * 0.7f;
-            o.isReadyed = true;
+            SP0 += (int)(s.initialInvestmentMoney / 1000) * 50f;
         }
+
+        if (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) / 30 > 1)
+        {
+            SP0 += (int)(s.initialInvestmentMoney / 1000) * 100f;
+        }
+        s.initialInvestmentMoney = 0;
     }
 
-    public void BuyingSotherFactoryWorkshop(float SP0)
+    public void SetLoop(float SP0)
     {
-        if (f.postage > 200000 && !f.isReadyed)
-        {
-            SP0 += (b.postage - 100000) * 0.05f;
-            f.isReadyed = true;
-        }
+        SetFactoryWorkshop(SP0);
+        SetBuyingSotherFactoryWorkshop(SP0);
     }
-
-
 }
 
 public struct ADS
@@ -73,32 +105,35 @@ public struct ADS
 
     public void TraditionalAds(float MKT0)
     {
-        if (!t.isReadyed)
+        if (!t.isRunning)
         {
-            MKT0 += t.postage;
-            t.isReadyed = true;
+            MKT0 += t.initialInvestmentMoney;
+            t.isRunning = true;
         }
-        if ((long)((TimeSpan)(GameManager.Instance.dateGame - t.dayOfInvestment)).TotalDays >= 30 && UnityEngine.Random.Range(0f, 1f) <= 0.1f)
+        if ((long)((TimeSpan)(GameManager.Instance.dateGame - t.startDate)).TotalDays >= 30 && UnityEngine.Random.Range(0f, 1f) <= 0.1f)
         {
-            MKT0 += t.postage * 0.1f;
-            t.dayOfInvestment = GameManager.Instance.dateGame;
+            MKT0 += t.initialInvestmentMoney * 0.1f;
+            t.initialInvestmentMoney = 0;
+            t.isRunning = false;
         }
     }
 
     public void SocialNetworkAds(float MKT0)
     {
-        if (!s.isReadyed)
-        {
-            MKT0 += s.postage;
-            s.isReadyed = true;
-        }
+        MKT0 += s.initialInvestmentMoney;
+        s.initialInvestmentMoney = 0;
     }
 
     public void WebsiteAffiliate(float MKT0)
     {
         if ((long)((TimeSpan)(GameManager.Instance.dateGame - w.startDate)).TotalDays <= 365 * 2)
         {
-            MKT0 += w.postage * 0.1f;
+            MKT0 += w.initialInvestmentMoney * 0.1f;
+        }
+        else
+        {
+            w.initialInvestmentMoney = 0;
+            w.isRunning = false;
         }
     }
 }
@@ -147,46 +182,62 @@ public class Country : MonoBehaviour
 {
     public int ID;
     public string nameCountry;
-    public int L = 0;
+    public long GDP;
+    public long L = 0;
     [Range(50, 200)]
     public float Mn;
-    public float I;
 
     private float I0 = 0f;
-    private float SP0 = 20f;
-    private float MKT0 = 15f;
-    private float MAKRET0 = 15f;
-    private float L0 = 10f;
-    private float KH0 = 10f;
-    private float NS0 = 20f;
-    private float ST0 = 10f;
+    private float SP0 = 0f;
+    private float MKT0 = 0f;
+    private float MAKRET0 = 0f;
+    private float L0 = 0f;
+    private float KH0 = 0f;
+    private float NS0 = 0f;
+    private float ST0 = 0f;
+
+    public PROCEDUREPROCESS pROCEDUREPROCESS;
+    public ADS aDS;
+    public SPREADING sPREADING;
+    public TRANSPORTCHAIN tRANSPORTCHAIN;
+    public SALESCHAIN sALESCHAIN;
+    public RISKMANAGEMENT rISKMANAGEMENT;
+    public EMPLOYEES eMPLOYEES;
 
     public void Interest()
     {
         I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
-        I = L * GameConfig.Instance.Ipc + I0 * Mn;
+        GameManager.Instance.main.coin += (int)(L * GameConfig.Instance.Ipc / 100) + (int)(I0 * Mn);
     }
 
     public void OnClickItemWord()
     {
-        UIManager.Instance.PieChart1.SetActive(true);
+        if (UIManager.Instance.indexScene == 0)
+        {
+            UIManager.Instance.PieChart1.SetActive(true);
+        }
+        else if (UIManager.Instance.indexScene == 1)
+        {
+            UIManager.Instance.PieChart2.SetActive(true);
+        }
+        else if (UIManager.Instance.indexScene == 2)
+        {
+            UIManager.Instance.LabelCountry.text = nameCountry;
+        }
         Word.Instance.lsCountry[Word.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
         Word.Instance.idSelectWord = ID;
-        if (L == 0)
-        {
-            UIManager.Instance.POSITIONSELECT.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = nameCountry;
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNo());
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYes());
-        }
+        UIManager.Instance.POSITIONSELECT.SetActive(true);
+        UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = nameCountry;
+        UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYes());
+        UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
+        Word.Instance.seltTraining.value = 0;
+        L = 1000;
     }
 
     public void OnClickNo()
     {
-        L = 0;
         UIManager.Instance.POSITIONSELECT.SetActive(false);
     }
 
@@ -194,23 +245,19 @@ public class Country : MonoBehaviour
     {
         if (L > 0)
         {
-            if (GameManager.Instance.main.gold >= L)
+            if (GameManager.Instance.main.coin >= L)
             {
 
-                GameManager.Instance.main.gold -= L;
+                GameManager.Instance.main.coin -= L;
                 GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
-                UIManager.Instance.POSITIONSELECT.SetActive(false);
+                UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
+                UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + L.ToString() + "$ vào "+nameCountry;
             }
             else
             {
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban khong du so tien dau tu";
             }
-        }
-        else
-        {
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban chua chon so tien dau tu";
         }
 
     }

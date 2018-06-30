@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
 
     public static UIManager Instance;
+    public int indexScene = 0;
 
     [Header("MenuGame")]
     public GameObject menuGame;
@@ -22,6 +21,8 @@ public class UIManager : MonoBehaviour
     [Header("SelfTraining")]
     public GameObject SELFTRAINING;
     public GameObject SelfTraining;
+    public Text LabelCountry;
+    public Text txtCodeCountry;
 
     [Header("DateTime")]
     #region DateTime  
@@ -54,6 +55,10 @@ public class UIManager : MonoBehaviour
     public Button btnBRANCH2;
     public Button btnBRANCH3;
 
+    [Header("SelfTaining")]
+    public Slider sliderTraining;
+    public Text coinSelf;
+
 
     void Awake()
     {
@@ -64,6 +69,7 @@ public class UIManager : MonoBehaviour
 
     public void OnclickWORD()
     {
+        indexScene = 0;
         btnWORD.transform.GetChild(1).gameObject.SetActive(true);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -80,6 +86,7 @@ public class UIManager : MonoBehaviour
 
     public void OnclickTHONGSO()
     {
+        indexScene = 1;
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -92,10 +99,16 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
+
     }
 
     public void OnclickNHOM1()
     {
+        indexScene = 2;
+        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
+        {
+            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
+        }
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(true);
@@ -108,10 +121,26 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
+        btnBRANCH2.gameObject.SetActive(true);
+        btnBRANCH3.gameObject.SetActive(true);
+        btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[0].name;
+        btnBRANCH1.transform.GetComponent<Branch>().index = 0;
+        btnBRANCH2.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[1].name;
+        btnBRANCH2.transform.GetComponent<Branch>().index = 1;
+        btnBRANCH3.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[2].name;
+        btnBRANCH3.transform.GetComponent<Branch>().index = 2;
+        btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void OnclickNHOM2()
     {
+        indexScene = 2;
+        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
+        {
+            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
+        }
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -124,10 +153,26 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
+        btnBRANCH2.gameObject.SetActive(true);
+        btnBRANCH3.gameObject.SetActive(true);
+        btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[3].name;
+        btnBRANCH1.transform.GetComponent<Branch>().index = 3;
+        btnBRANCH2.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[4].name;
+        btnBRANCH2.transform.GetComponent<Branch>().index = 4;
+        btnBRANCH3.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[5].name;
+        btnBRANCH3.transform.GetComponent<Branch>().index = 5;
+        btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void OnclickNHOM3()
     {
+        indexScene = 2;
+        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
+        {
+            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
+        }
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -140,6 +185,13 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
+        btnBRANCH2.gameObject.SetActive(false);
+        btnBRANCH3.gameObject.SetActive(false);
+        btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[6].name;
+        btnBRANCH1.transform.GetComponent<Branch>().index = 6;
+        btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void PlayGame(int SRD)
@@ -147,13 +199,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.SRD = SRD;
         menuGame.SetActive(false);
         GameManager.Instance.main.bitCoin = 1000 * SRD;
-        GameManager.Instance.main.gold = 50000 * SRD;
+        GameManager.Instance.main.coin = 50000 * SRD;
         OnclickWORD();
     }
 
     public void Update()
     {
-        txtGold.text = GameManager.Instance.main.gold.ToString();
+        txtGold.text = GameManager.Instance.main.coin.ToString();
         txtBitCoin.text = GameManager.Instance.main.bitCoin.ToString();
     }
 }

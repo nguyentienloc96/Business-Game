@@ -15,6 +15,7 @@ public class DataUpdate : MonoBehaviour
         //DontDestroyOnLoad(this);
     }
 
+    [System.Serializable]
     public struct DataItems
     {
         public string name;

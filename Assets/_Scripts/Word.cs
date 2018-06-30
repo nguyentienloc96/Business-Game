@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-[Serializable]
-public class CountryJSON
-{
-    public string name;
-    public string code;
-}
-
-[Serializable]
-public class WordJSON
-{
-    public CountryJSON[] world;
-}
 
 public class Word : MonoBehaviour
 {
@@ -26,8 +12,10 @@ public class Word : MonoBehaviour
     [Header("Word")]
     public GameObject itemWord;
     public Transform contentWord;
+
+    [Header("Self")]
     public Slider seltTraining;
-    public Text seltGold;
+    public Text seltCoin;
     public List<Country> lsCountry = new List<Country>();
 
     void Awake()
@@ -39,26 +27,24 @@ public class Word : MonoBehaviour
 
     void Start()
     {
-        TextAsset asset = Resources.Load<TextAsset>("ListNameCountry");
-        WordJSON info = JsonUtility.FromJson<WordJSON>(asset.text);
-        for (int i = 0; i < info.world.Length; i++)
+        for (int i = 0; i < DataUpdate.Instance.lstData_NameCountry.Count; i++)
         {
             Transform item = Instantiate(itemWord, contentWord).transform;
-            item.name = info.world[i].name;
+            item.name = DataUpdate.Instance.lstData_NameCountry[i].name;
             
             item.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:000}", i);
-            item.GetChild(1).GetComponent<Text>().text = info.world[i].name;
+            item.GetChild(1).GetComponent<Text>().text = DataUpdate.Instance.lstData_NameCountry[i].name;
             lsCountry.Add(item.GetComponent<Country>());
             item.GetComponent<Country>().ID = i;
-            item.GetComponent<Country>().nameCountry = info.world[i].name;
+            item.GetComponent<Country>().nameCountry = DataUpdate.Instance.lstData_NameCountry[i].name;
             item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
         }
     }
 
-    public void SliderSeltTraining()
+    public void SliderWord()
     {
         lsCountry[idSelectWord].L =1000 + (int)(seltTraining.value * 49)*1000;
-        seltGold.text = lsCountry[idSelectWord].L.ToString();
+        seltCoin.text = lsCountry[idSelectWord].L.ToString();
     }
 
     public void OnEnableWord(bool isWord)
@@ -76,13 +62,12 @@ public class Word : MonoBehaviour
                 lsCountry[i].gameObject.SetActive(false);
             }
             yield return new WaitForEndOfFrame();
+            lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
+            lsCountry[0].OnClickItemWord();
+            idSelectWord = 0;
             for (int i = 0; i < lsCountry.Count; i++)
-            {
-                if (i == 0)
-                {
-                    lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
-                    idSelectWord = 0;
-                }
+            { 
                 lsCountry[i].gameObject.SetActive(true);
                 yield return new WaitForSeconds(0.15f);
             }
@@ -94,14 +79,14 @@ public class Word : MonoBehaviour
                 lsCountry[i].gameObject.SetActive(false);
             }
             yield return new WaitForEndOfFrame();
+            lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            if (GameManager.Instance.main.lsCoutryReady.Count > 0)
+            {
+                GameManager.Instance.main.lsCoutryReady[0].transform.GetChild(3).gameObject.SetActive(true);
+                idSelectWord = GameManager.Instance.main.lsCoutryReady[0].ID;
+            }
             for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
             {
-                if (i == 0)
-                {
-                    lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
-                    idSelectWord = GameManager.Instance.main.lsCoutryReady[i].ID;
-                    GameManager.Instance.main.lsCoutryReady[i].transform.GetChild(3).gameObject.SetActive(true);
-                }
                 GameManager.Instance.main.lsCoutryReady[i].gameObject.SetActive(true);
                 yield return new WaitForSeconds(0.15f);
             }

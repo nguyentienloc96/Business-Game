@@ -2,20 +2,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct EconomicSegment
+{
+    public string name;
+    public string code;
+}
+
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
     public int SRD;
 
-    #region DateTime  
+    [Header("DateTime")]
     public DateTime dateGame;
     private float time;
-    #endregion
 
     [Header("BusinessMan")]
     public BusinessMan main;
     public BusinessMan competitors;
+
+    [Header("EconomicSegment")]
+    public EconomicSegment[] arreconomicSegments;
+
+    [Header("SelfTraining")]
+    public GameObject itemSelf;
+    public Transform contentSelf;
 
     void Awake()
     {
@@ -64,6 +77,7 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         if (time >= 4)
         {
+            UpdateDataUser(main);
             dateGame = dateGame.AddDays(1f);
             SetDate();
             time = 0;
@@ -72,6 +86,9 @@ public class GameManager : MonoBehaviour
 
     void UpdateDataUser(BusinessMan man)
     {
-        
+        for(int i = 0; i < main.lsCoutryReady.Count; i++)
+        {
+            main.lsCoutryReady[i].Interest();
+        }
     }
 }

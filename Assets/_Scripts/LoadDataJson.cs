@@ -24,7 +24,7 @@ public class LoadDataJson : MonoBehaviour
         LoadDataNewsJson();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
-        DataPlayer.Instance.LoadDataPlayer();
+        //DataPlayer.Instance.LoadDataPlayer();
     }
 
     private string newsJson = "DataNews";

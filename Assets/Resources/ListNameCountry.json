@@ -1,976 +1,814 @@
-{
-  "world": [
+[
     {
-      "name": "Afghanistan",
-      "code": "AF"
+        "name": "Afghanistan",
+        "gdp": "20889"
     },
     {
-      "name": "Åland Islands",
-      "code": "AX"
+        "name": "Albania",
+        "gdp": "13001"
     },
     {
-      "name": "Albania",
-      "code": "AL"
+        "name": "Algeria",
+        "gdp": "200005"
     },
     {
-      "name": "Algeria",
-      "code": "DZ"
+        "name": "AndorrA",
+        "gdp": "3712"
     },
     {
-      "name": "American Samoa",
-      "code": "AS"
+        "name": "Angola",
+        "gdp": "124209"
     },
     {
-      "name": "AndorrA",
-      "code": "AD"
+        "name": "Anguilla",
+        "gdp": "311"
     },
     {
-      "name": "Angola",
-      "code": "AO"
+        "name": "Antigua and Barbuda",
+        "gdp": "1535"
     },
     {
-      "name": "Anguilla",
-      "code": "AI"
+        "name": "Argentina",
+        "gdp": "637717"
     },
     {
-      "name": "Antarctica",
-      "code": "AQ"
+        "name": "Armenia",
+        "gdp": "11037"
     },
     {
-      "name": "Antigua and Barbuda",
-      "code": "AG"
+        "name": "Aruba",
+        "gdp": "2584"
     },
     {
-      "name": "Argentina",
-      "code": "AR"
+        "name": "Australia",
+        "gdp": "1500256"
     },
     {
-      "name": "Armenia",
-      "code": "AM"
+        "name": "Austria",
+        "gdp": "477672"
     },
     {
-      "name": "Aruba",
-      "code": "AW"
+        "name": "Azerbaijan",
+        "gdp": "45483"
     },
     {
-      "name": "Australia",
-      "code": "AU"
+        "name": "Bahamas",
+        "gdp": "12318"
     },
     {
-      "name": "Austria",
-      "code": "AT"
+        "name": "Bahrain",
+        "gdp": "37841"
     },
     {
-      "name": "Azerbaijan",
-      "code": "AZ"
+        "name": "Bangladesh",
+        "gdp": "285817"
     },
     {
-      "name": "Bahamas",
-      "code": "BS"
+        "name": "Barbados",
+        "gdp": "5317"
     },
     {
-      "name": "Bahrain",
-      "code": "BH"
+        "name": "Belarus",
+        "gdp": "59246"
     },
     {
-      "name": "Bangladesh",
-      "code": "BD"
+        "name": "Belgium",
+        "gdp": "562229"
     },
     {
-      "name": "Barbados",
-      "code": "BB"
+        "name": "Belize",
+        "gdp": "1912"
     },
     {
-      "name": "Belarus",
-      "code": "BY"
+        "name": "Benin",
+        "gdp": "11039"
     },
     {
-      "name": "Belgium",
-      "code": "BE"
+        "name": "Bermuda",
+        "gdp": "5574"
     },
     {
-      "name": "Belize",
-      "code": "BZ"
+        "name": "Bhutan",
+        "gdp": "2547"
     },
     {
-      "name": "Benin",
-      "code": "BJ"
+        "name": "Bolivia",
+        "gdp": "40737"
     },
     {
-      "name": "Bermuda",
-      "code": "BM"
+        "name": "Bosnia and Herzegovina",
+        "gdp": "20340"
     },
     {
-      "name": "Bhutan",
-      "code": "BT"
+        "name": "Botswana",
+        "gdp": "18620"
     },
     {
-      "name": "Bolivia",
-      "code": "BO"
+        "name": "Brazil",
+        "gdp": "2138918"
     },
     {
-      "name": "Bosnia and Herzegovina",
-      "code": "BA"
+        "name": "British Indian Ocean Territory",
+        "gdp": "902"
     },
     {
-      "name": "Botswana",
-      "code": "BW"
+        "name": "Brunei",
+        "gdp": "14438"
     },
     {
-      "name": "Bouvet Island",
-      "code": "BV"
+        "name": "Bulgaria",
+        "gdp": "64781"
     },
     {
-      "name": "Brazil",
-      "code": "BR"
+        "name": "Burkina Faso",
+        "gdp": "14607"
     },
     {
-      "name": "British Indian Ocean Territory",
-      "code": "IO"
+        "name": "Burundi",
+        "gdp": "3805"
     },
     {
-      "name": "Brunei Darussalam",
-      "code": "BN"
+        "name": "Cambodia",
+        "gdp": "24360"
     },
     {
-      "name": "Bulgaria",
-      "code": "BG"
+        "name": "Cameroon",
+        "gdp": "39074"
     },
     {
-      "name": "Burkina Faso",
-      "code": "BF"
+        "name": "Canada",
+        "gdp": "1798512"
     },
     {
-      "name": "Burundi",
-      "code": "BI"
+        "name": "Cape Verde",
+        "gdp": "1978"
     },
     {
-      "name": "Cambodia",
-      "code": "KH"
+        "name": "Cayman Islands",
+        "gdp": "3480"
     },
     {
-      "name": "Cameroon",
-      "code": "CM"
+        "name": "Central African Republic",
+        "gdp": "2164"
     },
     {
-      "name": "Canada",
-      "code": "CA"
+        "name": "Chad",
+        "gdp": "11486"
     },
     {
-      "name": "Cape Verde",
-      "code": "CV"
+        "name": "Chile",
+        "gdp": "280269"
     },
     {
-      "name": "Cayman Islands",
-      "code": "KY"
+        "name": "China",
+        "gdp": "14092514"
     },
     {
-      "name": "Central African Republic",
-      "code": "CF"
+        "name": "Colombia",
+        "gdp": "327978"
     },
     {
-      "name": "Chad",
-      "code": "TD"
+        "name": "Comoros",
+        "gdp": "738"
     },
     {
-      "name": "Chile",
-      "code": "CL"
+        "name": "The Democratic Republic of the Congo",
+        "gdp": "42644"
     },
     {
-      "name": "China",
-      "code": "CN"
+        "name": "Cook Islands",
+        "gdp": "311"
     },
     {
-      "name": "Christmas Island",
-      "code": "CX"
+        "name": "Costa Rica",
+        "gdp": "61287"
     },
     {
-      "name": "Cocos (Keeling) Islands",
-      "code": "CC"
+        "name": "Croatia",
+        "gdp": "61056"
     },
     {
-      "name": "Colombia",
-      "code": "CO"
+        "name": "Cuba",
+        "gdp": "89689"
     },
     {
-      "name": "Comoros",
-      "code": "KM"
+        "name": "Cyprus",
+        "gdp": "24620"
     },
     {
-      "name": "Congo",
-      "code": "CG"
+        "name": "Czech Republic",
+        "gdp": "251577"
     },
     {
-      "name": "Congo, The Democratic Republic of the",
-      "code": "CD"
+        "name": "Denmark",
+        "gdp": "369760"
     },
     {
-      "name": "Cook Islands",
-      "code": "CK"
+        "name": "Djibouti",
+        "gdp": "2,187"
     },
     {
-      "name": "Costa Rica",
-      "code": "CR"
+        "name": "Dominica",
+        "gdp": "476"
     },
     {
-      "name": "Cote D\"Ivoire",
-      "code": "CI"
+        "name": "Dominican Republic",
+        "gdp": "80413"
     },
     {
-      "name": "Croatia",
-      "code": "HR"
+        "name": "Ecuador",
+        "gdp": "106621"
     },
     {
-      "name": "Cuba",
-      "code": "CU"
+        "name": "Egypt",
+        "gdp": "237073"
     },
     {
-      "name": "Cyprus",
-      "code": "CY"
+        "name": "El Salvador",
+        "gdp": "29407"
     },
     {
-      "name": "Czech Republic",
-      "code": "CZ"
+        "name": "Equatorial Guinea",
+        "gdp": "11544"
     },
     {
-      "name": "Denmark",
-      "code": "DK"
+        "name": "Eritrea",
+        "gdp": "6721"
     },
     {
-      "name": "Djibouti",
-      "code": "DJ"
+        "name": "Estonia",
+        "gdp": "30821"
     },
     {
-      "name": "Dominica",
-      "code": "DM"
+        "name": "Ethiopia",
+        "gdp": "85664"
     },
     {
-      "name": "Dominican Republic",
-      "code": "DO"
+        "name": "Faroe Islands",
+        "gdp": "2613"
     },
     {
-      "name": "Ecuador",
-      "code": "EC"
+        "name": "Fiji",
+        "gdp": "5440"
     },
     {
-      "name": "Egypt",
-      "code": "EG"
+        "name": "Finland",
+        "gdp": "289557"
     },
     {
-      "name": "El Salvador",
-      "code": "SV"
+        "name": "France",
+        "gdp": "2925096"
     },
     {
-      "name": "Equatorial Guinea",
-      "code": "GQ"
+        "name": "French Polynesia",
+        "gdp": "5623"
     },
     {
-      "name": "Eritrea",
-      "code": "ER"
+        "name": "Gabon",
+        "gdp": "17461"
     },
     {
-      "name": "Estonia",
-      "code": "EE"
+        "name": "Gambia",
+        "gdp": "1085"
     },
     {
-      "name": "Ethiopia",
-      "code": "ET"
+        "name": "Georgia",
+        "gdp": "14333"
     },
     {
-      "name": "Falkland Islands (Malvinas)",
-      "code": "FK"
+        "name": "Germany",
+        "gdp": "4211635"
     },
     {
-      "name": "Faroe Islands",
-      "code": "FO"
+        "name": "Ghana",
+        "gdp": "51619"
     },
     {
-      "name": "Fiji",
-      "code": "FJ"
+        "name": "Greece",
+        "gdp": "226774"
     },
     {
-      "name": "Finland",
-      "code": "FI"
+        "name": "Greenland",
+        "gdp": "2441"
     },
     {
-      "name": "France",
-      "code": "FR"
+        "name": "Grenada",
+        "gdp": "1016"
     },
     {
-      "name": "French Guiana",
-      "code": "GF"
+        "name": "Guatemala",
+        "gdp": "82356"
     },
     {
-      "name": "French Polynesia",
-      "code": "PF"
+        "name": "Guinea",
+        "gdp": "10854"
     },
     {
-      "name": "French Southern Territories",
-      "code": "TF"
+        "name": "Guinea-Bissau",
+        "gdp": "1582"
     },
     {
-      "name": "Gabon",
-      "code": "GA"
+        "name": "Guyana",
+        "gdp": "3747"
     },
     {
-      "name": "Gambia",
-      "code": "GM"
+        "name": "Haiti",
+        "gdp": "9417"
     },
     {
-      "name": "Georgia",
-      "code": "GE"
+        "name": "Honduras",
+        "gdp": "24021"
     },
     {
-      "name": "Germany",
-      "code": "DE"
+        "name": "Hong Kong",
+        "gdp": "364782"
     },
     {
-      "name": "Ghana",
-      "code": "GH"
+        "name": "Hungary",
+        "gdp": "163541"
     },
     {
-      "name": "Gibraltar",
-      "code": "GI"
+        "name": "Iceland",
+        "gdp": "29109"
     },
     {
-      "name": "Greece",
-      "code": "GR"
+        "name": "India",
+        "gdp": "2848231"
     },
     {
-      "name": "Greenland",
-      "code": "GL"
+        "name": "Indonesia",
+        "gdp": "1074966"
     },
     {
-      "name": "Grenada",
-      "code": "GD"
+        "name": "Iran",
+        "gdp": "418875"
     },
     {
-      "name": "Guadeloupe",
-      "code": "GP"
+        "name": "Iraq",
+        "gdp": "223258"
     },
     {
-      "name": "Guam",
-      "code": "GU"
+        "name": "Ireland",
+        "gdp": "385142"
     },
     {
-      "name": "Guatemala",
-      "code": "GT"
+        "name": "Israel",
+        "gdp": "373751"
     },
     {
-      "name": "Guernsey",
-      "code": "GG"
+        "name": "Italy",
+        "gdp": "2181970"
     },
     {
-      "name": "Guinea",
-      "code": "GN"
+        "name": "Jamaica",
+        "gdp": "15256"
     },
     {
-      "name": "Guinea-Bissau",
-      "code": "GW"
+        "name": "Japan",
+        "gdp": "5167051"
     },
     {
-      "name": "Guyana",
-      "code": "GY"
+        "name": "Jordan",
+        "gdp": "42553"
     },
     {
-      "name": "Haiti",
-      "code": "HT"
+        "name": "Kazakhstan",
+        "gdp": "179250"
     },
     {
-      "name": "Heard Island and Mcdonald Islands",
-      "code": "HM"
+        "name": "Kenya",
+        "gdp": "88271"
     },
     {
-      "name": "Holy See (Vatican City State)",
-      "code": "VA"
+        "name": "Kiribati",
+        "gdp": "211"
     },
     {
-      "name": "Honduras",
-      "code": "HN"
+        "name": "Korea",
+        "gdp": "1693246"
     },
     {
-      "name": "Hong Kong",
-      "code": "HK"
+        "name": "Kuwait",
+        "gdp": "135305"
     },
     {
-      "name": "Hungary",
-      "code": "HU"
+        "name": "Kyrgyzstan",
+        "gdp": "7,588"
     },
     {
-      "name": "Iceland",
-      "code": "IS"
+        "name": "Laos",
+        "gdp": "18337"
     },
     {
-      "name": "India",
-      "code": "IN"
+        "name": "Latvia",
+        "gdp": "35915"
     },
     {
-      "name": "Indonesia",
-      "code": "ID"
+        "name": "Lebanon",
+        "gdp": "53620"
     },
     {
-      "name": "Iran, Islamic Republic Of",
-      "code": "IR"
+        "name": "Lesotho",
+        "gdp": "2920"
     },
     {
-      "name": "Iraq",
-      "code": "IQ"
+        "name": "Liberia",
+        "gdp": "3332"
     },
     {
-      "name": "Ireland",
-      "code": "IE"
+        "name": "Libya",
+        "gdp": "43636"
     },
     {
-      "name": "Isle of Man",
-      "code": "IM"
+        "name": "Lithuania",
+        "gdp": "54352"
     },
     {
-      "name": "Israel",
-      "code": "IL"
+        "name": "Luxembourg",
+        "gdp": "72461"
     },
     {
-      "name": "Italy",
-      "code": "IT"
+        "name": "Macao",
+        "gdp": "53754"
     },
     {
-      "name": "Jamaica",
-      "code": "JM"
+        "name": "Macedonia",
+        "gdp": "13085"
     },
     {
-      "name": "Japan",
-      "code": "JP"
+        "name": "Madagascar",
+        "gdp": "12611"
     },
     {
-      "name": "Jersey",
-      "code": "JE"
+        "name": "Malawi",
+        "gdp": "6746"
     },
     {
-      "name": "Jordan",
-      "code": "JO"
+        "name": "Malaysia",
+        "gdp": "364919"
     },
     {
-      "name": "Kazakhstan",
-      "code": "KZ"
+        "name": "Maldives",
+        "gdp": "4825"
     },
     {
-      "name": "Kenya",
-      "code": "KE"
+        "name": "Mali",
+        "gdp": "17907"
     },
     {
-      "name": "Kiribati",
-      "code": "KI"
+        "name": "Malta",
+        "gdp": "14873"
     },
     {
-      "name": "Korea, Democratic People\"S Republic of",
-      "code": "KP"
+        "name": "Marshall Islands",
+        "gdp": "205"
     },
     {
-      "name": "Korea, Republic of",
-      "code": "KR"
+        "name": "Martinique",
+        "gdp": "MQ"
     },
     {
-      "name": "Kuwait",
-      "code": "KW"
+        "name": "Mauritania",
+        "gdp": "5435"
     },
     {
-      "name": "Kyrgyzstan",
-      "code": "KG"
+        "name": "Mauritius",
+        "gdp": "13297"
     },
     {
-      "name": "Lao People\"S Democratic Republic",
-      "code": "LA"
+        "name": "Mexico",
+        "gdp": "1212831"
     },
     {
-      "name": "Latvia",
-      "code": "LV"
+        "name": "Moldova",
+        "gdp": "9202"
     },
     {
-      "name": "Lebanon",
-      "code": "LB"
+        "name": "Monaco",
+        "gdp": "7060"
     },
     {
-      "name": "Lesotho",
-      "code": "LS"
+        "name": "Mongolia",
+        "gdp": "12511"
     },
     {
-      "name": "Liberia",
-      "code": "LR"
+        "name": "Montserrat",
+        "gdp": "63"
     },
     {
-      "name": "Libyan Arab Jamahiriya",
-      "code": "LY"
+        "name": "Morocco",
+        "gdp": "120997"
     },
     {
-      "name": "Liechtenstein",
-      "code": "LI"
+        "name": "Mozambique",
+        "gdp": "14321"
     },
     {
-      "name": "Lithuania",
-      "code": "LT"
+        "name": "Myanmar",
+        "gdp": "70715"
     },
     {
-      "name": "Luxembourg",
-      "code": "LU"
+        "name": "Namibia",
+        "gdp": "13298"
     },
     {
-      "name": "Macao",
-      "code": "MO"
+        "name": "Nepal",
+        "gdp": "27278"
     },
     {
-      "name": "Macedonia, The Former Yugoslav Republic of",
-      "code": "MK"
+        "name": "Netherlands",
+        "gdp": "945327"
     },
     {
-      "name": "Madagascar",
-      "code": "MG"
+        "name": "New Caledonia",
+        "gdp": "10234"
     },
     {
-      "name": "Malawi",
-      "code": "MW"
+        "name": "New Zealand",
+        "gdp": "220888"
     },
     {
-      "name": "Malaysia",
-      "code": "MY"
+        "name": "Nicaragua",
+        "gdp": "14532"
     },
     {
-      "name": "Maldives",
-      "code": "MV"
+        "name": "Niger",
+        "gdp": "9869"
     },
     {
-      "name": "Mali",
-      "code": "ML"
+        "name": "Nigeria",
+        "gdp": "408612"
     },
     {
-      "name": "Malta",
-      "code": "MT"
+        "name": "Norway",
+        "gdp": "443252"
     },
     {
-      "name": "Marshall Islands",
-      "code": "MH"
+        "name": "Oman",
+        "gdp": "82620"
     },
     {
-      "name": "Martinique",
-      "code": "MQ"
+        "name": "Pakistan",
+        "gdp": "303993"
     },
     {
-      "name": "Mauritania",
-      "code": "MR"
+        "name": "Palau",
+        "gdp": "321"
     },
     {
-      "name": "Mauritius",
-      "code": "MU"
+        "name": "Panama",
+        "gdp": "66711"
     },
     {
-      "name": "Mayotte",
-      "code": "YT"
+        "name": "Papua New Guinea",
+        "gdp": "26312"
     },
     {
-      "name": "Mexico",
-      "code": "MX"
+        "name": "Paraguay",
+        "gdp": "32291"
     },
     {
-      "name": "Micronesia, Federated States of",
-      "code": "FM"
+        "name": "Peru",
+        "gdp": "231567"
     },
     {
-      "name": "Moldova, Republic of",
-      "code": "MD"
+        "name": "Philippines",
+        "gdp": "313419"
     },
     {
-      "name": "Monaco",
-      "code": "MC"
+        "name": "Poland",
+        "gdp": "614190"
     },
     {
-      "name": "Mongolia",
-      "code": "MN"
+        "name": "Portugal",
+        "gdp": "248891"
     },
     {
-      "name": "Montserrat",
-      "code": "MS"
+        "name": "Puerto Rico",
+        "gdp": "97353"
     },
     {
-      "name": "Morocco",
-      "code": "MA"
+        "name": "Qatar",
+        "gdp": "183807"
     },
     {
-      "name": "Mozambique",
-      "code": "MZ"
+        "name": "Romania",
+        "gdp": "245590"
     },
     {
-      "name": "Myanmar",
-      "code": "MM"
+        "name": "Russia",
+        "gdp": "1719000"
     },
     {
-      "name": "Namibia",
-      "code": "NA"
+        "name": "Rwanda",
+        "gdp": "9944"
     },
     {
-      "name": "Nauru",
-      "code": "NR"
+        "name": "Saint Kitts and Nevis",
+        "gdp": "917"
     },
     {
-      "name": "Nepal",
-      "code": "NP"
+        "name": "Saint Lucia",
+        "gdp": "1370"
     },
     {
-      "name": "Netherlands",
-      "code": "NL"
+        "name": "Saint Vincent and the Grenadines",
+        "gdp": "771"
     },
     {
-      "name": "Netherlands Antilles",
-      "code": "AN"
+        "name": "Samoa",
+        "gdp": "881"
     },
     {
-      "name": "New Caledonia",
-      "code": "NC"
+        "name": "San Marino",
+        "gdp": "1809"
     },
     {
-      "name": "New Zealand",
-      "code": "NZ"
+        "name": "Sao Tome and Principe",
+        "gdp": "443"
     },
     {
-      "name": "Nicaragua",
-      "code": "NI"
+        "name": "Saudi Arabia",
+        "gdp": "748003"
     },
     {
-      "name": "Niger",
-      "code": "NE"
+        "name": "Senegal",
+        "gdp": "19722"
     },
     {
-      "name": "Nigeria",
-      "code": "NG"
+        "name": "Serbia and Montenegro",
+        "gdp": "48279"
     },
     {
-      "name": "Niue",
-      "code": "NU"
+        "name": "Seychelles",
+        "gdp": "1569"
     },
     {
-      "name": "Norfolk Island",
-      "code": "NF"
+        "name": "Sierra Leone",
+        "gdp": "3824"
     },
     {
-      "name": "Northern Mariana Islands",
-      "code": "MP"
+        "name": "Singapore",
+        "gdp": "332449"
     },
     {
-      "name": "Norway",
-      "code": "NO"
+        "name": "Slovakia",
+        "gdp": "111483"
     },
     {
-      "name": "Oman",
-      "code": "OM"
+        "name": "Slovenia",
+        "gdp": "56933"
     },
     {
-      "name": "Pakistan",
-      "code": "PK"
+        "name": "Solomon Islands",
+        "gdp": "1377"
     },
     {
-      "name": "Palau",
-      "code": "PW"
+        "name": "Somalia",
+        "gdp": "6217"
     },
     {
-      "name": "Palestinian Territory, Occupied",
-      "code": "PS"
+        "name": "South Africa",
+        "gdp": "370887"
     },
     {
-      "name": "Panama",
-      "code": "PA"
+        "name": "Spain",
+        "gdp": "1506439"
     },
     {
-      "name": "Papua New Guinea",
-      "code": "PG"
+        "name": "Sri Lanka",
+        "gdp": "93454"
     },
     {
-      "name": "Paraguay",
-      "code": "PY"
+        "name": "Sudan",
+        "gdp": "3194"
     },
     {
-      "name": "Peru",
-      "code": "PE"
+        "name": "Suriname",
+        "gdp": "3857"
     },
     {
-      "name": "Philippines",
-      "code": "PH"
+        "name": "Swaziland",
+        "gdp": "4572"
     },
     {
-      "name": "Pitcairn",
-      "code": "PN"
+        "name": "Sweden",
+        "gdp": "600771"
     },
     {
-      "name": "Poland",
-      "code": "PL"
+        "name": "Switzerland",
+        "gdp": "741688"
     },
     {
-      "name": "Portugal",
-      "code": "PT"
+        "name": "Syrian Arab Republic",
+        "gdp": "77460"
     },
     {
-      "name": "Puerto Rico",
-      "code": "PR"
+        "name": "Taiwan, Province of China",
+        "gdp": "613295"
     },
     {
-      "name": "Qatar",
-      "code": "QA"
+        "name": "Tajikistan",
+        "gdp": "7659"
     },
     {
-      "name": "Reunion",
-      "code": "RE"
+        "name": "Tanzania",
+        "gdp": "56664"
     },
     {
-      "name": "Romania",
-      "code": "RO"
+        "name": "Thailand",
+        "gdp": "483739"
     },
     {
-      "name": "Russian Federation",
-      "code": "RU"
+        "name": "Timor-Leste",
+        "gdp": "2740"
     },
     {
-      "name": "RWANDA",
-      "code": "RW"
+        "name": "Togo",
+        "gdp": "5590"
     },
     {
-      "name": "Saint Helena",
-      "code": "SH"
+        "name": "Tonga",
+        "gdp": "433"
     },
     {
-      "name": "Saint Kitts and Nevis",
-      "code": "KN"
+        "name": "Trinidad and Tobago",
+        "gdp": "22158"
     },
     {
-      "name": "Saint Lucia",
-      "code": "LC"
+        "name": "Tunisia",
+        "gdp": "40298"
     },
     {
-      "name": "Saint Pierre and Miquelon",
-      "code": "PM"
+        "name": "Turkey",
+        "gdp": "909885"
     },
     {
-      "name": "Saint Vincent and the Grenadines",
-      "code": "VC"
+        "name": "Turkmenistan",
+        "gdp": "42353"
     },
     {
-      "name": "Samoa",
-      "code": "WS"
+        "name": "Turks and Caicos Islands",
+        "gdp": "797"
     },
     {
-      "name": "San Marino",
-      "code": "SM"
+        "name": "Tuvalu",
+        "gdp": "43"
     },
     {
-      "name": "Sao Tome and Principe",
-      "code": "ST"
+        "name": "Uganda",
+        "gdp": "27616"
     },
     {
-      "name": "Saudi Arabia",
-      "code": "SA"
+        "name": "Ukraine",
+        "gdp": "119134"
     },
     {
-      "name": "Senegal",
-      "code": "SN"
+        "name": "United Arab Emirates",
+        "gdp": "411827"
     },
     {
-      "name": "Serbia and Montenegro",
-      "code": "CS"
+        "name": "United Kingdom",
+        "gdp": "2936,86"
     },
     {
-      "name": "Seychelles",
-      "code": "SC"
+        "name": "United States",
+        "gdp": "20412870"
     },
     {
-      "name": "Sierra Leone",
-      "code": "SL"
+        "name": "Uruguay",
+        "gdp": "63370"
     },
     {
-      "name": "Singapore",
-      "code": "SG"
+        "name": "Uzbekistan",
+        "gdp": "40259"
     },
     {
-      "name": "Slovakia",
-      "code": "SK"
+        "name": "Vanuatu",
+        "gdp": "957"
     },
     {
-      "name": "Slovenia",
-      "code": "SI"
+        "name": "Venezuela",
+        "gdp": "100845"
     },
     {
-      "name": "Solomon Islands",
-      "code": "SB"
+        "name": "Viet Nam",
+        "gdp": "240779"
     },
     {
-      "name": "Somalia",
-      "code": "SO"
+        "name": "British Virgin Islands",
+        "gdp": "902"
     },
     {
-      "name": "South Africa",
-      "code": "ZA"
+        "name": "Yemen",
+        "gdp": "13840"
     },
     {
-      "name": "South Georgia and the South Sandwich Islands",
-      "code": "GS"
+        "name": "Zambia",
+        "gdp": "26228"
     },
     {
-      "name": "Spain",
-      "code": "ES"
-    },
-    {
-      "name": "Sri Lanka",
-      "code": "LK"
-    },
-    {
-      "name": "Sudan",
-      "code": "SD"
-    },
-    {
-      "name": "Suriname",
-      "code": "SR"
-    },
-    {
-      "name": "Svalbard and Jan Mayen",
-      "code": "SJ"
-    },
-    {
-      "name": "Swaziland",
-      "code": "SZ"
-    },
-    {
-      "name": "Sweden",
-      "code": "SE"
-    },
-    {
-      "name": "Switzerland",
-      "code": "CH"
-    },
-    {
-      "name": "Syrian Arab Republic",
-      "code": "SY"
-    },
-    {
-      "name": "Taiwan, Province of China",
-      "code": "TW"
-    },
-    {
-      "name": "Tajikistan",
-      "code": "TJ"
-    },
-    {
-      "name": "Tanzania, United Republic of",
-      "code": "TZ"
-    },
-    {
-      "name": "Thailand",
-      "code": "TH"
-    },
-    {
-      "name": "Timor-Leste",
-      "code": "TL"
-    },
-    {
-      "name": "Togo",
-      "code": "TG"
-    },
-    {
-      "name": "Tokelau",
-      "code": "TK"
-    },
-    {
-      "name": "Tonga",
-      "code": "TO"
-    },
-    {
-      "name": "Trinidad and Tobago",
-      "code": "TT"
-    },
-    {
-      "name": "Tunisia",
-      "code": "TN"
-    },
-    {
-      "name": "Turkey",
-      "code": "TR"
-    },
-    {
-      "name": "Turkmenistan",
-      "code": "TM"
-    },
-    {
-      "name": "Turks and Caicos Islands",
-      "code": "TC"
-    },
-    {
-      "name": "Tuvalu",
-      "code": "TV"
-    },
-    {
-      "name": "Uganda",
-      "code": "UG"
-    },
-    {
-      "name": "Ukraine",
-      "code": "UA"
-    },
-    {
-      "name": "United Arab Emirates",
-      "code": "AE"
-    },
-    {
-      "name": "United Kingdom",
-      "code": "GB"
-    },
-    {
-      "name": "United States",
-      "code": "US"
-    },
-    {
-      "name": "United States Minor Outlying Islands",
-      "code": "UM"
-    },
-    {
-      "name": "Uruguay",
-      "code": "UY"
-    },
-    {
-      "name": "Uzbekistan",
-      "code": "UZ"
-    },
-    {
-      "name": "Vanuatu",
-      "code": "VU"
-    },
-    {
-      "name": "Venezuela",
-      "code": "VE"
-    },
-    {
-      "name": "Viet Nam",
-      "code": "VN"
-    },
-    {
-      "name": "Virgin Islands, British",
-      "code": "VG"
-    },
-    {
-      "name": "Virgin Islands, U.S.",
-      "code": "VI"
-    },
-    {
-      "name": "Wallis and Futuna",
-      "code": "WF"
-    },
-    {
-      "name": "Western Sahara",
-      "code": "EH"
-    },
-    {
-      "name": "Yemen",
-      "code": "YE"
-    },
-    {
-      "name": "Zambia",
-      "code": "ZM"
-    },
-    {
-      "name": "Zimbabwe",
-      "code": "ZW"
+        "name": "Zimbabwe",
+        "gdp": "19395"
     }
-  ]
-}
+]

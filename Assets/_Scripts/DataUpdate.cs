@@ -25,7 +25,7 @@ public class DataUpdate : MonoBehaviour
     public struct DataNameCountry
     {
         public string name;
-        public string code;
+        public long gdp;
     }
 
     public List<DataItems> lstData_NhanSu = new List<DataItems>();

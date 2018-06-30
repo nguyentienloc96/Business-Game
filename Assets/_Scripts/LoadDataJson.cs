@@ -155,17 +155,17 @@ public class LoadDataJson : MonoBehaviour
         var objJson = SimpleJSON.JSON.Parse(loadJson(listNameCountryJson));
         //Debug.Log(objJson);
         Debug.Log("<color=yellow>Done: </color>LoadDataNameCountry !");
-        if (objJson["world"] != null)
+        if (objJson != null)
         {
-            for (int i = 0; i < objJson["world"].Count; i++)
+            for (int i = 0; i < objJson.Count; i++)
             {
                 DataUpdate.DataNameCountry data = new DataUpdate.DataNameCountry();
-                data.name = objJson["world"][i]["name"];
-                data.code = objJson["world"][i]["code"];
+                data.name = objJson[i]["name"];
+                data.gdp = objJson[i]["gdp"].AsLong*1000000;
                 DataUpdate.Instance.lstData_NameCountry.Add(data);
             }
         }
-        //Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ DataUpdate.Instance.lstData_NameCountry[0].code);
+        Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ ConvertNumber.convertNumber_DatDz(DataUpdate.Instance.lstData_NameCountry[0].gdp));
     }
 
     string loadJson(string _nameJson)

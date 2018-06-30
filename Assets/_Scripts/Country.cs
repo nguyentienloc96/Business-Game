@@ -78,15 +78,13 @@ public struct PROCEDUREPROCESS
 
     void SetService(float SP0)
     {
-        if(((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) / 30 > 1)
+        if (((long)((TimeSpan)(GameManager.Instance.dateGame - f.startDate)).TotalDays - 365) > 0)
         {
             SP0 += (int)(s.initialInvestmentMoney / 1000) * 50f;
         }
 
-        if (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) / 30 > 1)
-        {
-            SP0 += (int)(s.initialInvestmentMoney / 1000) * 100f;
-        }
+        SP0 += (int)(s.initialInvestmentMoney / 1000) * 100f;
+
         s.initialInvestmentMoney = 0;
     }
 
@@ -128,7 +126,10 @@ public struct ADS
     {
         if ((long)((TimeSpan)(GameManager.Instance.dateGame - w.startDate)).TotalDays <= 365 * 2)
         {
-            MKT0 += w.initialInvestmentMoney * 0.1f;
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - w.startDate)).TotalDays) % 30 == 0)
+            {
+                MKT0 += w.initialInvestmentMoney * 0.1f;
+            }
         }
         else
         {
@@ -140,42 +141,132 @@ public struct ADS
 
 public struct SPREADING
 {
-    public float le;    //Local Economy research
+    public BASIC le;    //Local Economy research
 }
 
 public struct TRANSPORTCHAIN
 {
-    public float tax;   //Transport agent
-    public float w;     //Warehouse Storage
-    public float vs;    //Vehicles: self transport
+    public BASIC tax;   //Transport agent
+    public BASIC w;     //Warehouse Storage
+    public BASIC vs;    //Vehicles: self transport
+
+    public void setTransportAgent(float L0)
+    {
+        L0 += tax.initialInvestmentMoney * GameConfig.Instance.TC_tax;
+        tax.initialInvestmentMoney = 0;
+    }
+
+    public void setWarehouseStorage(float L0)
+    {
+        if (w.initialInvestmentMoney < 100000)
+        {
+            L0 += w.initialInvestmentMoney * GameConfig.Instance.TC_wx;
+        }
+        else
+        {
+            L0 += w.initialInvestmentMoney * (GameConfig.Instance.TC_wx + 0.3f);
+        }
+        w.initialInvestmentMoney = 0;
+    }
+
+    public void setVehicles(float L0)
+    {
+        if (vs.initialInvestmentMoney < 100000)
+        {
+            L0 += vs.initialInvestmentMoney;
+        }
+        else
+        {
+            L0 += vs.initialInvestmentMoney * 0.7f;
+        }
+        vs.initialInvestmentMoney = 0;
+    }
 }
 
 public struct SALESCHAIN
 {
-    public float b;     //Build a shop
-    public float a;     //Link with agencies shop
-    public float o;     //Online shop
-    public float sc;    //Sales culture
+    public BASIC b;     //Build a shop
+    public BASIC a;     //Link with agencies shop
+    public BASIC o;     //Online shop
+    public BASIC sc;    //Sales culture
+
+    public void setBuildAShop(float L0)
+    {
+        if (b.initialInvestmentMoney >= 10000 && (long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays <= 365 * 3)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) % 30 == 0)
+            {
+                L0 += b.initialInvestmentMoney * GameConfig.Instance.SC_bx;
+            }
+        }
+        else
+        {
+            b.initialInvestmentMoney = 0;
+            b.isRunning = false;
+        }
+    }
+
+    public void setLinkWithAgenciesShop(float L0)
+    {
+        L0 += a.initialInvestmentMoney * GameConfig.Instance.SC_ax;
+        a.initialInvestmentMoney = 0;
+    }
+
+    public void setOnlineShop(float L0)
+    {
+        if (b.initialInvestmentMoney >= 10000 && (long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays <= 365 * 3)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame - b.startDate)).TotalDays) % 30 == 0)
+            {
+                L0 += b.initialInvestmentMoney * GameConfig.Instance.SC_bx;
+            }
+        }
+        else
+        {
+            b.initialInvestmentMoney = 0;
+            b.isRunning = false;
+        }
+    }
+
+    public void setSalesCulture(float L0)
+    {
+
+        L0 += (int)(sc.initialInvestmentMoney / 1000) * 0.05f * (b.initialInvestmentMoney * GameConfig.Instance.SC_bx);
+        L0 += (int)(sc.initialInvestmentMoney / 1000) * 0.05f * (b.initialInvestmentMoney * GameConfig.Instance.SC_bx);
+
+        sc.initialInvestmentMoney = 0;
+    }
 }
 
 public struct RISKMANAGEMENT
 {
-    public float m;     //Media crisis
-    public float l;     //Law crisis
-    public float e;     //Employee crisis
+    public BASIC m;     //Media crisis
+    public BASIC l;     //Law crisis
+    public BASIC e;     //Employee crisis
+
+    public void setMediaCrisis(float KH0)
+    {
+        KH0 += m.initialInvestmentMoney;
+        m.initialInvestmentMoney = 0;
+    }
+
+    public void setLawCrisis()
+    {
+
+    }
 }
 
 public struct EMPLOYEES
 {
-    public float st1;   //Self training 1
-    public float st2;   //Self training 2
-    public float hr;    //Human resource
-    public float ph;    //People hiring
-    public float cc;    //Company culture i : 15
-    public float ae;    //Annually event i : 20
-    public float ic;    //Internal company fund i : 10
-    public float et;    //Employee training
-    public float cf;    //Curriculum for employee training
+    public BASIC st1;   //Self training 1
+    public BASIC st2;   //Self training 2
+    public BASIC hr;    //Human resource
+    public BASIC ph;    //People hiring
+    public BASIC cc;    //Company culture i : 15
+    public BASIC ae;    //Annually event i : 20
+    public BASIC ic;    //Internal company fund i : 10
+    public BASIC et;    //Employee training
+    public BASIC cf;    //Curriculum for employee training
 }
 
 public class Country : MonoBehaviour
@@ -251,7 +342,7 @@ public class Country : MonoBehaviour
                 GameManager.Instance.main.coin -= L;
                 GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-                UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + L.ToString() + "$ vào "+nameCountry;
+                UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + L.ToString() + "$ vào " + nameCountry;
             }
             else
             {

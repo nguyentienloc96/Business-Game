@@ -70,14 +70,26 @@ public class Branch : MonoBehaviour
 
     IEnumerator IELoadBranch(List<DataUpdate.DataItems> lsData)
     {
+        if (GameManager.Instance.contentSelf.childCount > 0)
+        {
+            for (int i = GameManager.Instance.contentSelf.childCount - 1; i >= 0; i--)
+            {
+                Destroy(GameManager.Instance.contentSelf.GetChild(i).gameObject);
+            }
+        }
+
+        Word.Instance.lsItemSelf.Clear();
+
         for (int i = 0; i < lsData.Count; i++)
         {
             Transform itemSelf = Instantiate(GameManager.Instance.itemSelf, GameManager.Instance.contentSelf).transform;
+            Word.Instance.lsItemSelf.Add(itemSelf);
             itemSelf.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
-            itemSelf.GetChild(1).GetChild(0).GetComponent<Text>().text = lsData[i].name.ToString();
-            itemSelf.GetComponent<ItemSelf>().idCountry = Word.Instance.idSelectWord;
+            itemSelf.GetChild(1).GetChild(0).GetComponent<Text>().text = lsData[i].name;
             itemSelf.GetComponent<ItemSelf>().indexPSelf = index;
             itemSelf.GetComponent<ItemSelf>().indexSelf = i;
+            itemSelf.GetComponent<ItemSelf>().label = lsData[i].name;
+            itemSelf.GetComponent<ItemSelf>().info = lsData[i].content;
             yield return new WaitForSeconds(0.15f);
         }
     }

@@ -16,7 +16,7 @@ public class ColumnChart : MonoBehaviour
     public Transform posChart;
     public Text[] arrayX;
     public DataColChart[] dataCol;
-    public void Start()
+    public void loadData()
     {
         int maxX = 0;
         Vector3 posItemChart = Vector3.zero;

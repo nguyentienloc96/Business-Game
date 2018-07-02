@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < main.lsCoutryReady.Count; i++)
         {
+            main.lsCoutryReady[i].SetFactoryWorkshop();
+            main.lsCoutryReady[i].SetBuyingSotherFactoryWorkshop();
             main.lsCoutryReady[i].Interest();
         }
     }

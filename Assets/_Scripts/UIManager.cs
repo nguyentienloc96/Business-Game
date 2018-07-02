@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject SelfTraining;
     public Text LabelCountry;
     public Text txtCodeCountry;
+    public Text txtGDPCountry;
 
     [Header("DateTime")]
     #region DateTime  

@@ -19,40 +19,91 @@ public class PieChart : MonoBehaviour
     public Transform noteParent;
     public GameObject peiPrefab;
     public GameObject notePrefab;
-    public List<DataPeiChart> dataPei = new List<DataPeiChart>();
+    public DataPeiChart[] dataPei;
 
     public void LoadData()
     {
+        StopAllCoroutines();
         StartCoroutine(IELoadData());
     }
 
     IEnumerator IELoadData()
     {
         float sumValue = 0;
-        for (int i = 0; i < dataPei.Count; i++)
+        if (peiParent.childCount > 0)
         {
-            Destroy(peiParent.GetChild(dataPei.Count - i - 1).gameObject);
-            Destroy(noteParent.GetChild(dataPei.Count - i - 1).gameObject);
+            for (int i = peiParent.childCount - 1; i >= 0; i--)
+            {
+                Destroy(peiParent.GetChild(i).gameObject);
+            }
         }
-        for (int i = 0; i < dataPei.Count; i++)
+        if (noteParent.childCount > 0)
+        {
+            for (int i = noteParent.childCount - 1; i >= 0; i--)
+            {
+                Destroy(noteParent.GetChild(i).gameObject);
+
+            }
+        }
+        for (int i = 0; i < dataPei.Length; i++)
         {
             GameObject peiObj = Instantiate(peiPrefab, peiParent);
-            peiObj.GetComponent<RectTransform>().SetAsLastSibling();
+            peiObj.GetComponent<RectTransform>().SetAsFirstSibling();
             Vector3 vectorsizeDelta = peiObj.GetComponent<RectTransform>().sizeDelta;
-            peiObj.transform.eulerAngles = new Vector3(0f, 0f, 360f * (1 - sumValue));
-            if (sumValue > 0.25 && sumValue < 0.75)
-            {
-                peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -180f);
-            }
-            peiObj.transform.GetChild(0).GetComponent<Text>().text = dataPei[i].valuePei * 100 + "%";
+            peiObj.transform.eulerAngles = new Vector3(0f, 0f, 360f * (1f - sumValue));
+
             peiObj.GetComponent<Image>().sprite = dataPei[i].spPei;
             peiObj.GetComponent<Image>().SetNativeSize();
-            peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 1f);
+            if (dataPei[i].valuePei < 0.01 && dataPei[i].valuePei > 0)
+            {
+                peiObj.GetComponent<Image>().DOFillAmount(0.01f, 1f);
+                sumValue += 0.01f;
+                peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, 0.01f * 360/2);
+            }
+            else
+            {
+                if (i != dataPei.Length - 1)
+                {
+                    peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 1f);
+                    sumValue += dataPei[i].valuePei;
+                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, dataPei[i].valuePei * 360/2);
+                }
+                else
+                {
+                    peiObj.GetComponent<Image>().DOFillAmount(1f - sumValue, 1f);
+                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, (1f - sumValue) * 360/2);
+                }
+            }
             GameObject noteObj = Instantiate(notePrefab, noteParent);
             noteObj.transform.GetChild(0).GetComponent<RawImage>().texture = textureFromSprite(dataPei[i].spPei);
             noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei;
-            sumValue += dataPei[i].valuePei;
-            yield return new WaitForSeconds(1f);
+
+            if (dataPei[i].valuePei < 0.05)
+            {
+                if (dataPei[i].valuePei <= 0)
+                {
+                    peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "0%";
+                }
+                else if (dataPei[i].valuePei < 0.01 / 100)
+                {
+                    peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "<0.01%";
+                }
+                else
+                {
+                    peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:0.00}%", dataPei[i].valuePei * 100);
+                }
+                peiObj.transform.GetChild(0).GetChild(0).transform.localPosition = new Vector3(0f, 158f + 35f * (dataPei.Length - i - 1), 0f);
+            }
+            else
+            {
+                peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:0}%", dataPei[i].valuePei * 100);
+                peiObj.transform.GetChild(0).GetChild(0).transform.localPosition = new Vector3(0f, 158f, 0f);
+            }
+            if (dataPei[i].valuePei > 0)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
         }
     }
 

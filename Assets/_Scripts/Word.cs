@@ -337,8 +337,14 @@ public class Word : MonoBehaviour
             lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             {
+                
                 GameManager.Instance.main.lsCoutryReady[0].transform.GetChild(3).gameObject.SetActive(true);
                 idSelectWord = GameManager.Instance.main.lsCoutryReady[0].ID;
+
+                if (UIManager.Instance.indexScene == 2)
+                {
+                    UIManager.Instance.LabelCountry.text = string.Format("{0:000}", idSelectWord);
+                }
             }
             for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
             {

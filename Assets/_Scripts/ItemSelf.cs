@@ -12,7 +12,10 @@ public class ItemSelf : MonoBehaviour
 
     public void OnclickSelf()
     {
-        Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetChild(1).GetChild(1).gameObject.SetActive(false);
+        if (Word.Instance.lsItemSelf.Count - 1 > Word.Instance.indexSelf)
+        {
+            Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetChild(1).GetChild(1).gameObject.SetActive(false);
+        }
         transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
         Word.Instance.indexPSelf = indexPSelf;
         Word.Instance.indexSelf = indexSelf;

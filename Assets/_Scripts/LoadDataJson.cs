@@ -71,8 +71,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objTC.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objTC[i]["name"];
+                data.content = objTC[i]["content"];
                 DataUpdate.Instance.lstData_TransportChain.Add(data);
             }
 
@@ -80,8 +80,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objPP.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objPP[i]["name"];
+                data.content = objPP[i]["content"];
                 DataUpdate.Instance.lstData_ProcedureProcess.Add(data);
             }
 
@@ -89,8 +89,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objSpreading.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objSpreading[i]["name"];
+                data.content = objSpreading[i]["content"];
                 DataUpdate.Instance.lstData_Spreading.Add(data);
             }
 
@@ -98,8 +98,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objAds.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objAds[i]["name"];
+                data.content = objAds[i]["content"];
                 DataUpdate.Instance.lstData_Ads.Add(data);
             }
 
@@ -107,8 +107,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objAds.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objSC[i]["name"];
+                data.content = objSC[i]["content"];
                 DataUpdate.Instance.lstData_SalesChain.Add(data);
             }
 
@@ -116,8 +116,8 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objRM.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
-                data.name = objNS[i]["name"];
-                data.content = objNS[i]["content"];
+                data.name = objRM[i]["name"];
+                data.content = objRM[i]["content"];
                 DataUpdate.Instance.lstData_RiskManagement.Add(data);
             }
         }       
@@ -165,7 +165,7 @@ public class LoadDataJson : MonoBehaviour
                 DataUpdate.Instance.lstData_NameCountry.Add(data);
             }
         }
-        Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ ConvertNumber.convertNumber_DatDz(DataUpdate.Instance.lstData_NameCountry[0].gdp));
+        //Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ ConvertNumber.convertNumber_DatDz(DataUpdate.Instance.lstData_NameCountry[0].gdp));
     }
 
     string loadJson(string _nameJson)

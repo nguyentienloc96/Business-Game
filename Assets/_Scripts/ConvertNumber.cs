@@ -28,10 +28,15 @@ public class ConvertNumber : MonoBehaviour {
             curentNumber = (long)(number / 1000);
             current = _toPrettyString(curentNumber) + "K";
         }
-        else
+        else if (number >= 1000000 && number < 1000000000)
         {
             curentNumber = (long)(number / 1000000);
             current = _toPrettyString(curentNumber) + "M";
+        }
+        else
+        {
+            curentNumber = (long)(number / 1000000000);
+            current = _toPrettyString(curentNumber) + "B";
         }
         return current.Trim();
     }

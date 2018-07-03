@@ -18,14 +18,14 @@ public class LoadDataJson : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
-        {
-            DataPlayer.Instance.LoadDataPlayer();
-        }
+        //if(PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
+        //{
+            //DataPlayer.Instance.LoadDataPlayer();
+        //}
         LoadDataStartGameJson();
         LoadDataUpdateJson();
         LoadDataNameCountry();
-        LoadDataNewsJson();
+        //LoadDataNewsJson();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
         //DataPlayer.Instance.LoadDataPlayer();

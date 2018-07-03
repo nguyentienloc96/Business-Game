@@ -18,14 +18,14 @@ public class LoadDataJson : MonoBehaviour
 
     private void Start()
     {
-        //if(PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
-        //{
-            //DataPlayer.Instance.LoadDataPlayer();
-        //}
+        if (PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
+        {
+            DataPlayer.Instance.LoadDataPlayer();
+        }
         LoadDataStartGameJson();
         LoadDataUpdateJson();
         LoadDataNameCountry();
-        //LoadDataNewsJson();
+        LoadDataNewsJson();
         //DataPlayer.Instance.SaveDataPlayer(1, 1, 50000, 10);
 
         //DataPlayer.Instance.LoadDataPlayer();
@@ -46,9 +46,9 @@ public class LoadDataJson : MonoBehaviour
             for (int i = 0; i < objJson.Count; i++)
             {
                 News.NewItems tmp = new News.NewItems();
-                tmp.content = objJson["New" + i.ToString()][0];
-                tmp.isUseful = objJson["New" + i.ToString()][1].AsBool;
-                tmp.major = objJson["New" + i.ToString()][2];
+                tmp.content = objJson[i.ToString()][0];
+                tmp.isUseful = objJson[i.ToString()][1].AsBool;
+                tmp.major = objJson[i.ToString()][2];
                 News.Instance.lstNews.Add(tmp);
             }
         }

@@ -18,6 +18,10 @@ public class LoadDataJson : MonoBehaviour
 
     private void Start()
     {
+        if(PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
+        {
+            DataPlayer.Instance.LoadDataPlayer();
+        }
         LoadDataStartGameJson();
         LoadDataUpdateJson();
         LoadDataNameCountry();

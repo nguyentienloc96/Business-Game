@@ -15,6 +15,18 @@ public class ColumnChart : MonoBehaviour
     public Text[] arrayX;
     public DataColChart[] dataCol;
     public GameObject[] lsItem = new GameObject[12];
+
+    public void OnEnable()
+    {
+        for (int i = 0; i < lsItem.Length; i++)
+        {
+            for (int j = 0; j < lsItem[i].transform.childCount; j++)
+            {
+                lsItem[i].transform.GetChild(j).GetComponent<Image>().fillAmount = 0;
+            }
+        }
+    }
+
     public void loadData()
     {
         int maxX = 0;

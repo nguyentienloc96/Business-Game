@@ -184,26 +184,24 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
         }
         else if (UIManager.Instance.indexScene == 1)
-        {
-            UIManager.Instance.PieChart2.SetActive(true);
-            Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
+        { 
             if (I0 != 0)
             {
+                Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
+                UIManager.Instance.PieChart2.SetActive(true);
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
-            }
-
-            UIManager.Instance.COLCHART.transform
+                UIManager.Instance.COLCHART.transform
                 .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
-            UIManager.Instance.COLCHART.transform
-                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
 
-            UIManager.Instance.COLCHART.transform
-                .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-            UIManager.Instance.COLCHART.transform
-                .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+            }
         }
         else if (UIManager.Instance.indexScene == 2)
         {
@@ -248,6 +246,8 @@ public class Country : MonoBehaviour
             if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
             {
                 SP0 += 1000000;
+                if(UnityEngine.Random.Range(0f,1f) <= 0.2f * GameManager.Instance.SRD)
+                    SP0DT += 1000000;
                 pROCEDUREPROCESS.rdb.initialInvestmentMoney = 0;
             }
         }
@@ -275,7 +275,8 @@ public class Country : MonoBehaviour
     public void SetOutsource()
     {
         SP0 += pROCEDUREPROCESS.o.initialInvestmentMoney * 0.7f;
-        pROCEDUREPROCESS.o.initialInvestmentMoney = 0;
+        SP0DT += pROCEDUREPROCESS.o.initialInvestmentMoney * UnityEngine.Random.Range(0.25f,1.75f);
+        pROCEDUREPROCESS.o.initialInvestmentMoney = 0;            
     }
 
     public void SetBuyingSotherFactoryWorkshop() // loop

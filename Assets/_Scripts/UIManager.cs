@@ -60,6 +60,12 @@ public class UIManager : MonoBehaviour
     public Slider sliderTraining;
     public Text coinSelf;
 
+    [Header("SRD")]
+    public GameObject btnEasy;
+    public GameObject btnMedium;
+    public GameObject btnHard;
+    public GameObject btnCrazy;
+
 
     void Awake()
     {
@@ -195,13 +201,41 @@ public class UIManager : MonoBehaviour
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public void PlayGame(int SRD)
+    public void PlayGame()
     {
-        GameManager.Instance.SRD = SRD;
         menuGame.SetActive(false);
-        GameManager.Instance.main.bitCoin = 1000 * SRD;
-        GameManager.Instance.main.coin = 50000 * SRD;
+        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
+        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
+    }
+
+    public void setSRD(int SRD){
+        GameManager.Instance.SRD = SRD;
+        if(SRD == 1){
+            btnEasy.transform.GetChild(1).gameObject.SetActive(true);
+            btnMedium.transform.GetChild(1).gameObject.SetActive(false);
+            btnHard.transform.GetChild(1).gameObject.SetActive(false);
+            btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
+        }else if(SRD == 2){
+            btnEasy.transform.GetChild(1).gameObject.SetActive(false);
+            btnMedium.transform.GetChild(1).gameObject.SetActive(true);
+            btnHard.transform.GetChild(1).gameObject.SetActive(false);
+            btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
+        }else if(SRD == 3){
+            btnEasy.transform.GetChild(1).gameObject.SetActive(false);
+            btnMedium.transform.GetChild(1).gameObject.SetActive(false);
+            btnHard.transform.GetChild(1).gameObject.SetActive(true);
+            btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
+        }else if(SRD == 4){
+            btnEasy.transform.GetChild(1).gameObject.SetActive(false);
+            btnMedium.transform.GetChild(1).gameObject.SetActive(false);
+            btnHard.transform.GetChild(1).gameObject.SetActive(false);
+            btnCrazy.transform.GetChild(1).gameObject.SetActive(true);
+        }
+    }
+
+    public void Continue(){
+        
     }
 
     public void Update()

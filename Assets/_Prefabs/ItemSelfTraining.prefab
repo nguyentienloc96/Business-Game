@@ -331,9 +331,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 1ba874d03bd3a1e449437c464b2253c9, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 35
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
@@ -412,9 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f8e644ce520e14b86be5a44cd0aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idCountry: 0
   indexPSelf: 0
   indexSelf: 0
+  label: 
+  info: 
 --- !u!222 &222101290347391240
 CanvasRenderer:
   m_ObjectHideFlags: 1

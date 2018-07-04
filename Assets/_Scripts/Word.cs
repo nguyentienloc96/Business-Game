@@ -295,7 +295,7 @@ public class Word : MonoBehaviour
                 lsCountry[idSelectWord].eMPLOYEES.cf.startDate = GameManager.Instance.dateGame;
                 lsCountry[idSelectWord].setCurriculumForEmployeeTraining();
             }
-
+            lsCountry[idSelectWord].PullData();
         }
         GameManager.Instance.main.coin -= LSlider2;
         

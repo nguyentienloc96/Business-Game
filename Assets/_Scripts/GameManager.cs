@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SRD = 1;
         dateGame = new DateTime(1996, 10, 27);
         SetDate();
     }
@@ -78,8 +79,14 @@ public class GameManager : MonoBehaviour
         if (time >= 4)
         {
             UpdateDataUser(main);
+            int month = dateGame.Month;
             dateGame = dateGame.AddDays(1f);
             SetDate();
+            if(dateGame.Month > month){
+                for(int i = 0;i<main.lsCoutryReady.Count;i++){
+                    main.lsCoutryReady[i].PullData();
+                }
+            }
             time = 0;
         }
     }

@@ -110,6 +110,40 @@ public class Country : MonoBehaviour
     public RISKMANAGEMENT rISKMANAGEMENT;
     public EMPLOYEES eMPLOYEES;
 
+    public DataColChart[] dataColChartMain = new DataColChart[12];
+    public DataColChart[] dataColChartCompetitors = new DataColChart[12];
+
+    public void Start(){
+        for (int i = 0; i < 12; i++)
+        {
+            dataColChartMain[i].nameCol = (i +1).ToString();
+            dataColChartMain[i].valueCol = new int[7];
+            dataColChartCompetitors[i].nameCol = (i +1).ToString();
+            dataColChartCompetitors[i].valueCol = new int[7];
+        }
+    }
+
+    public void PullData(){
+        int month = GameManager.Instance.dateGame.Month-1;
+        dataColChartMain[month].valueCol[0] = (int)(SP0*Mn*0.01f);
+        dataColChartMain[month].valueCol[1] = (int)(MKT0*Mn*0.01f);
+        dataColChartMain[month].valueCol[2] = (int)(MAKRET0*Mn*0.01f);
+        dataColChartMain[month].valueCol[3] = (int)(L0*Mn*0.01f);
+        dataColChartMain[month].valueCol[4] = (int)(KH0*Mn*0.01f);
+        dataColChartMain[month].valueCol[5] = (int)(NS0*Mn*0.01f);
+        dataColChartMain[month].valueCol[6] = (int)(ST0*Mn*0.01f);
+
+        dataColChartCompetitors[month].valueCol[0] = (int)(SP0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[1] = (int)(MKT0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[2] = (int)(MAKRET0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[3] = (int)(L0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[4] = (int)(KH0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[5] = (int)(NS0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[6] = (int)(ST0DT*Mn*0.01f);
+
+    }
+
+
     public void Interest()
     {
         I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
@@ -124,7 +158,7 @@ public class Country : MonoBehaviour
         if (UIManager.Instance.indexScene == 0)
         {
             UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
-            UIManager.Instance.txtGDPCountry.text = "GDP : " + GDP + "$";
+            UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + "$";
             UIManager.Instance.PieChart1.SetActive(true);
             Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
             if (Word.Instance.maxSlider > 10000 && L == 0)
@@ -148,6 +182,7 @@ public class Country : MonoBehaviour
         else if (UIManager.Instance.indexScene == 1)
         {
             UIManager.Instance.PieChart2.SetActive(true);
+            Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
             if (I0 != 0)
             {
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
@@ -157,18 +192,20 @@ public class Country : MonoBehaviour
             DataColChart[] data1 = UIManager.Instance.COLCHART.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol;
             for (int l = 0; l < data1.Length; l++)
             {
+                data1[l].nameCol = (l+1).ToString();
                 for (int k = 0; k < data1[l].valueCol.Length; k++)
                 {
-
+                    data1[l].valueCol[k] = dataColChartMain[l].valueCol[k];
                 }
             }
 
             DataColChart[] data2 = UIManager.Instance.COLCHART.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol;
             for (int l = 0; l < data2.Length; l++)
             {
+                 data2[l].nameCol = (l+1).ToString();
                 for (int k = 0; k < data2[l].valueCol.Length; k++)
                 {
-
+                     data2[l].valueCol[k] = dataColChartCompetitors[l].valueCol[k];
                 }
             }
         }

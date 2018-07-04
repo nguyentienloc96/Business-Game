@@ -113,33 +113,35 @@ public class Country : MonoBehaviour
     public DataColChart[] dataColChartMain = new DataColChart[12];
     public DataColChart[] dataColChartCompetitors = new DataColChart[12];
 
-    public void Start(){
+    public void Start()
+    {
         for (int i = 0; i < 12; i++)
         {
-            dataColChartMain[i].nameCol = (i +1).ToString();
+            dataColChartMain[i].nameCol = (i + 1).ToString();
             dataColChartMain[i].valueCol = new int[7];
-            dataColChartCompetitors[i].nameCol = (i +1).ToString();
+            dataColChartCompetitors[i].nameCol = (i + 1).ToString();
             dataColChartCompetitors[i].valueCol = new int[7];
         }
     }
 
-    public void PullData(){
-        int month = GameManager.Instance.dateGame.Month-1;
-        dataColChartMain[month].valueCol[0] = (int)(SP0*Mn*0.01f);
-        dataColChartMain[month].valueCol[1] = (int)(MKT0*Mn*0.01f);
-        dataColChartMain[month].valueCol[2] = (int)(MAKRET0*Mn*0.01f);
-        dataColChartMain[month].valueCol[3] = (int)(L0*Mn*0.01f);
-        dataColChartMain[month].valueCol[4] = (int)(KH0*Mn*0.01f);
-        dataColChartMain[month].valueCol[5] = (int)(NS0*Mn*0.01f);
-        dataColChartMain[month].valueCol[6] = (int)(ST0*Mn*0.01f);
+    public void PullData()
+    {
+        int month = GameManager.Instance.dateGame.Month - 1;
+        dataColChartMain[month].valueCol[0] = (int)(SP0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[1] = (int)(MKT0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[2] = (int)(MAKRET0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[3] = (int)(L0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[4] = (int)(KH0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[5] = (int)(NS0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[6] = (int)(ST0 * Mn * 0.01f);
 
-        dataColChartCompetitors[month].valueCol[0] = (int)(SP0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[1] = (int)(MKT0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[2] = (int)(MAKRET0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[3] = (int)(L0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[4] = (int)(KH0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[5] = (int)(NS0DT*Mn*0.01f);
-        dataColChartCompetitors[month].valueCol[6] = (int)(ST0DT*Mn*0.01f);
+        dataColChartCompetitors[month].valueCol[0] = (int)(SP0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[1] = (int)(MKT0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[2] = (int)(MAKRET0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[3] = (int)(L0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[4] = (int)(KH0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[5] = (int)(NS0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[6] = (int)(ST0DT * Mn * 0.01f);
 
     }
 
@@ -147,7 +149,9 @@ public class Country : MonoBehaviour
     public void Interest()
     {
         I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
+        I0DT = (SP0DT + MKT0DT + MAKRET0DT + L0DT + KH0DT + NS0DT + ST0DT);
         GameManager.Instance.main.coin += (int)(L * GameConfig.Instance.Ipc / 100) + (int)(I0 * Mn / 100);
+        GameManager.Instance.competitors.coin += (int)(LDT * GameConfig.Instance.Ipc / 100) + (int)(I0DT * Mn / 100);
     }
 
     public void OnClickItemWord()
@@ -189,25 +193,17 @@ public class Country : MonoBehaviour
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
             }
-            DataColChart[] data1 = UIManager.Instance.COLCHART.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol;
-            for (int l = 0; l < data1.Length; l++)
-            {
-                data1[l].nameCol = (l+1).ToString();
-                for (int k = 0; k < data1[l].valueCol.Length; k++)
-                {
-                    data1[l].valueCol[k] = dataColChartMain[l].valueCol[k];
-                }
-            }
 
-            DataColChart[] data2 = UIManager.Instance.COLCHART.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol;
-            for (int l = 0; l < data2.Length; l++)
-            {
-                 data2[l].nameCol = (l+1).ToString();
-                for (int k = 0; k < data2[l].valueCol.Length; k++)
-                {
-                     data2[l].valueCol[k] = dataColChartCompetitors[l].valueCol[k];
-                }
-            }
+            UIManager.Instance.COLCHART.transform
+                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+            UIManager.Instance.COLCHART.transform
+                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
+            UIManager.Instance.COLCHART.transform
+                .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+            UIManager.Instance.COLCHART.transform
+                .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
         }
         else if (UIManager.Instance.indexScene == 2)
         {
@@ -227,14 +223,14 @@ public class Country : MonoBehaviour
 
             GameManager.Instance.main.coin -= Word.Instance.LSlider;
             L = Word.Instance.LSlider;
-            LDT = (long)(UnityEngine.Random.Range(10000, (L * 2)) / 1000) * 1000;
+            LDT = (long)(UnityEngine.Random.Range(10000, (GDP - L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
             UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
             UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + L.ToString() + "$ vào " + nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L) / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L -LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
         }
         else

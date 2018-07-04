@@ -12,20 +12,23 @@ public struct DataColChart
 }
 public class ColumnChart : MonoBehaviour
 {
-    public GameObject itemChart;
-    public Transform posChart;
     public Text[] arrayX;
     public DataColChart[] dataCol;
+    public GameObject[] lsItem = new GameObject[12];
     public void loadData()
     {
         int maxX = 0;
-        Vector3 posItemChart = Vector3.zero;
+        for (int i = 0; i < lsItem.Length; i++)
+        {
+            for (int j = 0; j < lsItem[i].transform.childCount; j++)
+            {
+                lsItem[i].transform.GetChild(j).GetComponent<Image>().fillAmount = 0;
+            }
+        }
+
         for (int i = 0; i < dataCol.Length; i++)
         {
-            if (posChart.childCount > 0)
-            {
-                Destroy(posChart.GetChild(dataCol.Length - i - 1).gameObject);
-            }
+
             for (int j = 0; j < dataCol[i].valueCol.Length; j++)
             {
                 if (maxX < dataCol[i].valueCol[j])
@@ -38,7 +41,8 @@ public class ColumnChart : MonoBehaviour
         if (maxX > 10000 && maxX % 10000 != 0)
         {
             maxX = ((int)(maxX / 10000)) * 10000 + 10000;
-        }else if(maxX <= 10000)
+        }
+        else if (maxX <= 10000)
         {
             maxX = 10000;
         }
@@ -50,10 +54,7 @@ public class ColumnChart : MonoBehaviour
 
         for (int i = 0; i < dataCol.Length; i++)
         {
-            GameObject item = Instantiate(itemChart, posChart);
-            item.transform.localPosition = posItemChart;
-            StartCoroutine(ColChart(dataCol[i], item, maxX));
-            posItemChart += new Vector3(80f, 0f, 0f);
+            StartCoroutine(ColChart(dataCol[i], lsItem[i], maxX));
         }
     }
 

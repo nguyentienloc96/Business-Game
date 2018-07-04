@@ -54,11 +54,11 @@ public class PieChart : MonoBehaviour
 
             peiObj.GetComponent<Image>().sprite = dataPei[i].spPei;
             peiObj.GetComponent<Image>().SetNativeSize();
-            if (dataPei[i].valuePei < 0.01 && dataPei[i].valuePei > 0)
+            if (dataPei[i].valuePei < 0.01f && dataPei[i].valuePei > 0)
             {
                 peiObj.GetComponent<Image>().DOFillAmount(0.01f, 1f);
                 sumValue += 0.01f;
-                peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, 0.01f * 360/2);
+                peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -0.01f * 360 / 2);
             }
             else
             {
@@ -66,12 +66,12 @@ public class PieChart : MonoBehaviour
                 {
                     peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 1f);
                     sumValue += dataPei[i].valuePei;
-                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, dataPei[i].valuePei * 360/2);
+                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -dataPei[i].valuePei * 360 / 2);
                 }
                 else
                 {
                     peiObj.GetComponent<Image>().DOFillAmount(1f - sumValue, 1f);
-                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, (1f - sumValue) * 360/2);
+                    peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -(1f - sumValue) * 360 / 2);
                 }
             }
             GameObject noteObj = Instantiate(notePrefab, noteParent);

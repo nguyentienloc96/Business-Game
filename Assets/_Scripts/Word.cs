@@ -30,6 +30,7 @@ public class Word : MonoBehaviour
     public Text txtLabel;
     public Text txtInfo;
     public GameObject sliderEvole;
+    public GameObject panelInfo;
     public long LSlider2 = 10000;
     public long minSlider2 = 10000;
     public long maxSlider2 = 50000;
@@ -298,7 +299,8 @@ public class Word : MonoBehaviour
             lsCountry[idSelectWord].PullData();
         }
         GameManager.Instance.main.coin -= LSlider2;
-        
+        panelInfo.SetActive(true);
+        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + LSlider2.ToString() + "$";
     }
 
     public void OnEnableWord(bool isWord)

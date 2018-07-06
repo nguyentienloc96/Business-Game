@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class DataPlayer : MonoBehaviour
 {
@@ -28,6 +31,8 @@ public class DataPlayer : MonoBehaviour
 
     public List<CountryCurrent> lstCountry_Data = new List<CountryCurrent>();
 
+    public string abc;
+
     public void SaveDataPlayer()
     {
         DataPlayer data = new DataPlayer();
@@ -35,7 +40,8 @@ public class DataPlayer : MonoBehaviour
         data.srd = GameManager.Instance.SRD;
         data.dollars = GameManager.Instance.main.coin;
         data.btc = GameManager.Instance.main.bitCoin;
-
+        Debug.Log(GameManager.Instance.main.lsCoutryReady.Count);
+        data.lstCountry_Data = new List<CountryCurrent>();
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
             CountryCurrent ct = new CountryCurrent();
@@ -156,10 +162,12 @@ public class DataPlayer : MonoBehaviour
             //        ct.dataColChartCompetitors[k][l] = GameManager.Instance.main.lsCoutryReady[i].dataColChartCompetitors[k].valueCol[l];
             //    }
             //}
-
+            //data.abc = ct.ToString();
+            //PlayerPrefs.SetString("testData", ct.ToString());
             data.lstCountry_Data.Add(ct);
         }
-
+        
+        
         data.isOffAds = PlayerPrefs.GetInt(KeyPlayerPrefs.ISOFFADS, 0);
         string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
@@ -170,16 +178,16 @@ public class DataPlayer : MonoBehaviour
     {
         string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
         string dataAsJson = File.ReadAllText(_path);
-        Debug.Log(dataAsJson);
+        //Debug.Log(dataAsJson);
         var objJson = SimpleJSON.JSON.Parse(dataAsJson);
         Debug.Log(objJson);
-        if (objJson != null)
-        {
-            this.modePlay = objJson["modePlay"].AsInt;
-            this.srd = objJson["srd"].AsInt;
-            this.dollars = objJson["dollars"].AsDouble;
-            this.btc = objJson["btc"].AsDouble;
-            this.isOffAds = objJson["isOffAds"].AsInt;
-        }
+        //if (objJson != null)
+        //{
+        //    this.modePlay = objJson["modePlay"].AsInt;
+        //    this.srd = objJson["srd"].AsInt;
+        //    this.dollars = objJson["dollars"].AsDouble;
+        //    this.btc = objJson["btc"].AsDouble;
+        //    this.isOffAds = objJson["isOffAds"].AsInt;
+        //}
     }
 }

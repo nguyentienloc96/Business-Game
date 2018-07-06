@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountryCurrent : MonoBehaviour {
+[System.Serializable]
+public class CountryCurrent {
 
     public int ID;
     public string nameCountry;

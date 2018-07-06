@@ -4,74 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public struct BASIC
+public struct STBranch
 {
-    public string name;
+    public string nameSmallBranch;
     public long initialInvestmentMoney;
     public long investmentMoneyLater;
     public DateTime startDate;
     public bool isRunning;
 }
 
-
-public struct PROCEDUREPROCESS
+[System.Serializable]
+public struct STBigBranch
 {
-    public BASIC rdb;   //R&D
-    public BASIC f;     //Factory/workshop
-    public BASIC o;     //Outsource
-    public BASIC b;     //Buying other factory/workshop
-    public BASIC s;     //Service
-}
-
-public struct ADS
-{
-    public BASIC t;     //Traditional ads
-    public BASIC s;     //Social network ads
-    public BASIC w;     //Website & affiliate
-}
-
-public struct SPREADING
-{
-    public BASIC ubr;   //Local Economy research
-    public BASIC pal;   //Local Economy research
-    public BASIC cr;    //Local Economy research
-    public BASIC bc;    //Local Economy research
-    public BASIC ler;   //Local Economy research
-}
-
-public struct TRANSPORTCHAIN
-{
-    public BASIC ta;   //Transport agent
-    public BASIC ws;     //Warehouse Storage
-    public BASIC vs;    //Vehicles: self transport
-}
-
-public struct SALESCHAIN
-{
-    public BASIC bas;     //Build a shop
-    public BASIC lwas;     //Link with agencies shop
-    public BASIC os;     //Online shop
-    public BASIC sc;    //Sales culture 
-}
-
-public struct RISKMANAGEMENT
-{
-    public BASIC mc;     //Media crisis
-    public BASIC lc;     //Law crisis
-    public BASIC ec;     //Employee crisis
-}
-
-public struct EMPLOYEES
-{
-    public BASIC st1;   //Self training 1
-    public BASIC st2;   //Self training 2
-    public BASIC hr;    //Human resource
-    public BASIC ph;    //People hiring
-    public BASIC cc;    //Company culture i : 15
-    public BASIC ae;    //Annually event i : 20
-    public BASIC ic;    //Internal company fund i : 10
-    public BASIC et;    //Employee training
-    public BASIC cf;    //Curriculum for employee training
+    public string nameBigBranch;
+    public STBranch[] smallBranch;
 }
 
 public class Country : MonoBehaviour
@@ -102,13 +48,7 @@ public class Country : MonoBehaviour
     public float NS0DT = 0f;
     public float ST0DT = 0f;
 
-    public PROCEDUREPROCESS pROCEDUREPROCESS;
-    public ADS aDS;
-    public SPREADING sPREADING;
-    public TRANSPORTCHAIN tRANSPORTCHAIN;
-    public SALESCHAIN sALESCHAIN;
-    public RISKMANAGEMENT rISKMANAGEMENT;
-    public EMPLOYEES eMPLOYEES;
+    public STBigBranch[] bigBranch = new STBigBranch[7];
 
     public DataColChart[] dataColChartMain = new DataColChart[12];
     public DataColChart[] dataColChartCompetitors = new DataColChart[12];
@@ -121,6 +61,77 @@ public class Country : MonoBehaviour
             dataColChartMain[i].valueCol = new int[7];
             dataColChartCompetitors[i].nameCol = (i + 1).ToString();
             dataColChartCompetitors[i].valueCol = new int[7];
+        }
+
+        for (int i = 0; i < bigBranch.Length; i++)
+        {
+            if (i == 0)
+            {
+                bigBranch[i].nameBigBranch = "Procedure process";
+                bigBranch[i].smallBranch = new STBranch[5];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "R&D";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Factory/workshop";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Outsource";
+                bigBranch[i].smallBranch[3].nameSmallBranch = "Buying other factory/workshop";
+                bigBranch[i].smallBranch[4].nameSmallBranch = "Service";
+            }
+            if (i == 1)
+            {
+                bigBranch[i].nameBigBranch = "Ads";
+                bigBranch[i].smallBranch = new STBranch[3];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Traditional ads";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Social network ads";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Website & affiliate";
+            }
+            if (i == 2)
+            {
+                bigBranch[i].nameBigBranch = "Spreading";
+                bigBranch[i].smallBranch = new STBranch[5];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "User behaviour research";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Policy and law";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Competitor research";
+                bigBranch[i].smallBranch[3].nameSmallBranch = "Buy a competitor";
+                bigBranch[i].smallBranch[4].nameSmallBranch = "Local Economy research";
+            }
+            if (i == 3)
+            {
+                bigBranch[i].nameBigBranch = "Transport chain";
+                bigBranch[i].smallBranch = new STBranch[3];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Transport agent";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Warehouse Storage";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Vehicles: self transport";
+            }
+            if (i == 4)
+            {
+                bigBranch[i].nameBigBranch = "Sales chain";
+                bigBranch[i].smallBranch = new STBranch[4];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Build a shop ";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Link with agencies shop";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Online shop";
+                bigBranch[i].smallBranch[3].nameSmallBranch = "Sales culture";
+            }
+            if (i == 5)
+            {
+                bigBranch[i].nameBigBranch = "Risk management";
+                bigBranch[i].smallBranch = new STBranch[3];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Media crisis";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Law crisis";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Employee crisis";
+            }
+            if (i == 6)
+            {
+                bigBranch[i].nameBigBranch = "Employees";
+                bigBranch[i].smallBranch = new STBranch[9];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Self training";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Self training 2";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Human resource";
+                bigBranch[i].smallBranch[3].nameSmallBranch = "People hiring";
+                bigBranch[i].smallBranch[4].nameSmallBranch = "Company culture";
+                bigBranch[i].smallBranch[5].nameSmallBranch = "Annually event";
+                bigBranch[i].smallBranch[6].nameSmallBranch = "Internal company fund";
+                bigBranch[i].smallBranch[7].nameSmallBranch = "Employee training";
+                bigBranch[i].smallBranch[8].nameSmallBranch = "Curriculum for employee training";
+            }
         }
     }
 
@@ -145,7 +156,6 @@ public class Country : MonoBehaviour
 
     }
 
-
     public void Interest()
     {
         I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
@@ -162,7 +172,7 @@ public class Country : MonoBehaviour
         if (UIManager.Instance.indexScene == 0)
         {
             UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
-            UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + "$";
+            UIManager.Instance.txtGDPCountry.text = "GDP : " + UIManager.Instance.SubstringNumberGoldReplay(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
             Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
             if (Word.Instance.maxSlider > 10000 && L == 0)
@@ -184,7 +194,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
         }
         else if (UIManager.Instance.indexScene == 1)
-        { 
+        {
             if (I0 != 0)
             {
                 Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
@@ -228,7 +238,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L -LDT) / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
         }
         else
@@ -238,293 +248,65 @@ public class Country : MonoBehaviour
         }
     }
 
-    #region PROCEDUREPROCESS
-    public void SetRAndD()
+    public void SetSmallBranch(int indexPSelf, int indexSelf)
     {
-        if (pROCEDUREPROCESS.rdb.initialInvestmentMoney > 10000)
+        if (indexPSelf == 0)
         {
-            if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
-            {
-                SP0 += 1000000;
-                if(UnityEngine.Random.Range(0f,1f) <= 0.2f * GameManager.Instance.SRD)
-                    SP0DT += 1000000;
-                pROCEDUREPROCESS.rdb.initialInvestmentMoney = 0;
-            }
-        }
-    }
-
-    public void SetFactoryWorkshop() // loop
-    {
-        if (pROCEDUREPROCESS.f.initialInvestmentMoney > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.f.startDate)).TotalDays > 365)
-        {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.f.startDate)).TotalDays - 365) % 30 == 0)
-            {
-                float money = (pROCEDUREPROCESS.f.investmentMoneyLater - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.f.startDate)).TotalDays - 365) / 30 - 1);
-                if (money <= 0)
+            if (indexSelf == 0) {
+                if (bigBranch[0].smallBranch[0].initialInvestmentMoney > 10000)
                 {
-                    pROCEDUREPROCESS.f.investmentMoneyLater = 0;
-                }
-                else
-                {
-                    SP0 += money;
+                    if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
+                    {
+                        SP0 += 1000000;
+                        if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
+                            SP0DT += 1000000;
+                        bigBranch[0].smallBranch[0].initialInvestmentMoney = 0;
+                    }
                 }
             }
-        }
-    }
-
-    public void SetOutsource()
-    {
-        SP0 += pROCEDUREPROCESS.o.initialInvestmentMoney * 0.7f;
-        SP0DT += pROCEDUREPROCESS.o.initialInvestmentMoney * UnityEngine.Random.Range(0.25f,1.75f);
-        pROCEDUREPROCESS.o.initialInvestmentMoney = 0;            
-    }
-
-    public void SetBuyingSotherFactoryWorkshop() // loop
-    {
-        if (pROCEDUREPROCESS.b.initialInvestmentMoney > 200000)
-        {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.b.startDate)).TotalDays) % 30 == 0)
+            else
             {
-                float money = (pROCEDUREPROCESS.b.investmentMoneyLater - 100000) * 0.08f - 50 * (((long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.b.startDate)).TotalDays) / 30 - 1);
-                if (money <= 0)
-                {
-                    pROCEDUREPROCESS.b.investmentMoneyLater = 0;
-                    pROCEDUREPROCESS.b.isRunning = false;
-                }
-                else
-                {
-                    SP0 += money;
-                }
+                SP0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+                SP0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+                bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
             }
         }
-    }
-
-    public void SetService()
-    {
-        if (((long)((TimeSpan)(GameManager.Instance.dateGame - pROCEDUREPROCESS.f.startDate)).TotalDays - 365) > 0)
+        else if(indexPSelf == 1)
         {
-            SP0 += (int)(pROCEDUREPROCESS.s.initialInvestmentMoney / 1000) * 50f;
+            MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            MKT0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
-
-        SP0 += (int)(pROCEDUREPROCESS.s.initialInvestmentMoney / 1000) * 100f;
-
-        pROCEDUREPROCESS.s.initialInvestmentMoney = 0;
-    }
-
-    #endregion
-
-    #region ADS
-    public void setTraditionalAds()
-    {
-        if (!aDS.t.isRunning)
+        else if (indexPSelf == 2)
         {
-            MKT0 += aDS.t.initialInvestmentMoney;
-            aDS.t.isRunning = true;
+            NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
-        if ((long)((TimeSpan)(GameManager.Instance.dateGame - aDS.t.startDate)).TotalDays == 30 && UnityEngine.Random.Range(0f, 1f) <= 0.1f)
+        else if (indexPSelf == 3)
         {
-            MKT0 += aDS.t.initialInvestmentMoney * 0.1f;
-            aDS.t.initialInvestmentMoney = 0;
-            aDS.t.isRunning = false;
+            L0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
-    }
-
-    public void setSocialNetworkAds()
-    {
-        MKT0 += aDS.s.initialInvestmentMoney;
-        aDS.s.initialInvestmentMoney = 0;
-    }
-
-    public void setWebsiteAffiliate()
-    {
-        if ((long)((TimeSpan)(GameManager.Instance.dateGame - aDS.w.startDate)).TotalDays <= 365 * 2)
+        else if (indexPSelf == 4)
         {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - aDS.w.startDate)).TotalDays) % 30 == 0)
-            {
-                MKT0 += aDS.w.initialInvestmentMoney * 0.1f;
-            }
+            MAKRET0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            MAKRET0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
-        else
+        else if (indexPSelf == 5)
         {
-            aDS.w.initialInvestmentMoney = 0;
-            aDS.w.isRunning = false;
+            KH0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            KH0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
-    }
-    #endregion
-
-    #region SPREADING
-
-    public void setUserBehaviourResearch()
-    {
-
-    }
-
-    public void setPolicyAndLaw()
-    {
-
-    }
-
-    public void setCompetitorResearch()
-    {
-
-    }
-
-    public void setBuyACompetitor()
-    {
-
-    }
-
-    public void setLocalEconomyResearch()
-    {
-
-    }
-
-    #endregion
-
-    #region TRANSPORTCHAIN
-    public void setTransportAgent()
-    {
-        L0 += tRANSPORTCHAIN.ta.initialInvestmentMoney * GameConfig.Instance.TC_tax;
-        tRANSPORTCHAIN.ta.initialInvestmentMoney = 0;
-    }
-
-    public void setWarehouseStorage()
-    {
-        if (tRANSPORTCHAIN.ws.initialInvestmentMoney < 100000)
+        else if (indexPSelf == 6)
         {
-            L0 += tRANSPORTCHAIN.ws.initialInvestmentMoney * GameConfig.Instance.TC_wx;
-        }
-        else
-        {
-            L0 += tRANSPORTCHAIN.ws.initialInvestmentMoney * (GameConfig.Instance.TC_wx + 0.3f);
-        }
-        tRANSPORTCHAIN.ws.initialInvestmentMoney = 0;
-    }
-
-    public void setVehicles()
-    {
-        if (tRANSPORTCHAIN.vs.initialInvestmentMoney < 100000)
-        {
-            L0 += tRANSPORTCHAIN.vs.initialInvestmentMoney;
-        }
-        else
-        {
-            L0 += tRANSPORTCHAIN.vs.initialInvestmentMoney * 0.7f;
-        }
-        tRANSPORTCHAIN.vs.initialInvestmentMoney = 0;
-    }
-    #endregion
-
-    #region SALESCHAIN
-    public void setBuildAShop()
-    {
-        if (sALESCHAIN.bas.initialInvestmentMoney >= 10000 &&
-            (long)((TimeSpan)(GameManager.Instance.dateGame - sALESCHAIN.bas.startDate)).TotalDays <= 365 * 3)
-        {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - sALESCHAIN.bas.startDate)).TotalDays) % 30 == 0)
-            {
-                L0 += sALESCHAIN.bas.initialInvestmentMoney * GameConfig.Instance.SC_bx;
-            }
-        }
-        else
-        {
-            sALESCHAIN.bas.initialInvestmentMoney = 0;
-            sALESCHAIN.bas.isRunning = false;
+            ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.7f;
+            ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * UnityEngine.Random.Range(0.25f, 2f);
+            bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
         }
     }
 
-    public void setLinkWithAgenciesShop()
-    {
-        L0 += sALESCHAIN.lwas.initialInvestmentMoney * GameConfig.Instance.SC_ax;
-        sALESCHAIN.lwas.initialInvestmentMoney = 0;
-    }
-
-    public void setOnlineShop()
-    {
-        if (sALESCHAIN.os.initialInvestmentMoney >= 10000 &&
-            (long)((TimeSpan)(GameManager.Instance.dateGame - sALESCHAIN.os.startDate)).TotalDays <= 365 * 3)
-        {
-            if (((long)((TimeSpan)(GameManager.Instance.dateGame - sALESCHAIN.os.startDate)).TotalDays) % 30 == 0)
-            {
-                L0 += sALESCHAIN.os.initialInvestmentMoney * GameConfig.Instance.SC_bx;
-            }
-        }
-        else
-        {
-            sALESCHAIN.os.initialInvestmentMoney = 0;
-            sALESCHAIN.os.isRunning = false;
-        }
-    }
-
-    public void setSalesCulture()
-    {
-
-        L0 += (int)(sALESCHAIN.sc.initialInvestmentMoney / 1000) * 0.05f *
-            (sALESCHAIN.sc.initialInvestmentMoney * GameConfig.Instance.SC_bx);
-        L0 += (int)(sALESCHAIN.sc.initialInvestmentMoney / 1000) * 0.05f *
-            (sALESCHAIN.sc.initialInvestmentMoney * GameConfig.Instance.SC_bx);
-
-        sALESCHAIN.sc.initialInvestmentMoney = 0;
-    }
-    #endregion
-
-    #region RISKMANAGEMENT
-    public void setMediaCrisis()
-    {
-        KH0 += rISKMANAGEMENT.mc.initialInvestmentMoney;
-        rISKMANAGEMENT.mc.initialInvestmentMoney = 0;
-    }
-
-    public void setLawCrisis()
-    {
-
-    }
-
-    public void setEmployeeCrisis()
-    {
-
-    }
-    #endregion
-
-    #region EMPLOYEES
-
-    public void setSelfTraining()
-    {
-
-    }
-    public void setSelfTraining2()
-    {
-
-    }
-
-    public void setHumanResource()
-    {
-
-    }
-
-    public void setPeopleHiring()
-    {
-
-    }
-    public void setCompanyCulture()
-    {
-
-    }
-    public void setAnnuallyEvent()
-    {
-
-    }
-    public void setInternalCompanyFund()
-    {
-
-    }
-    public void setEmployeeTraining()
-    {
-
-    }
-    public void setCurriculumForEmployeeTraining()
-    {
-
-    }
-    #endregion
 }

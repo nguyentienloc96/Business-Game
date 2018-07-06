@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
+    public int modePlay;
     public int SRD;
 
     [Header("DateTime")]
@@ -89,15 +90,29 @@ public class GameManager : MonoBehaviour
             }
             time = 0;
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            DataPlayer.Instance.SaveDataPlayer();
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            DataPlayer.Instance.LoadDataPlayer();
+        }
     }
 
     void UpdateDataUser(BusinessMan man)
     {
         for(int i = 0; i < main.lsCoutryReady.Count; i++)
         {
-            main.lsCoutryReady[i].SetFactoryWorkshop();
-            main.lsCoutryReady[i].SetBuyingSotherFactoryWorkshop();
             main.lsCoutryReady[i].Interest();
         }
+    }
+
+    public void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
+        DataPlayer.Instance.SaveDataPlayer();
     }
 }

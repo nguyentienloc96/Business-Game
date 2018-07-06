@@ -4615,6 +4615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb15eeb0a3b008147b91f32cd51bed6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modePlay: 0
   SRD: 1
   main: {fileID: 2098702930}
   competitors: {fileID: 1501158681}
@@ -4680,6 +4681,8 @@ MonoBehaviour:
   dollars: 0
   btc: 0
   isOffAds: 0
+  ct: {fileID: 0}
+  lstCountry_Data: []
 --- !u!114 &692998830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7162,7 +7165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000029414612}
+  m_AnchoredPosition: {x: 0, y: -0.000025056594}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1062959244

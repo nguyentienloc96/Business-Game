@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [System.Serializable]
 public struct EconomicSegment
@@ -102,10 +101,12 @@ public class GameManager : MonoBehaviour
                         if (main.coin > 1000000000)
                         {
                             UIManager.Instance.panelWin.SetActive(true);
+                            UIManager.Instance.isPlay = false;
                         }
                         else
                         {
                             UIManager.Instance.panelGameOver.SetActive(true);
+                            UIManager.Instance.isPlay = false;
                         }
                     }
                 }

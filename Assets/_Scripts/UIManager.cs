@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -292,6 +291,14 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
         GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
+    }
+
+    public void BackToMenu()
+    {
+        panelGameOver.SetActive(false);
+        panelWin.SetActive(false);
+        menuGame.SetActive(true);
+        isPlay = false;
     }
 
     public void Update()

@@ -263,7 +263,7 @@ public class UIManager : MonoBehaviour
 
     public void Continue()
     {
-        DataPlayer.Instance.LoadPlayer();
+        DataPlayer.Instance.LoadDataPlayer();
         panelMODEPLAY.SetActive(false);
         menuGame.SetActive(false);
         isPlay = true;

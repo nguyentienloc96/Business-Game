@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
                 {
                     Time.timeScale = 0;
                     UIManager.Instance.isPlay = false;
-                    if (main.coin > 5000000)
+                    if (main.coin > 1000000000)
                     {
                         UIManager.Instance.panelWin.SetActive(true);
                     }
@@ -108,16 +108,6 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 time = 0;
-            }
-
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                DataPlayer.Instance.SaveDataPlayer();
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                DataPlayer.Instance.LoadDataPlayer();
             }
         }
     }
@@ -132,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        //PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
-        //DataPlayer.Instance.SaveDataPlayer();
+        PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
+        DataPlayer.Instance.SaveDataPlayer();
     }
 }

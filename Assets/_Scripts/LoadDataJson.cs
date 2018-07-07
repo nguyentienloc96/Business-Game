@@ -20,7 +20,7 @@ public class LoadDataJson : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(KeyPlayerPrefs.IS_NEWPLAYER) == 1)
         {
-            DataPlayer.Instance.LoadDataPlayer();
+            //DataPlayer.Instance.LoadDataPlayer();
         }
         LoadDataStartGameJson();
         LoadDataUpdateJson();

@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemSelf : MonoBehaviour
 {
@@ -22,7 +21,9 @@ public class ItemSelf : MonoBehaviour
         Word.Instance.txtLabel.text = label;
         Word.Instance.txtInfo.text = info;
         Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
-        if(Word.Instance.maxSlider2 > 10000)
+        Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
+        Word.Instance.seltCoin2.text = 10000.ToString();
+        if (Word.Instance.maxSlider2 > 10000)
         {
             Word.Instance.sliderEvole.SetActive(true);
         }

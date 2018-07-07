@@ -211,9 +211,24 @@ public class Country : MonoBehaviour
                 UIManager.Instance.COLCHART.transform
                     .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
             }
+            else
+            {
+                UIManager.Instance.PieChart2.SetActive(false);
+                UIManager.Instance.COLCHART.transform
+                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+            }
         }
         else if (UIManager.Instance.indexScene == 2)
         {
+            Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
+            Word.Instance.seltCoin2.text = 10000.ToString();
             UIManager.Instance.LabelCountry.text = string.Format("{0:000}", ID);
         }
     }
@@ -233,7 +248,8 @@ public class Country : MonoBehaviour
             LDT = (long)(UnityEngine.Random.Range(10000, (GDP - L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
             UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + L.ToString() + "$ vào " + nameCountry;
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = 
+                "Ban dau tu thanh cong " + UIManager.Instance.SubstringNumberGoldReplay(L) + "$ vào " + nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);

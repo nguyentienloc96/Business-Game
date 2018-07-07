@@ -84,7 +84,7 @@ public class Word : MonoBehaviour
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.coin -= LSlider2;
         panelInfo.SetActive(true);
-        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + LSlider2.ToString() + "$";
+        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + UIManager.Instance.SubstringNumberGoldReplay(LSlider2) + "$";
     }
 
     public void OnEnableWord(bool isWord)
@@ -106,6 +106,7 @@ public class Word : MonoBehaviour
             lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
             lsCountry[0].OnClickItemWord();
             idSelectWord = 0;
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;
             for (int i = 0; i < lsCountry.Count; i++)
             { 
                 lsCountry[i].gameObject.SetActive(true);

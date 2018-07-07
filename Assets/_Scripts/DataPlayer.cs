@@ -106,12 +106,8 @@ public class DataPlayer : MonoBehaviour
             GameManager.Instance.main.lsCoutryReady = new List<Country>();
             for (int i = 0; i < lsData.Count; i++)
             {
-                //CountryCurrent ct = new CountryCurrent();
-                //ct.ID = lsData.;
-                Country ct = new Country();
-                ct.ID = lsData[i]["ID"].AsInt;
-                ct.nameCountry = lsData[i]["nameCountry"];
-                ct.GDP = lsData[i]["GDP"].AsLong;
+                int ID = lsData[i]["ID"].AsInt;
+                Country ct = Word.Instance.lsCountry[ID];
                 ct.L = lsData[i]["L"].AsLong;
                 ct.LDT = lsData[i]["LDT"].AsLong;
                 ct.Mn = lsData[i]["Mn"].AsFloat;
@@ -177,11 +173,10 @@ public class DataPlayer : MonoBehaviour
                     }
 
                 }
-
                 GameManager.Instance.main.lsCoutryReady.Add(ct);
             }
         }
-
+        Debug.Log(GameManager.Instance.main.lsCoutryReady.Count);
         Debug.Log(GameManager.Instance.main.lsCoutryReady[0].nameCountry);
         Debug.Log(GameManager.Instance.main.lsCoutryReady[0].bigBranch[1].nameBigBranch);
         Debug.Log(GameManager.Instance.main.lsCoutryReady[0].bigBranch[2].smallBranch[3].nameSmallBranch);

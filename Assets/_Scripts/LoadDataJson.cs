@@ -40,7 +40,7 @@ public class LoadDataJson : MonoBehaviour
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(newsJson));
         //Debug.Log(objJson);
-        Debug.Log("<color=yellow>Done: </color>LoadDataNewsJson !");
+        //Debug.Log("<color=yellow>Done: </color>LoadDataNewsJson !");
         if (objJson != null)
         {
             for (int i = 0; i < objJson.Count; i++)
@@ -59,7 +59,7 @@ public class LoadDataJson : MonoBehaviour
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(dataUpdateJson));
         //Debug.Log(objJson);
-        Debug.Log("<color=yellow>Done: </color>LoadDataUpdateJson !");
+        //Debug.Log("<color=yellow>Done: </color>LoadDataUpdateJson !");
         if (objJson != null)
         {
             var objNS = objJson["NhanSu"];
@@ -131,7 +131,7 @@ public class LoadDataJson : MonoBehaviour
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(startGameJson));
         //Debug.Log(objJson);
-        Debug.Log("<color=yellow>Done: </color>LoadDataStartGameJson !");
+        //Debug.Log("<color=yellow>Done: </color>LoadDataStartGameJson !");
         if (objJson != null)
         {
             GameConfig.Instance.timeScale = objJson["TimeScale"].AsFloat;
@@ -158,7 +158,7 @@ public class LoadDataJson : MonoBehaviour
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(listNameCountryJson));
         //Debug.Log(objJson);
-        Debug.Log("<color=yellow>Done: </color>LoadDataNameCountry !");
+        //Debug.Log("<color=yellow>Done: </color>LoadDataNameCountry !");
         if (objJson != null)
         {
             for (int i = 0; i < objJson.Count; i++)

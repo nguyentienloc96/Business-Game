@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
+    public DateTime dateStartPlay;
     public int modePlay;
     public int SRD;
 
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     [Header("BusinessMan")]
     public BusinessMan main;
-    public BusinessMan competitors;
 
     [Header("EconomicSegment")]
     public EconomicSegment[] arreconomicSegments;
@@ -38,10 +38,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    public void LoadDate()
     {
-        SRD = 1;
-        dateGame = new DateTime(1996, 10, 27);
+        dateGame = new DateTime(1996, 1, 1);
+        dateStartPlay = dateGame;
         SetDate();
     }
 
@@ -76,29 +76,49 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= 4)
+        if (UIManager.Instance.isPlay)
         {
-            UpdateDataUser(main);
-            int month = dateGame.Month;
-            dateGame = dateGame.AddDays(1f);
-            SetDate();
-            if(dateGame.Month > month){
-                for(int i = 0;i<main.lsCoutryReady.Count;i++){
-                    main.lsCoutryReady[i].PullData();
+            time += Time.deltaTime;
+            if (time >= 4)
+            {
+                UpdateDataUser(main);
+                int month = dateGame.Month;
+                int year = dateGame.Year;
+                dateGame = dateGame.AddDays(1f);
+                SetDate();
+                if (dateGame.Month > month)
+                {
+                    for (int i = 0; i < main.lsCoutryReady.Count; i++)
+                    {
+                        main.lsCoutryReady[i].PullData();
+                    }
                 }
+
+                if(year - dateStartPlay.Year >= 5)
+                {
+                    Time.timeScale = 0;
+                    UIManager.Instance.isPlay = false;
+                    if (main.coin > 5000000)
+                    {
+                        UIManager.Instance.panelWin.SetActive(true);
+                    }
+                    else
+                    {
+                        UIManager.Instance.panelGameOver.SetActive(true);
+                    }
+                }
+                time = 0;
             }
-            time = 0;
-        }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            DataPlayer.Instance.SaveDataPlayer();
-        }
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                DataPlayer.Instance.SaveDataPlayer();
+            }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            DataPlayer.Instance.LoadDataPlayer();
+            if (Input.GetKey(KeyCode.Space))
+            {
+                DataPlayer.Instance.LoadDataPlayer();
+            }
         }
     }
 
@@ -112,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
-        DataPlayer.Instance.SaveDataPlayer();
+        //PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
+        //DataPlayer.Instance.SaveDataPlayer();
     }
 }

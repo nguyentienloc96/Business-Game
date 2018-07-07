@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -65,6 +66,14 @@ public class UIManager : MonoBehaviour
     public GameObject btnMedium;
     public GameObject btnHard;
     public GameObject btnCrazy;
+
+    [Header("ModePlay")]
+    public GameObject panelMODEPLAY;
+    public bool isPlay;
+
+    [Header("GameOver")]
+    public GameObject panelGameOver;
+    public GameObject panelWin;
 
 
     void Awake()
@@ -203,30 +212,35 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
-        menuGame.SetActive(false);
-        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
-        OnclickWORD();
+        panelMODEPLAY.SetActive(true);
     }
 
-    public void setSRD(int SRD){
+    public void setSRD(int SRD)
+    {
         GameManager.Instance.SRD = SRD;
-        if(SRD == 1){
+        if (SRD == 1)
+        {
             btnEasy.transform.GetChild(1).gameObject.SetActive(true);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
             btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
-        }else if(SRD == 2){
+        }
+        else if (SRD == 2)
+        {
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(true);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
             btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
-        }else if(SRD == 3){
+        }
+        else if (SRD == 3)
+        {
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(true);
             btnCrazy.transform.GetChild(1).gameObject.SetActive(false);
-        }else if(SRD == 4){
+        }
+        else if (SRD == 4)
+        {
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
@@ -234,8 +248,37 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Continue(){
-        
+    public void ModeGame(int mode)
+    {
+        panelMODEPLAY.SetActive(false);
+        menuGame.SetActive(false);
+        GameManager.Instance.SRD = 1;
+        isPlay = true;
+        GameManager.Instance.LoadDate();
+        GameManager.Instance.modePlay = mode;
+        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
+        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
+        OnclickWORD();
+    }
+
+    public void Continue()
+    {
+        DataPlayer.Instance.LoadPlayer();
+        panelMODEPLAY.SetActive(false);
+        menuGame.SetActive(false);
+        isPlay = true;
+        OnclickWORD();
+    }
+
+    public void RePlay()
+    {
+        panelWin.SetActive(false);
+        panelGameOver.SetActive(false);
+        isPlay = true;
+        GameManager.Instance.LoadDate();
+        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
+        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
+        OnclickWORD();
     }
 
     public void Update()

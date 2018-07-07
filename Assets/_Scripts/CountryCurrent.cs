@@ -30,8 +30,8 @@ public class CountryCurrent {
     public float NS0DT = 0f;
     public float ST0DT = 0f;
 
-    public List<string[]>[] bigBranch = new List<string[]>[7];
+    public STBigBranch[] bigBranch = new STBigBranch[7];
 
-    public List<int[]>  dataColChartMain = new List<int[]> ();
-    public List<int[]>  dataColChartCompetitors = new List<int[]> ();
+    public DataColChart[] dataColChartMain = new DataColChart[12];
+    public DataColChart[] dataColChartCompetitors = new DataColChart[12];
 }

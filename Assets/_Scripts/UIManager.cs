@@ -68,7 +68,8 @@ public class UIManager : MonoBehaviour
     public GameObject btnCrazy;
 
     [Header("ModePlay")]
-    public GameObject panelMODEPLAY;
+    public GameObject btnMode1;
+    public GameObject btnMode2;
     public bool isPlay;
 
     [Header("GameOver")]
@@ -81,6 +82,12 @@ public class UIManager : MonoBehaviour
         if (Instance != null)
             return;
         Instance = this;
+    }
+
+    void Start()
+    {
+        setSRD(1);
+        ModeGame(0);
     }
 
     public void OnclickWORD()
@@ -212,7 +219,12 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
-        panelMODEPLAY.SetActive(true);
+        menuGame.SetActive(false);
+        isPlay = true;
+        GameManager.Instance.LoadDate();
+        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
+        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
+        OnclickWORD();
     }
 
     public void setSRD(int SRD)
@@ -250,21 +262,22 @@ public class UIManager : MonoBehaviour
 
     public void ModeGame(int mode)
     {
-        panelMODEPLAY.SetActive(false);
-        menuGame.SetActive(false);
-        GameManager.Instance.SRD = 1;
-        isPlay = true;
-        GameManager.Instance.LoadDate();
         GameManager.Instance.modePlay = mode;
-        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
-        OnclickWORD();
+        if (mode == 0)
+        {
+            btnMode1.transform.GetChild(1).gameObject.SetActive(true);
+            btnMode2.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        else if (mode == 1)
+        {
+            btnMode1.transform.GetChild(1).gameObject.SetActive(false);
+            btnMode2.transform.GetChild(1).gameObject.SetActive(true);
+        }
     }
 
     public void Continue()
     {
         DataPlayer.Instance.LoadDataPlayer();
-        panelMODEPLAY.SetActive(false);
         menuGame.SetActive(false);
         isPlay = true;
         OnclickWORD();

@@ -21,6 +21,8 @@ public class PieChart : MonoBehaviour
     public GameObject notePrefab;
     public DataPeiChart[] dataPei;
 
+    public GameObject[] itemNoteCol;
+
     public void LoadData()
     {
         StopAllCoroutines();
@@ -45,6 +47,14 @@ public class PieChart : MonoBehaviour
 
             }
         }
+
+        if (itemNoteCol.Length > 0)
+        {
+            for (int i = 0; i < itemNoteCol.Length; i++)
+            {
+                itemNoteCol[i].SetActive(false);
+            }
+        }
         for (int i = 0; i < dataPei.Length; i++)
         {
             GameObject peiObj = Instantiate(peiPrefab, peiParent);
@@ -56,7 +66,7 @@ public class PieChart : MonoBehaviour
             peiObj.GetComponent<Image>().SetNativeSize();
             if (dataPei[i].valuePei < 0.01f && dataPei[i].valuePei > 0)
             {
-                peiObj.GetComponent<Image>().DOFillAmount(0.01f, 1f);
+                peiObj.GetComponent<Image>().DOFillAmount(0.01f, 0.5f);
                 sumValue += 0.01f;
                 peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -0.01f * 360 / 2);
             }
@@ -64,13 +74,13 @@ public class PieChart : MonoBehaviour
             {
                 if (i != dataPei.Length - 1)
                 {
-                    peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 1f);
+                    peiObj.GetComponent<Image>().DOFillAmount(dataPei[i].valuePei, 0.5f);
                     sumValue += dataPei[i].valuePei;
                     peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -dataPei[i].valuePei * 360 / 2);
                 }
                 else
                 {
-                    peiObj.GetComponent<Image>().DOFillAmount(1f - sumValue, 1f);
+                    peiObj.GetComponent<Image>().DOFillAmount(1f - sumValue, 0.5f);
                     peiObj.transform.GetChild(0).localEulerAngles = new Vector3(0f, 0f, -(1f - sumValue) * 360 / 2);
                 }
             }
@@ -101,9 +111,17 @@ public class PieChart : MonoBehaviour
             }
             if (dataPei[i].valuePei > 0)
             {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
 
+        }
+        if(itemNoteCol.Length > 0)
+        {
+            for(int i = 0; i < itemNoteCol.Length; i++)
+            {
+                itemNoteCol[i].SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 

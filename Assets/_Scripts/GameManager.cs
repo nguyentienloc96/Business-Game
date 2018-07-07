@@ -93,18 +93,20 @@ public class GameManager : MonoBehaviour
                         main.lsCoutryReady[i].PullData();
                     }
                 }
-
-                if(year - dateStartPlay.Year >= 5)
+                if (modePlay == 1)
                 {
-                    Time.timeScale = 0;
-                    UIManager.Instance.isPlay = false;
-                    if (main.coin > 1000000000)
+                    if (year - dateStartPlay.Year >= 5)
                     {
-                        UIManager.Instance.panelWin.SetActive(true);
-                    }
-                    else
-                    {
-                        UIManager.Instance.panelGameOver.SetActive(true);
+                        Time.timeScale = 0;
+                        UIManager.Instance.isPlay = false;
+                        if (main.coin > 1000000000)
+                        {
+                            UIManager.Instance.panelWin.SetActive(true);
+                        }
+                        else
+                        {
+                            UIManager.Instance.panelGameOver.SetActive(true);
+                        }
                     }
                 }
                 time = 0;

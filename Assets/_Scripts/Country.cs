@@ -328,17 +328,23 @@ public class Country : MonoBehaviour
                 }
             }
             else if (indexSelf == 4)
-            {                
-                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[1].startDate))).TotalDays - 365 - 30) > 0)
+            {
+                if (bigBranch[indexPSelf].smallBranch[1].isRunning)
                 {
-                    SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f;
-                    SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f * 2f);
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[1].startDate))).TotalDays - 365 - 30) > 0)
+                    {
+                        SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f;
+                        SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f * 2f);
+                    }
                 }
-                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[3].startDate))).TotalDays - 30) > 0)
+                if (bigBranch[indexPSelf].smallBranch[3].isRunning)
                 {
-                    SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f;
-                    SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f * 2f);
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[3].startDate))).TotalDays - 30) > 0)
+                    {
+                        SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f;
+                        SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f * 2f);
 
+                    }
                 }
                 bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = 0;
             }

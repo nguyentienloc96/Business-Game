@@ -183,7 +183,10 @@ public class Country : MonoBehaviour
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYes());
             }
             else
+            {
+                UIManager.Instance.POSITIONSELECT.SetActive(false);
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
+            }
             Word.Instance.seltTraining.value = 0;
             Word.Instance.LSlider = 10000;
             Word.Instance.seltCoin.text = Word.Instance.LSlider.ToString();

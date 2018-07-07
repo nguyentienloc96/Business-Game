@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
+                DataPlayer.Instance.SaveDataPlayer();
                 time = 0;
             }
         }
@@ -123,15 +124,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnApplicationQuit()
-    {
-        PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
-        DataPlayer.Instance.SaveDataPlayer();
-    }
-
-    public void OnApplicationPause(bool pause)
-    {
-        PlayerPrefs.SetInt(KeyPlayerPrefs.IS_NEWPLAYER, 1);
-        DataPlayer.Instance.SaveDataPlayer();
-    }
 }

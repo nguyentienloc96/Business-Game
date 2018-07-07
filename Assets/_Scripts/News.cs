@@ -15,7 +15,7 @@ public class News : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Start()
+    private void Update()
     {
         
     }
@@ -38,5 +38,37 @@ public class News : MonoBehaviour
         valueNews = GameConfig.Instance.Srd * Random.Range(1, 10);
         NewChoosed = lstNews[r];
         Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + valueNews + "%");
+    }
+
+    private void SetResultNew()
+    {
+        if(NewChoosed.major == "SP1")
+        {
+
+        }
+        else if(NewChoosed.major == "Mkt1")
+        {
+
+        }
+        else if (NewChoosed.major == "Market1")
+        {
+
+        }
+        else if (NewChoosed.major == "Lo1")
+        {
+
+        }
+        else if (NewChoosed.major == "Kh1")
+        {
+
+        }
+        else if (NewChoosed.major == "Ns1")
+        {
+
+        }
+        else if (NewChoosed.major == "St1")
+        {
+
+        }
     }
 }

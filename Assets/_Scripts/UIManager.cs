@@ -303,63 +303,7 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        txtGold.text = SubstringNumberGoldReplay(GameManager.Instance.main.coin);
-        txtBitCoin.text = SubstringNumberGoldReplay(GameManager.Instance.main.bitCoin);
-    }
-
-    public string SubstringNumberGoldReplay(long number)
-    {
-        string smoney = string.Format("{0:n0}", number);
-        if (smoney.Length == 5)
-        {
-
-            if (smoney[2] == '0')
-            {
-                smoney = smoney.Substring(0, smoney.Length - 4);
-                smoney = smoney + " K";
-            }
-            else
-            {
-                smoney = smoney.Substring(0, smoney.Length - 2);
-                smoney = smoney + " K";
-            }
-
-        }
-        else if (smoney.Length > 5 && smoney.Length < 9)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 4);
-            smoney = smoney + " K";
-        }
-        else if (smoney.Length == 9)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 6);
-            smoney = smoney + " M";
-        }
-        else if (smoney.Length > 9 && smoney.Length < 13)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 8);
-            smoney = smoney + " M";
-        }
-        else if (smoney.Length == 13)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 10);
-            smoney = smoney + " B";
-        }
-        else if (smoney.Length > 13 && smoney.Length < 17)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 12);
-            smoney = smoney + " B";
-        }
-        else if (smoney.Length == 17)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 14);
-            smoney = smoney + " KB";
-        }
-        else if (smoney.Length > 17)
-        {
-            smoney = smoney.Substring(0, smoney.Length - 16);
-            smoney = smoney + " KB";
-        }
-        return smoney;
+        txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.coin);
+        txtBitCoin.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.bitCoin);
     }
 }

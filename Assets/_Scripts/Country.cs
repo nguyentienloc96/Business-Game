@@ -171,7 +171,7 @@ public class Country : MonoBehaviour
         if (UIManager.Instance.indexScene == 0)
         {
             UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
-            UIManager.Instance.txtGDPCountry.text = "GDP : " + UIManager.Instance.SubstringNumberGoldReplay(GDP) + " <size=38>$</size>";
+            UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
             Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
             if (Word.Instance.maxSlider > 10000 && L == 0)
@@ -252,7 +252,7 @@ public class Country : MonoBehaviour
             GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
             UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
             UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = 
-                "Ban dau tu thanh cong " + UIManager.Instance.SubstringNumberGoldReplay(L) + "$ vào " + nameCountry;
+                "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(L) + "$ vào " + nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);

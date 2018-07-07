@@ -84,7 +84,7 @@ public class Word : MonoBehaviour
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.coin -= LSlider2;
         panelInfo.SetActive(true);
-        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + UIManager.Instance.SubstringNumberGoldReplay(LSlider2) + "$";
+        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
     }
 
     public void OnEnableWord(bool isWord)

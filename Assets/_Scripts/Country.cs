@@ -189,7 +189,7 @@ public class Country : MonoBehaviour
             Word.Instance.seltCoin.text = Word.Instance.LSlider.ToString();
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L) / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
         }
         else if (UIManager.Instance.indexScene == 1)

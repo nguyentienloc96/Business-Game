@@ -8,7 +8,7 @@ public class ConvertNumber : MonoBehaviour {
 
         if (number < 1000 && number >= 0)
             current = number.ToString();
-        else if (number < 10000 && number >= 1000)
+        else if (number < 1000000 && number >= 1000)
         {
             string a = "";
             a = number.ToString();

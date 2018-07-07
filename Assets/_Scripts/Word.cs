@@ -79,7 +79,7 @@ public class Word : MonoBehaviour
     public void Evole()
     {
         lsCountry[idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = LSlider2;
-        lsCountry[idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].startDate = GameManager.Instance.dateGame;
+        lsCountry[idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].startDate = GameManager.Instance.dateGame.ToString();
         lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf);
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.coin -= LSlider2;

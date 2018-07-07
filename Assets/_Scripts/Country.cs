@@ -9,7 +9,7 @@ public struct STBranch
     public string nameSmallBranch;
     public long initialInvestmentMoney;
     public long investmentMoneyLater;
-    public DateTime startDate;
+    public string startDate;
     public bool isRunning;
 }
 
@@ -266,12 +266,12 @@ public class Country : MonoBehaviour
             }
             else if (indexSelf == 1)
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays > 365)
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays > 365)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays - 365) % 30 == 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays - 365) % 30 == 0)
                     {
                         float money = (bigBranch[indexPSelf].smallBranch[indexSelf].investmentMoneyLater - 100000) * 0.08f - 50 *
-                            (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays - 365) / 30 - 1);
+                            (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays - 365) / 30 - 1);
                         if (money <= 0)
                         {
                             bigBranch[indexPSelf].smallBranch[indexSelf].investmentMoneyLater = 0;
@@ -294,10 +294,10 @@ public class Country : MonoBehaviour
             {
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney > 200000)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays) % 30 == 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays) % 30 == 0)
                     {
                         float money = (bigBranch[indexPSelf].smallBranch[indexSelf].investmentMoneyLater - 100000) * 0.08f - 50
-                            * (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays) / 30 - 1);
+                            * (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays) / 30 - 1);
                         if (money <= 0)
                         {
                             bigBranch[indexPSelf].smallBranch[indexSelf].investmentMoneyLater = 0;
@@ -312,13 +312,13 @@ public class Country : MonoBehaviour
                 }
             }
             else if (indexSelf == 4)
-            {
-                if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[1].startDate)).TotalDays - 365 - 30) > 0)
+            {                
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[1].startDate))).TotalDays - 365 - 30) > 0)
                 {
                     SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f;
                     SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 50f * 2f);
                 }
-                if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[3].startDate)).TotalDays - 30) > 0)
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[3].startDate))).TotalDays - 30) > 0)
                 {
                     SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f;
                     SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney / 1000) * 100f * 2f);
@@ -338,7 +338,7 @@ public class Country : MonoBehaviour
 
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 }
-                if ((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays ==
+                if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays ==
                     30 && UnityEngine.Random.Range(0f, 1f) <= 0.1f)
                 {
                     MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.1f;
@@ -355,9 +355,9 @@ public class Country : MonoBehaviour
             }
             else if (indexSelf == 2)
             {
-                if ((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays <= 365 * 2)
+                if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays <= 365 * 2)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays) % 30 == 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays) % 30 == 0)
                     {
                         MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.1f;
                         MKT0DT += UnityEngine.Random.Range(0f, bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * 0.1f * 2f);
@@ -452,9 +452,9 @@ public class Country : MonoBehaviour
             if (indexSelf == 0)
             {
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney >= 10000 &&
-                    (long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays <= 365 * 3)
+                    (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays <= 365 * 3)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays) % 30 == 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays) % 30 == 0)
                     {
                         L0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * GameConfig.Instance.SC_bx;
                         L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * GameConfig.Instance.SC_bx * 2f);
@@ -475,9 +475,9 @@ public class Country : MonoBehaviour
             else if (indexSelf == 2)
             {
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney >= 10000 &&
-                    (long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays <= 365 * 3)
+                    (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays <= 365 * 3)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - bigBranch[indexPSelf].smallBranch[indexSelf].startDate)).TotalDays) % 30 == 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays) % 30 == 0)
                     {
                         L0 += bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * GameConfig.Instance.SC_bx;
                         L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney * GameConfig.Instance.SC_bx * 2f);

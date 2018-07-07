@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
                 DataPlayer.Instance.SaveDataPlayer();
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.A))
             {
                 DataPlayer.Instance.LoadDataPlayer();
             }

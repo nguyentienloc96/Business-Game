@@ -20,10 +20,9 @@ public class ItemSelf : MonoBehaviour
         Word.Instance.indexSelf = indexSelf;
         Word.Instance.txtLabel.text = label;
         Word.Instance.txtInfo.text = info;
-        Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
         Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
-        Word.Instance.seltCoin2.text = 10000.ToString();
-        if (Word.Instance.maxSlider2 > 10000)
+        Word.Instance.seltCoin2.text = Word.Instance.minSlider2.ToString();
+        if (Word.Instance.maxSlider > Word.Instance.minSlider2)
         {
             Word.Instance.sliderEvole.SetActive(true);
         }
@@ -34,4 +33,29 @@ public class ItemSelf : MonoBehaviour
         UIManager.Instance.SelfTraining.SetActive(true);
     }
 
+    public void UpdateShow()
+    {
+        if (Word.Instance.maxSlider > Word.Instance.minSlider2 || !Word.Instance.lsCountry[Word.Instance.idSelectWord]
+            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning)
+        {
+            Word.Instance.sliderEvole.SetActive(true);
+        }
+        else
+        {
+            Word.Instance.sliderEvole.SetActive(false);
+        }
+    }
+
+
+    public void Update()
+    {
+        transform.GetChild(1).GetComponent<Button>().interactable = !Word.Instance.lsCountry[Word.Instance.idSelectWord]
+            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
+
+        if (Word.Instance.lsCountry[Word.Instance.idSelectWord]
+            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning)
+        {
+            Word.Instance.sliderEvole.SetActive(false);
+        }
+    }
 }

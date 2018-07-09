@@ -19,7 +19,7 @@ public class Word : MonoBehaviour
     public List<Country> lsCountry = new List<Country>();
     public long LSlider = 10000;
     public long minSlider = 10000;
-    public long maxSlider = 50000;
+    public long maxSlider = 47000;
 
 
     [Header("SliderSelf")]
@@ -31,9 +31,8 @@ public class Word : MonoBehaviour
     public Text txtInfo;
     public GameObject sliderEvole;
     public GameObject panelInfo;
-    public long LSlider2 = 10000;
-    public long minSlider2 = 10000;
-    public long maxSlider2 = 50000;
+    public long LSlider2 = 1000;
+    public long minSlider2 = 1000;
 
     [Header("ItemSelf")]
     public List<Transform> lsItemSelf = new List<Transform>();
@@ -71,20 +70,20 @@ public class Word : MonoBehaviour
 
     public void SliderSelf()
     {
-        long index = (maxSlider2 - minSlider2) / 1000;
+        long index = (maxSlider - minSlider2) / 1000;
         LSlider2 = minSlider2 + (int)(seltTraining2.value * index) * 1000;
         seltCoin2.text = LSlider2.ToString();
     }
 
     public void Evole()
     {
-        lsCountry[idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = LSlider2;
-        lsCountry[idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].startDate = GameManager.Instance.dateGame.ToString();
-        lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf);
+        lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf,LSlider2);
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.coin -= LSlider2;
         panelInfo.SetActive(true);
         panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
+        sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
+        seltCoin2.text = minSlider2.ToString();
     }
 
     public void OnEnableWord(bool isWord)
@@ -127,11 +126,6 @@ public class Word : MonoBehaviour
                 
                 GameManager.Instance.main.lsCoutryReady[0].transform.GetChild(3).gameObject.SetActive(true);
                 idSelectWord = GameManager.Instance.main.lsCoutryReady[0].ID;
-
-                if (UIManager.Instance.indexScene == 2)
-                {
-                    UIManager.Instance.LabelCountry.text = string.Format("{0:000}", idSelectWord);
-                }
             }
             for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
             {

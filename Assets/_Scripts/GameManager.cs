@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 DataPlayer.Instance.SaveDataPlayer();
+                UpdateUI();
                 time = 0;
             }
         }
@@ -122,6 +123,16 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < main.lsCoutryReady.Count; i++)
         {
             main.lsCoutryReady[i].Interest();
+        }
+    }
+
+    void UpdateUI()
+    {
+        Word.Instance.maxSlider = (long)(main.coin * 0.95f);
+        if (Word.Instance.lsItemSelf.Count - 1 > Word.Instance.indexSelf)
+        {
+            if (Word.Instance.lsItemSelf[Word.Instance.indexSelf].gameObject.activeInHierarchy)
+                Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetComponent<ItemSelf>().UpdateShow();
         }
     }
 

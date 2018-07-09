@@ -173,8 +173,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
             UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
-            Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
-            if (Word.Instance.maxSlider > 10000 && L == 0)
+            if (Word.Instance.maxSlider > Word.Instance.minSlider && L == 0)
             {
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(true);
                 UIManager.Instance.POSITIONSELECT.SetActive(true);
@@ -199,7 +198,7 @@ public class Country : MonoBehaviour
         {
             if (I0 != 0)
             {
-                Word.Instance.maxSlider2 = (long)(GameManager.Instance.main.coin * 0.95f);
+                Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
@@ -232,7 +231,6 @@ public class Country : MonoBehaviour
         {
             Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
             Word.Instance.seltCoin2.text = 10000.ToString();
-            UIManager.Instance.LabelCountry.text = string.Format("{0:000}", ID);
         }
     }
 
@@ -266,8 +264,10 @@ public class Country : MonoBehaviour
         }
     }
 
-    public void SetSmallBranch(int indexPSelf, int indexSelf)
+    public void SetSmallBranch(int indexPSelf, int indexSelf,long moneyDT)
     {
+        Word.Instance.lsCountry[Word.Instance.idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney = moneyDT;
+        Word.Instance.lsCountry[Word.Instance.idSelectWord].bigBranch[indexPSelf].smallBranch[indexSelf].startDate = GameManager.Instance.dateGame.ToString();
         if (indexPSelf == 0) //PROCEDUREPROCESS
         {
             if (indexSelf == 0)
@@ -285,6 +285,8 @@ public class Country : MonoBehaviour
             }
             else if (indexSelf == 1)
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].initialInvestmentMoney > 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays > 365)
                 {
                     if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].startDate))).TotalDays - 365) % 30 == 0)

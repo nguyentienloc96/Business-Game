@@ -12,11 +12,8 @@ public class Branch : MonoBehaviour
     {
         if (GameManager.Instance.main.lsCoutryReady.Count <= 0)
             return;
-
-        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
-        {
-            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
-        }
+        UIManager.Instance.SelfTraining.SetActive(false);
+        UIManager.Instance.ResetBranch();
         if (index == 0)
         {
             StartCoroutine(IELoadBranch(DataUpdate.Instance.lstData_ProcedureProcess));
@@ -70,15 +67,7 @@ public class Branch : MonoBehaviour
 
     IEnumerator IELoadBranch(List<DataUpdate.DataItems> lsData)
     {
-        if (GameManager.Instance.contentSelf.childCount > 0)
-        {
-            for (int i = GameManager.Instance.contentSelf.childCount - 1; i >= 0; i--)
-            {
-                Destroy(GameManager.Instance.contentSelf.GetChild(i).gameObject);
-            }
-        }
-
-        Word.Instance.lsItemSelf.Clear();
+        UIManager.Instance.ResetBranch();
 
         for (int i = 0; i < lsData.Count; i++)
         {

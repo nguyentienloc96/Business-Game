@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(true);
+        ResetBranch();
     }
 
     public void OnclickTHONGSO()
@@ -121,7 +122,8 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
-
+        ResetBranch();
+        GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
     }
 
     public void OnclickNHOM1()
@@ -154,6 +156,7 @@ public class UIManager : MonoBehaviour
         btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
     }
 
     public void OnclickNHOM2()
@@ -186,6 +189,8 @@ public class UIManager : MonoBehaviour
         btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
+
     }
 
     public void OnclickNHOM3()
@@ -214,6 +219,7 @@ public class UIManager : MonoBehaviour
         btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
     }
 
     public void PlayGame()
@@ -305,5 +311,18 @@ public class UIManager : MonoBehaviour
     {
         txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.coin);
         txtBitCoin.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.bitCoin);
+    }
+
+    public void ResetBranch()
+    {
+        if (GameManager.Instance.contentSelf.childCount > 0)
+        {
+            for (int i = GameManager.Instance.contentSelf.childCount - 1; i >= 0; i--)
+            {
+                Destroy(GameManager.Instance.contentSelf.GetChild(i).gameObject);
+            }
+        }
+
+        Word.Instance.lsItemSelf.Clear();
     }
 }

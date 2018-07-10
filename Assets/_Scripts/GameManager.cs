@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject itemSelf;
     public Transform contentSelf;
 
+    private float DeltaTimeGame = 4;
+
     void Awake()
     {
         if (Instance != null)
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
         if (UIManager.Instance.isPlay)
         {
             time += Time.deltaTime;
-            if (time >= 4)
+            if (time >= DeltaTimeGame)
             {
                 UpdateDataUser(main);
                 int month = dateGame.Month;
@@ -157,5 +159,10 @@ public class GameManager : MonoBehaviour
         News.Instance.SetResultNew(ID);
         main.lsCoutryReady[ID].PullData();
         Invoke("HidePanelInfo", 5f);
+    }
+
+    public void X4TimeGame()
+    {
+        DeltaTimeGame = DeltaTimeGame != 4f ? 4f : 1f;
     }
 }

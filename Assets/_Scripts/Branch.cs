@@ -69,6 +69,7 @@ public class Branch : MonoBehaviour
     IEnumerator IELoadBranch(List<DataUpdate.DataItems> lsData)
     {
         UIManager.Instance.ResetBranch();
+        yield return new WaitUntil(() => GameManager.Instance.contentSelf.childCount == 0);
         for (int i = 0; i < lsData.Count; i++)
         {
             Transform itemSelf = Instantiate(GameManager.Instance.itemSelf, GameManager.Instance.contentSelf).transform;

@@ -42,7 +42,6 @@ public class DataPlayer : MonoBehaviour
         data.btc = GameManager.Instance.main.bitCoin;
         data.dateStartPlay = GameManager.Instance.dateStartPlay.ToString();
         data.dateGame = GameManager.Instance.dateGame.ToString();
-        //Debug.Log(GameManager.Instance.main.lsCoutryReady.Count);
         data.lstCountry_Data = new List<CountryCurrent>();
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
@@ -140,9 +139,10 @@ public class DataPlayer : MonoBehaviour
                     for (int k = 0; k < smallBranch.Count; k++)
                     {
                         ct.bigBranch[j].smallBranch[k].nameSmallBranch = smallBranch[k]["nameSmallBranch"];
-                        ct.bigBranch[j].smallBranch[k].moneyDTBD = smallBranch[k]["initialInvestmentMoney"].AsLong;
-                        ct.bigBranch[j].smallBranch[k].moneyDTS = smallBranch[k]["investmentMoneyLater"].AsLong;
-                        ct.bigBranch[j].smallBranch[k].investmentDayBD = DateTime.Parse(smallBranch[k]["startDate"]);
+                        ct.bigBranch[j].smallBranch[k].moneyDTBD = smallBranch[k]["moneyDTBD"].AsLong;
+                        ct.bigBranch[j].smallBranch[k].moneyDTS = smallBranch[k]["moneyDTS"].AsLong;
+                        ct.bigBranch[j].smallBranch[k].investmentDayBD = smallBranch[k]["investmentDayBD"];
+                        ct.bigBranch[j].smallBranch[k].investmentDayS = smallBranch[k]["investmentDayS"];
                         ct.bigBranch[j].smallBranch[k].isRunning = smallBranch[k]["isRunning"].AsBool;
                     }
 
@@ -176,9 +176,6 @@ public class DataPlayer : MonoBehaviour
                 GameManager.Instance.main.lsCoutryReady.Add(ct);
             }
         }
-        Debug.Log(GameManager.Instance.main.lsCoutryReady.Count);
-        Debug.Log(GameManager.Instance.main.lsCoutryReady[0].nameCountry);
-        Debug.Log(GameManager.Instance.main.lsCoutryReady[0].bigBranch[1].nameBigBranch);
-        Debug.Log(GameManager.Instance.main.lsCoutryReady[0].bigBranch[2].smallBranch[3].nameSmallBranch);
+
     }
 }

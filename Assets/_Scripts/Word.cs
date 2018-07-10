@@ -84,6 +84,12 @@ public class Word : MonoBehaviour
         panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         seltCoin2.text = minSlider2.ToString();
+        Invoke("HidePanelInfo", 2f);
+    }
+
+    public void HidePanelInfo()
+    {
+        panelInfo.SetActive(false);
     }
 
     public void OnEnableWord(bool isWord)

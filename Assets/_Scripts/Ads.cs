@@ -44,7 +44,7 @@ public class Ads : MonoBehaviour
         //Unity Ads
         //Advertisement.Initialize(idUnityAds, false);
 #if UNITY_ANDROID
-        Advertisement.Initialize(idUnityAds_Android, true);
+        //Advertisement.Initialize(idUnityAds_Android, true);
 #elif UNITY_IOS
          Advertisement.Initialize(idUnityAds_IOS, true);
 #endif
@@ -149,40 +149,40 @@ public class Ads : MonoBehaviour
 #if UNITY_EDITOR
         StartCoroutine(WaitForAd());
 #endif
-        if (Advertisement.IsReady())
-        {
-            Advertisement.Show("rewardedVideo", new ShowOptions() { resultCallback = HandleUnityAdsCallback });
-        }
+        //if (Advertisement.IsReady())
+        //{
+        //    Advertisement.Show("rewardedVideo", new ShowOptions() { resultCallback = HandleUnityAdsCallback });
+        //}
     }
 
     IEnumerator WaitForAd()
     {
 
-        while (Advertisement.isShowing)
+        //while (Advertisement.isShowing)
             yield return null;
 
     }
 
-    void HandleUnityAdsCallback(ShowResult result)
-    {
-        switch (result)
-        {
-            case ShowResult.Finished:
-                Time.timeScale = 1;
-                timeVideo = 0;
-                //GamePlay.gameplay.btnContinue.SetActive(false);
-                break;
-            case ShowResult.Skipped:
-                Time.timeScale = 1;
-                timeVideo = 0;
-                //amePlay.gameplay.btnContinue.SetActive(false);
-                break;
-            case ShowResult.Failed:
-                Time.timeScale = 1;
+    //void HandleUnityAdsCallback(ShowResult result)
+    //{
+    //    switch (result)
+    //    {
+    //        case ShowResult.Finished:
+    //            Time.timeScale = 1;
+    //            timeVideo = 0;
+    //            //GamePlay.gameplay.btnContinue.SetActive(false);
+    //            break;
+    //        case ShowResult.Skipped:
+    //            Time.timeScale = 1;
+    //            timeVideo = 0;
+    //            //amePlay.gameplay.btnContinue.SetActive(false);
+    //            break;
+    //        case ShowResult.Failed:
+    //            Time.timeScale = 1;
 
-                break;
-        }
-    }
+    //            break;
+    //    }
+    //}
     #endregion
 
 

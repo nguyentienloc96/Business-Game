@@ -40,34 +40,41 @@ public class News : MonoBehaviour
         Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + valueNews + "%");
     }
 
-    private void SetResultNew()
+    public void SetResultNew(int ID)
     {
-        if(NewChoosed.major == "SP1")
+        int set = NewChoosed.isUseful == true ? 1 : -1;
+        if (NewChoosed.major == "SP1")
         {
-
+            GameManager.Instance.main.lsCoutryReady[ID].SP0 += set * GameManager.Instance.main.lsCoutryReady[ID].SP0;
         }
         else if(NewChoosed.major == "Mkt1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].MKT0 += set * GameManager.Instance.main.lsCoutryReady[ID].MKT0;
 
         }
         else if (NewChoosed.major == "Market1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].MAKRET0 += set * GameManager.Instance.main.lsCoutryReady[ID].MAKRET0;
 
         }
         else if (NewChoosed.major == "Lo1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].L0 += set * GameManager.Instance.main.lsCoutryReady[ID].L0;
 
         }
         else if (NewChoosed.major == "Kh1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].KH0 += set * GameManager.Instance.main.lsCoutryReady[ID].KH0;
 
         }
         else if (NewChoosed.major == "NS1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].NS0 += set * GameManager.Instance.main.lsCoutryReady[ID].NS0;
 
         }
         else if (NewChoosed.major == "St1")
         {
+            GameManager.Instance.main.lsCoutryReady[ID].ST0 += set * GameManager.Instance.main.lsCoutryReady[ID].ST0;
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct EconomicSegment
@@ -89,8 +90,10 @@ public class GameManager : MonoBehaviour
                 {
                     for (int i = 0; i < main.lsCoutryReady.Count; i++)
                     {
+                        main.lsCoutryReady[i].UpdateDay();
                         main.lsCoutryReady[i].PullData();
                     }
+                    NewsGame();
                 }
                 if (modePlay == 1)
                 {
@@ -136,4 +139,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void HidePanelInfo()
+    {
+        Word.Instance.panelInfo.SetActive(false);
+    }
+
+    public void NewsGame()
+    {
+        int ID = UnityEngine.Random.Range(0, main.lsCoutryReady.Count);
+        News.Instance.GetNews();
+        Word.Instance.panelInfo.SetActive(true);
+        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = main.lsCoutryReady[ID].nameCountry+"\n"
+            +News.Instance.NewChoosed.content+ +News.Instance.valueNews + "%";
+        News.Instance.SetResultNew(ID);
+        main.lsCoutryReady[ID].PullData();
+        Invoke("HidePanelInfo", 5f);
+    }
 }

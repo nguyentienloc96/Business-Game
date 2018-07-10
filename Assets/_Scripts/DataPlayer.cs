@@ -140,9 +140,9 @@ public class DataPlayer : MonoBehaviour
                     for (int k = 0; k < smallBranch.Count; k++)
                     {
                         ct.bigBranch[j].smallBranch[k].nameSmallBranch = smallBranch[k]["nameSmallBranch"];
-                        ct.bigBranch[j].smallBranch[k].initialInvestmentMoney = smallBranch[k]["initialInvestmentMoney"].AsLong;
-                        ct.bigBranch[j].smallBranch[k].investmentMoneyLater = smallBranch[k]["investmentMoneyLater"].AsLong;
-                        ct.bigBranch[j].smallBranch[k].startDate = smallBranch[k]["startDate"];
+                        ct.bigBranch[j].smallBranch[k].moneyDTBD = smallBranch[k]["initialInvestmentMoney"].AsLong;
+                        ct.bigBranch[j].smallBranch[k].moneyDTS = smallBranch[k]["investmentMoneyLater"].AsLong;
+                        ct.bigBranch[j].smallBranch[k].investmentDayBD = DateTime.Parse(smallBranch[k]["startDate"]);
                         ct.bigBranch[j].smallBranch[k].isRunning = smallBranch[k]["isRunning"].AsBool;
                     }
 

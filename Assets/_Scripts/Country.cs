@@ -307,45 +307,40 @@ public class Country : MonoBehaviour
             else if (indexSelf == 2)//Outsource
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 SP0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
                 SP0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 1.75f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
-            else if (indexSelf == 3)
+            else if (indexSelf == 3)//Buying other factory/workshop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD > 200000)
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 200000)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays) % 30 == 0)
-                    {
-                        float money = (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS - 100000) * 0.08f - 50
-                            * (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays) / 30 - 1);
-                        if (money <= 0)
-                        {
-                            bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
-                            bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = false;
-                        }
-                        else
-                        {
-                            SP0 += money;
-                            SP0DT += UnityEngine.Random.Range(1000f, money * 2f);
-                        }
-                    }
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                }
+                else
+                {
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS += moneyDT;
+                    bigBranch[0].smallBranch[3].isRunning = true;
                 }
             }
-            else if (indexSelf == 4)
+            else if (indexSelf == 4)//Service
             {
-                if (bigBranch[indexPSelf].smallBranch[1].isRunning)
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                if (bigBranch[indexPSelf].smallBranch[1].moneyDTS > 0)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays - 365 - 30) > 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS))).TotalDays - 30) > 0)
                     {
                         SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 50f;
                         SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 50f * 2f);
                     }
                 }
-                if (bigBranch[indexPSelf].smallBranch[3].isRunning)
+                if (bigBranch[indexPSelf].smallBranch[1].moneyDTS > 0)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays - 30) > 0)
+                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS))).TotalDays - 30) > 0)
                     {
                         SP0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 100f;
                         SP0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 100f * 2f);
@@ -357,49 +352,37 @@ public class Country : MonoBehaviour
         }
         else if (indexPSelf == 1) //ADS
         {
-            if (indexSelf == 0)
+            if (indexSelf == 0)//Traditional ads
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 if (!bigBranch[indexPSelf].smallBranch[indexSelf].isRunning)
                 {
                     MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
                     MKT0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 2f);
-
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 }
-                if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays ==
-                    30 && UnityEngine.Random.Range(0f, 1f) <= 0.1f)
-                {
-                    MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.1f;
-                    MKT0DT += UnityEngine.Random.Range(0f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.1f * 2f);
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = false;
-                }
+               
             }
-            else if (indexSelf == 1)
+            else if (indexSelf == 1)//Social network ads
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
                 MKT0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 2f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
-            else if (indexSelf == 2)
+            else if (indexSelf == 2)//Website & affiliate
             {
-                if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays <= 365 * 2)
-                {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays) % 30 == 0)
-                    {
-                        MKT0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.1f;
-                        MKT0DT += UnityEngine.Random.Range(0f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.1f * 2f);
-                    }
-                }
-                else
-                {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = false;
-                }
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
         }
         else if (indexPSelf == 2) //SPREADING
         {
+            bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+            bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
             if (indexSelf == 0)
             {
                 NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
@@ -439,94 +422,82 @@ public class Country : MonoBehaviour
         }
         else if (indexPSelf == 3) //TRANSPORTCHAIN
         {
-            if (indexSelf == 0)
+            if (indexSelf == 0)//Transport agent
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.TC_tax;
                 L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_tax * 2f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
-            else if (indexSelf == 1)
+            else if (indexSelf == 1)//Warehouse Storage
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 100000)
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.TC_wx;
-                    L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_wx * 2f);
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * GameConfig.Instance.TC_wx;
+                    L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_wx * 2f);
                 }
                 else
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * (GameConfig.Instance.TC_wx + 0.3f);
-                    L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_wx * 3f);
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
+                    L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_wx * 3f);
                 }
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
             }
-            else if (indexSelf == 2)
+            else if (indexSelf == 2)//Vehicles: self transport
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 100000)
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
-                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 2f);
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 2f);
 
                 }
                 else
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f * 2f);
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 0.7f;
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 0.7f * 2f);
                 }
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
             }
         }
         else if (indexPSelf == 4)//SALESCHAIN
         {
-            if (indexSelf == 0)
+            if (indexSelf == 0)//Build a shop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 10000 &&
-                    (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays <= 365 * 3)
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 10000)
                 {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays) % 30 == 0)
-                    {
-                        L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx;
-                        L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx * 2f);
-                    }
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
                 }
-                else
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 10000)
                 {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = false;
+                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 }
             }
-            else if (indexSelf == 1)
+            else if (indexSelf == 1)//Link with agencies shop
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_ax;
                 L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_ax * 2f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
-            else if (indexSelf == 2)
+            else if (indexSelf == 2)//Online shop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 10000 &&
-                    (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays <= 365 * 3)
-                {
-                    if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays) % 30 == 0)
-                    {
-                        L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx;
-                        L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx * 2f);
-                    }
-                }
-                else
-                {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = false;
-                }
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
-            else if (indexSelf == 3)
+            else if (indexSelf == 3)//Sales culture
             {
-                L0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f *
-                    (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx);
-                L0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f *
-                    (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx) * 2f);
-                L0 += (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f *
-                    (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx);
-                L0DT += UnityEngine.Random.Range(100f, (int)(bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f *
-                    (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.SC_bx) * 2f);
+                bigBranch[4].smallBranch[0].moneyDTBD += (long)((bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f * bigBranch[4].smallBranch[0].moneyDTBD);
+                bigBranch[4].smallBranch[2].moneyDTBD += (long)((bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000) * 0.05f * bigBranch[4].smallBranch[2].moneyDTBD);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
         }
@@ -642,6 +613,7 @@ public class Country : MonoBehaviour
     {
         FactoryWorkshopLoop();
         BuyingOtherFactoryWorkshop();
+        Service();
         TraditionalAds();
         Website_Affiliate();
         BuildAShop();
@@ -651,10 +623,14 @@ public class Country : MonoBehaviour
 
     public void FactoryWorkshopLoop()
     {
-        if (bigBranch[0].smallBranch[1].moneyDTBD >= 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame -
+        if (bigBranch[0].smallBranch[1].moneyDTBD > 100000 && bigBranch[0].smallBranch[1].moneyDTS == 0 && (long)((TimeSpan)(GameManager.Instance.dateGame -
            DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayBD))).TotalDays >= 365)
         {
             bigBranch[0].smallBranch[1].isRunning = false;
+        }
+        if (bigBranch[0].smallBranch[1].moneyDTS > 0 && (long)((TimeSpan)(GameManager.Instance.dateGame -
+           DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayBD))).TotalDays >= 365)
+        {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayS))).TotalDays) % 30 == 0)
             {
                 float money = bigBranch[0].smallBranch[1].moneyDTS * 0.08f - 50 *
@@ -662,6 +638,7 @@ public class Country : MonoBehaviour
                 if (money <= 0)
                 {
                     bigBranch[0].smallBranch[1].moneyDTS = 0;
+                    bigBranch[0].smallBranch[1].isRunning = false;
                 }
                 else
                 {
@@ -674,32 +651,120 @@ public class Country : MonoBehaviour
 
     public void BuyingOtherFactoryWorkshop()
     {
+        if (bigBranch[0].smallBranch[3].moneyDTS > 0 && ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[3].investmentDayBD))).TotalDays) % 30 == 0)
+        {
+            float money = (bigBranch[0].smallBranch[3].moneyDTS - 100000) * 0.08f - 50
+                * (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[3].investmentDayBD))).TotalDays) / 30 - 1);
+            if (money <= 0)
+            {
+                bigBranch[0].smallBranch[3].moneyDTS = 0;
+                bigBranch[0].smallBranch[3].isRunning = false;
+            }
+            else
+            {
+                SP0 += money;
+                SP0DT += UnityEngine.Random.Range(1000f, money * 2f);
+            }
+        }
+    }
 
+    public void Service()
+    {
+        if (bigBranch[0].smallBranch[1].moneyDTS > 0 || bigBranch[0].smallBranch[3].moneyDTS > 0)
+        {
+            bigBranch[0].smallBranch[4].isRunning = false;
+        }
+        else
+        {
+            bigBranch[0].smallBranch[4].isRunning = true;
+        }
     }
 
     public void TraditionalAds()
     {
-
+        if (bigBranch[1].smallBranch[0].moneyDTBD > 0 && (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[0].investmentDayBD))).TotalDays 
+            == 30)
+        {
+            if (UnityEngine.Random.Range(0f, 1f) <= 0.1f)
+            {
+                MKT0 += bigBranch[1].smallBranch[0].moneyDTS * 0.1f;
+                MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[0].moneyDTS * 0.1f * 2f);
+            }
+            bigBranch[1].smallBranch[0].moneyDTBD = 0;
+            bigBranch[1].smallBranch[0].isRunning = false;
+        }
     }
 
     public void Website_Affiliate()
     {
-
+        if (bigBranch[1].smallBranch[2].moneyDTBD > 0)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[2].investmentDayBD))).TotalDays <= 365 * 2)
+            {
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[2].investmentDayBD))).TotalDays) % 30 == 0)
+                {
+                    MKT0 += bigBranch[1].smallBranch[2].moneyDTBD * 0.1f;
+                    MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[2].moneyDTBD * 0.1f * 2f);
+                }
+            }
+            else
+            {
+                bigBranch[1].smallBranch[2].moneyDTBD = 0;
+                bigBranch[1].smallBranch[2].isRunning = false;
+            }
+        }
     }
 
     public void BuildAShop()
     {
-
+        if (bigBranch[4].smallBranch[0].moneyDTBD >= 10000)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[0].investmentDayBD))).TotalDays <= 365 * 3)
+            {
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[0].investmentDayBD))).TotalDays) % 30 == 0)
+                {
+                    L0 += bigBranch[4].smallBranch[0].moneyDTBD * GameConfig.Instance.SC_bx;
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[4].smallBranch[0].moneyDTBD * GameConfig.Instance.SC_bx * 2f);
+                }
+            }
+            else
+            {
+                bigBranch[4].smallBranch[0].moneyDTBD = 0;
+                bigBranch[4].smallBranch[0].isRunning = false;
+            }
+        }
     }
 
     public void OnlineShop()
     {
-
+        if (bigBranch[4].smallBranch[2].moneyDTBD > 0)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[2].investmentDayBD))).TotalDays <= 365 * 3)
+            {
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[2].investmentDayBD))).TotalDays) % 30 == 0)
+                {
+                    L0 += bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_bx;
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_bx * 2f);
+                }
+            }
+            else
+            {
+                bigBranch[4].smallBranch[2].moneyDTBD = 0;
+                bigBranch[4].smallBranch[2].isRunning = false;
+            }
+        }
     }
 
     public void SalesCulture()
     {
-
+        if (bigBranch[4].smallBranch[0].moneyDTBD > 0 || bigBranch[4].smallBranch[2].moneyDTBD > 0)
+        {
+            bigBranch[4].smallBranch[3].isRunning = false;
+        }
+        else
+        {
+            bigBranch[4].smallBranch[3].isRunning = true;
+        }
     }
 
 

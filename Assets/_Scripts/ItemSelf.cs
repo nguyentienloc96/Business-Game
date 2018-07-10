@@ -35,10 +35,10 @@ public class ItemSelf : MonoBehaviour
 
     public void UpdateShow()
     {
-        if (Word.Instance.maxSlider > Word.Instance.minSlider2 || !Word.Instance.lsCountry[Word.Instance.idSelectWord]
-            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning)
+        if (Word.Instance.maxSlider > Word.Instance.minSlider2)
         {
-            Word.Instance.sliderEvole.SetActive(true);
+            Word.Instance.sliderEvole.SetActive(!Word.Instance.lsCountry[Word.Instance.idSelectWord]
+            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning);
         }
         else
         {
@@ -51,11 +51,5 @@ public class ItemSelf : MonoBehaviour
     {
         transform.GetChild(1).GetComponent<Button>().interactable = !Word.Instance.lsCountry[Word.Instance.idSelectWord]
             .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
-
-        if (Word.Instance.lsCountry[Word.Instance.idSelectWord]
-            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning)
-        {
-            Word.Instance.sliderEvole.SetActive(false);
-        }
     }
 }

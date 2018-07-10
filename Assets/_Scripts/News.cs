@@ -62,7 +62,7 @@ public class News : MonoBehaviour
         {
 
         }
-        else if (NewChoosed.major == "Ns1")
+        else if (NewChoosed.major == "NS1")
         {
 
         }

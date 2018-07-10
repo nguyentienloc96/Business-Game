@@ -757,9 +757,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 001aa504-af7e-4b12-949b-1a333311952f
-  projectName: wtfLo9c
-  organizationId: nguenloc271096
+  cloudProjectId: d7c66130-f3a6-4622-af46-fba4882416a6
+  projectName: locnt
+  organizationId: supergun512
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

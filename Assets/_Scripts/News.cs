@@ -45,37 +45,49 @@ public class News : MonoBehaviour
         int set = NewChoosed.isUseful == true ? 1 : -1;
         if (NewChoosed.major == "SP1")
         {
+            if(set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD > 0)
+            {
+                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD -= 
+                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].SP0);
+                return;
+            }
             GameManager.Instance.main.lsCoutryReady[ID].SP0 += set * GameManager.Instance.main.lsCoutryReady[ID].SP0;
         }
         else if(NewChoosed.major == "Mkt1")
         {
+            if (set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD > 0)
+            {
+                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD -= 
+                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].MKT0);
+                return;
+            }
             GameManager.Instance.main.lsCoutryReady[ID].MKT0 += set * GameManager.Instance.main.lsCoutryReady[ID].MKT0;
-
         }
         else if (NewChoosed.major == "Market1")
         {
             GameManager.Instance.main.lsCoutryReady[ID].MAKRET0 += set * GameManager.Instance.main.lsCoutryReady[ID].MAKRET0;
-
         }
         else if (NewChoosed.major == "Lo1")
         {
             GameManager.Instance.main.lsCoutryReady[ID].L0 += set * GameManager.Instance.main.lsCoutryReady[ID].L0;
-
         }
         else if (NewChoosed.major == "Kh1")
         {
             GameManager.Instance.main.lsCoutryReady[ID].KH0 += set * GameManager.Instance.main.lsCoutryReady[ID].KH0;
-
         }
         else if (NewChoosed.major == "NS1")
         {
+            if (set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD > 0)
+            {
+                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD -=
+                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].NS0);
+                return;
+            }
             GameManager.Instance.main.lsCoutryReady[ID].NS0 += set * GameManager.Instance.main.lsCoutryReady[ID].NS0;
-
         }
         else if (NewChoosed.major == "St1")
         {
             GameManager.Instance.main.lsCoutryReady[ID].ST0 += set * GameManager.Instance.main.lsCoutryReady[ID].ST0;
-
         }
     }
 }

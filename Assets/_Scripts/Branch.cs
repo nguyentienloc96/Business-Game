@@ -12,6 +12,7 @@ public class Branch : MonoBehaviour
     {
         if (GameManager.Instance.main.lsCoutryReady.Count <= 0)
             return;
+        StopAllCoroutines();
         UIManager.Instance.SelfTraining.SetActive(false);
         UIManager.Instance.ResetBranch();
         if (index == 0)
@@ -68,12 +69,10 @@ public class Branch : MonoBehaviour
     IEnumerator IELoadBranch(List<DataUpdate.DataItems> lsData)
     {
         UIManager.Instance.ResetBranch();
-
         for (int i = 0; i < lsData.Count; i++)
         {
             Transform itemSelf = Instantiate(GameManager.Instance.itemSelf, GameManager.Instance.contentSelf).transform;
             Word.Instance.lsItemSelf.Add(itemSelf);
-            //itemSelf.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
             itemSelf.GetChild(1).GetChild(0).GetComponent<Text>().text = lsData[i].name;
             itemSelf.GetComponent<ItemSelf>().indexPSelf = index;
             itemSelf.GetComponent<ItemSelf>().indexSelf = i;

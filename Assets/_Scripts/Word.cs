@@ -64,15 +64,15 @@ public class Word : MonoBehaviour
     public void SliderWord()
     {
         long index = (maxSlider - minSlider) / 1000;
-        LSlider = minSlider + (int)(seltTraining.value * index) *1000;
-        seltCoin.text = LSlider.ToString();
+        LSlider = minSlider + (long)(seltTraining.value * index) *1000;
+        seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
     }
 
     public void SliderSelf()
     {
         long index = (maxSlider - minSlider2) / 1000;
-        LSlider2 = minSlider2 + (int)(seltTraining2.value * index) * 1000;
-        seltCoin2.text = LSlider2.ToString();
+        LSlider2 = minSlider2 + (long)(seltTraining2.value * index) * 1000;
+        seltCoin2.text = ConvertNumber.convertNumber_DatDz(LSlider2);
     }
 
     public void Evole()

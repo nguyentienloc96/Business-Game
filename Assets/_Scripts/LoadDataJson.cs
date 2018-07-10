@@ -108,7 +108,7 @@ public class LoadDataJson : MonoBehaviour
             }
 
             var objSC = objJson["SalesChain"];
-            for (int i = 0; i < objAds.Count; i++)
+            for (int i = 0; i < objSC.Count; i++)
             {
                 DataUpdate.DataItems data = new DataUpdate.DataItems();
                 data.name = objSC[i]["name"];
@@ -124,7 +124,8 @@ public class LoadDataJson : MonoBehaviour
                 data.content = objRM[i]["content"];
                 DataUpdate.Instance.lstData_RiskManagement.Add(data);
             }
-        }       
+        }
+        Debug.Log(DataUpdate.Instance.lstData_SalesChain.Count);
     }
 
     public void LoadDataStartGameJson()

@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
                 {
                     for (int i = 0; i < main.lsCoutryReady.Count; i++)
                     {
-                        main.lsCoutryReady[i].UpdateDay();
                         main.lsCoutryReady[i].PullData();
                     }
                     NewsGame();
@@ -115,6 +114,10 @@ public class GameManager : MonoBehaviour
                 }
                 DataPlayer.Instance.SaveDataPlayer();
                 UpdateUI();
+                for (int i = 0; i < main.lsCoutryReady.Count; i++)
+                {
+                    main.lsCoutryReady[i].UpdateDay();
+                }
                 time = 0;
             }
         }

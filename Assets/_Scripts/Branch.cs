@@ -73,7 +73,7 @@ public class Branch : MonoBehaviour
         {
             Transform itemSelf = Instantiate(GameManager.Instance.itemSelf, GameManager.Instance.contentSelf).transform;
             Word.Instance.lsItemSelf.Add(itemSelf);
-            itemSelf.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
+            //itemSelf.GetChild(0).GetChild(0).GetComponent<Text>().text = i.ToString();
             itemSelf.GetChild(1).GetChild(0).GetComponent<Text>().text = lsData[i].name;
             itemSelf.GetComponent<ItemSelf>().indexPSelf = index;
             itemSelf.GetComponent<ItemSelf>().indexSelf = i;

@@ -34,7 +34,7 @@ public class Country : MonoBehaviour
     public float I0 = 0f;
     public float SP0 = 0f;
     public float MKT0 = 0f;
-    public float MAKRET0 = 0f;
+    public float MARKET0 = 0f;
     public float L0 = 0f;
     public float KH0 = 0f;
     public float NS0 = 0f;
@@ -43,7 +43,7 @@ public class Country : MonoBehaviour
     public float I0DT = 0f;
     public float SP0DT = 0f;
     public float MKT0DT = 0f;
-    public float MAKRET0DT = 0f;
+    public float MARKET0DT = 0f;
     public float L0DT = 0f;
     public float KH0DT = 0f;
     public float NS0DT = 0f;
@@ -141,7 +141,7 @@ public class Country : MonoBehaviour
         int month = GameManager.Instance.dateGame.Month - 1;
         dataColChartMain[month].valueCol[0] = (int)(SP0 * Mn * 0.01f);
         dataColChartMain[month].valueCol[1] = (int)(MKT0 * Mn * 0.01f);
-        dataColChartMain[month].valueCol[2] = (int)(MAKRET0 * Mn * 0.01f);
+        dataColChartMain[month].valueCol[2] = (int)(MARKET0 * Mn * 0.01f);
         dataColChartMain[month].valueCol[3] = (int)(L0 * Mn * 0.01f);
         dataColChartMain[month].valueCol[4] = (int)(KH0 * Mn * 0.01f);
         dataColChartMain[month].valueCol[5] = (int)(NS0 * Mn * 0.01f);
@@ -149,7 +149,7 @@ public class Country : MonoBehaviour
 
         dataColChartCompetitors[month].valueCol[0] = (int)(SP0DT * Mn * 0.01f);
         dataColChartCompetitors[month].valueCol[1] = (int)(MKT0DT * Mn * 0.01f);
-        dataColChartCompetitors[month].valueCol[2] = (int)(MAKRET0DT * Mn * 0.01f);
+        dataColChartCompetitors[month].valueCol[2] = (int)(MARKET0DT * Mn * 0.01f);
         dataColChartCompetitors[month].valueCol[3] = (int)(L0DT * Mn * 0.01f);
         dataColChartCompetitors[month].valueCol[4] = (int)(KH0DT * Mn * 0.01f);
         dataColChartCompetitors[month].valueCol[5] = (int)(NS0DT * Mn * 0.01f);
@@ -159,8 +159,54 @@ public class Country : MonoBehaviour
 
     public void Interest()
     {
-        I0 = (SP0 + MKT0 + MAKRET0 + L0 + KH0 + NS0 + ST0);
-        I0DT = (SP0DT + MKT0DT + MAKRET0DT + L0DT + KH0DT + NS0DT + ST0DT);
+        List<float> minArray = new List<float>();
+        float minSP0 = SP0 / 20;
+        minArray.Add(minSP0);
+        float minMKT0 = MKT0 / 15;
+        minArray.Add(minMKT0);
+        float minMARKET0 = MARKET0 / 15;
+        minArray.Add(minMARKET0);
+        float minL0 = L0 / 10;
+        minArray.Add(minL0);
+        float minNS0 = NS0 / 20;
+        minArray.Add(minNS0);
+        float minKH0 = KH0 / 10;
+        minArray.Add(minKH0);
+        float minST0 = ST0 / 10;
+        minArray.Add(minST0);
+        float min = minArray[0];
+
+        List<float> minArrayDT = new List<float>();
+        float minSP0DT = SP0DT / 20;
+        minArray.Add(minSP0DT);
+        float minMKT0DT = MKT0DT / 15;
+        minArray.Add(minMKT0DT);
+        float minMARKET0DT = MARKET0DT / 15;
+        minArray.Add(minMARKET0DT);
+        float minL0DT = L0DT / 10;
+        minArray.Add(minL0DT);
+        float minNS0DT = NS0DT / 20;
+        minArray.Add(minNS0DT);
+        float minKH0DT = KH0DT / 10;
+        minArray.Add(minKH0DT);
+        float minST0DT = ST0DT / 10;
+        minArray.Add(minST0DT);
+        float minDT = minArray[0];
+
+        for (int i = 1; i < 7; i++)
+        {
+            if (minArray[i] < min)
+            {
+                min = minArray[i];
+            }
+            if (minArrayDT[i] < minDT)
+            {
+                minDT = minArrayDT[i];
+            }
+        }
+
+        I0 = min*(20 + 15 + 15 + 10 + 20 + 10 + 10);
+        I0DT = minDT * (20 + 15 + 15 + 10 + 20 + 10 + 10);
         GameManager.Instance.main.coin += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * Mn / 100);
     }
 
@@ -569,7 +615,7 @@ public class Country : MonoBehaviour
                 }
                 else if (randomB == 2)
                 {
-                    MAKRET0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 2f;
+                    MARKET0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 2f;
                 }
                 else if (randomB == 3)
                 {

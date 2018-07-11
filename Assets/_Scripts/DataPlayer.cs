@@ -56,7 +56,7 @@ public class DataPlayer : MonoBehaviour
             ct.I0 = GameManager.Instance.main.lsCoutryReady[i].I0;
             ct.SP0 = GameManager.Instance.main.lsCoutryReady[i].SP0;
             ct.MKT0 = GameManager.Instance.main.lsCoutryReady[i].MKT0;
-            ct.MAKRET0 = GameManager.Instance.main.lsCoutryReady[i].MAKRET0;
+            ct.MAKRET0 = GameManager.Instance.main.lsCoutryReady[i].MARKET0;
             ct.L0 = GameManager.Instance.main.lsCoutryReady[i].L0;
             ct.KH0 = GameManager.Instance.main.lsCoutryReady[i].KH0;
             ct.NS0 = GameManager.Instance.main.lsCoutryReady[i].NS0;
@@ -65,7 +65,7 @@ public class DataPlayer : MonoBehaviour
             ct.I0DT = GameManager.Instance.main.lsCoutryReady[i].I0DT;
             ct.SP0DT = GameManager.Instance.main.lsCoutryReady[i].SP0DT;
             ct.MKT0DT = GameManager.Instance.main.lsCoutryReady[i].MKT0DT;
-            ct.MAKRET0DT = GameManager.Instance.main.lsCoutryReady[i].MAKRET0DT;
+            ct.MAKRET0DT = GameManager.Instance.main.lsCoutryReady[i].MARKET0DT;
             ct.L0DT = GameManager.Instance.main.lsCoutryReady[i].L0DT;
             ct.KH0DT = GameManager.Instance.main.lsCoutryReady[i].KH0DT;
             ct.NS0DT = GameManager.Instance.main.lsCoutryReady[i].NS0DT;
@@ -114,7 +114,7 @@ public class DataPlayer : MonoBehaviour
                 ct.I0 = lsData[i]["I0"].AsFloat;
                 ct.SP0 = lsData[i]["SP0"].AsFloat;
                 ct.MKT0 = lsData[i]["MKT0"].AsFloat;
-                ct.MAKRET0 = lsData[i]["MAKRET0"].AsFloat;
+                ct.MARKET0 = lsData[i]["MAKRET0"].AsFloat;
                 ct.L0 = lsData[i]["L0"].AsFloat;
                 ct.KH0 = lsData[i]["KH0"].AsFloat;
                 ct.NS0 = lsData[i]["NS0"].AsFloat;
@@ -123,7 +123,7 @@ public class DataPlayer : MonoBehaviour
                 ct.I0DT = lsData[i]["I0DT"].AsFloat;
                 ct.SP0DT = lsData[i]["SP0DT"].AsFloat;
                 ct.MKT0DT = lsData[i]["MKT0DT"].AsFloat;
-                ct.MAKRET0DT = lsData[i]["MAKRET0DT"].AsFloat;
+                ct.MARKET0DT = lsData[i]["MAKRET0DT"].AsFloat;
                 ct.L0DT = lsData[i]["L0DT"].AsFloat;
                 ct.KH0DT = lsData[i]["KH0DT"].AsFloat;
                 ct.NS0DT = lsData[i]["NS0DT"].AsFloat;

@@ -65,7 +65,7 @@ public class News : MonoBehaviour
         }
         else if (NewChoosed.major == "Market1")
         {
-            GameManager.Instance.main.lsCoutryReady[ID].MAKRET0 += set * GameManager.Instance.main.lsCoutryReady[ID].MAKRET0;
+            GameManager.Instance.main.lsCoutryReady[ID].MARKET0 += set * GameManager.Instance.main.lsCoutryReady[ID].MARKET0;
         }
         else if (NewChoosed.major == "Lo1")
         {

@@ -178,5 +178,28 @@
         "name": "Employee crisis",
         "content": "..."
     }
+  },
+  "Funding":
+  {
+    "f0":
+    {
+        "name": "Find a co-founder",
+        "content": "..."
+    },
+    "f1":
+    {
+        "name": "Borrow money",
+        "content": "Borrow from family and friends: You have to pay back 2 years later. You have 5 changes to borrow"
+    },
+    "f2":
+    {
+        "name": "Capital",
+        "content": "..."
+    },
+    "f3":
+    {
+        "name": "Bank loan",
+        "content": "Borrow from a bank"
+    }
   }
 }

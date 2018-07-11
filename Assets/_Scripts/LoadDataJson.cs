@@ -124,8 +124,17 @@ public class LoadDataJson : MonoBehaviour
                 data.content = objRM[i]["content"];
                 DataUpdate.Instance.lstData_RiskManagement.Add(data);
             }
+
+            var objF = objJson["Funding"];
+            for (int i = 0; i < objF.Count; i++)
+            {
+                DataUpdate.DataItems data = new DataUpdate.DataItems();
+                data.name = objF[i]["name"];
+                data.content = objF[i]["content"];
+                DataUpdate.Instance.lstData_Founding.Add(data);
+            }
         }
-        Debug.Log(DataUpdate.Instance.lstData_SalesChain.Count);
+        Debug.Log(DataUpdate.Instance.lstData_Founding.Count);
     }
 
     public void LoadDataStartGameJson()

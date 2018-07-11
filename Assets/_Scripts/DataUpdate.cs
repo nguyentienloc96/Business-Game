@@ -35,6 +35,7 @@ public class DataUpdate : MonoBehaviour
     public List<DataItems> lstData_Ads = new List<DataItems>();
     public List<DataItems> lstData_SalesChain = new List<DataItems>();
     public List<DataItems> lstData_RiskManagement = new List<DataItems>();
+    public List<DataItems> lstData_Founding = new List<DataItems>();
 
     public List<DataNameCountry> lstData_NameCountry = new List<DataNameCountry>();
 }

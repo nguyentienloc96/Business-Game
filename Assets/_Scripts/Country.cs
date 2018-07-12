@@ -214,7 +214,7 @@ public class Country : MonoBehaviour
             }
         }
 
-        I0 = min*(20 + 15 + 15 + 10 + 20 + 10 + 10);
+        I0 = min * (20 + 15 + 15 + 10 + 20 + 10 + 10);
         I0DT = minDT * (20 + 15 + 15 + 10 + 20 + 10 + 10);
         GameManager.Instance.main.coin += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * Mn / 100);
     }
@@ -249,7 +249,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
             {
-                UIManager.Instance.Turorial(UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).GetChild(2).gameObject, new Vector3(744f, -244f, 0), new Vector3(0,0,180f));
+                UIManager.Instance.Turorial(UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).GetChild(2).gameObject, new Vector3(744f, -244f, 0), new Vector3(0, 0, 180f));
             }
         }
         else if (UIManager.Instance.indexScene == 1)
@@ -411,49 +411,71 @@ public class Country : MonoBehaviour
             if (indexSelf == 0)//User behaviour research
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS > 0)
+                {
+                    if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS >= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD)
+                    {
+                        bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                        bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS -= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+                    }
+                    else
+                    {
+                        bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
+                        bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD -= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
+                    }
+                }
+
             }
             else if (indexSelf == 1)//Policy and law
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
             }
             else if (indexSelf == 2)//Competitor research
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD == 0)
+                {
+                    if (moneyDT >= 10000)
+                    {
+                        if (UnityEngine.Random.Range(0f, 1f) <= 0.05f)
+                        {
+                            MKT0 += 20 * moneyDT;
+                        }
+                    }
+                }
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
             }
             else if (indexSelf == 3)//Buy a competitor
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                long size = bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000;
+                long T = 10;
+                if (T + size > 100)
+                {
+                    T = 100;
+                }
+                else
+                {
+                    T += size;
+                }
+
+                if (UnityEngine.Random.Range(0, 100) <= T)
+                {
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 400;
+                }
             }
             else if (indexSelf == 4)//Local Economy research
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-            }
-            else if (indexSelf == 5)
-            {
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                NS0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
-                NS0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 1000)
+                {
+                    long size = bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000;
+                    bigBranch[2].smallBranch[0].moneyDTS += size * 10000;
+                }
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
         }
@@ -679,7 +701,7 @@ public class Country : MonoBehaviour
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                if(GameConfig.Instance.HP_ext < 250)
+                if (GameConfig.Instance.HP_ext < 250)
                 {
                     long size = bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD / 1000;
                     float add = size * (1000 - GameConfig.Instance.HP_ext) / 10;
@@ -687,6 +709,21 @@ public class Country : MonoBehaviour
                         add = 50;
                     GameConfig.Instance.HP_ext += add;
                 }
+            }
+        }
+        else if (indexPSelf == 7)//Funding
+        {
+            if (indexSelf == 0)//Vay ngân hàng
+            {
+            }
+            if (indexSelf == 1)//Vay ngân hàng
+            {
+            }
+            if (indexSelf == 2)//Vay ngân hàng
+            {
+            }
+            if (indexSelf == 3)//Vay ngân hàng
+            {
             }
         }
 
@@ -699,14 +736,14 @@ public class Country : MonoBehaviour
         minArray.Add(minPeopleHiring);
         long minCompanyCulture = bigBranch[6].smallBranch[4].moneyDTS / 15;
         minArray.Add(minCompanyCulture);
-        long minAnnuallyEvent = bigBranch [6].smallBranch[5].moneyDTS / 20;
+        long minAnnuallyEvent = bigBranch[6].smallBranch[5].moneyDTS / 20;
         minArray.Add(minAnnuallyEvent);
         long minInternalCompanyFund = bigBranch[6].smallBranch[6].moneyDTS / 10;
         minArray.Add(minInternalCompanyFund);
         long min = minPeopleHiring;
         for (int i = 1; i < 4; i++)
         {
-            if(minArray[i] < min)
+            if (minArray[i] < min)
             {
                 min = minArray[i];
             }
@@ -730,6 +767,7 @@ public class Country : MonoBehaviour
         BuildAShop();
         OnlineShop();
         SalesCulture();
+        BuyACompetitor();
     }
 
     public void FactoryWorkshopLoop()
@@ -793,7 +831,7 @@ public class Country : MonoBehaviour
 
     public void TraditionalAds()
     {
-        if (bigBranch[1].smallBranch[0].moneyDTBD > 0 && (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[0].investmentDayBD))).TotalDays 
+        if (bigBranch[1].smallBranch[0].moneyDTBD > 0 && (long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[0].investmentDayBD))).TotalDays
             == 30)
         {
             if (UnityEngine.Random.Range(0f, 1f) <= 0.1f)
@@ -875,6 +913,30 @@ public class Country : MonoBehaviour
         else
         {
             bigBranch[4].smallBranch[3].isRunning = true;
+        }
+    }
+
+    public void BuyACompetitor()
+    {
+
+        if (bigBranch[2].smallBranch[3].moneyDTBD > 0)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame
+                - DateTime.Parse(bigBranch[2].smallBranch[3].investmentDayBD))).TotalDays) % 30 == 0)
+            {
+                if (bigBranch[2].smallBranch[3].moneyDTS > 0)
+                {
+                    UIManager.Instance.panelBuyCompetitor.SetActive(true);
+                    UIManager.Instance.panelBuyCompetitor.transform.GetChild(0).GetComponent<Text>().text
+                        = "Ban mua thanh cong Competitor ở " + nameCountry;
+                    I0 += bigBranch[2].smallBranch[3].moneyDTBD * 0.7f;
+                }
+                else
+                {
+                    GameManager.Instance.main.coin += bigBranch[2].smallBranch[3].moneyDTBD;
+                    bigBranch[2].smallBranch[3].moneyDTBD = bigBranch[2].smallBranch[3].moneyDTS = 0;
+                }
+            }
         }
     }
 

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     [Header("SelfTraining")]
     public GameObject SELFTRAINING;
     public GameObject SelfTraining;
-    public Text LabelCountry;
+    //public Text LabelCountry;
     public Text txtCodeCountry;
     public Text txtGDPCountry;
 
@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
     [Header("SelfTaining")]
     public Slider sliderTraining;
     public Text coinSelf;
+    public GameObject panelBuyCompetitor;
 
     [Header("SRD")]
     public GameObject btnEasy;

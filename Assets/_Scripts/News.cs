@@ -47,8 +47,19 @@ public class News : MonoBehaviour
         {
             if(set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD > 0)
             {
-                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD -= 
-                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].SP0);
+                if ((long)(set * GameManager.Instance.main.lsCoutryReady[ID].SP0)
+                    > GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD)
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady[ID].SP0 +=
+                        set * GameManager.Instance.main.lsCoutryReady[ID].SP0 +
+                        GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD;
+                }
+                else
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[1].moneyDTBD +=
+                        (long)(set * GameManager.Instance.main.lsCoutryReady[ID].SP0);
+                }
                 return;
             }
             GameManager.Instance.main.lsCoutryReady[ID].SP0 += set * GameManager.Instance.main.lsCoutryReady[ID].SP0;
@@ -57,14 +68,39 @@ public class News : MonoBehaviour
         {
             if (set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD > 0)
             {
-                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD -= 
-                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].MKT0);
+                if ((long)(set * GameManager.Instance.main.lsCoutryReady[ID].MKT0)
+                     > GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD)
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady[ID].MKT0 +=
+                        set * GameManager.Instance.main.lsCoutryReady[ID].MKT0 +
+                        GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD;
+                }
+                else
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[0].moneyDTBD +=
+                        (long)(set * GameManager.Instance.main.lsCoutryReady[ID].MKT0);
+                }
                 return;
             }
             GameManager.Instance.main.lsCoutryReady[ID].MKT0 += set * GameManager.Instance.main.lsCoutryReady[ID].MKT0;
         }
         else if (NewChoosed.major == "Market1")
         {
+            if (set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD > 0)
+            {
+                if ((((long)(set * GameManager.Instance.main.lsCoutryReady[ID].MARKET0)/3)*GameManager.Instance.SRD) > GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD)
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady[ID].MARKET0 += (set * GameManager.Instance.main.lsCoutryReady[ID].MARKET0 + (GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD)*3/ GameManager.Instance.SRD);
+                }
+                else
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD +=
+                        (((long)(set * GameManager.Instance.main.lsCoutryReady[ID].MARKET0) / 3) * GameManager.Instance.SRD);
+                }
+                return;
+            }
             GameManager.Instance.main.lsCoutryReady[ID].MARKET0 += set * GameManager.Instance.main.lsCoutryReady[ID].MARKET0;
         }
         else if (NewChoosed.major == "Lo1")
@@ -79,8 +115,19 @@ public class News : MonoBehaviour
         {
             if (set < 0 && GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD > 0)
             {
-                GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD -=
-                    (long)(set * GameManager.Instance.main.lsCoutryReady[ID].NS0);
+                if ((long)(set * GameManager.Instance.main.lsCoutryReady[ID].NS0) 
+                    > GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD)
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady[ID].NS0 += 
+                        set * GameManager.Instance.main.lsCoutryReady[ID].NS0 + 
+                        GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD;
+                }
+                else
+                {
+                    GameManager.Instance.main.lsCoutryReady[ID].bigBranch[5].smallBranch[2].moneyDTBD +=
+                        (long)(set * GameManager.Instance.main.lsCoutryReady[ID].NS0);
+                }
                 return;
             }
             GameManager.Instance.main.lsCoutryReady[ID].NS0 += set * GameManager.Instance.main.lsCoutryReady[ID].NS0;

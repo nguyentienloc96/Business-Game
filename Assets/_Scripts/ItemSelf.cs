@@ -21,6 +21,14 @@ public class ItemSelf : MonoBehaviour
         Word.Instance.txtLabel.text = label;
         Word.Instance.txtInfo.text = info;
         Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
+        if (indexPSelf == 2 && indexSelf == 3)
+        {
+            Word.Instance.minSlider2 = 400000;
+        }
+        else
+        {
+            Word.Instance.minSlider2 = 1000;
+        }
         Word.Instance.seltCoin2.text = Word.Instance.minSlider2.ToString();
         if (Word.Instance.maxSlider > Word.Instance.minSlider2)
         {

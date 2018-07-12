@@ -47,16 +47,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
         if (PlayerPrefs.HasKey("X4TimeGame"))
         {
             if (PlayerPrefs.GetInt("X4TimeGame") == 4)
             {
-                DeltaTimeGame = 4f;
+                DeltaTimeGame = 1f;
                 UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
             }
             else
             {
-                DeltaTimeGame = 1f;
+                DeltaTimeGame = 4f;
                 UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
             }
         }
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("X4TimeGame", 1);
         }
+        
 
         if (!PlayerPrefs.HasKey("isData"))
         {
@@ -209,13 +211,13 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("X4TimeGame") != 4)
         {
-            DeltaTimeGame = 4f;
+            DeltaTimeGame = 1f;
             UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
             PlayerPrefs.SetInt("X4TimeGame", 4);
         }
         else
         {
-            DeltaTimeGame = 1f;
+            DeltaTimeGame = 4f;
             UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
             PlayerPrefs.SetInt("X4TimeGame", 1);
         }

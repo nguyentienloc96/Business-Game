@@ -388,6 +388,7 @@ public class UIManager : MonoBehaviour
     public void DoneTutorial()
     {
         panelTutorial.SetActive(false);
+        DataPlayer.Instance.SaveDataPlayer();
         PlayerPrefs.SetInt("isDoneTutorial", 1);
     }
 }

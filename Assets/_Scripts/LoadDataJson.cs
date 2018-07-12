@@ -134,7 +134,7 @@ public class LoadDataJson : MonoBehaviour
                 DataUpdate.Instance.lstData_Founding.Add(data);
             }
         }
-        Debug.Log(DataUpdate.Instance.lstData_Founding.Count);
+        //Debug.Log(DataUpdate.Instance.lstData_Founding.Count);
     }
 
     public void LoadDataStartGameJson()

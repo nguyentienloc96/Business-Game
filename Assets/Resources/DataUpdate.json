@@ -97,7 +97,7 @@
     "s0":
     {
         "name": "User behaviour research",
-        "content": "..."
+        "content": "User behaviour research"
     },
     "s1":
     {
@@ -148,17 +148,17 @@
     "sc1":
     {
         "name": "Link with agencies shop",
-        "content": "..."
+        "content": "Link with agencies shop"
     },
     "sc2":
     {
         "name": "Online shop",
-        "content": "..."
+        "content": "Open an Online Shop"
     },
     "sc3":
     {
         "name": "Sales culture",
-        "content": "..."
+        "content": "Sales culture"
     }
   },
   "RiskManagement":
@@ -166,17 +166,17 @@
     "rm0":
     {
         "name": "Media crisis",
-        "content": "..."
+        "content": "Protect: market and marketing"
     },
     "rm1":
     {
         "name": "Law crisis",
-        "content": "..."
+        "content": "Protect: product"
     },
     "rm2":
     {
         "name": "Employee crisis",
-        "content": "..."
+        "content": "Protect: HR and location"
     }
   },
   "Funding":
@@ -184,7 +184,7 @@
     "f0":
     {
         "name": "Find a co-founder",
-        "content": "..."
+        "content": "Find a co-founder for your company"
     },
     "f1":
     {
@@ -194,7 +194,7 @@
     "f2":
     {
         "name": "Capital",
-        "content": "..."
+        "content": "Seed round, seri A, self employer, seri B, ICO, IPO"
     },
     "f3":
     {

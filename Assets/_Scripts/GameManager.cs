@@ -38,6 +38,49 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
             return;
         Instance = this;
+        if (!PlayerPrefs.HasKey("isDoneTutorial"))
+        {
+            PlayerPrefs.SetInt("isDoneTutorial", 0);
+        }
+      
+    }
+
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("X4TimeGame"))
+        {
+            if (PlayerPrefs.GetInt("X4TimeGame") == 4)
+            {
+                DeltaTimeGame = 4f;
+                UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
+            }
+            else
+            {
+                DeltaTimeGame = 1f;
+                UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("X4TimeGame", 1);
+        }
+
+        if (!PlayerPrefs.HasKey("isData"))
+        {
+            PlayerPrefs.SetInt("isData", 0);
+            UIManager.Instance.btnContinue.interactable = false;
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("isData") == 0)
+            {
+                UIManager.Instance.btnContinue.interactable = false;
+            }
+            else
+            {
+                UIManager.Instance.btnContinue.interactable = true;
+            }
+        }
     }
 
     public void LoadDate()
@@ -115,6 +158,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 DataPlayer.Instance.SaveDataPlayer();
+                PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();
                 for (int i = 0; i < main.lsCoutryReady.Count; i++)
                 {
@@ -163,6 +207,18 @@ public class GameManager : MonoBehaviour
 
     public void X4TimeGame()
     {
-        DeltaTimeGame = DeltaTimeGame != 4f ? 4f : 1f;
+        if (PlayerPrefs.GetInt("X4TimeGame") != 4)
+        {
+            DeltaTimeGame = 4f;
+            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
+            PlayerPrefs.SetInt("X4TimeGame", 4);
+        }
+        else
+        {
+            DeltaTimeGame = 1f;
+            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
+            PlayerPrefs.SetInt("X4TimeGame", 1);
+        }
     }
+
 }

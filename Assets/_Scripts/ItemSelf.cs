@@ -31,6 +31,11 @@ public class ItemSelf : MonoBehaviour
             Word.Instance.sliderEvole.SetActive(false);
         }
         UIManager.Instance.SelfTraining.SetActive(true);
+
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(0).gameObject, new Vector3(744f, -177f, 0), new Vector3(0, 0, 180f));
+        }
     }
 
     public void UpdateShow()

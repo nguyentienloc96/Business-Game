@@ -49,7 +49,7 @@ public class Country : MonoBehaviour
     public float NS0DT = 0f;
     public float ST0DT = 0f;
 
-    public STBigBranch[] bigBranch = new STBigBranch[7];
+    public STBigBranch[] bigBranch = new STBigBranch[8];
 
     public DataColChart[] dataColChartMain = new DataColChart[12];
     public DataColChart[] dataColChartCompetitors = new DataColChart[12];
@@ -133,6 +133,15 @@ public class Country : MonoBehaviour
                 bigBranch[i].smallBranch[7].nameSmallBranch = "Employee training";
                 bigBranch[i].smallBranch[8].nameSmallBranch = "Curriculum for employee training";
             }
+            if (i == 7)
+            {
+                bigBranch[i].nameBigBranch = "Funding";
+                bigBranch[i].smallBranch = new STBranch[9];
+                bigBranch[i].smallBranch[0].nameSmallBranch = "Find a co-founder";
+                bigBranch[i].smallBranch[1].nameSmallBranch = "Borrow money";
+                bigBranch[i].smallBranch[2].nameSmallBranch = "Capital";
+                bigBranch[i].smallBranch[3].nameSmallBranch = "Bank loan";
+            }
         }
     }
 
@@ -178,19 +187,19 @@ public class Country : MonoBehaviour
 
         List<float> minArrayDT = new List<float>();
         float minSP0DT = SP0DT / 20;
-        minArray.Add(minSP0DT);
+        minArrayDT.Add(minSP0DT);
         float minMKT0DT = MKT0DT / 15;
-        minArray.Add(minMKT0DT);
+        minArrayDT.Add(minMKT0DT);
         float minMARKET0DT = MARKET0DT / 15;
-        minArray.Add(minMARKET0DT);
+        minArrayDT.Add(minMARKET0DT);
         float minL0DT = L0DT / 10;
-        minArray.Add(minL0DT);
+        minArrayDT.Add(minL0DT);
         float minNS0DT = NS0DT / 20;
-        minArray.Add(minNS0DT);
+        minArrayDT.Add(minNS0DT);
         float minKH0DT = KH0DT / 10;
-        minArray.Add(minKH0DT);
+        minArrayDT.Add(minKH0DT);
         float minST0DT = ST0DT / 10;
-        minArray.Add(minST0DT);
+        minArrayDT.Add(minST0DT);
         float minDT = minArray[0];
 
         for (int i = 1; i < 7; i++)
@@ -225,8 +234,6 @@ public class Country : MonoBehaviour
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(true);
                 UIManager.Instance.POSITIONSELECT.SetActive(true);
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = nameCountry;
-                UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
-                UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYes());
             }
             else
             {
@@ -240,6 +247,10 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
+            if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+            {
+                UIManager.Instance.Turorial(UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).GetChild(2).gameObject, new Vector3(744f, -244f, 0), new Vector3(0,0,180f));
+            }
         }
         else if (UIManager.Instance.indexScene == 1)
         {
@@ -278,36 +289,6 @@ public class Country : MonoBehaviour
         {
             Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
             Word.Instance.seltCoin2.text = 10000.ToString();
-        }
-    }
-
-    public void OnClickNo()
-    {
-        UIManager.Instance.POSITIONSELECT.SetActive(false);
-    }
-
-    public void OnClickYes()
-    {
-        if (GameManager.Instance.main.coin >= Word.Instance.LSlider)
-        {
-
-            GameManager.Instance.main.coin -= Word.Instance.LSlider;
-            L = Word.Instance.LSlider;
-            LDT = (long)(UnityEngine.Random.Range(10000, (GDP - L)) / 1000) * 1000;
-            GameManager.Instance.main.lsCoutryReady.Add(Word.Instance.lsCountry[Word.Instance.idSelectWord]);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text =
-                "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(L) + "$ vào " + nameCountry;
-            UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
-        }
-        else
-        {
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban khong du so tien dau tu";
         }
     }
 

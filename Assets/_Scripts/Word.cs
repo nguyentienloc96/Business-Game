@@ -66,6 +66,10 @@ public class Word : MonoBehaviour
         long index = (maxSlider - minSlider) / 1000;
         LSlider = minSlider + (long)(seltTraining.value * index) *1000;
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject, new Vector3(88, -286f, 0), new Vector3(0, 0, 0f));
+        }
     }
 
     public void SliderSelf()
@@ -73,6 +77,10 @@ public class Word : MonoBehaviour
         long index = (maxSlider - minSlider2) / 1000;
         LSlider2 = minSlider2 + (long)(seltTraining2.value * index) * 1000;
         seltCoin2.text = ConvertNumber.convertNumber_DatDz(LSlider2);
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(2).gameObject, new Vector3(744f, -419f, 0), new Vector3(0, 0, 180f));
+        }
     }
 
     public void Evole()
@@ -85,6 +93,10 @@ public class Word : MonoBehaviour
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         seltCoin2.text = minSlider2.ToString();
         Invoke("HidePanelInfo", 2f);
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            UIManager.Instance.Turorial(UIManager.Instance.btnTHONGSO.gameObject, new Vector3(-500f, -431f, 0), new Vector3(0, 0, 180f));
+        }
     }
 
     public void HidePanelInfo()
@@ -109,7 +121,10 @@ public class Word : MonoBehaviour
             yield return new WaitForEndOfFrame();
             lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
-            lsCountry[0].OnClickItemWord();
+            if (PlayerPrefs.GetInt("isDoneTutorial") != 0)
+            {
+                lsCountry[0].OnClickItemWord();
+            }
             idSelectWord = 0;
             UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;
             for (int i = 0; i < lsCountry.Count; i++)
@@ -139,6 +154,40 @@ public class Word : MonoBehaviour
                 if (i <= 8)
                     yield return new WaitForSeconds(0.15f);
             }
+        }
+    }
+
+    public void OnClickNo()
+    {
+        UIManager.Instance.POSITIONSELECT.SetActive(false);
+    }
+
+    public void OnClickYes()
+    {
+        if (GameManager.Instance.main.coin >= LSlider)
+        {
+
+            GameManager.Instance.main.coin -= LSlider;
+            lsCountry[idSelectWord].L = Word.Instance.LSlider;
+            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(10000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
+            GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text =
+                "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ vào " + lsCountry[idSelectWord].nameCountry;
+            UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].L / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L - lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
+            if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+            {
+                UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));
+            }
+        }
+        else
+        {
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
+            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban khong du so tien dau tu";
         }
     }
 }

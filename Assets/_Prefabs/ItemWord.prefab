@@ -155,8 +155,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   nameCountry: 
+  GDP: 0
   L: 0
+  LDT: 0
   Mn: 0
+  I0: 0
+  SP0: 0
+  MKT0: 0
+  MARKET0: 0
+  L0: 0
+  KH0: 0
+  NS0: 0
+  ST0: 0
+  I0DT: 0
+  SP0DT: 0
+  MKT0DT: 0
+  MARKET0DT: 0
+  L0DT: 0
+  KH0DT: 0
+  NS0DT: 0
+  ST0DT: 0
+  bigBranch:
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  - nameBigBranch: 
+    smallBranch: []
+  dataColChartMain:
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  dataColChartCompetitors:
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
+  - nameCol: 
+    valueCol: 
 --- !u!114 &114515332578056800
 MonoBehaviour:
   m_ObjectHideFlags: 1

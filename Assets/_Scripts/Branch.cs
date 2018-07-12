@@ -28,6 +28,8 @@ public class Branch : MonoBehaviour
             UIManager.Instance.btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
             UIManager.Instance.btnBRANCH2.transform.GetChild(1).gameObject.SetActive(true);
             UIManager.Instance.btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
+
+
         }
         if (index == 2)
         {
@@ -64,6 +66,13 @@ public class Branch : MonoBehaviour
             UIManager.Instance.btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
             UIManager.Instance.btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         }
+        if (index == 7)
+        {
+            StartCoroutine(IELoadBranch(DataUpdate.Instance.lstData_Founding));
+            UIManager.Instance.btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
+            UIManager.Instance.btnBRANCH2.transform.GetChild(1).gameObject.SetActive(true);
+            UIManager.Instance.btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     IEnumerator IELoadBranch(List<DataUpdate.DataItems> lsData)
@@ -80,6 +89,14 @@ public class Branch : MonoBehaviour
             itemSelf.GetComponent<ItemSelf>().label = lsData[i].name;
             itemSelf.GetComponent<ItemSelf>().info = lsData[i].content;
             yield return new WaitForSeconds(0.15f);
+        }
+
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            if (index == 1)
+            {
+                UIManager.Instance.Turorial(Word.Instance.lsItemSelf[1].gameObject, new Vector3(-368f, 98f, 0), Vector3.zero);
+            }
         }
     }
 }

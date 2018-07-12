@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UIWord")]
     public GameObject POSITIONSELECT;
+    public GameObject panelEror;
 
     [Header("InfoMain")]
     public Text txtGold;
@@ -74,6 +75,21 @@ public class UIManager : MonoBehaviour
     [Header("GameOver")]
     public GameObject panelGameOver;
     public GameObject panelWin;
+
+    [Header("ButtomX4")]
+    public Button btnX4;
+    public Sprite spX4;
+    public Sprite spX1;
+
+    [Header("Tutorial")]
+    public GameObject panelTutorial;
+    public GameObject handTutorial;
+    public GameObject mainTutorial;
+    public GameObject infoTutorial;
+
+    [Header("Continue")]
+    public Button btnContinue;
+
 
 
     void Awake()
@@ -124,6 +140,13 @@ public class UIManager : MonoBehaviour
         Word.Instance.OnEnableWord(false);
         ResetBranch();
         GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            Destroy(mainTutorial);
+            panelTutorial.SetActive(true);
+            handTutorial.SetActive(false);
+            infoTutorial.SetActive(true);
+        }
     }
 
     public void OnclickNHOM1()
@@ -157,6 +180,12 @@ public class UIManager : MonoBehaviour
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
+
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            Turorial(btnBRANCH2.gameObject, new Vector3(-33f, 308f, 0), Vector3.zero);
+        }
+
     }
 
     public void OnclickNHOM2()
@@ -212,11 +241,12 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
-        btnBRANCH2.gameObject.SetActive(false);
         btnBRANCH3.gameObject.SetActive(false);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[6].name;
         btnBRANCH1.transform.GetComponent<Branch>().index = 6;
         btnBRANCH1.transform.GetChild(1).gameObject.SetActive(false);
+        btnBRANCH2.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[7].name;
+        btnBRANCH2.transform.GetComponent<Branch>().index = 7;
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
@@ -230,6 +260,24 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
         GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
+        if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            Turorial(Word.Instance.lsCountry[1].gameObject,new Vector3(-795f,217f,0),Vector3.zero);
+        }
+           
+    }
+
+    public void Turorial(GameObject main,Vector3 posHand,Vector3 angleHnad)
+    {
+        Destroy(mainTutorial);
+        panelTutorial.SetActive(true);
+        Vector3 pos = main.transform.position;
+        mainTutorial = Instantiate(main, panelTutorial.transform);
+        mainTutorial.SetActive(true);
+        mainTutorial.transform.SetAsFirstSibling();
+        mainTutorial.transform.position = pos;
+        handTutorial.transform.localPosition = posHand;
+        handTutorial.transform.localEulerAngles = angleHnad;
     }
 
     public void setSRD(int SRD)
@@ -324,5 +372,21 @@ public class UIManager : MonoBehaviour
         }
 
         Word.Instance.lsItemSelf.Clear();
+    }
+
+    public void HideEror()
+    {
+        panelEror.SetActive(false);
+        POSITIONSELECT.SetActive(false);
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        {
+            Turorial(btnNHOM1.gameObject, new Vector3(-219f, -429f, 0), new Vector3(0, 0, 180f));
+        }
+    }
+
+    public void DoneTutorial()
+    {
+        panelTutorial.SetActive(false);
+        PlayerPrefs.SetInt("isDoneTutorial", 1);
     }
 }

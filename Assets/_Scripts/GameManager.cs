@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadDate()
     {
-        dateGame = new DateTime(1996, 1, 1);
+        dateGame = DateTime.Now;
         dateStartPlay = dateGame;
         SetDate();
     }

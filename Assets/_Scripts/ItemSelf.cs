@@ -70,7 +70,6 @@ public class ItemSelf : MonoBehaviour
         }
     }
 
-
     public void Update()
     {
         if (GameManager.Instance.contentSelf.childCount > 0)

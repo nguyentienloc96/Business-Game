@@ -59,6 +59,7 @@ public class Word : MonoBehaviour
             item.GetComponent<Country>().nameCountry = DataUpdate.Instance.lstData_NameCountry[i].name;
             item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
         }
+        minSlider = GameConfig.Instance.InMin;
     }
 
     public void SliderWord()

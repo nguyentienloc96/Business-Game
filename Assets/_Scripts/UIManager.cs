@@ -252,8 +252,8 @@ public class UIManager : MonoBehaviour
         menuGame.SetActive(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
-        GameManager.Instance.main.bitCoin = 10;
-        GameManager.Instance.main.dollars = 50000;
+        GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
+        GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
         if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {

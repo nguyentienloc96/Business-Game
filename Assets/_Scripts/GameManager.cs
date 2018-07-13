@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.txtyear4.text = yearstring.Substring(3, 1);
     }
 
+    int checkMonth = 0;
     void Update()
     {
         if (UIManager.Instance.isPlay)
@@ -139,7 +140,12 @@ public class GameManager : MonoBehaviour
                     {
                         main.lsCoutryReady[i].PullData();
                     }
-                    NewsGame();
+                    checkMonth++;
+                    if (checkMonth >= GameConfig.Instance.dTime)
+                    {
+                        NewsGame();
+                        checkMonth = 0;
+                    }
                 }
                 if (modePlay == 1)
                 {

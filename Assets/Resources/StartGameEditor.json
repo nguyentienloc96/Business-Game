@@ -1,21 +1,47 @@
 {
-  "TimeScale": 4, 
+  "TimeScale": 4,
   "DollarStart": 50000,
   "BitCoinStart": 10,
   "StringStart": "You want to found an IT company. And it will be an Unicorn (in 5 year)",
 
-  "TimeInterAds": 300, 
+  "TimeInterAds": 300,
 
   "InMin": 10000,
   "InMax": 50000,
   "Ipc": 0.1,
-  
+
   "HP_etx": 200,
-  "TC_tax": 0.8, 
-  "TC_wx": 0.7, 
+  "TC_tax": 0.8,
+  "TC_wx": 0.7,
+  "TC_vx": 1,
   "SC_bx": 0.1,
-  "SC_ax": 0.8, 
+  "SC_ax": 0.8,
   "SC_ox": 0.1,
-  
-  "Dtime": 720
+  "PP_rdb": 1000000,
+  "PP_f_Min": 100000,
+  "PP_fxi": 0.08,
+  "PP_o": 0.7,
+  "PP_b_Min": 200000,
+  "PP_bxi": 0.05,
+  "SR_b_Min": 400000,
+  "SR_bp": 0.7,
+  "Ads_t": 10,
+  "Ads_w": 0.1,
+  "Bx": 1.4,
+
+  "TL_sp": 20,
+  "TL_mkt": 15,
+  "TL_market": 15,
+  "TL_lo": 10,
+  "TL_Ns": 20,
+  "TL_kh": 10,
+  "TL_st": 10,
+  "S": 2,
+
+  "HR_ph": 50,
+  "HR_cc": 15,
+  "HR_ae": 20,
+  "HR_ic": 10,
+
+  "Dtime": 6
 }

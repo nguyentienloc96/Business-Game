@@ -16,13 +16,13 @@ public class GameConfig : MonoBehaviour
     }
 
     public float timeScale = 4;
-    public double dollarStartGame = 50000;
-    public double bitcoinStartGame = 10;
+    public long dollarStartGame = 50000;
+    public long bitcoinStartGame = 10;
 
     public int Srd = 1;
     public float timeInterAds;
-    public double InMin = 10000;
-    public double InMax = 50000;
+    public long InMin = 10000;
+    public long InMax = 50000;
     public float Ipc = 0.1f;
 
     public int dTime;
@@ -30,7 +30,34 @@ public class GameConfig : MonoBehaviour
     public float HP_ext;
     public float TC_tax;
     public float TC_wx;
+    public float TC_vx;
     public float SC_ax;
     public float SC_bx;
     public float SC_ox;
+    public long PP_rdb;
+    public long PP_f_Min;
+    public float PP_fxi;
+    public float PP_o;
+    public long PP_b_Min;
+    public float PP_bxi;
+    public long SR_b_Min;
+    public float SR_bp;
+    public int Ads_t;
+    public float Ads_w;
+    public float Bx;
+
+    public int TL_sp;
+    public int TL_mkt;
+    public int TL_maket;
+    public int TL_lo;
+    public int TL_ns;
+    public int TL_kh;
+    public int TL_st;
+
+    public int HR_ph;
+    public int HR_cc;
+    public int HR_ae;
+    public int HR_ic;
+
+    public int s;
 }

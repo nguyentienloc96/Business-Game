@@ -169,36 +169,36 @@ public class Country : MonoBehaviour
     public void Interest()
     {
         List<float> minArray = new List<float>();
-        float minSP0 = SP0 / 20;
+        float minSP0 = SP0 / GameConfig.Instance.TL_sp;
         minArray.Add(minSP0);
-        float minMKT0 = MKT0 / 15;
+        float minMKT0 = MKT0 / GameConfig.Instance.TL_mkt;
         minArray.Add(minMKT0);
-        float minMARKET0 = MARKET0 / 15;
+        float minMARKET0 = MARKET0 / GameConfig.Instance.TL_maket;
         minArray.Add(minMARKET0);
-        float minL0 = L0 / 10;
+        float minL0 = L0 / GameConfig.Instance.TL_lo;
         minArray.Add(minL0);
-        float minNS0 = NS0 / 20;
+        float minNS0 = NS0 / GameConfig.Instance.TL_ns;
         minArray.Add(minNS0);
-        float minKH0 = KH0 / 10;
+        float minKH0 = KH0 / GameConfig.Instance.TL_kh;
         minArray.Add(minKH0);
-        float minST0 = ST0 / 10;
+        float minST0 = ST0 / GameConfig.Instance.TL_st;
         minArray.Add(minST0);
         float min = minArray[0];
 
         List<float> minArrayDT = new List<float>();
-        float minSP0DT = SP0DT / 20;
+        float minSP0DT = SP0DT / GameConfig.Instance.TL_sp;
         minArrayDT.Add(minSP0DT);
-        float minMKT0DT = MKT0DT / 15;
+        float minMKT0DT = MKT0DT / GameConfig.Instance.TL_mkt;
         minArrayDT.Add(minMKT0DT);
-        float minMARKET0DT = MARKET0DT / 15;
+        float minMARKET0DT = MARKET0DT / GameConfig.Instance.TL_maket;
         minArrayDT.Add(minMARKET0DT);
-        float minL0DT = L0DT / 10;
+        float minL0DT = L0DT / GameConfig.Instance.TL_lo;
         minArrayDT.Add(minL0DT);
-        float minNS0DT = NS0DT / 20;
+        float minNS0DT = NS0DT / GameConfig.Instance.TL_ns;
         minArrayDT.Add(minNS0DT);
-        float minKH0DT = KH0DT / 10;
+        float minKH0DT = KH0DT / GameConfig.Instance.TL_kh;
         minArrayDT.Add(minKH0DT);
-        float minST0DT = ST0DT / 10;
+        float minST0DT = ST0DT / GameConfig.Instance.TL_st;
         minArrayDT.Add(minST0DT);
         float minDT = minArray[0];
 
@@ -214,9 +214,9 @@ public class Country : MonoBehaviour
             }
         }
 
-        I0 = min * (20 + 15 + 15 + 10 + 20 + 10 + 10);
-        I0DT = minDT * (20 + 15 + 15 + 10 + 20 + 10 + 10);
-        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * Mn / 100);
+        I0 = min * 100;
+        I0DT = minDT * 100;
+        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn / 100);
     }
 
     public void OnClickItemWord()
@@ -304,9 +304,9 @@ public class Country : MonoBehaviour
                 {
                     if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
                     {
-                        SP0 += 1000000;
+                        SP0 += GameConfig.Instance.PP_rdb;
                         if (UnityEngine.Random.Range(0f, 1f) <= 0.2f * GameManager.Instance.SRD)
-                            SP0DT += 1000000;
+                            SP0DT += GameConfig.Instance.PP_rdb;
                         bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
                     }
                 }
@@ -334,13 +334,13 @@ public class Country : MonoBehaviour
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                SP0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 0.7f;
+                SP0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * GameConfig.Instance.PP_o;
                 SP0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 1.75f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
             else if (indexSelf == 3)//Buying other factory/workshop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 200000)
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < GameConfig.Instance.PP_b_Min)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                     bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
@@ -500,7 +500,7 @@ public class Country : MonoBehaviour
                 }
                 else
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * (GameConfig.Instance.TC_wx + 0.3f);
                     L0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * UnityEngine.Random.Range(0.25f, GameConfig.Instance.TC_wx * 3f);
                 }
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
@@ -512,14 +512,14 @@ public class Country : MonoBehaviour
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 100000)
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * GameConfig.Instance.TC_vx;
                     L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 2f);
 
                 }
                 else
                 {
-                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 0.7f;
-                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 0.7f * 2f);
+                    L0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * (GameConfig.Instance.TC_vx - 0.3f);
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * (GameConfig.Instance.TC_vx - 0.3f) * 2f);
                 }
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
             }
@@ -750,13 +750,13 @@ public class Country : MonoBehaviour
     public void CheckRatio()
     {
         List<long> minArray = new List<long>();
-        long minPeopleHiring = bigBranch[6].smallBranch[3].moneyDTS / 50;
+        long minPeopleHiring = bigBranch[6].smallBranch[3].moneyDTS / GameConfig.Instance.HR_ph;
         minArray.Add(minPeopleHiring);
-        long minCompanyCulture = bigBranch[6].smallBranch[4].moneyDTS / 15;
+        long minCompanyCulture = bigBranch[6].smallBranch[4].moneyDTS / GameConfig.Instance.HR_cc;
         minArray.Add(minCompanyCulture);
-        long minAnnuallyEvent = bigBranch[6].smallBranch[5].moneyDTS / 20;
+        long minAnnuallyEvent = bigBranch[6].smallBranch[5].moneyDTS / GameConfig.Instance.HR_ae;
         minArray.Add(minAnnuallyEvent);
-        long minInternalCompanyFund = bigBranch[6].smallBranch[6].moneyDTS / 10;
+        long minInternalCompanyFund = bigBranch[6].smallBranch[6].moneyDTS / GameConfig.Instance.HR_ic;
         minArray.Add(minInternalCompanyFund);
         long min = minPeopleHiring;
         for (int i = 1; i < 4; i++)
@@ -767,11 +767,11 @@ public class Country : MonoBehaviour
             }
         }
 
-        NS0 = (min * (50 + 15 + 20 + 10)) * GameManager.Instance.SRD;
-        bigBranch[6].smallBranch[3].moneyDTS -= min * 50;
-        bigBranch[6].smallBranch[4].moneyDTS -= min * 15;
-        bigBranch[6].smallBranch[5].moneyDTS -= min * 20;
-        bigBranch[6].smallBranch[6].moneyDTS -= min * 10;
+        NS0 = (min * (GameConfig.Instance.HR_ph + GameConfig.Instance.HR_cc + GameConfig.Instance.HR_ae + GameConfig.Instance.HR_ic)) * GameManager.Instance.SRD;
+        bigBranch[6].smallBranch[3].moneyDTS -= min * GameConfig.Instance.HR_ph;
+        bigBranch[6].smallBranch[4].moneyDTS -= min * GameConfig.Instance.HR_cc;
+        bigBranch[6].smallBranch[5].moneyDTS -= min * GameConfig.Instance.HR_ae;
+        bigBranch[6].smallBranch[6].moneyDTS -= min * GameConfig.Instance.HR_ic;
 
     }
 
@@ -801,7 +801,7 @@ public class Country : MonoBehaviour
         {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayS))).TotalDays) % 30 == 0)
             {
-                float money = bigBranch[0].smallBranch[1].moneyDTS * 0.08f - 50 *
+                float money = bigBranch[0].smallBranch[1].moneyDTS * GameConfig.Instance.PP_fxi - 50 *
                     (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayS))).TotalDays) / 30 - 1);
                 if (money <= 0)
                 {
@@ -821,7 +821,7 @@ public class Country : MonoBehaviour
     {
         if (bigBranch[0].smallBranch[3].moneyDTS > 0 && ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[3].investmentDayBD))).TotalDays) % 30 == 0)
         {
-            float money = (bigBranch[0].smallBranch[3].moneyDTS - 100000) * 0.08f - 50
+            float money = (bigBranch[0].smallBranch[3].moneyDTS) * GameConfig.Instance.PP_bxi - 50
                 * (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[0].smallBranch[3].investmentDayBD))).TotalDays) / 30 - 1);
             if (money <= 0)
             {
@@ -855,8 +855,8 @@ public class Country : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0f, 1f) <= 0.1f)
             {
-                MKT0 += bigBranch[1].smallBranch[0].moneyDTS * 0.1f;
-                MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[0].moneyDTS * 0.1f * 2f);
+                MKT0 += bigBranch[1].smallBranch[0].moneyDTS * GameConfig.Instance.Ads_t;
+                MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[0].moneyDTS * GameConfig.Instance.Ads_t * 2f);
             }
             bigBranch[1].smallBranch[0].moneyDTBD = 0;
             bigBranch[1].smallBranch[0].isRunning = false;
@@ -871,8 +871,8 @@ public class Country : MonoBehaviour
             {
                 if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[1].smallBranch[2].investmentDayBD))).TotalDays) % 30 == 0)
                 {
-                    MKT0 += bigBranch[1].smallBranch[2].moneyDTBD * 0.1f;
-                    MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[2].moneyDTBD * 0.1f * 2f);
+                    MKT0 += bigBranch[1].smallBranch[2].moneyDTBD * GameConfig.Instance.Ads_w;
+                    MKT0DT += UnityEngine.Random.Range(0f, bigBranch[1].smallBranch[2].moneyDTBD * GameConfig.Instance.Ads_w * 2f);
                 }
             }
             else
@@ -911,8 +911,8 @@ public class Country : MonoBehaviour
             {
                 if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[2].investmentDayBD))).TotalDays) % 30 == 0)
                 {
-                    L0 += bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_bx;
-                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_bx * 2f);
+                    L0 += bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_ox;
+                    L0DT += UnityEngine.Random.Range(1000f, bigBranch[4].smallBranch[2].moneyDTBD * GameConfig.Instance.SC_ox * 2f);
                 }
             }
             else
@@ -948,7 +948,7 @@ public class Country : MonoBehaviour
                     UIManager.Instance.panelBuyCompetitor.SetActive(true);
                     UIManager.Instance.panelBuyCompetitor.transform.GetChild(0).GetComponent<Text>().text
                         = "Ban mua thanh cong Competitor ở " + nameCountry;
-                    I0 += bigBranch[2].smallBranch[3].moneyDTBD * 0.7f;
+                    I0 += bigBranch[2].smallBranch[3].moneyDTBD * GameConfig.Instance.SR_bp;
                 }
                 else
                 {

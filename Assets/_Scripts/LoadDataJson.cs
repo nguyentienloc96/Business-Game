@@ -145,20 +145,46 @@ public class LoadDataJson : MonoBehaviour
         if (objJson != null)
         {
             GameConfig.Instance.timeScale = objJson["TimeScale"].AsFloat;
-            GameConfig.Instance.dollarStartGame = objJson["DollarStart"].AsDouble;
-            GameConfig.Instance.bitcoinStartGame = objJson["BitCoinStart"].AsDouble;
+            GameConfig.Instance.dollarStartGame = objJson["DollarStart"].AsLong;
+            GameConfig.Instance.bitcoinStartGame = objJson["BitCoinStart"].AsLong;
             GameConfig.Instance.timeInterAds = objJson["TimeInterAds"].AsFloat;
-            GameConfig.Instance.InMin = objJson["InMin"].AsDouble;
-            GameConfig.Instance.InMax = objJson["InMax"].AsDouble;
+            GameConfig.Instance.InMin = objJson["InMin"].AsLong;
+            GameConfig.Instance.InMax = objJson["InMax"].AsLong;
 
             GameConfig.Instance.Ipc = objJson["Ipc"].AsFloat;
 
-            GameConfig.Instance.HP_ext = objJson["HP.etx"].AsFloat;
-            GameConfig.Instance.TC_tax = objJson["TC.tax"].AsFloat;
-            GameConfig.Instance.TC_wx = objJson["TC.wx"].AsFloat;
-            GameConfig.Instance.SC_bx = objJson["SC.bx"].AsFloat;
-            GameConfig.Instance.SC_ax = objJson["SC.ax"].AsFloat;
-            GameConfig.Instance.SC_ox = objJson["SC.ox"].AsFloat;
+            GameConfig.Instance.HP_ext = objJson["HP_etx"].AsFloat;
+            GameConfig.Instance.TC_tax = objJson["TC_tax"].AsFloat;
+            GameConfig.Instance.TC_wx = objJson["TC_wx"].AsFloat;
+            GameConfig.Instance.TC_vx = objJson["TC_vx"].AsFloat;
+            GameConfig.Instance.SC_bx = objJson["SC_bx"].AsFloat;
+            GameConfig.Instance.SC_ax = objJson["SC_ax"].AsFloat;
+            GameConfig.Instance.SC_ox = objJson["SC_ox"].AsFloat;
+            GameConfig.Instance.PP_rdb = objJson["PP_rdb"].AsLong;
+            GameConfig.Instance.PP_f_Min = objJson["PP_f_Min"].AsLong;
+            GameConfig.Instance.PP_fxi = objJson["PP_fxi"].AsFloat;
+            GameConfig.Instance.PP_o = objJson["PP_o"].AsFloat;
+            GameConfig.Instance.PP_b_Min = objJson["PP_b_Min"].AsLong;
+            GameConfig.Instance.PP_bxi = objJson["PP_bxi"].AsFloat;
+            GameConfig.Instance.SR_b_Min = objJson["SR_b_Min"].AsLong;
+            GameConfig.Instance.SR_bp = objJson["SR_bp"].AsFloat;
+            GameConfig.Instance.Ads_t = objJson["Ads_t"].AsInt;
+            GameConfig.Instance.Ads_w = objJson["Ads_w"].AsFloat;
+            GameConfig.Instance.Bx = objJson["Bx"].AsFloat;
+
+            GameConfig.Instance.TL_sp = objJson["TL_sp"].AsInt;
+            GameConfig.Instance.TL_mkt = objJson["TL_mkt"].AsInt;
+            GameConfig.Instance.TL_maket = objJson["TL_market"].AsInt;
+            GameConfig.Instance.TL_ns = objJson["TL_Ns"].AsInt;
+            GameConfig.Instance.TL_lo = objJson["TL_lo"].AsInt;
+            GameConfig.Instance.TL_kh = objJson["TL_kh"].AsInt;
+            GameConfig.Instance.TL_st = objJson["TL_st"].AsInt;
+            GameConfig.Instance.s = objJson["S"].AsInt;
+
+            GameConfig.Instance.HR_ph = objJson["HR_ph"].AsInt;
+            GameConfig.Instance.HR_cc = objJson["HR_cc"].AsInt;
+            GameConfig.Instance.HR_ae = objJson["HR_ae"].AsInt;
+            GameConfig.Instance.HR_ic = objJson["HR_ic"].AsInt;
 
             GameConfig.Instance.dTime = objJson["Dtime"].AsInt;
         }

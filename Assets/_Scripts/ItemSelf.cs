@@ -22,7 +22,7 @@ public class ItemSelf : MonoBehaviour
         Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         if (indexPSelf == 2 && indexSelf == 3)
         {
-            Word.Instance.minSlider2 = 400000;
+            Word.Instance.minSlider2 = GameConfig.Instance.SR_b_Min;
         }
         else
         {

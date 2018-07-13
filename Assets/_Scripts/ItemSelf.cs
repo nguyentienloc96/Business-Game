@@ -30,14 +30,26 @@ public class ItemSelf : MonoBehaviour
             Word.Instance.minSlider2 = 1000;
         }
         Word.Instance.seltCoin2.text = Word.Instance.minSlider2.ToString();
-        if (Word.Instance.maxSlider > Word.Instance.minSlider2)
+        if (indexPSelf == 7 && indexSelf == 3)
         {
             Word.Instance.sliderEvole.SetActive(true);
+            Word.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(false);
+            Word.Instance.sliderEvole.transform.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
-            Word.Instance.sliderEvole.SetActive(false);
+            if (Word.Instance.maxSlider > Word.Instance.minSlider2)
+            {
+                Word.Instance.sliderEvole.SetActive(true);
+                Word.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(true);
+                Word.Instance.sliderEvole.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                Word.Instance.sliderEvole.SetActive(false);
+            }
         }
+
         UIManager.Instance.SelfTraining.SetActive(true);
 
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)

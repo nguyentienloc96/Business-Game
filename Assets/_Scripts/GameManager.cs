@@ -42,12 +42,12 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("isDoneTutorial", 0);
         }
-      
+
     }
 
     void Start()
     {
-        
+
         if (PlayerPrefs.HasKey("X4TimeGame"))
         {
             if (PlayerPrefs.GetInt("X4TimeGame") == 4)
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("X4TimeGame", 1);
         }
-        
+
 
         if (!PlayerPrefs.HasKey("isData"))
         {
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateDataUser(BusinessMan man)
     {
-        for(int i = 0; i < main.lsCoutryReady.Count; i++)
+        for (int i = 0; i < main.lsCoutryReady.Count; i++)
         {
             main.lsCoutryReady[i].Interest();
         }
@@ -200,8 +200,8 @@ public class GameManager : MonoBehaviour
         int ID = UnityEngine.Random.Range(0, main.lsCoutryReady.Count);
         News.Instance.GetNews();
         Word.Instance.panelInfo.SetActive(true);
-        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = main.lsCoutryReady[ID].nameCountry+"\n"
-            +News.Instance.NewChoosed.content+ +News.Instance.valueNews + "%";
+        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = main.lsCoutryReady[ID].nameCountry + "\n"
+            + News.Instance.NewChoosed.content + +News.Instance.valueNews + "%";
         News.Instance.SetResultNew(ID);
         main.lsCoutryReady[ID].PullData();
         Invoke("HidePanelInfo", 5f);
@@ -221,6 +221,34 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
             PlayerPrefs.SetInt("X4TimeGame", 1);
         }
+    }
+
+    public void ConvertBitcoinToDollars(int bitcoin)
+    {
+        if (main.bitCoin >= bitcoin)
+        {
+            main.bitCoin -= bitcoin;
+            main.dollars += bitcoin * 10000;
+            Word.Instance.panelInfo.SetActive(true);
+            Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua doi thanh cong "
+                + ConvertNumber.convertNumber_DatDz(bitcoin) + "$ thanh " + ConvertNumber.convertNumber_DatDz(bitcoin * 10000) + "$ ";
+        }
+        else
+        {
+            Word.Instance.panelInfo.SetActive(true);
+            Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban khong du bitcoin";
+        }
+        UIManager.Instance.panelDollars.SetActive(false);
+        Invoke("HidePanelInfo", 2f);
+    }
+
+    public void AddDollars(int dollars)
+    {
+        main.dollars += dollars;
+        Word.Instance.panelInfo.SetActive(true);
+        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua duoc thuong " + ConvertNumber.convertNumber_DatDz(dollars) + "$";
+        UIManager.Instance.panelDollars.SetActive(false);
+        Invoke("HidePanelInfo", 2f);
     }
 
 }

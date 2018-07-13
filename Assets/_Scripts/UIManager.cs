@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
     public Slider sliderTraining;
     public Text coinSelf;
     public GameObject panelBuyCompetitor;
+    public GameObject panelBankLoan;
 
     [Header("SRD")]
     public GameObject btnEasy;
@@ -90,6 +91,10 @@ public class UIManager : MonoBehaviour
 
     [Header("Continue")]
     public Button btnContinue;
+
+    [Header("ConvertDollars")]
+    public GameObject panelDollars;
+    public GameObject panelBitCoin;
 
 
 

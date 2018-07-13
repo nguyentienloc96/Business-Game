@@ -89,7 +89,16 @@ public class Word : MonoBehaviour
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.dollars -= LSlider2;
         panelInfo.SetActive(true);
-        panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
+        if (indexPSelf == 7 && indexSelf == 3)
+        {
+            panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "Ban vua vay thanh cong " + ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars) + "$";
+        }
+        else
+        {
+            panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
+        }
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         seltCoin2.text = minSlider2.ToString();
         Invoke("HidePanelInfo", 2f);

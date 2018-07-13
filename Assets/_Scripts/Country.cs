@@ -715,15 +715,34 @@ public class Country : MonoBehaviour
         {
             if (indexSelf == 0)//Vay ngân hàng
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
             if (indexSelf == 1)//Vay ngân hàng
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
             if (indexSelf == 2)//Vay ngân hàng
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
             if (indexSelf == 3)//Vay ngân hàng
             {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = GameManager.Instance.main.dollars;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                GameManager.Instance.main.dollars += GameManager.Instance.main.dollars;
             }
         }
 
@@ -768,6 +787,7 @@ public class Country : MonoBehaviour
         OnlineShop();
         SalesCulture();
         BuyACompetitor();
+        BankLoan();
     }
 
     public void FactoryWorkshopLoop()
@@ -940,5 +960,53 @@ public class Country : MonoBehaviour
         }
     }
 
+    public void BankLoan()
+    {
+        if (bigBranch[7].smallBranch[3].moneyDTBD > 0)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[7].smallBranch[3].investmentDayBD))).TotalDays == 365)
+            {
+                string info = "";
+                if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD / 2)
+                {
+                    GameManager.Instance.main.dollars = 0;
+                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady.Remove(this);
+                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    bigBranch[7].smallBranch[3].isRunning = false;
+                }
+                else
+                {
+                    GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
+                    bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
+                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " o " + nameCountry;
+                    bigBranch[7].smallBranch[3].isRunning = false;
+                }
+                UIManager.Instance.panelBankLoan.SetActive(true);
+                UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
 
+            }
+            else if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[7].smallBranch[3].investmentDayBD))).TotalDays == 365 * 2)
+            {
+                string info = "";
+                if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD)
+                {
+                    GameManager.Instance.main.dollars = 0;
+                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
+                    GameManager.Instance.main.lsCoutryReady.Remove(this);
+                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    bigBranch[7].smallBranch[3].isRunning = false;
+                }
+                else
+                {
+                    GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD;
+                    bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD;
+                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                    bigBranch[7].smallBranch[3].isRunning = false;
+                }
+                UIManager.Instance.panelBankLoan.SetActive(true);
+                UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
+            }
+        }
+    }
 }

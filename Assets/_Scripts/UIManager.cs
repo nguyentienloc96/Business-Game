@@ -158,10 +158,7 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM1()
     {
         indexScene = 2;
-        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
-        {
-            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
-        }
+        ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(true);
@@ -197,10 +194,7 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM2()
     {
         indexScene = 2;
-        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
-        {
-            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
-        }
+        ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -231,10 +225,7 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM3()
     {
         indexScene = 2;
-        for (int i = 0; i < GameManager.Instance.contentSelf.childCount; i++)
-        {
-            Destroy(GameManager.Instance.contentSelf.GetChild(GameManager.Instance.contentSelf.childCount - i - 1).gameObject);
-        }
+        ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class ItemSelf : MonoBehaviour
 {
-
     public int indexPSelf;
     public int indexSelf;
     public string label;
@@ -74,7 +73,13 @@ public class ItemSelf : MonoBehaviour
 
     public void Update()
     {
-        transform.GetChild(1).GetComponent<Button>().interactable = !Word.Instance.lsCountry[Word.Instance.idSelectWord]
-            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
+        if (GameManager.Instance.contentSelf.childCount > 0)
+        {
+            if (Word.Instance.lsItemSelf.Count > indexSelf)
+            {
+                transform.GetChild(1).GetComponent<Button>().interactable = !Word.Instance.lsCountry[Word.Instance.idSelectWord]
+                .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
+            }
+        }
     }
 }

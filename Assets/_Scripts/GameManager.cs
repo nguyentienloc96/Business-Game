@@ -183,10 +183,13 @@ public class GameManager : MonoBehaviour
     void UpdateUI()
     {
         Word.Instance.maxSlider = (long)(main.dollars * 0.95f);
-        if (Word.Instance.lsItemSelf.Count - 1 > Word.Instance.indexSelf)
+        if (contentSelf.childCount > 0)
         {
-            if (Word.Instance.lsItemSelf[Word.Instance.indexSelf].gameObject.activeInHierarchy)
-                Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetComponent<ItemSelf>().UpdateShow();
+            if (Word.Instance.lsItemSelf.Count > Word.Instance.indexSelf)
+            {
+                if (Word.Instance.lsItemSelf[Word.Instance.indexSelf].gameObject.activeInHierarchy)
+                    Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetComponent<ItemSelf>().UpdateShow();
+            }
         }
     }
 

@@ -2374,6 +2374,7 @@ GameObject:
   - component: {fileID: 297810433}
   - component: {fileID: 297810435}
   - component: {fileID: 297810434}
+  - component: {fileID: 297810436}
   m_Layer: 5
   m_Name: PanelDollar
   m_TagString: Untagged
@@ -2435,6 +2436,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 297810432}
+--- !u!95 &297810436
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 297810432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a97f257cbe9fd13428e498dfe1dfc24b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &305608689
 GameObject:
   m_ObjectHideFlags: 0
@@ -19067,6 +19086,7 @@ GameObject:
   - component: {fileID: 1951032984}
   - component: {fileID: 1951032986}
   - component: {fileID: 1951032985}
+  - component: {fileID: 1951032987}
   m_Layer: 5
   m_Name: PanelBitcoin
   m_TagString: Untagged
@@ -19129,6 +19149,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1951032983}
+--- !u!95 &1951032987
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1951032983}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12adaa2b8dbd4a74181127f063b48e94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1974008708
 GameObject:
   m_ObjectHideFlags: 0

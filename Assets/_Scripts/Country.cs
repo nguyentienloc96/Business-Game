@@ -216,7 +216,7 @@ public class Country : MonoBehaviour
 
         I0 = min * (20 + 15 + 15 + 10 + 20 + 10 + 10);
         I0DT = minDT * (20 + 15 + 15 + 10 + 20 + 10 + 10);
-        GameManager.Instance.main.coin += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * Mn / 100);
+        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * Mn / 100);
     }
 
     public void OnClickItemWord()
@@ -256,7 +256,7 @@ public class Country : MonoBehaviour
         {
             if (I0 != 0)
             {
-                Word.Instance.maxSlider = (long)(GameManager.Instance.main.coin * 0.95f);
+                Word.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
@@ -933,7 +933,7 @@ public class Country : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.Instance.main.coin += bigBranch[2].smallBranch[3].moneyDTBD;
+                    GameManager.Instance.main.dollars += bigBranch[2].smallBranch[3].moneyDTBD;
                     bigBranch[2].smallBranch[3].moneyDTBD = bigBranch[2].smallBranch[3].moneyDTS = 0;
                 }
             }

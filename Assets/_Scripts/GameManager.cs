@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
                     {
                         Time.timeScale = 0;
                         UIManager.Instance.isPlay = false;
-                        if (main.coin > 1000000000)
+                        if (main.dollars > 1000000000)
                         {
                             UIManager.Instance.panelWin.SetActive(true);
                             UIManager.Instance.isPlay = false;
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        Word.Instance.maxSlider = (long)(main.coin * 0.95f);
+        Word.Instance.maxSlider = (long)(main.dollars * 0.95f);
         if (Word.Instance.lsItemSelf.Count - 1 > Word.Instance.indexSelf)
         {
             if (Word.Instance.lsItemSelf[Word.Instance.indexSelf].gameObject.activeInHierarchy)

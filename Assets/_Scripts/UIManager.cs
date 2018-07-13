@@ -259,7 +259,7 @@ public class UIManager : MonoBehaviour
         isPlay = true;
         GameManager.Instance.LoadDate();
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
+        GameManager.Instance.main.dollars = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
         if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
@@ -344,7 +344,7 @@ public class UIManager : MonoBehaviour
         isPlay = true;
         GameManager.Instance.LoadDate();
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.coin = 50000 * GameManager.Instance.SRD;
+        GameManager.Instance.main.dollars = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
     }
 
@@ -358,7 +358,7 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.coin);
+        txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars);
         txtBitCoin.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.bitCoin);
     }
 

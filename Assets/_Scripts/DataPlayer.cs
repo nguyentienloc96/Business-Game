@@ -38,7 +38,7 @@ public class DataPlayer : MonoBehaviour
         DataPlayer data = new DataPlayer();
         data.modePlay = GameManager.Instance.modePlay;
         data.srd = GameManager.Instance.SRD;
-        data.dollars = GameManager.Instance.main.coin;
+        data.dollars = GameManager.Instance.main.dollars;
         data.btc = GameManager.Instance.main.bitCoin;
         data.dateStartPlay = GameManager.Instance.dateStartPlay.ToString();
         data.dateGame = GameManager.Instance.dateGame.ToString();
@@ -95,7 +95,7 @@ public class DataPlayer : MonoBehaviour
         {
             GameManager.Instance.modePlay = objJson["modePlay"].AsInt;
             GameManager.Instance.SRD = objJson["srd"].AsInt;
-            GameManager.Instance.main.coin = objJson["dollars"].AsLong;
+            GameManager.Instance.main.dollars = objJson["dollars"].AsLong;
             GameManager.Instance.main.bitCoin = objJson["btc"].AsLong;
             PlayerPrefs.SetInt(KeyPlayerPrefs.ISOFFADS, objJson["isOffAds"].AsInt);
             GameManager.Instance.dateStartPlay = DateTime.Parse(objJson["dateStartPlay"]);

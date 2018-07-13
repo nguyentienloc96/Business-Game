@@ -87,7 +87,7 @@ public class Word : MonoBehaviour
     {
         lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf,LSlider2);
         lsCountry[idSelectWord].PullData();
-        GameManager.Instance.main.coin -= LSlider2;
+        GameManager.Instance.main.dollars -= LSlider2;
         panelInfo.SetActive(true);
         panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
@@ -164,10 +164,10 @@ public class Word : MonoBehaviour
 
     public void OnClickYes()
     {
-        if (GameManager.Instance.main.coin >= LSlider)
+        if (GameManager.Instance.main.dollars >= LSlider)
         {
 
-            GameManager.Instance.main.coin -= LSlider;
+            GameManager.Instance.main.dollars -= LSlider;
             lsCountry[idSelectWord].L = Word.Instance.LSlider;
             lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(10000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);

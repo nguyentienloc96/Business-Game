@@ -226,7 +226,6 @@ public class Country : MonoBehaviour
         Word.Instance.idSelectWord = ID;
         if (UIManager.Instance.indexScene == 0)
         {
-            UIManager.Instance.txtCodeCountry.text = "Ma Nuoc : " + Mn.ToString() + "%";
             UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
             if (Word.Instance.maxSlider > Word.Instance.minSlider && L == 0)

@@ -21,8 +21,6 @@ public class UIManager : MonoBehaviour
     [Header("SelfTraining")]
     public GameObject SELFTRAINING;
     public GameObject SelfTraining;
-    //public Text LabelCountry;
-    public Text txtCodeCountry;
     public Text txtGDPCountry;
 
     [Header("DateTime")]
@@ -254,8 +252,8 @@ public class UIManager : MonoBehaviour
         menuGame.SetActive(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
-        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.dollars = 50000 * GameManager.Instance.SRD;
+        GameManager.Instance.main.bitCoin = 10;
+        GameManager.Instance.main.dollars = 50000;
         OnclickWORD();
         if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
@@ -374,7 +372,6 @@ public class UIManager : MonoBehaviour
     public void HideEror()
     {
         panelEror.SetActive(false);
-        POSITIONSELECT.SetActive(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
             Turorial(btnNHOM1.gameObject, new Vector3(-219f, -429f, 0), new Vector3(0, 0, 180f));

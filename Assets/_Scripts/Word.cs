@@ -180,8 +180,9 @@ public class Word : MonoBehaviour
             lsCountry[idSelectWord].L = Word.Instance.LSlider;
             lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(10000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text =
+            UIManager.Instance.POSITIONSELECT.SetActive(false);
+            UIManager.Instance.panelEror.SetActive(true);
+            UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
                 "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ vào " + lsCountry[idSelectWord].nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].L / (float)lsCountry[idSelectWord].GDP);
@@ -195,8 +196,10 @@ public class Word : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).gameObject.SetActive(true);
-            UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = "Ban khong du so tien dau tu";
+            UIManager.Instance.POSITIONSELECT.SetActive(false);
+            UIManager.Instance.panelEror.SetActive(true);
+            UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
+                "Ban khong du so tien dau tu";
         }
     }
 }

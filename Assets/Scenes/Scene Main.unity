@@ -3996,6 +3996,7 @@ GameObject:
   - component: {fileID: 481220395}
   - component: {fileID: 481220397}
   - component: {fileID: 481220396}
+  - component: {fileID: 481220398}
   m_Layer: 5
   m_Name: PanelGameWin
   m_TagString: Untagged
@@ -4057,6 +4058,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 481220394}
+--- !u!95 &481220398
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481220394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e72f249626844ee4eb725980f4b880ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &507141858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5264,6 +5283,7 @@ GameObject:
   - component: {fileID: 602822138}
   - component: {fileID: 602822140}
   - component: {fileID: 602822139}
+  - component: {fileID: 602822141}
   m_Layer: 5
   m_Name: PanelGameOver
   m_TagString: Untagged
@@ -5325,6 +5345,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 602822137}
+--- !u!95 &602822141
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 602822137}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e72f249626844ee4eb725980f4b880ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &605485210
 Prefab:
   m_ObjectHideFlags: 0

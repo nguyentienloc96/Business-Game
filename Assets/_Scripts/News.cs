@@ -35,7 +35,7 @@ public class News : MonoBehaviour
     public void GetNews()
     {
         int r = Random.Range(0, lstNews.Count);
-        valueNews = GameConfig.Instance.Srd * Random.Range(1, 10);
+        valueNews = GameManager.Instance.SRD * Random.Range(1, 10);
         NewChoosed = lstNews[r];
         Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + valueNews + "%");
     }

@@ -10,19 +10,18 @@ public class Ads : MonoBehaviour
     [Header("Admob")]
     InterstitialAd interstitalAd;
     //BannerView bannerView;
-    public string idInter;
+    //public string idInter_Android;
+    //public string idInter_IOS;
 
     [Header("UnityAds")]
-    public string idUnityAds_Android;
-    public string idUnityAds_IOS;
+    //public string idUnityAds_Android;
+    //public string idUnityAds_IOS;
     bool isLoadAds = false;
     bool isShowAds = false;
 
     [Header("Time")]
     public float timeAds;
     public float timeVideo;
-
-    //public GameObject btnUnityAds;
 
     public static Ads Instance = new Ads();
     void Awake()
@@ -44,9 +43,9 @@ public class Ads : MonoBehaviour
         //Unity Ads
         //Advertisement.Initialize(idUnityAds, false);
 #if UNITY_ANDROID
-        //Advertisement.Initialize(idUnityAds_Android, true);
+        Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
 #elif UNITY_IOS
-         Advertisement.Initialize(idUnityAds_IOS, true);
+         Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
 #endif
     }
 
@@ -92,15 +91,37 @@ public class Ads : MonoBehaviour
 
     public void RequestAd()
     {
-        if (isLoadAds == false && idInter != null)
+#if UNITY_ANDROID
+        if (isLoadAds == false && GameConfig.Instance.id_inter_android != null)
         {
-            interstitalAd = new InterstitialAd(idInter);
+            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
             AdRequest requestInterAd = new AdRequest.Builder().Build();
             interstitalAd.LoadAd(requestInterAd);
             isLoadAds = true;
             isShowAds = false;
             Debug.Log("Load Ads");
         }
+#elif UNITY_IOS
+        if (isLoadAds == false && GameConfig.Instance.id_inter_ios != null)
+        {
+            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
+            AdRequest requestInterAd = new AdRequest.Builder().Build();
+            interstitalAd.LoadAd(requestInterAd);
+            isLoadAds = true;
+            isShowAds = false;
+            Debug.Log("Load Ads");
+        }
+#else
+        if (isLoadAds == false && GameConfig.Instance.id_inter_android != null)
+        {
+            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
+            AdRequest requestInterAd = new AdRequest.Builder().Build();
+            interstitalAd.LoadAd(requestInterAd);
+            isLoadAds = true;
+            isShowAds = false;
+            Debug.Log("Load Ads");
+        }
+#endif
     }
 
     //public void ShowBanner()
@@ -141,9 +162,9 @@ public class Ads : MonoBehaviour
 
 
 
-    #endregion
+#endregion
 
-    #region ===UNITY ADS===
+#region ===UNITY ADS===
     public void ShowAdsUnity()
     {
 #if UNITY_EDITOR
@@ -183,7 +204,7 @@ public class Ads : MonoBehaviour
     //            break;
     //    }
     //}
-    #endregion
+#endregion
 
 
 }

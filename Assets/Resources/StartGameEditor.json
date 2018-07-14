@@ -3,6 +3,15 @@
   "DollarStart": 50000,
   "BitCoinStart": 10,
   "StringStart": "You want to found an IT company. And it will be an Unicorn (in 5 year)",
+  "link": "",
+  "easy": 1,
+  "medium": 2,
+  "hard": 3,
+  "crazy":4,
+  "id_inter_android": "ca-app-pub-3940256099942544/1033173712",
+  "id_inter_ios": "ca-app-pub-3940256099942544/4411468910",
+  "id_video_android": "1778295",
+  "id_video_ios": "1778296",
 
   "TimeInterAds": 300,
 

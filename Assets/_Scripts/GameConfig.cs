@@ -18,9 +18,13 @@ public class GameConfig : MonoBehaviour
     public float timeScale = 4;
     public long dollarStartGame = 50000;
     public long bitcoinStartGame = 10;
+    public string linkGame;
 
-    public int Srd = 1;
     public float timeInterAds;
+    public string id_inter_android;
+    public string id_inter_ios;
+    public string id_video_android;
+    public string id_video_ios;
     public long InMin = 10000;
     public long InMax = 50000;
     public float Ipc = 0.1f;
@@ -60,4 +64,9 @@ public class GameConfig : MonoBehaviour
     public int HR_ic;
 
     public int s;
+
+    public int Srd_easy;
+    public int Srd_medium;
+    public int Srd_hard;
+    public int Srd_crazy;
 }

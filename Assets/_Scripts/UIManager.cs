@@ -291,9 +291,9 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
 
-        GameManager.Instance.SRD = SRD;
         if (SRD == 1)
         {
+            GameManager.Instance.SRD = GameConfig.Instance.Srd_easy;
             btnEasy.transform.GetChild(1).gameObject.SetActive(true);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
@@ -301,6 +301,7 @@ public class UIManager : MonoBehaviour
         }
         else if (SRD == 2)
         {
+            GameManager.Instance.SRD = GameConfig.Instance.Srd_medium;
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(true);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
@@ -308,6 +309,7 @@ public class UIManager : MonoBehaviour
         }
         else if (SRD == 3)
         {
+            GameManager.Instance.SRD = GameConfig.Instance.Srd_hard;
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(true);
@@ -315,6 +317,7 @@ public class UIManager : MonoBehaviour
         }
         else if (SRD == 4)
         {
+            GameManager.Instance.SRD = GameConfig.Instance.Srd_crazy;
             btnEasy.transform.GetChild(1).gameObject.SetActive(false);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
@@ -414,5 +417,20 @@ public class UIManager : MonoBehaviour
         panelTutorial.SetActive(false);
         DataPlayer.Instance.SaveDataPlayer();
         PlayerPrefs.SetInt("isDoneTutorial", 1);
+    }
+
+    public void BtnShare()
+    {
+        AudioManager.Instance.Play("Click");
+        ShareManager.Instance.ShareScreenshotWithText("Become an Unicorn");
+    }
+
+    public void BtnRate()
+    {
+        AudioManager.Instance.Play("Click");
+        if (GameConfig.Instance.linkGame != null)
+        {
+            Application.OpenURL(GameConfig.Instance.linkGame);
+        }
     }
 }

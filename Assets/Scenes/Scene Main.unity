@@ -1331,9 +1331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d35375def39a9942ba63911c720ed4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idInter: 
-  idUnityAds_Android: 
-  idUnityAds_IOS: 
   timeAds: 0
   timeVideo: 120
 --- !u!4 &172582247
@@ -2331,7 +2328,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 0}
+  m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297380460
 MonoBehaviour:
@@ -3379,7 +3376,7 @@ RectTransform:
   m_GameObject: {fileID: 388380845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children:
   - {fileID: 632216641}
   m_Father: {fileID: 1483620740}
@@ -3651,7 +3648,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 0}
+  m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400953477
 MonoBehaviour:
@@ -4353,7 +4350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: THONG SO
+  m_Text: PARAMETERS
 --- !u!222 &516311801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6516,8 +6513,12 @@ MonoBehaviour:
   timeScale: 4
   dollarStartGame: 50000
   bitcoinStartGame: 10
-  Srd: 1
+  linkGame: 
   timeInterAds: 0
+  id_inter_android: 
+  id_inter_ios: 
+  id_video_android: 
+  id_video_ios: 
   InMin: 10000
   InMax: 50000
   Ipc: 0.1
@@ -6552,6 +6553,10 @@ MonoBehaviour:
   HR_ae: 0
   HR_ic: 0
   s: 0
+  Srd_easy: 0
+  Srd_medium: 0
+  Srd_hard: 0
+  Srd_crazy: 0
 --- !u!114 &692998831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10363,7 +10368,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 928977670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 815918854}
+        m_MethodName: BtnRate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &928977670
@@ -10658,7 +10674,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NHOM 3
+  m_Text: GROUP 3
 --- !u!222 &938118616
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11272,7 +11288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000011071403}
+  m_AnchoredPosition: {x: 0, y: 0.000008033405}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1062959244
@@ -13341,7 +13357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NHOM 1
+  m_Text: GROUP 1
 --- !u!222 &1144563146
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15240,7 +15256,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1402676609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 815918854}
+        m_MethodName: BtnShare
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1402676609
@@ -16046,7 +16073,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1483620739}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -19069,7 +19096,7 @@ RectTransform:
   m_GameObject: {fileID: 1878871866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 2063968975}
   - {fileID: 1148111491}
@@ -19079,7 +19106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -184}
+  m_AnchoredPosition: {x: 0, y: -89}
   m_SizeDelta: {x: 627, y: 205.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1878871868
@@ -20175,7 +20202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ban co muon chon quoc gia nay de dau tu khong
+  m_Text: Do you want to invest in this country ?
 --- !u!222 &2063968977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20320,7 +20347,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NHOM 2
+  m_Text: GROUP 2
 --- !u!222 &2078453714
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -10,9 +10,19 @@ using System;
 public class ShareManager : MonoBehaviour {
 	public string ScreenshotName = "screenshot.png";
 
+    public static ShareManager Instance = new ShareManager();
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+    }
+
     public void shareText(string text)
     {
-        NativeShare.Share(text, true,"Robo Flight");
+        NativeShare.Share(text, true,"");
     }
 
     public void ShareScreenshotWithText(string text)

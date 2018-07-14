@@ -102,12 +102,12 @@ public class Word : MonoBehaviour
         if (indexPSelf == 7 && indexSelf == 3)
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
-                = "Ban vua vay thanh cong " + ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars) + "$";
+                = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars) + "$ ";
         }
         else
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
-                = "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$";
+                = "You have successfully invested " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$ ";
         }
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         seltCoin2.text = minSlider2.ToString();
@@ -197,7 +197,7 @@ public class Word : MonoBehaviour
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
-                "Ban dau tu thanh cong " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ vào " + lsCountry[idSelectWord].nameCountry;
+                "You have successfully invested " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ in " + lsCountry[idSelectWord].nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].L / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
@@ -213,7 +213,7 @@ public class Word : MonoBehaviour
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
-                "Ban khong du so tien dau tu";
+                "You do not have enough money ";
         }
     }
 }

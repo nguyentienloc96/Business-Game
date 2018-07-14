@@ -84,6 +84,11 @@ public class DataPlayer : MonoBehaviour
             ct.dataColChartMain = GameManager.Instance.main.lsCoutryReady[i].dataColChartMain;
             ct.dataColChartCompetitors = GameManager.Instance.main.lsCoutryReady[i].dataColChartCompetitors;
 
+            for (int j = 0; j < GameManager.Instance.main.lsCoutryReady[i].lstNew.Count; j++)
+            {
+                ct.lstNew.Add(GameManager.Instance.main.lsCoutryReady[i].lstNew[j]);
+            }
+
             data.lstCountry_Data.Add(ct);
         }
 
@@ -145,6 +150,12 @@ public class DataPlayer : MonoBehaviour
                 ct.KH0DT = lsData[i]["KH0DT"].AsFloat;
                 ct.NS0DT = lsData[i]["NS0DT"].AsFloat;
                 ct.ST0DT = lsData[i]["ST0DT"].AsFloat;
+
+                ct.lstNew = new List<string>();
+                for (int k = 0; k < lsData[i]["lstNew"].Count; k++)
+                {
+                    ct.lstNew.Add(lsData[i]["lstNew"][k]);
+                }
 
                 var bigBranch = lsData[i]["bigBranch"];
                 ct.bigBranch = new STBigBranch[bigBranch.Count];

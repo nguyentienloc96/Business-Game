@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -94,7 +95,9 @@ public class UIManager : MonoBehaviour
     public GameObject panelDollars;
     public GameObject panelBitCoin;
 
-
+    [Header("New and Setting")]
+    public GameObject panelNew;
+    public GameObject panelSetting;
 
     void Awake()
     {
@@ -432,5 +435,34 @@ public class UIManager : MonoBehaviour
         {
             Application.OpenURL(GameConfig.Instance.linkGame);
         }
+    }
+
+    public void BtnShowNew()
+    {
+        if (panelNew.activeSelf)
+        {
+            panelNew.SetActive(false);
+        }
+        else
+        {
+            panelNew.SetActive(true);
+        }
+    }
+
+    public void BtnShowSetting()
+    {
+        if (panelSetting.activeSelf)
+        {
+            panelSetting.SetActive(false);
+        }
+        else
+        {
+            panelSetting.SetActive(true);
+        }
+    }
+
+    public void BtnSaveAndExit()
+    {
+        DataPlayer.Instance.SaveDataPlayer();
     }
 }

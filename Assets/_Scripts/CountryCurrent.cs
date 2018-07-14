@@ -11,6 +11,7 @@ public class CountryCurrent {
     public long L = 0;
     public long LDT = 0;
     public float Mn;
+    public List<string> lstNew = new List<string>();
 
     public float HSP;
     public float HMKT;

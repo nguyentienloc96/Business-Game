@@ -30,6 +30,7 @@ public class Country : MonoBehaviour
     public long LDT = 0;
     [Range(50, 200)]
     public float Mn;
+    public List<string> lstNew = new List<string>();
 
     public float HSP;
     public float HMKT;

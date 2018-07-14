@@ -155,11 +155,17 @@ public class GameManager : MonoBehaviour
                         UIManager.Instance.isPlay = false;
                         if (main.dollars > 1000000000)
                         {
+                            AudioManager.Instance.Stop("GamePlay");
+                            AudioManager.Instance.Play("OverWin");
+
                             UIManager.Instance.panelWin.SetActive(true);
                             UIManager.Instance.isPlay = false;
                         }
                         else
                         {
+                            AudioManager.Instance.Stop("GamePlay");
+                            AudioManager.Instance.Play("OverWin");
+
                             UIManager.Instance.panelGameOver.SetActive(true);
                             UIManager.Instance.isPlay = false;
                         }

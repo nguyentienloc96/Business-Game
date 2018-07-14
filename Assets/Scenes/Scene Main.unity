@@ -6525,9 +6525,33 @@ MonoBehaviour:
   HP_ext: 0
   TC_tax: 0
   TC_wx: 0
+  TC_vx: 0
   SC_ax: 0
   SC_bx: 0
   SC_ox: 0
+  PP_rdb: 0
+  PP_f_Min: 0
+  PP_fxi: 0
+  PP_o: 0
+  PP_b_Min: 0
+  PP_bxi: 0
+  SR_b_Min: 0
+  SR_bp: 0
+  Ads_t: 0
+  Ads_w: 0
+  Bx: 0
+  TL_sp: 0
+  TL_mkt: 0
+  TL_maket: 0
+  TL_lo: 0
+  TL_ns: 0
+  TL_kh: 0
+  TL_st: 0
+  HR_ph: 0
+  HR_cc: 0
+  HR_ae: 0
+  HR_ic: 0
+  s: 0
 --- !u!114 &692998831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19159,6 +19183,71 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906041687}
+--- !u!1 &1914675107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1914675109}
+  - component: {fileID: 1914675108}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1914675108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914675107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd53e94fde8614540be2e3a7d2776824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GamePlay
+    clip: {fileID: 8300000, guid: 69c32278303ee8948b1118404efddf1d, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Menu
+    clip: {fileID: 8300000, guid: fd9cad54968c5de4d8ccca0545c78b2d, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: OverWin
+    clip: {fileID: 8300000, guid: 77c025aefbb6e964f98de3149c40c7f8, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: 2cd3f5fc0c1352d41b925f76b71919e6, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1914675109
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914675107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938321965 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1761252240733870, guid: 165a9f4dbc93f604caa07f7c7ba863ac,

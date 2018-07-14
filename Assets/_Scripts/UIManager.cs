@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour
 
     public void OnclickWORD()
     {
+        AudioManager.Instance.Play("Click");
         indexScene = 0;
         btnWORD.transform.GetChild(1).gameObject.SetActive(true);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(false);
@@ -129,6 +130,7 @@ public class UIManager : MonoBehaviour
 
     public void OnclickTHONGSO()
     {
+        AudioManager.Instance.Play("Click");
         indexScene = 1;
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
@@ -143,7 +145,8 @@ public class UIManager : MonoBehaviour
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
         ResetBranch();
-        GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
+        if (GameManager.Instance.main.lsCoutryReady.Count > 0)
+            GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
             Destroy(mainTutorial);
@@ -155,6 +158,8 @@ public class UIManager : MonoBehaviour
 
     public void OnclickNHOM1()
     {
+        AudioManager.Instance.Play("Click");
+
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -191,6 +196,8 @@ public class UIManager : MonoBehaviour
 
     public void OnclickNHOM2()
     {
+        AudioManager.Instance.Play("Click");
+
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -222,6 +229,8 @@ public class UIManager : MonoBehaviour
 
     public void OnclickNHOM3()
     {
+        AudioManager.Instance.Play("Click");
+
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -249,6 +258,9 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
+        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Stop("Menu");
+        AudioManager.Instance.Play("GamePlay");
         menuGame.SetActive(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
@@ -277,6 +289,8 @@ public class UIManager : MonoBehaviour
 
     public void setSRD(int SRD)
     {
+        AudioManager.Instance.Play("Click");
+
         GameManager.Instance.SRD = SRD;
         if (SRD == 1)
         {
@@ -310,6 +324,8 @@ public class UIManager : MonoBehaviour
 
     public void ModeGame(int mode)
     {
+        AudioManager.Instance.Play("Click");
+
         GameManager.Instance.modePlay = mode;
         if (mode == 0)
         {
@@ -325,6 +341,10 @@ public class UIManager : MonoBehaviour
 
     public void Continue()
     {
+
+        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Stop("Menu");
+        AudioManager.Instance.Play("GamePlay");
         DataPlayer.Instance.LoadDataPlayer();
         menuGame.SetActive(false);
         isPlay = true;
@@ -333,6 +353,9 @@ public class UIManager : MonoBehaviour
 
     public void RePlay()
     {
+        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Stop("OverWin");
+        AudioManager.Instance.Play("GamePlay");
         panelWin.SetActive(false);
         panelGameOver.SetActive(false);
         isPlay = true;
@@ -344,6 +367,10 @@ public class UIManager : MonoBehaviour
 
     public void BackToMenu()
     {
+        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Stop("OverWin");
+        AudioManager.Instance.Stop("GamePlay");
+        AudioManager.Instance.Play("Menu");
         panelGameOver.SetActive(false);
         panelWin.SetActive(false);
         menuGame.SetActive(true);
@@ -371,6 +398,8 @@ public class UIManager : MonoBehaviour
 
     public void HideEror()
     {
+        AudioManager.Instance.Play("Click");
+
         panelEror.SetActive(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
@@ -380,6 +409,8 @@ public class UIManager : MonoBehaviour
 
     public void DoneTutorial()
     {
+        AudioManager.Instance.Play("Click");
+
         panelTutorial.SetActive(false);
         DataPlayer.Instance.SaveDataPlayer();
         PlayerPrefs.SetInt("isDoneTutorial", 1);

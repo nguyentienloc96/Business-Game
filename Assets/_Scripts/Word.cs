@@ -55,9 +55,16 @@ public class Word : MonoBehaviour
             item.GetChild(1).GetComponent<Text>().text = DataUpdate.Instance.lstData_NameCountry[i].name;
             lsCountry.Add(item.GetComponent<Country>());
             item.GetComponent<Country>().ID = i;
-            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp;
+            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp / UnityEngine.Random.Range(90, 110);
             item.GetComponent<Country>().nameCountry = DataUpdate.Instance.lstData_NameCountry[i].name;
             item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HSP = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HMKT = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HMARKET = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HNS = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HKH = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HL = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().HST = UnityEngine.Random.Range(50, 200);
         }
         minSlider = GameConfig.Instance.InMin;
     }
@@ -86,6 +93,8 @@ public class Word : MonoBehaviour
 
     public void Evole()
     {
+        AudioManager.Instance.Play("Click");
+
         lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf,LSlider2);
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.dollars -= LSlider2;
@@ -169,17 +178,21 @@ public class Word : MonoBehaviour
 
     public void OnClickNo()
     {
+        AudioManager.Instance.Play("Click");
+
         UIManager.Instance.POSITIONSELECT.SetActive(false);
     }
 
     public void OnClickYes()
     {
+        AudioManager.Instance.Play("Click");
+
         if (GameManager.Instance.main.dollars >= LSlider)
         {
 
             GameManager.Instance.main.dollars -= LSlider;
             lsCountry[idSelectWord].L = Word.Instance.LSlider;
-            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(10000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
+            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(1000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);

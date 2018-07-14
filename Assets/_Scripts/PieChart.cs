@@ -92,7 +92,7 @@ public class PieChart : MonoBehaviour
             {
                 if (dataPei[i].valuePei <= 0)
                 {
-                    peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "0%";
+                    peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "";
                 }
                 else if (dataPei[i].valuePei < 0.01 / 100)
                 {

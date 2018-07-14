@@ -31,6 +31,14 @@ public class Country : MonoBehaviour
     [Range(50, 200)]
     public float Mn;
 
+    public float HSP;
+    public float HMKT;
+    public float HMARKET;
+    public float HL;
+    public float HKH;
+    public float HNS;
+    public float HST;
+
     public float I0 = 0f;
     public float SP0 = 0f;
     public float MKT0 = 0f;
@@ -169,36 +177,36 @@ public class Country : MonoBehaviour
     public void Interest()
     {
         List<float> minArray = new List<float>();
-        float minSP0 = SP0 / GameConfig.Instance.TL_sp;
+        float minSP0 = SP0 * HSP / GameConfig.Instance.TL_sp;
         minArray.Add(minSP0);
-        float minMKT0 = MKT0 / GameConfig.Instance.TL_mkt;
+        float minMKT0 = MKT0 * HMKT / GameConfig.Instance.TL_mkt;
         minArray.Add(minMKT0);
-        float minMARKET0 = MARKET0 / GameConfig.Instance.TL_maket;
+        float minMARKET0 = MARKET0 * HMARKET / GameConfig.Instance.TL_maket;
         minArray.Add(minMARKET0);
-        float minL0 = L0 / GameConfig.Instance.TL_lo;
+        float minL0 = L0 * HL / GameConfig.Instance.TL_lo;
         minArray.Add(minL0);
-        float minNS0 = NS0 / GameConfig.Instance.TL_ns;
+        float minNS0 = NS0 * HNS / GameConfig.Instance.TL_ns;
         minArray.Add(minNS0);
-        float minKH0 = KH0 / GameConfig.Instance.TL_kh;
+        float minKH0 = KH0 * HKH / GameConfig.Instance.TL_kh;
         minArray.Add(minKH0);
-        float minST0 = ST0 / GameConfig.Instance.TL_st;
+        float minST0 = ST0 * HST / GameConfig.Instance.TL_st;
         minArray.Add(minST0);
         float min = minArray[0];
 
         List<float> minArrayDT = new List<float>();
-        float minSP0DT = SP0DT / GameConfig.Instance.TL_sp;
+        float minSP0DT = SP0DT * HSP / GameConfig.Instance.TL_sp;
         minArrayDT.Add(minSP0DT);
-        float minMKT0DT = MKT0DT / GameConfig.Instance.TL_mkt;
+        float minMKT0DT = MKT0DT * HMKT / GameConfig.Instance.TL_mkt;
         minArrayDT.Add(minMKT0DT);
-        float minMARKET0DT = MARKET0DT / GameConfig.Instance.TL_maket;
+        float minMARKET0DT = MARKET0DT * HMARKET / GameConfig.Instance.TL_maket;
         minArrayDT.Add(minMARKET0DT);
-        float minL0DT = L0DT / GameConfig.Instance.TL_lo;
+        float minL0DT = L0DT * HL / GameConfig.Instance.TL_lo;
         minArrayDT.Add(minL0DT);
-        float minNS0DT = NS0DT / GameConfig.Instance.TL_ns;
+        float minNS0DT = NS0DT * HNS / GameConfig.Instance.TL_ns;
         minArrayDT.Add(minNS0DT);
-        float minKH0DT = KH0DT / GameConfig.Instance.TL_kh;
+        float minKH0DT = KH0DT * HKH / GameConfig.Instance.TL_kh;
         minArrayDT.Add(minKH0DT);
-        float minST0DT = ST0DT / GameConfig.Instance.TL_st;
+        float minST0DT = ST0DT * HST / GameConfig.Instance.TL_st;
         minArrayDT.Add(minST0DT);
         float minDT = minArray[0];
 
@@ -221,6 +229,8 @@ public class Country : MonoBehaviour
 
     public void OnClickItemWord()
     {
+        AudioManager.Instance.Play("Click");
+
         Word.Instance.lsCountry[Word.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
         Word.Instance.idSelectWord = ID;
@@ -313,17 +323,17 @@ public class Country : MonoBehaviour
             }
             else if (indexSelf == 1)//Factory/workshop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 100000)
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < GameConfig.Instance.PP_f_Min)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                     bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
                 }
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame -
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= GameConfig.Instance.PP_f_Min && (long)((TimeSpan)(GameManager.Instance.dateGame -
                     DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays < 365)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 }
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 100000 && (long)((TimeSpan)(GameManager.Instance.dateGame -
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= GameConfig.Instance.PP_f_Min && (long)((TimeSpan)(GameManager.Instance.dateGame -
                     DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays >= 365)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
@@ -791,7 +801,7 @@ public class Country : MonoBehaviour
 
     public void FactoryWorkshopLoop()
     {
-        if (bigBranch[0].smallBranch[1].moneyDTBD > 100000 && bigBranch[0].smallBranch[1].moneyDTS == 0 && (long)((TimeSpan)(GameManager.Instance.dateGame -
+        if (bigBranch[0].smallBranch[1].moneyDTBD > GameConfig.Instance.PP_f_Min && bigBranch[0].smallBranch[1].moneyDTS == 0 && (long)((TimeSpan)(GameManager.Instance.dateGame -
            DateTime.Parse(bigBranch[0].smallBranch[1].investmentDayBD))).TotalDays >= 365)
         {
             bigBranch[0].smallBranch[1].isRunning = false;

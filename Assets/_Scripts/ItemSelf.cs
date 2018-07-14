@@ -23,6 +23,17 @@ public class ItemSelf : MonoBehaviour
         if (indexPSelf == 2 && indexSelf == 3)
         {
             Word.Instance.minSlider2 = GameConfig.Instance.SR_b_Min;
+        }else if (indexPSelf == 0 && indexSelf == 1)
+        {
+            Word.Instance.minSlider2 = GameConfig.Instance.PP_f_Min;
+        }
+        else if (indexPSelf == 0 && indexSelf == 3)
+        {
+            Word.Instance.minSlider2 = GameConfig.Instance.PP_b_Min;
+        }
+        else if (indexPSelf == 4 && indexSelf == 0)
+        {
+            Word.Instance.minSlider2 = 10000;
         }
         else
         {

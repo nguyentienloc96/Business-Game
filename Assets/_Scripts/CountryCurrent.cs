@@ -12,6 +12,14 @@ public class CountryCurrent {
     public long LDT = 0;
     public float Mn;
 
+    public float HSP;
+    public float HMKT;
+    public float HMARKET;
+    public float HL;
+    public float HKH;
+    public float HNS;
+    public float HST;
+
     public float I0 = 0f;
     public float SP0 = 0f;
     public float MKT0 = 0f;

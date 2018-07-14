@@ -53,6 +53,15 @@ public class DataPlayer : MonoBehaviour
             ct.LDT = GameManager.Instance.main.lsCoutryReady[i].LDT;
             ct.Mn = GameManager.Instance.main.lsCoutryReady[i].Mn;
 
+            ct.HSP = GameManager.Instance.main.lsCoutryReady[i].HSP;
+            ct.HMKT = GameManager.Instance.main.lsCoutryReady[i].HMKT;
+            ct.HMARKET = GameManager.Instance.main.lsCoutryReady[i].HMARKET;
+            ct.HNS = GameManager.Instance.main.lsCoutryReady[i].HNS;
+            ct.HL = GameManager.Instance.main.lsCoutryReady[i].HL;
+            ct.HKH = GameManager.Instance.main.lsCoutryReady[i].HKH;
+            ct.HST = GameManager.Instance.main.lsCoutryReady[i].HST;
+
+
             ct.I0 = GameManager.Instance.main.lsCoutryReady[i].I0;
             ct.SP0 = GameManager.Instance.main.lsCoutryReady[i].SP0;
             ct.MKT0 = GameManager.Instance.main.lsCoutryReady[i].MKT0;
@@ -110,6 +119,14 @@ public class DataPlayer : MonoBehaviour
                 ct.L = lsData[i]["L"].AsLong;
                 ct.LDT = lsData[i]["LDT"].AsLong;
                 ct.Mn = lsData[i]["Mn"].AsFloat;
+
+                ct.HSP = lsData[i]["HSP"].AsFloat;
+                ct.HMKT = lsData[i]["HMKT"].AsFloat;
+                ct.HMARKET = lsData[i]["HMARKET"].AsFloat;
+                ct.HNS = lsData[i]["HNS"].AsFloat;
+                ct.HL = lsData[i]["HL"].AsFloat;
+                ct.HKH = lsData[i]["HKH"].AsFloat;
+                ct.HST = lsData[i]["HST"].AsFloat;
 
                 ct.I0 = lsData[i]["I0"].AsFloat;
                 ct.SP0 = lsData[i]["SP0"].AsFloat;

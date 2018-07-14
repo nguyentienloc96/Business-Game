@@ -722,7 +722,7 @@ public class Country : MonoBehaviour
         }
         else if (indexPSelf == 7)//Funding
         {
-            if (indexSelf == 0)//Vay ngân hàng
+            if (indexSelf == 0)//Find a co-founder
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
@@ -730,28 +730,28 @@ public class Country : MonoBehaviour
                 ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
             }
-            if (indexSelf == 1)//Vay ngân hàng
+            if (indexSelf == 1)//Borrow money
             {
+                int IndexRandom = UnityEngine.Random.Range(1, 5);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
-                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-            }
-            if (indexSelf == 2)//Vay ngân hàng
-            {
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
-                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
-            }
-            if (indexSelf == 3)//Vay ngân hàng
-            {
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = GameManager.Instance.main.dollars;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT * IndexRandom;
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
-                GameManager.Instance.main.dollars += GameManager.Instance.main.dollars;
+                GameManager.Instance.main.dollars += moneyDT * IndexRandom;
+            }
+            if (indexSelf == 2)//Capital
+            {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                ST0 += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+                ST0DT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f);
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+            }
+            if (indexSelf == 3)//bank Loan
+            {
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                GameManager.Instance.main.dollars += moneyDT;
             }
         }
 
@@ -797,6 +797,7 @@ public class Country : MonoBehaviour
         SalesCulture();
         BuyACompetitor();
         BankLoan();
+        BorrowMoney();
     }
 
     public void FactoryWorkshopLoop()
@@ -978,18 +979,28 @@ public class Country : MonoBehaviour
                 string info = "";
                 if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD / 2)
                 {
-                    GameManager.Instance.main.dollars = 0;
-                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
-                    GameManager.Instance.main.lsCoutryReady.Remove(this);
-                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
-                    bigBranch[7].smallBranch[3].isRunning = false;
+                    long moneyVay = bigBranch[7].smallBranch[3].moneyDTBD / 2 - GameManager.Instance.main.dollars;
+                    if (L > (long)(moneyVay * GameConfig.Instance.Bx))
+                    {
+                        GameManager.Instance.main.dollars = 0;
+                        L -= (long)(moneyVay * GameConfig.Instance.Bx);
+                        bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
+                        info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " o " + nameCountry;
+                    }
+                    else
+                    {
+                        GameManager.Instance.main.dollars = 0;
+                        bigBranch[7].smallBranch[3].moneyDTBD = 0;
+                        GameManager.Instance.main.lsCoutryReady.Remove(this);
+                        info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                        bigBranch[7].smallBranch[3].isRunning = false;
+                    }
                 }
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " o " + nameCountry;
-                    bigBranch[7].smallBranch[3].isRunning = false;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1000,18 +1011,76 @@ public class Country : MonoBehaviour
                 string info = "";
                 if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD)
                 {
-                    GameManager.Instance.main.dollars = 0;
-                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
-                    GameManager.Instance.main.lsCoutryReady.Remove(this);
-                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
-                    bigBranch[7].smallBranch[3].isRunning = false;
+                    long moneyVay = bigBranch[7].smallBranch[3].moneyDTBD - GameManager.Instance.main.dollars;
+                    if (L > (long)(moneyVay * GameConfig.Instance.Bx))
+                    {
+                        GameManager.Instance.main.dollars = 0;
+                        L -= (long)(moneyVay * GameConfig.Instance.Bx);
+                        bigBranch[7].smallBranch[3].moneyDTBD = 0;
+                        info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                        bigBranch[7].smallBranch[3].isRunning = false;
+                    }
+                    else
+                    {
+                        GameManager.Instance.main.dollars = 0;
+                        bigBranch[7].smallBranch[3].moneyDTBD = 0;
+                        GameManager.Instance.main.lsCoutryReady.Remove(this);
+                        info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                        bigBranch[7].smallBranch[3].isRunning = false;
+                    }
                 }
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD;
-                    bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD;
+                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
                     info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
                     bigBranch[7].smallBranch[3].isRunning = false;
+                }
+                UIManager.Instance.panelBankLoan.SetActive(true);
+                UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
+            }
+        }
+    }
+
+    public void BorrowMoney()
+    {
+        if (bigBranch[7].smallBranch[1].moneyDTBD > 0)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[7].smallBranch[1].investmentDayBD))).TotalDays == 365)
+            {
+                string info = "";
+                if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[1].moneyDTBD / 2)
+                {
+                    GameManager.Instance.main.dollars = 0;
+                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    bigBranch[7].smallBranch[1].isRunning = false;
+                }
+                else
+                {
+                    GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
+                    bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
+                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTBD / 2) + " o " + nameCountry;
+                }
+                UIManager.Instance.panelBankLoan.SetActive(true);
+                UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
+
+            }
+            else if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[7].smallBranch[1].investmentDayBD))).TotalDays == 365 * 2)
+            {
+                string info = "";
+                if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[1].moneyDTBD)
+                {
+                    GameManager.Instance.main.dollars = 0;
+                    bigBranch[7].smallBranch[1].moneyDTBD = 0;
+                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    bigBranch[7].smallBranch[1].isRunning = false;
+                }
+                else
+                {
+                    GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[1].moneyDTBD;
+                    bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD;
+                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                    bigBranch[7].smallBranch[1].isRunning = false;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;

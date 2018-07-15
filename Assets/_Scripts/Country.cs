@@ -966,7 +966,7 @@ public class Country : MonoBehaviour
                 {
                     UIManager.Instance.panelBuyCompetitor.SetActive(true);
                     UIManager.Instance.panelBuyCompetitor.transform.GetChild(0).GetComponent<Text>().text
-                        = "Ban mua thanh cong Competitor ở " + nameCountry;
+                        = "You've successfully purchased a competitor in " + nameCountry;
                     I0 += bigBranch[2].smallBranch[3].moneyDTBD * GameConfig.Instance.SR_bp;
                 }
                 else
@@ -993,14 +993,14 @@ public class Country : MonoBehaviour
                         GameManager.Instance.main.dollars = 0;
                         L -= (long)(moneyVay * GameConfig.Instance.Bx);
                         bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
-                        info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " o " + nameCountry;
+                        info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
                     }
                     else
                     {
                         GameManager.Instance.main.dollars = 0;
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
                         GameManager.Instance.main.lsCoutryReady.Remove(this);
-                        info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                        info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                         bigBranch[7].smallBranch[3].isRunning = false;
                     }
                 }
@@ -1008,7 +1008,7 @@ public class Country : MonoBehaviour
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
-                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " o " + nameCountry;
+                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1025,7 +1025,7 @@ public class Country : MonoBehaviour
                         GameManager.Instance.main.dollars = 0;
                         L -= (long)(moneyVay * GameConfig.Instance.Bx);
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
-                        info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                        info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                         bigBranch[7].smallBranch[3].isRunning = false;
                     }
                     else
@@ -1033,7 +1033,7 @@ public class Country : MonoBehaviour
                         GameManager.Instance.main.dollars = 0;
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
                         GameManager.Instance.main.lsCoutryReady.Remove(this);
-                        info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                        info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                         bigBranch[7].smallBranch[3].isRunning = false;
                     }
                 }
@@ -1041,7 +1041,7 @@ public class Country : MonoBehaviour
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD;
                     bigBranch[7].smallBranch[3].moneyDTBD = 0;
-                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                     bigBranch[7].smallBranch[3].isRunning = false;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
@@ -1060,14 +1060,14 @@ public class Country : MonoBehaviour
                 if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[1].moneyDTBD / 2)
                 {
                     GameManager.Instance.main.dollars = 0;
-                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
                 }
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
                     bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
-                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTBD / 2) + " o " + nameCountry;
+                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTBD / 2) + " in " + nameCountry;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1080,14 +1080,14 @@ public class Country : MonoBehaviour
                 {
                     GameManager.Instance.main.dollars = 0;
                     bigBranch[7].smallBranch[1].moneyDTBD = 0;
-                    info = "Ban khong du tien gia so no ban da mat cty o dat nuoc " + nameCountry;
+                    info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
                 }
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[1].moneyDTBD;
                     bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD;
-                    info = "Ban vua gia thanh cong " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " o " + nameCountry;
+                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                     bigBranch[7].smallBranch[1].isRunning = false;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);

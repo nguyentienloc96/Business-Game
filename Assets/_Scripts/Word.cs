@@ -191,7 +191,7 @@ public class Word : MonoBehaviour
         {
 
             GameManager.Instance.main.dollars -= LSlider;
-            lsCountry[idSelectWord].L = Word.Instance.LSlider;
+            lsCountry[idSelectWord].L = LSlider;
             lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(1000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
             UIManager.Instance.POSITIONSELECT.SetActive(false);
@@ -205,7 +205,7 @@ public class Word : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
             {
-                UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(2).GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));
+                UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));
             }
         }
         else

@@ -486,5 +486,17 @@ public class UIManager : MonoBehaviour
     public void BtnSaveAndExit()
     {
         DataPlayer.Instance.SaveDataPlayer();
+        panelSetting.SetActive(false);
+    }
+
+    public void BtnRestore()
+    {
+        PlayGame();
+        panelSetting.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

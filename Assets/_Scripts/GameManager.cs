@@ -219,6 +219,8 @@ public class GameManager : MonoBehaviour
             + News.Instance.NewChoosed.content + +News.Instance.valueNews + "%";
         Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = info;
         main.lsCoutryReady[ID].lstNew.Add(info);
+        if (main.lsCoutryReady[ID].lstNew.Count > 10)
+            main.lsCoutryReady[ID].lstNew.RemoveAt(0);
         News.Instance.SetResultNew(ID);
         main.lsCoutryReady[ID].PullData();
         Invoke("HidePanelInfo", 5f);

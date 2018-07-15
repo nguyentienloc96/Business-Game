@@ -136,5 +136,6 @@ public class News : MonoBehaviour
         {
             GameManager.Instance.main.lsCoutryReady[ID].ST0 += set * GameManager.Instance.main.lsCoutryReady[ID].ST0;
         }
+        
     }
 }

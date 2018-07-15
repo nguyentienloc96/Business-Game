@@ -128,6 +128,8 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(true);
+        panelNew.SetActive(false);
+        panelSetting.SetActive(false);
         ResetBranch();
     }
 
@@ -147,6 +149,8 @@ public class UIManager : MonoBehaviour
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         Word.Instance.OnEnableWord(false);
+        panelNew.SetActive(false);
+        panelSetting.SetActive(false);
         ResetBranch();
         if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
@@ -189,7 +193,8 @@ public class UIManager : MonoBehaviour
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
-
+        panelNew.SetActive(false);
+        panelSetting.SetActive(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
             Turorial(btnBRANCH2.gameObject, new Vector3(-33f, 308f, 0), Vector3.zero);
@@ -227,6 +232,8 @@ public class UIManager : MonoBehaviour
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
+        panelNew.SetActive(false);
+        panelSetting.SetActive(false);
 
     }
 
@@ -257,6 +264,8 @@ public class UIManager : MonoBehaviour
         btnBRANCH2.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH3.transform.GetChild(1).gameObject.SetActive(false);
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
+        panelNew.SetActive(false);
+        panelSetting.SetActive(false);
     }
 
     public void PlayGame()
@@ -446,6 +455,19 @@ public class UIManager : MonoBehaviour
         else
         {
             panelNew.SetActive(true);
+            for(int i = 0; i < 10; i++)
+            {
+                if (i < Word.Instance.lsCountry[Word.Instance.idSelectWord].lstNew.Count)
+                {
+                    panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+                    panelNew.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>().text
+                        = GameManager.Instance.main.lsCoutryReady[Word.Instance.idSelectWord].lstNew[i];
+                }
+                else
+                {
+                    panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+                }
+            }
         }
     }
 

@@ -215,8 +215,10 @@ public class GameManager : MonoBehaviour
         int ID = UnityEngine.Random.Range(0, main.lsCoutryReady.Count);
         News.Instance.GetNews();
         Word.Instance.panelInfo.SetActive(true);
-        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = main.lsCoutryReady[ID].nameCountry + "\n"
+        string info = main.lsCoutryReady[ID].nameCountry + "\n"
             + News.Instance.NewChoosed.content + +News.Instance.valueNews + "%";
+        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = info;
+        main.lsCoutryReady[ID].lstNew.Add(info);
         News.Instance.SetResultNew(ID);
         main.lsCoutryReady[ID].PullData();
         Invoke("HidePanelInfo", 5f);

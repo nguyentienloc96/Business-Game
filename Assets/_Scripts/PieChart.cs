@@ -120,9 +120,34 @@ public class PieChart : MonoBehaviour
             for(int i = 0; i < itemNoteCol.Length; i++)
             {
                 itemNoteCol[i].SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.15f);
             }
         }
+    }
+
+    IEnumerator IELoadNote()
+    {
+        if (itemNoteCol.Length > 0)
+        {
+            for (int i = 0; i < itemNoteCol.Length; i++)
+            {
+                itemNoteCol[i].SetActive(false);
+            }
+        }
+        yield return new WaitUntil(() => !itemNoteCol[itemNoteCol.Length - 1].activeInHierarchy);
+        if (itemNoteCol.Length > 0)
+        {
+            for (int i = 0; i < itemNoteCol.Length; i++)
+            {
+                itemNoteCol[i].SetActive(true);
+                yield return new WaitForSeconds(0.15f);
+            }
+        }
+    }
+
+    public void LoadNote()
+    {
+        StartCoroutine(IELoadNote());
     }
 
     public Texture2D textureFromSprite(Sprite sprite)

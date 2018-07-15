@@ -283,7 +283,8 @@ public class Country : MonoBehaviour
             }
             else
             {
-                UIManager.Instance.PieChart2.SetActive(false);
+                UIManager.Instance.PieChart2.SetActive(true);
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadNote();
                 UIManager.Instance.COLCHART.transform
                 .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
                 UIManager.Instance.COLCHART.transform

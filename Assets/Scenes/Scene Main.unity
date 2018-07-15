@@ -2140,7 +2140,7 @@ Prefab:
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
       propertyPath: dataPei.Array.data[1].namePei
-      value: Doi Thu
+      value: Competitor
       objectReference: {fileID: 0}
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
@@ -2171,7 +2171,7 @@ Prefab:
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
       propertyPath: dataPei.Array.data[0].namePei
-      value: main
+      value: You
       objectReference: {fileID: 0}
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
@@ -22207,12 +22207,12 @@ Prefab:
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
       propertyPath: dataPei.Array.data[0].namePei
-      value: main
+      value: You
       objectReference: {fileID: 0}
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
       propertyPath: dataPei.Array.data[1].namePei
-      value: doi thu
+      value: Competitor
       objectReference: {fileID: 0}
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
@@ -22229,7 +22229,7 @@ Prefab:
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}
       propertyPath: dataPei.Array.data[2].namePei
-      value: chua dau tu
+      value: Not yet invested
       objectReference: {fileID: 0}
     - target: {fileID: 114213656685891528, guid: 331355501f5d84a479e070315fca433a,
         type: 2}

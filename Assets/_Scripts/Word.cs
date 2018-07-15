@@ -99,10 +99,10 @@ public class Word : MonoBehaviour
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.dollars -= LSlider2;
         panelInfo.SetActive(true);
-        if (indexPSelf == 7 && indexSelf == 3)
+        if (indexPSelf == 7 && (indexSelf == 3 || indexSelf == 1))
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
-                = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars) + "$ ";
+                = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$ ";
         }
         else
         {

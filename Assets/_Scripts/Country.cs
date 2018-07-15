@@ -734,11 +734,17 @@ public class Country : MonoBehaviour
             }
             if (indexSelf == 1)//Borrow money
             {
-                int IndexRandom = UnityEngine.Random.Range(1, 5);
+                int count = PlayerPrefs.GetInt("Count Borrow money", 0);
+                PlayerPrefs.SetInt("Count Borrow money", count++);
+                int IndexRandom = UnityEngine.Random.Range(1, 5);       
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT * IndexRandom;
-                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 GameManager.Instance.main.dollars += moneyDT * IndexRandom;
+                if (PlayerPrefs.GetInt("Count Borrow money") == 5)
+                {
+                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                }
+
             }
             if (indexSelf == 2)//Capital
             {

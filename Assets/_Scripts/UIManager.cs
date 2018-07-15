@@ -440,14 +440,22 @@ public class UIManager : MonoBehaviour
     public void BtnRate()
     {
         AudioManager.Instance.Play("Click");
-        if (GameConfig.Instance.linkGame != null)
+#if UNITY_ANDROID
+        if (GameConfig.Instance.linkGame_android != null)
         {
-            Application.OpenURL(GameConfig.Instance.linkGame);
+            Application.OpenURL(GameConfig.Instance.linkGame_android);
         }
+#elif UNITY_IOS
+        if (GameConfig.Instance.linkGame_ios != null)
+        {
+            Application.OpenURL(GameConfig.Instance.linkGame_ios);
+        }
+#endif
     }
 
     public void BtnShowNew()
     {
+        AudioManager.Instance.Play("Click");
         if (panelNew.activeSelf)
         {
             panelNew.SetActive(false);
@@ -473,6 +481,7 @@ public class UIManager : MonoBehaviour
 
     public void BtnShowSetting()
     {
+        AudioManager.Instance.Play("Click");
         if (panelSetting.activeSelf)
         {
             panelSetting.SetActive(false);
@@ -485,18 +494,21 @@ public class UIManager : MonoBehaviour
 
     public void BtnSaveAndExit()
     {
+        AudioManager.Instance.Play("Click");
         DataPlayer.Instance.SaveDataPlayer();
         panelSetting.SetActive(false);
     }
 
     public void BtnRestore()
     {
+        AudioManager.Instance.Play("Click");
         PlayGame();
         panelSetting.SetActive(false);
     }
 
     public void ExitGame()
     {
+        AudioManager.Instance.Play("Click");
         Application.Quit();
     }
 }

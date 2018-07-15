@@ -18757,7 +18757,7 @@ Prefab:
     - target: {fileID: 114817384020218862, guid: 165a9f4dbc93f604caa07f7c7ba863ac,
         type: 2}
       propertyPath: m_Text
-      value: Employees
+      value: Human Resources
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 165a9f4dbc93f604caa07f7c7ba863ac, type: 2}
@@ -20428,7 +20428,7 @@ Prefab:
     - target: {fileID: 114817384020218862, guid: 165a9f4dbc93f604caa07f7c7ba863ac,
         type: 2}
       propertyPath: m_Text
-      value: Crisis management
+      value: Crisis Management
       objectReference: {fileID: 0}
     - target: {fileID: 114422299182999756, guid: 165a9f4dbc93f604caa07f7c7ba863ac,
         type: 2}

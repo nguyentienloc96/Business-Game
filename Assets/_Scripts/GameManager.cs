@@ -194,30 +194,30 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        Word.Instance.maxSlider = (long)(main.dollars * 0.95f);
+        WorldManager.Instance.maxSlider = (long)(main.dollars * 0.95f);
         if (contentSelf.childCount > 0)
         {
-            if (Word.Instance.lsItemSelf.Count > Word.Instance.indexSelf)
+            if (WorldManager.Instance.lsItemSelf.Count > WorldManager.Instance.indexSelf)
             {
-                if (Word.Instance.lsItemSelf[Word.Instance.indexSelf].gameObject.activeInHierarchy)
-                    Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetComponent<ItemSelf>().UpdateShow();
+                if (WorldManager.Instance.lsItemSelf[WorldManager.Instance.indexSelf].gameObject.activeInHierarchy)
+                    WorldManager.Instance.lsItemSelf[WorldManager.Instance.indexSelf].GetComponent<ItemSelf>().UpdateShow();
             }
         }
     }
 
     public void HidePanelInfo()
     {
-        Word.Instance.panelInfo.SetActive(false);
+        WorldManager.Instance.panelInfo.SetActive(false);
     }
 
     public void NewsGame()
     {
         int ID = UnityEngine.Random.Range(0, main.lsCoutryReady.Count);
         News.Instance.GetNews();
-        Word.Instance.panelInfo.SetActive(true);
+        WorldManager.Instance.panelInfo.SetActive(true);
         string info = main.lsCoutryReady[ID].nameCountry + "\n"
             + News.Instance.NewChoosed.content + +News.Instance.valueNews + "%";
-        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = info;
+        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = info;
         main.lsCoutryReady[ID].lstNew.Add(info);
         if (main.lsCoutryReady[ID].lstNew.Count > 10)
             main.lsCoutryReady[ID].lstNew.RemoveAt(0);
@@ -248,14 +248,14 @@ public class GameManager : MonoBehaviour
         {
             main.bitCoin -= bitcoin;
             main.dollars += bitcoin * 10000;
-            Word.Instance.panelInfo.SetActive(true);
-            Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua doi thanh cong "
+            WorldManager.Instance.panelInfo.SetActive(true);
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua doi thanh cong "
                 + ConvertNumber.convertNumber_DatDz(bitcoin) + "$ thanh " + ConvertNumber.convertNumber_DatDz(bitcoin * 10000) + "$ ";
         }
         else
         {
-            Word.Instance.panelInfo.SetActive(true);
-            Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban khong du bitcoin";
+            WorldManager.Instance.panelInfo.SetActive(true);
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban khong du bitcoin";
         }
         UIManager.Instance.panelDollars.SetActive(false);
         Invoke("HidePanelInfo", 2f);
@@ -264,8 +264,8 @@ public class GameManager : MonoBehaviour
     public void AddDollars(int dollars)
     {
         main.dollars += dollars;
-        Word.Instance.panelInfo.SetActive(true);
-        Word.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua duoc thuong " + ConvertNumber.convertNumber_DatDz(dollars) + "$";
+        WorldManager.Instance.panelInfo.SetActive(true);
+        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua duoc thuong " + ConvertNumber.convertNumber_DatDz(dollars) + "$";
         UIManager.Instance.panelDollars.SetActive(false);
         Invoke("HidePanelInfo", 2f);
     }

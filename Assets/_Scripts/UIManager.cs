@@ -127,7 +127,7 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
-        Word.Instance.OnEnableWord(true);
+        WorldManager.Instance.OnEnableWord(true);
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
-        Word.Instance.OnEnableWord(false);
+        WorldManager.Instance.OnEnableWord(false);
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
@@ -180,7 +180,7 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        Word.Instance.OnEnableWord(false);
+        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH2.gameObject.SetActive(true);
         btnBRANCH3.gameObject.SetActive(true);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[0].name;
@@ -219,7 +219,7 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        Word.Instance.OnEnableWord(false);
+        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH2.gameObject.SetActive(true);
         btnBRANCH3.gameObject.SetActive(true);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[3].name;
@@ -254,7 +254,7 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        Word.Instance.OnEnableWord(false);
+        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH3.gameObject.SetActive(false);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[6].name;
         btnBRANCH1.transform.GetComponent<Branch>().index = 6;
@@ -281,7 +281,7 @@ public class UIManager : MonoBehaviour
         OnclickWORD();
         if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
-            Turorial(Word.Instance.lsCountry[1].gameObject,new Vector3(-795f,217f,0),Vector3.zero);
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject,new Vector3(-795f,217f,0),Vector3.zero);
         }
            
     }
@@ -414,7 +414,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        Word.Instance.lsItemSelf.Clear();
+        WorldManager.Instance.lsItemSelf.Clear();
     }
 
     public void HideEror()
@@ -471,11 +471,11 @@ public class UIManager : MonoBehaviour
             panelNew.SetActive(true);
             for(int i = 0; i < 10; i++)
             {
-                if (i < Word.Instance.lsCountry[Word.Instance.idSelectWord].lstNew.Count)
+                if (i < WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew.Count)
                 {
                     panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
                     panelNew.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>().text
-                        = GameManager.Instance.main.lsCoutryReady[Word.Instance.idSelectWord].lstNew[i];
+                        = GameManager.Instance.main.lsCoutryReady[WorldManager.Instance.idSelectWord].lstNew[i];
                 }
                 else
                 {

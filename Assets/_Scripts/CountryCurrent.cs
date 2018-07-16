@@ -22,22 +22,22 @@ public class CountryCurrent {
     public float HST;
 
     public float I0 = 0f;
-    public float SP0 = 0f;
-    public float MKT0 = 0f;
-    public float MAKRET0 = 0f;
-    public float L0 = 0f;
-    public float KH0 = 0f;
-    public float NS0 = 0f;
-    public float ST0 = 0f;
+    public float SP = 0f;
+    public float MKT = 0f;
+    public float MAKRET = 0f;
+    public float LC = 0f;
+    public float KH = 0f;
+    public float NS = 0f;
+    public float ST = 0f;
 
     public float I0DT = 0f;
-    public float SP0DT = 0f;
-    public float MKT0DT = 0f;
-    public float MAKRET0DT = 0f;
-    public float L0DT = 0f;
-    public float KH0DT = 0f;
-    public float NS0DT = 0f;
-    public float ST0DT = 0f;
+    public float SPDT = 0f;
+    public float MKTDT = 0f;
+    public float MAKRETDT = 0f;
+    public float LCDT = 0f;
+    public float KHDT = 0f;
+    public float NSDT = 0f;
+    public float STDT = 0f;
 
     public STBigBranch[] bigBranch = new STBigBranch[7];
 

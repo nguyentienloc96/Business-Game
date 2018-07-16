@@ -10,43 +10,43 @@ public class ItemSelf : MonoBehaviour
 
     public void OnclickSelf()
     {
-        if (Word.Instance.lsItemSelf.Count - 1 > Word.Instance.indexSelf)
+        if (WorldManager.Instance.lsItemSelf.Count - 1 > WorldManager.Instance.indexSelf)
         {
-            Word.Instance.lsItemSelf[Word.Instance.indexSelf].GetChild(1).GetChild(1).gameObject.SetActive(false);
+            WorldManager.Instance.lsItemSelf[WorldManager.Instance.indexSelf].GetChild(1).GetChild(1).gameObject.SetActive(false);
         }
         transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
-        Word.Instance.indexPSelf = indexPSelf;
-        Word.Instance.indexSelf = indexSelf;
-        Word.Instance.txtLabel.text = label;
-        Word.Instance.txtInfo.text = info;
-        Word.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
+        WorldManager.Instance.indexPSelf = indexPSelf;
+        WorldManager.Instance.indexSelf = indexSelf;
+        WorldManager.Instance.txtLabel.text = label;
+        WorldManager.Instance.txtInfo.text = info;
+        WorldManager.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         if (indexPSelf == 2 && indexSelf == 3)
         {
-            Word.Instance.minSlider2 = GameConfig.Instance.SR_b_Min;
+            WorldManager.Instance.minSlider2 = GameConfig.Instance.SR_b_Min;
         }else if (indexPSelf == 0 && indexSelf == 1)
         {
-            Word.Instance.minSlider2 = GameConfig.Instance.PP_f_Min;
+            WorldManager.Instance.minSlider2 = GameConfig.Instance.PP_f_Min;
         }
         else if (indexPSelf == 0 && indexSelf == 3)
         {
-            Word.Instance.minSlider2 = GameConfig.Instance.PP_b_Min;
+            WorldManager.Instance.minSlider2 = GameConfig.Instance.PP_b_Min;
         }
         else if (indexPSelf == 4 && indexSelf == 0)
         {
-            Word.Instance.minSlider2 = 10000;
+            WorldManager.Instance.minSlider2 = 10000;
         }
         else
         {
-            Word.Instance.minSlider2 = 1000;
+            WorldManager.Instance.minSlider2 = 1000;
         }
-        Word.Instance.seltCoin2.text = Word.Instance.minSlider2.ToString();
-        if (Word.Instance.maxSlider > Word.Instance.minSlider2)
+        WorldManager.Instance.seltCoin2.text = WorldManager.Instance.minSlider2.ToString();
+        if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
         {
-            Word.Instance.sliderEvole.SetActive(true);
+            WorldManager.Instance.sliderEvole.SetActive(true);
         }
         else
         {
-            Word.Instance.sliderEvole.SetActive(false);
+            WorldManager.Instance.sliderEvole.SetActive(false);
         }
 
         UIManager.Instance.SelfTraining.SetActive(true);
@@ -59,14 +59,14 @@ public class ItemSelf : MonoBehaviour
 
     public void UpdateShow()
     {
-        if (Word.Instance.maxSlider > Word.Instance.minSlider2)
+        if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
         {
-            Word.Instance.sliderEvole.SetActive(!Word.Instance.lsCountry[Word.Instance.idSelectWord]
+            WorldManager.Instance.sliderEvole.SetActive(!WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
             .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning);
         }
         else
         {
-            Word.Instance.sliderEvole.SetActive(false);
+            WorldManager.Instance.sliderEvole.SetActive(false);
         }
     }
 
@@ -74,9 +74,9 @@ public class ItemSelf : MonoBehaviour
     {
         if (GameManager.Instance.contentSelf.childCount > 0)
         {
-            if (Word.Instance.lsItemSelf.Count > indexSelf)
+            if (WorldManager.Instance.lsItemSelf.Count > indexSelf)
             {
-                transform.GetChild(1).GetComponent<Button>().interactable = !Word.Instance.lsCountry[Word.Instance.idSelectWord]
+                transform.GetChild(1).GetComponent<Button>().interactable = !WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
                 .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
             }
         }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Word : MonoBehaviour
+public class WorldManager : MonoBehaviour
 {
 
-    public static Word Instance;
+    public static WorldManager Instance;
     public int idSelectWord = 0;
 
     [Header("Word")]

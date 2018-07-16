@@ -86,7 +86,7 @@ public class Branch : MonoBehaviour
         for (int i = 0; i < lsData.Count; i++)
         {
             Transform itemSelf = Instantiate(GameManager.Instance.itemSelf, GameManager.Instance.contentSelf).transform;
-            Word.Instance.lsItemSelf.Add(itemSelf);
+            WorldManager.Instance.lsItemSelf.Add(itemSelf);
             itemSelf.GetChild(1).GetChild(0).GetComponent<Text>().text = lsData[i].name;
             itemSelf.GetComponent<ItemSelf>().indexPSelf = index;
             itemSelf.GetComponent<ItemSelf>().indexSelf = i;
@@ -99,7 +99,7 @@ public class Branch : MonoBehaviour
         {
             if (index == 1)
             {
-                UIManager.Instance.Turorial(Word.Instance.lsItemSelf[1].gameObject, new Vector3(-368f, 98f, 0), Vector3.zero);
+                UIManager.Instance.Turorial(WorldManager.Instance.lsItemSelf[1].gameObject, new Vector3(-368f, 98f, 0), Vector3.zero);
             }
         }
         isCanOnClick = false;

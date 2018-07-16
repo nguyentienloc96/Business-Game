@@ -3079,7 +3079,7 @@ RectTransform:
   - {fileID: 2141739947}
   - {fileID: 839719680}
   m_Father: {fileID: 1228734368}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4358,7 +4358,7 @@ GameObject:
   - component: {fileID: 415311390}
   - component: {fileID: 415311394}
   m_Layer: 5
-  m_Name: Word
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4485,71 +4485,71 @@ MonoBehaviour:
   L: 0
   LDT: 0
   I0: 0
-  SP0: 0
-  MKT0: 0
-  MARKET0: 0
-  L0: 0
-  KH0: 0
-  NS0: 0
-  ST0: 0
+  SP: 0
+  MKT: 0
+  MARKET: 0
+  LC: 0
+  KH: 0
+  NS: 0
+  ST: 0
   I0DT: 0
-  SP0DT: 0
-  MKT0DT: 0
-  MARKET0DT: 0
-  L0DT: 0
-  KH0DT: 0
-  NS0DT: 0
-  ST0DT: 0
+  SPDT: 0
+  MKTDT: 0
+  MARKETDT: 0
+  LCDT: 0
+  KHDT: 0
+  NSDT: 0
+  STDT: 0
   dataColChartMain:
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
+  - nameCol: 1
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 2
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 3
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 4
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 5
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 6
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 7
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 8
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 9
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 10
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 11
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 12
+    valueCol: 00000000000000000000000000000000000000000000000000000000
   dataColChartCompetitors:
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
-  - nameCol: 
-    valueCol: 
+  - nameCol: 1
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 2
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 3
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 4
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 5
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 6
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 7
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 8
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 9
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 10
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 11
+    valueCol: 00000000000000000000000000000000000000000000000000000000
+  - nameCol: 12
+    valueCol: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &419392527
 GameObject:
   m_ObjectHideFlags: 0
@@ -15250,7 +15250,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WORD
+  m_Text: WORLD
 --- !u!222 &1133867502
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15726,8 +15726,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1994115330}
   - {fileID: 322754022}
+  - {fileID: 1994115330}
   - {fileID: 2051254489}
   m_Father: {fileID: 784565533}
   m_RootOrder: 2
@@ -22868,7 +22868,7 @@ RectTransform:
   - {fileID: 2138763099}
   - {fileID: 716056123}
   m_Father: {fileID: 1228734368}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

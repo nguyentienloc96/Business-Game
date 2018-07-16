@@ -63,22 +63,22 @@ public class DataPlayer : MonoBehaviour
 
 
             ct.I0 = GameManager.Instance.main.lsCoutryReady[i].I0;
-            ct.SP0 = GameManager.Instance.main.lsCoutryReady[i].SP0;
-            ct.MKT0 = GameManager.Instance.main.lsCoutryReady[i].MKT0;
-            ct.MAKRET0 = GameManager.Instance.main.lsCoutryReady[i].MARKET0;
-            ct.L0 = GameManager.Instance.main.lsCoutryReady[i].L0;
-            ct.KH0 = GameManager.Instance.main.lsCoutryReady[i].KH0;
-            ct.NS0 = GameManager.Instance.main.lsCoutryReady[i].NS0;
-            ct.ST0 = GameManager.Instance.main.lsCoutryReady[i].ST0;
+            ct.SP = GameManager.Instance.main.lsCoutryReady[i].SP;
+            ct.MKT = GameManager.Instance.main.lsCoutryReady[i].MKT;
+            ct.MAKRET = GameManager.Instance.main.lsCoutryReady[i].MARKET;
+            ct.LC = GameManager.Instance.main.lsCoutryReady[i].LC;
+            ct.KH = GameManager.Instance.main.lsCoutryReady[i].KH;
+            ct.NS = GameManager.Instance.main.lsCoutryReady[i].NS;
+            ct.ST = GameManager.Instance.main.lsCoutryReady[i].ST;
 
             ct.I0DT = GameManager.Instance.main.lsCoutryReady[i].I0DT;
-            ct.SP0DT = GameManager.Instance.main.lsCoutryReady[i].SP0DT;
-            ct.MKT0DT = GameManager.Instance.main.lsCoutryReady[i].MKT0DT;
-            ct.MAKRET0DT = GameManager.Instance.main.lsCoutryReady[i].MARKET0DT;
-            ct.L0DT = GameManager.Instance.main.lsCoutryReady[i].L0DT;
-            ct.KH0DT = GameManager.Instance.main.lsCoutryReady[i].KH0DT;
-            ct.NS0DT = GameManager.Instance.main.lsCoutryReady[i].NS0DT;
-            ct.ST0DT = GameManager.Instance.main.lsCoutryReady[i].ST0DT;
+            ct.SPDT = GameManager.Instance.main.lsCoutryReady[i].SPDT;
+            ct.MKTDT = GameManager.Instance.main.lsCoutryReady[i].MKTDT;
+            ct.MAKRETDT = GameManager.Instance.main.lsCoutryReady[i].MARKETDT;
+            ct.LCDT = GameManager.Instance.main.lsCoutryReady[i].LCDT;
+            ct.KHDT = GameManager.Instance.main.lsCoutryReady[i].KHDT;
+            ct.NSDT = GameManager.Instance.main.lsCoutryReady[i].NSDT;
+            ct.STDT = GameManager.Instance.main.lsCoutryReady[i].STDT;
 
             ct.bigBranch = GameManager.Instance.main.lsCoutryReady[i].bigBranch;           
             ct.dataColChartMain = GameManager.Instance.main.lsCoutryReady[i].dataColChartMain;
@@ -120,7 +120,7 @@ public class DataPlayer : MonoBehaviour
             for (int i = 0; i < lsData.Count; i++)
             {
                 int ID = lsData[i]["ID"].AsInt;
-                Country ct = Word.Instance.lsCountry[ID];
+                Country ct = WorldManager.Instance.lsCountry[ID];
                 ct.L = lsData[i]["L"].AsLong;
                 ct.LDT = lsData[i]["LDT"].AsLong;
                 ct.Mn = lsData[i]["Mn"].AsFloat;
@@ -134,22 +134,22 @@ public class DataPlayer : MonoBehaviour
                 ct.HST = lsData[i]["HST"].AsFloat;
 
                 ct.I0 = lsData[i]["I0"].AsFloat;
-                ct.SP0 = lsData[i]["SP0"].AsFloat;
-                ct.MKT0 = lsData[i]["MKT0"].AsFloat;
-                ct.MARKET0 = lsData[i]["MAKRET0"].AsFloat;
-                ct.L0 = lsData[i]["L0"].AsFloat;
-                ct.KH0 = lsData[i]["KH0"].AsFloat;
-                ct.NS0 = lsData[i]["NS0"].AsFloat;
-                ct.ST0 = lsData[i]["ST0"].AsFloat;
+                ct.SP = lsData[i]["SP"].AsFloat;
+                ct.MKT = lsData[i]["MKT"].AsFloat;
+                ct.MARKET = lsData[i]["MAKRET"].AsFloat;
+                ct.LC = lsData[i]["LC"].AsFloat;
+                ct.KH = lsData[i]["KH"].AsFloat;
+                ct.NS = lsData[i]["NS"].AsFloat;
+                ct.ST = lsData[i]["ST"].AsFloat;
 
                 ct.I0DT = lsData[i]["I0DT"].AsFloat;
-                ct.SP0DT = lsData[i]["SP0DT"].AsFloat;
-                ct.MKT0DT = lsData[i]["MKT0DT"].AsFloat;
-                ct.MARKET0DT = lsData[i]["MAKRET0DT"].AsFloat;
-                ct.L0DT = lsData[i]["L0DT"].AsFloat;
-                ct.KH0DT = lsData[i]["KH0DT"].AsFloat;
-                ct.NS0DT = lsData[i]["NS0DT"].AsFloat;
-                ct.ST0DT = lsData[i]["ST0DT"].AsFloat;
+                ct.SPDT = lsData[i]["SPDT"].AsFloat;
+                ct.MKTDT = lsData[i]["MKTDT"].AsFloat;
+                ct.MARKETDT = lsData[i]["MAKRETDT"].AsFloat;
+                ct.LCDT = lsData[i]["LCDT"].AsFloat;
+                ct.KHDT = lsData[i]["KHDT"].AsFloat;
+                ct.NSDT = lsData[i]["NSDT"].AsFloat;
+                ct.STDT = lsData[i]["STDT"].AsFloat;
 
                 ct.lstNew = new List<string>();
                 for (int k = 0; k < lsData[i]["lstNew"].Count; k++)

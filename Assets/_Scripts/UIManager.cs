@@ -396,6 +396,12 @@ public class UIManager : MonoBehaviour
     {
         txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars);
         txtBitCoin.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.bitCoin);
+        btnBRANCH1.interactable = !Branch.isCanOnClick;
+        btnBRANCH2.interactable = !Branch.isCanOnClick;
+        btnBRANCH3.interactable = !Branch.isCanOnClick;
+        btnNHOM1.interactable = !Branch.isCanOnClick;
+        btnNHOM2.interactable = !Branch.isCanOnClick;
+        btnNHOM3.interactable = !Branch.isCanOnClick;
     }
 
     public void ResetBranch()
@@ -496,7 +502,7 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
         DataPlayer.Instance.SaveDataPlayer();
-        panelSetting.SetActive(false);
+        Application.Quit();
     }
 
     public void BtnRestore()
@@ -510,5 +516,17 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
         Application.Quit();
+    }
+
+    public void AddMoney(Slider slider)
+    {
+        if (slider.value < 1)
+            slider.value += 0.1f;
+    }
+
+    public void AbstractMoney(Slider slider)
+    {
+        if (slider.value > 0)
+            slider.value -= 0.1f;
     }
 }

@@ -105,10 +105,4 @@ public class Branch : MonoBehaviour
         isCanOnClick = false;
     }
 
-    public void Update()
-    {
-        UIManager.Instance.btnBRANCH1.interactable = !isCanOnClick;
-        UIManager.Instance.btnBRANCH2.interactable = !isCanOnClick;
-        UIManager.Instance.btnBRANCH3.interactable = !isCanOnClick;
-    }
 }

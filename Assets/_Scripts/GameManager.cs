@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
             return;
         Instance = this;
-        PlayerPrefs.DeleteAll();
         if (!PlayerPrefs.HasKey("isDoneTutorial"))
         {
             PlayerPrefs.SetInt("isDoneTutorial", 0);
@@ -270,5 +269,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.panelDollars.SetActive(false);
         Invoke("HidePanelInfo", 2f);
     }
+
 
 }

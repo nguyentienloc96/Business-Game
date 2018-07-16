@@ -278,6 +278,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
         PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        ResetGame();
         btnX4.image.sprite = spX1;
         menuGame.SetActive(false);
         Loading(false);
@@ -378,6 +379,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Stop("OverWin");
         AudioManager.Instance.Play("GamePlay");
         PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        ResetGame();
         btnX4.image.sprite = spX1;
         panelWin.SetActive(false);
         panelGameOver.SetActive(false);
@@ -517,6 +519,7 @@ public class UIManager : MonoBehaviour
     public void BtnRestore()
     {
         AudioManager.Instance.Play("Click");
+        ResetGame();
         PlayGame();
         panelSetting.SetActive(false);
     }
@@ -552,5 +555,15 @@ public class UIManager : MonoBehaviour
     public void Loading(bool isLoad)
     {
         StartCoroutine(IELoading(isLoad));
+    }
+
+    public void ResetGame()
+    {
+        for(int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
+        {
+            GameManager.Instance.main.lsCoutryReady[i].L = 0;
+            GameManager.Instance.main.lsCoutryReady[i].LDT = 0;
+        }
+        GameManager.Instance.main.lsCoutryReady.Clear();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -276,20 +277,22 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
+        PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        btnX4.image.sprite = spX1;
         menuGame.SetActive(false);
+        Loading(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
         GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
-        if(PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
-            Turorial(WorldManager.Instance.lsCountry[1].gameObject,new Vector3(-795f,217f,0),Vector3.zero);
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
         }
-           
     }
 
-    public void Turorial(GameObject main,Vector3 posHand,Vector3 angleHnad)
+    public void Turorial(GameObject main, Vector3 posHand, Vector3 angleHnad)
     {
         Destroy(mainTutorial);
         panelTutorial.SetActive(true);
@@ -359,12 +362,12 @@ public class UIManager : MonoBehaviour
 
     public void Continue()
     {
-
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
         DataPlayer.Instance.LoadDataPlayer();
-        menuGame.SetActive(false);
+        GameManager.Instance.SetDate();
+        Loading(false);
         isPlay = true;
         OnclickWORD();
     }
@@ -374,8 +377,11 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("OverWin");
         AudioManager.Instance.Play("GamePlay");
+        PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        btnX4.image.sprite = spX1;
         panelWin.SetActive(false);
         panelGameOver.SetActive(false);
+        Loading(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
@@ -472,7 +478,7 @@ public class UIManager : MonoBehaviour
         else
         {
             panelNew.SetActive(true);
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (i < WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew.Count)
                 {
@@ -531,5 +537,20 @@ public class UIManager : MonoBehaviour
     {
         if (slider.value > 0)
             slider.value -= 0.1f;
+    }
+
+    IEnumerator IELoading(bool isLoad)
+    {
+        panelLoading.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        panelLoading.SetActive(false);
+        menuGame.SetActive(false);
+        panelWin.SetActive(false);
+        panelGameOver.SetActive(false);
+    }
+
+    public void Loading(bool isLoad)
+    {
+        StartCoroutine(IELoading(isLoad));
     }
 }

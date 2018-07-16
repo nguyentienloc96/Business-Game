@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("X4TimeGame"))
         {
-            if (PlayerPrefs.GetFloat("X4TimeGame") == 4f)
+            if (PlayerPrefs.GetFloat("X4TimeGame") != 4f)
             {
                 DeltaTimeGame = 0.5f;
                 UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetFloat("X4TimeGame", 4f);
+            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
         }
 
 
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
         SetDate();
     }
 
-    void SetDate()
+    public void SetDate()
     {
         if (dateGame.Day >= 10)
         {
@@ -232,14 +233,14 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.GetFloat("X4TimeGame") != 4f)
         {
-            DeltaTimeGame = 1f;
-            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
+            DeltaTimeGame = 4f;
+            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
             PlayerPrefs.SetFloat("X4TimeGame", 4f);
         }
         else
         {
-            DeltaTimeGame = 4f;
-            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX1;
+            DeltaTimeGame = 0.5f;
+            UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
             PlayerPrefs.SetFloat("X4TimeGame", 0.5f);
         }
     }
@@ -271,6 +272,4 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.panelDollars.SetActive(false);
         Invoke("HidePanelInfo", 2f);
     }
-
-
 }

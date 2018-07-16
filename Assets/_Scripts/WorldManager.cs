@@ -76,7 +76,7 @@ public class WorldManager : MonoBehaviour
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
-            UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject, new Vector3(88, -286f, 0), new Vector3(0, 0, 0f));
+            UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject, new Vector3(88, -182f, 0), new Vector3(0, 0, 0f));
         }
     }
 

@@ -53,7 +53,7 @@ public class Ads : MonoBehaviour
     {
         timeAds += Time.deltaTime;
         timeVideo += Time.deltaTime;
-        interstitalAd.OnAdClosed += HandleOnAdClosed;
+        //interstitalAd.OnAdClosed += HandleOnAdClosed;
 
         if (timeAds >= 60 && timeAds < 90)
         {

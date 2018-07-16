@@ -138,7 +138,8 @@ public class WorldManager : MonoBehaviour
                 lsCountry[i].gameObject.SetActive(false);
             }
             yield return new WaitForEndOfFrame();
-            lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            if (idSelectWord != -1)
+                lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
             if (PlayerPrefs.GetInt("isDoneTutorial") != 0)
             {
@@ -160,7 +161,8 @@ public class WorldManager : MonoBehaviour
                 lsCountry[i].gameObject.SetActive(false);
             }
             yield return new WaitForEndOfFrame();
-            lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            if (idSelectWord != -1)
+                lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             {
                 

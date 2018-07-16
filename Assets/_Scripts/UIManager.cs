@@ -99,6 +99,9 @@ public class UIManager : MonoBehaviour
     public GameObject panelNew;
     public GameObject panelSetting;
 
+    [Header("Loading")]
+    public GameObject panelLoading;
+
     void Awake()
     {
         if (Instance != null)

@@ -37,7 +37,7 @@ public class Ads : MonoBehaviour
     void Start()
     {
         //RequestBanner();
-        RequestAd();
+        //RequestAd();
         //ShowBanner();
 
         //Unity Ads
@@ -55,11 +55,11 @@ public class Ads : MonoBehaviour
         timeVideo += Time.deltaTime;
         interstitalAd.OnAdClosed += HandleOnAdClosed;
 
-        if (timeAds >= 60 && timeAds < 150)
+        if (timeAds >= 60 && timeAds < 90)
         {
             RequestAd();
         }
-        else if (timeAds >= 150)
+        else if (timeAds >= 90)
         {
             ShowInterstitialAd();
         }

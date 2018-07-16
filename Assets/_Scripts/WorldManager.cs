@@ -142,7 +142,7 @@ public class WorldManager : MonoBehaviour
             lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
             if (PlayerPrefs.GetInt("isDoneTutorial") != 0)
             {
-                lsCountry[0].OnClickItemWord();
+                lsCountry[0].OnClickCountry();
             }
             idSelectWord = 0;
             UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;

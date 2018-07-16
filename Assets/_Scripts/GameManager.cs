@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("BusinessMan")]
     public BusinessMan main;
+    public world world_main;
 
     [Header("EconomicSegment")]
     public EconomicSegment[] arreconomicSegments;
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
                 SetDate();
                 if (dateGame.Month > month)
                 {
+                    world_main.PullData();
                     for (int i = 0; i < main.lsCoutryReady.Count; i++)
                     {
                         main.lsCoutryReady[i].PullData();

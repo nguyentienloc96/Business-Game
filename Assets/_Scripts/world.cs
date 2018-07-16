@@ -59,47 +59,106 @@ public class world : MonoBehaviour
 
             for (int j = 0; j < 12; j++)
             {
-                for(int k = 0; k < 7; k++)
+                for (int k = 0; k < 7; k++)
                 {
-                    dataColChartMain[j].valueCol[k] 
+                    dataColChartMain[j].valueCol[k]
                         += GameManager.Instance.main.lsCoutryReady[i].dataColChartMain[j].valueCol[k];
+                    dataColChartCompetitors[j].valueCol[k]
+                        += GameManager.Instance.main.lsCoutryReady[i].dataColChartCompetitors[j].valueCol[k];
                 }
             }
 
         }
     }
 
+    public void PullData()
+    {
+        PushWord();
+        int month = GameManager.Instance.dateGame.Month - 1;
+        dataColChartMain[month].valueCol[0] = (int)(SP);
+        dataColChartMain[month].valueCol[1] = (int)(MKT);
+        dataColChartMain[month].valueCol[2] = (int)(MARKET);
+        dataColChartMain[month].valueCol[3] = (int)(LC);
+        dataColChartMain[month].valueCol[4] = (int)(KH);
+        dataColChartMain[month].valueCol[5] = (int)(NS);
+        dataColChartMain[month].valueCol[6] = (int)(ST);
+
+        dataColChartCompetitors[month].valueCol[0] = (int)(SPDT);
+        dataColChartCompetitors[month].valueCol[1] = (int)(MKTDT);
+        dataColChartCompetitors[month].valueCol[2] = (int)(MARKETDT);
+        dataColChartCompetitors[month].valueCol[3] = (int)(LCDT);
+        dataColChartCompetitors[month].valueCol[4] = (int)(KHDT);
+        dataColChartCompetitors[month].valueCol[5] = (int)(NSDT);
+        dataColChartCompetitors[month].valueCol[6] = (int)(STDT);
+
+    }
+
     void ResetInfo()
     {
-        L = 0;
-        LDT = 0;
+        L = LDT = 0;
 
-        I0 = 0f;
-        SP = 0f;
-        MKT = 0f;
-        MARKET = 0f;
-        LC = 0f;
-        KH = 0f;
-        NS = 0f;
-        ST = 0f;
+        I0 = SP = MKT = MARKET = LC = KH = NS = ST = 0f;
 
-        I0DT = 0f;
-        SPDT = 0f;
-        MKTDT = 0f;
-        MARKETDT = 0f;
-        LCDT = 0f;
-        KHDT = 0f;
-        NSDT = 0f;
-        STDT = 0f;
+        I0DT = SPDT = MKTDT = MARKETDT = LCDT = KHDT = NSDT = STDT = 0f;
 
         for (int j = 0; j < 12; j++)
         {
             for (int k = 0; k < 7; k++)
             {
                 dataColChartMain[j].valueCol[k] = 0;
+                dataColChartCompetitors[j].valueCol[k] = 0;
             }
         }
     }
 
+    public void OnClickWorld()
+    {
+        if (UIManager.Instance.indexScene == 1)
+        {
+            WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            WorldManager.Instance.idSelectWord = ID;
+            transform.GetChild(1).gameObject.SetActive(true);
+            PushWord();
+            if (I0 != 0)
+            {
+                WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
+                UIManager.Instance.PieChart2.SetActive(true);
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
+                UIManager.Instance.COLCHART.transform
+                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
 
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+            }
+            else
+            {
+                UIManager.Instance.PieChart2.SetActive(true);
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadNote();
+                UIManager.Instance.COLCHART.transform
+                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                UIManager.Instance.COLCHART.transform
+                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+            }
+
+        }
+    }
+
+    public void Update()
+    {
+        if (WorldManager.Instance != null)
+        {
+            transform.GetChild(1).gameObject.SetActive(WorldManager.Instance.idSelectWord == -1 ? true : false);
+        }
+    }
 }

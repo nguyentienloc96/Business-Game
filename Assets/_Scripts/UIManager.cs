@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
         panelSetting.SetActive(false);
         ResetBranch();
         if (GameManager.Instance.main.lsCoutryReady.Count > 0)
-            GameManager.Instance.main.lsCoutryReady[0].OnClickItemWord();
+            GameManager.Instance.main.lsCoutryReady[0].OnClickCountry();
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
             Destroy(mainTutorial);

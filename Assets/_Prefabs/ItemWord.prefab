@@ -159,22 +159,30 @@ MonoBehaviour:
   L: 0
   LDT: 0
   Mn: 0
+  lstNew: []
+  HSP: 0
+  HMKT: 0
+  HMARKET: 0
+  HL: 0
+  HKH: 0
+  HNS: 0
+  HST: 0
   I0: 0
-  SP0: 0
-  MKT0: 0
-  MARKET0: 0
-  L0: 0
-  KH0: 0
-  NS0: 0
-  ST0: 0
+  SP: 0
+  MKT: 0
+  MARKET: 0
+  LC: 0
+  KH: 0
+  NS: 0
+  ST: 0
   I0DT: 0
-  SP0DT: 0
-  MKT0DT: 0
-  MARKET0DT: 0
-  L0DT: 0
-  KH0DT: 0
-  NS0DT: 0
-  ST0DT: 0
+  SPDT: 0
+  MKTDT: 0
+  MARKETDT: 0
+  LCDT: 0
+  KHDT: 0
+  NSDT: 0
+  STDT: 0
   bigBranch:
   - nameBigBranch: 
     smallBranch: []
@@ -375,7 +383,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114320435850976178}
-        m_MethodName: OnClickItemWord
+        m_MethodName: OnClickCountry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

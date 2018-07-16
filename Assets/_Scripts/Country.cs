@@ -230,11 +230,13 @@ public class Country : MonoBehaviour
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn *convertPercent);
     }
 
-    public void OnClickItemWord()
+    public void OnClickCountry()
     {
         AudioManager.Instance.Play("Click");
-
-        WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+        if (WorldManager.Instance.idSelectWord != -1)
+        {
+            WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+        }
         transform.GetChild(3).gameObject.SetActive(true);
         WorldManager.Instance.idSelectWord = ID;
         if (UIManager.Instance.indexScene == 0)

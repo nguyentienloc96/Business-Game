@@ -215,9 +215,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    
     public void HidePanelInfo()
-    {
+    {       
         WorldManager.Instance.panelInfo.SetActive(false);
     }
 
@@ -260,24 +260,25 @@ public class GameManager : MonoBehaviour
             main.bitCoin -= bitcoin;
             main.dollars += bitcoin * 10000;
             WorldManager.Instance.panelInfo.SetActive(true);
-            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua doi thanh cong "
-                + ConvertNumber.convertNumber_DatDz(bitcoin) + "$ thanh " + ConvertNumber.convertNumber_DatDz(bitcoin * 10000) + "$ ";
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You've successfully changed "
+                + ConvertNumber.convertNumber_DatDz(bitcoin) + "btc into " + ConvertNumber.convertNumber_DatDz(bitcoin * 10000) + "$ ";
         }
         else
         {
             WorldManager.Instance.panelInfo.SetActive(true);
-            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban khong du bitcoin";
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You don't have enough bitcoins ";
         }
         UIManager.Instance.panelDollars.SetActive(false);
         Invoke("HidePanelInfo", 2f);
     }
 
-    public void AddDollars(int dollars)
+    public void AddDollars()
     {
-        main.dollars += dollars;
+        Ads.Instance.ShowAdsUnity();
+        //main.dollars += dollars;
         WorldManager.Instance.panelInfo.SetActive(true);
-        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ban vua duoc thuong " + ConvertNumber.convertNumber_DatDz(dollars) + "$";
+        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
         UIManager.Instance.panelDollars.SetActive(false);
-        Invoke("HidePanelInfo", 2f);
+        //Invoke("HidePanelInfo", 5f);
     }
 }

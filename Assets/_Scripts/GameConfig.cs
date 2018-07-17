@@ -26,6 +26,8 @@ public class GameConfig : MonoBehaviour
     public string id_inter_ios;
     public string id_video_android;
     public string id_video_ios;
+    public string nameVideoUnityAds;
+    public long dollarVideoUnityAds;
     public long InMin = 10000;
     public long InMax = 50000;
     public float Ipc = 0.1f;

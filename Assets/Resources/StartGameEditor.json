@@ -13,8 +13,10 @@
   "id_inter_ios": "ca-app-pub-3940256099942544/4411468910",
   "id_video_android": "1778295",
   "id_video_ios": "1778296",
+  "nameVideoUnityAds": "rewardedVideo",
+  "dollarVideoUnityAds": 5000,
 
-  "TimeInterAds": 300,
+  "TimeInterAds": 180,
 
   "InMin": 10000,
   "InMax": 50000,

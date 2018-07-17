@@ -163,44 +163,48 @@ public class Ads : MonoBehaviour
 #region ===UNITY ADS===
     public void ShowAdsUnity()
     {
-#if UNITY_EDITOR
-        StartCoroutine(WaitForAd());
-#endif
-        //if (Advertisement.IsReady())
-        //{
-        //    Advertisement.Show("rewardedVideo", new ShowOptions() { resultCallback = HandleUnityAdsCallback });
-        //}
+//#if UNITY_EDITOR
+//        StartCoroutine(WaitForAd());
+//#endif
+        if (Advertisement.IsReady())
+        {
+            Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
+        }
     }
 
     IEnumerator WaitForAd()
     {
 
-        //while (Advertisement.isShowing)
+        while (Advertisement.isShowing)
             yield return null;
 
     }
 
-    //void HandleUnityAdsCallback(ShowResult result)
-    //{
-    //    switch (result)
-    //    {
-    //        case ShowResult.Finished:
-    //            Time.timeScale = 1;
-    //            timeVideo = 0;
-    //            //GamePlay.gameplay.btnContinue.SetActive(false);
-    //            break;
-    //        case ShowResult.Skipped:
-    //            Time.timeScale = 1;
-    //            timeVideo = 0;
-    //            //amePlay.gameplay.btnContinue.SetActive(false);
-    //            break;
-    //        case ShowResult.Failed:
-    //            Time.timeScale = 1;
-
-    //            break;
-    //    }
-    //}
-#endregion
+    void HandleUnityAdsCallback(ShowResult result)
+    {
+        switch (result)
+        {
+            case ShowResult.Finished:
+                Time.timeScale = 1;
+                timeVideo = 0;
+                GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
+                Invoke("HidePanelInfo", 2f);
+                break;
+            case ShowResult.Skipped:
+                Time.timeScale = 1;
+                timeVideo = 0;
+                //GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds/2;                
+                break;
+            case ShowResult.Failed:
+                Time.timeScale = 1;
+                break;
+        }
+    }
+    void HidePanelInfo()
+    {
+        GameManager.Instance.HidePanelInfo();
+    }
+    #endregion
 
 
 }

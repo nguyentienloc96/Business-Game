@@ -136,7 +136,14 @@ public class GameManager : MonoBehaviour
                 int year = dateGame.Year;
                 dateGame = dateGame.AddDays(1f);
                 SetDate();
-                if (dateGame.Month > month)
+                if(dateGame.Month == 1)
+                {
+                    for (int i = 0; i < main.lsCoutryReady.Count; i++)
+                    {
+                        main.lsCoutryReady[i].ResetDataCol();
+                    }
+                }
+                if (dateGame.Month != month)
                 {
                     world_main.PullData();
                     for (int i = 0; i < main.lsCoutryReady.Count; i++)

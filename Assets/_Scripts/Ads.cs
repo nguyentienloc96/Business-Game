@@ -57,11 +57,11 @@ public class Ads : MonoBehaviour
 
         if (timeAds >= 60 && timeAds < 90)
         {
-            RequestAd();
+            //RequestAd();
         }
         else if (timeAds >= 90)
         {
-            ShowInterstitialAd();
+            //ShowInterstitialAd();
         }
 
         if(timeVideo >= 120)

@@ -1108,4 +1108,16 @@ public class Country : MonoBehaviour
             }
         }
     }
+
+    public void ResetDataCol()
+    {
+        for (int j = 0; j < 12; j++)
+        {
+            for (int k = 0; k < 7; k++)
+            {
+                dataColChartMain[j].valueCol[k] = 0;
+                dataColChartCompetitors[j].valueCol[k] = 0;
+            }
+        }
+    }
 }

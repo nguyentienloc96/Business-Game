@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
             return;
         Instance = this;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         if (!PlayerPrefs.HasKey("isDoneTutorial"))
         {
             PlayerPrefs.SetInt("isDoneTutorial", 0);

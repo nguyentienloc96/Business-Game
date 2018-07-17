@@ -31,7 +31,7 @@ public class Ads : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     void Start()
@@ -59,7 +59,7 @@ public class Ads : MonoBehaviour
         {
             RequestAd();
         }
-        else if (timeAds >= 90)
+        else if (timeAds >= GameConfig.Instance.timeInterAds)
         {
             ShowInterstitialAd();
         }
@@ -91,37 +91,28 @@ public class Ads : MonoBehaviour
 
     public void RequestAd()
     {
-#if UNITY_ANDROID
-        if (isLoadAds == false && GameConfig.Instance.id_inter_android != null)
+        #if UNITY_ANDROID
+        GameConfig.Instance.id_inter_android = "ca-app-pub-6285794272989840/5632501293";
+        if (!isLoadAds && GameConfig.Instance.id_inter_android != null)
         {
             interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
             AdRequest requestInterAd = new AdRequest.Builder().Build();
-            interstitalAd.LoadAd(requestInterAd);
-            isLoadAds = true;
+            interstitalAd.LoadAd(requestInterAd);           
             isShowAds = false;
-            Debug.Log("Load Ads");
+            isLoadAds = true;
+            Debug.Log("Load Ads - "+ interstitalAd.IsLoaded().ToString());
         }
-#elif UNITY_IOS
-        if (isLoadAds == false && GameConfig.Instance.id_inter_ios != null)
+        #elif UNITY_IOS
+        if (!isLoadAds && GameConfig.Instance.id_inter_ios != null)
         {
             interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
             AdRequest requestInterAd = new AdRequest.Builder().Build();
             interstitalAd.LoadAd(requestInterAd);
-            isLoadAds = true;
             isShowAds = false;
-            Debug.Log("Load Ads");
-        }
-#else
-        if (isLoadAds == false && GameConfig.Instance.id_inter_android != null)
-        {
-            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
-            AdRequest requestInterAd = new AdRequest.Builder().Build();
-            interstitalAd.LoadAd(requestInterAd);
             isLoadAds = true;
-            isShowAds = false;
-            Debug.Log("Load Ads");
+            Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
         }
-#endif
+        #endif
     }
 
     //public void ShowBanner()
@@ -142,8 +133,8 @@ public class Ads : MonoBehaviour
     //}
 
     public void ShowInterstitialAd()
-    {
-        if (interstitalAd != null && !isShowAds)
+    {       
+        if (interstitalAd != null)
         {
             if (interstitalAd.IsLoaded())
             {
@@ -152,6 +143,11 @@ public class Ads : MonoBehaviour
                 isLoadAds = false;
                 timeAds = 0;
                 Debug.Log("Show Ads");
+            }
+            else
+            {
+                RequestAd();
+                ShowInterstitialAd();
             }
         }
         else

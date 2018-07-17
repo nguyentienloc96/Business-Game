@@ -73,8 +73,11 @@ public class ColumnChart : MonoBehaviour
     {
         for (int j = 0; j < datacol.valueCol.Length; j++)
         {
-            item.transform.GetChild(j).GetComponent<Image>().DOFillAmount((float)datacol.valueCol[j] / (float)maxX, 0.5f);
-            yield return new WaitForSeconds(0.5f);
+            if ((float)datacol.valueCol[j] != 0)
+            {
+                item.transform.GetChild(j).GetComponent<Image>().DOFillAmount((float)datacol.valueCol[j] / (float)maxX, 0.5f);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
 

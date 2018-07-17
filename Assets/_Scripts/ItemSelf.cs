@@ -39,7 +39,7 @@ public class ItemSelf : MonoBehaviour
         {
             WorldManager.Instance.minSlider2 = 1000;
         }
-        WorldManager.Instance.seltCoin2.text = WorldManager.Instance.minSlider2.ToString();
+        WorldManager.Instance.seltCoin2.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.minSlider2);
         if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
         {
             WorldManager.Instance.sliderEvole.SetActive(true);

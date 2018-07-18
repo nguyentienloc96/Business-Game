@@ -345,6 +345,8 @@ public class Country : MonoBehaviour
                     DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays < 365)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                    WorldManager.Instance.sliderEvole.SetActive(false);
+
                 }
                 if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= GameConfig.Instance.PP_f_Min && (long)((TimeSpan)(GameManager.Instance.dateGame -
                     DateTime.Parse(bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD))).TotalDays >= 365)
@@ -373,6 +375,7 @@ public class Country : MonoBehaviour
                     bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
                     bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS += moneyDT;
                     bigBranch[0].smallBranch[3].isRunning = true;
+                    WorldManager.Instance.sliderEvole.SetActive(false);
                 }
             }
             else if (indexSelf == 4)//Service
@@ -410,6 +413,7 @@ public class Country : MonoBehaviour
                     MKT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * HMKT * convertPercent;
                     MKTDT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * 2f) * HMKT * convertPercent;
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                    WorldManager.Instance.sliderEvole.SetActive(false);
                 }
 
             }
@@ -426,6 +430,7 @@ public class Country : MonoBehaviour
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
         }
         else if (indexPSelf == 2) //SPREADING
@@ -574,6 +579,7 @@ public class Country : MonoBehaviour
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
             else if (indexSelf == 3)//Sales culture
             {
@@ -747,9 +753,11 @@ public class Country : MonoBehaviour
             if (indexSelf == 0)//Find a co-founder
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = UnityEngine.Random.Range(1, 3);
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
             if (indexSelf == 1)//Borrow money
             {
@@ -1170,7 +1178,7 @@ public class Country : MonoBehaviour
         if (bigBranch[7].smallBranch[0].moneyDTBD > 0)
         {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame
-               - DateTime.Parse(bigBranch[7].smallBranch[0].investmentDayBD))).TotalDays) == 30 && bigBranch[7].smallBranch[0].moneyDTS > 0)
+               - DateTime.Parse(bigBranch[7].smallBranch[0].investmentDayS))).TotalDays) == 9 && bigBranch[7].smallBranch[0].moneyDTS > 0)
             {
                 bigBranch[7].smallBranch[0].moneyDTS--;
                 UIManager.Instance.panelFindACoFounder.SetActive(true);
@@ -1261,6 +1269,7 @@ public class Country : MonoBehaviour
 
     public void OnClickNoFindACoFounder()
     {
+        bigBranch[7].smallBranch[0].investmentDayS = GameManager.Instance.dateGame.ToString();
         UIManager.Instance.panelFindACoFounder.SetActive(false);
         if (bigBranch[7].smallBranch[0].moneyDTS == 0)
         {
@@ -1271,6 +1280,7 @@ public class Country : MonoBehaviour
 
     public void OnClickYesFindACoFounder()
     {
+        bigBranch[7].smallBranch[0].investmentDayS = GameManager.Instance.dateGame.ToString();
         UIManager.Instance.panelFindACoFounder.SetActive(false);
         float temp = 0f;
         if (typeCoFounder == 1)

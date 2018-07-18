@@ -41,7 +41,7 @@ public class ItemSelf : MonoBehaviour
             WorldManager.Instance.minSlider2 = 1000;
         }
         WorldManager.Instance.seltCoin2.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.minSlider2);
-        if (indexPSelf == 7 && indexSelf == 2)
+        if (indexPSelf == 7 && (indexSelf == 2 || indexSelf == 0))
         {
             WorldManager.Instance.sliderEvole.SetActive(true);
             WorldManager.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(false);

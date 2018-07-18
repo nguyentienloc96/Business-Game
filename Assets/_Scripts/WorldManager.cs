@@ -110,6 +110,11 @@ public class WorldManager : MonoBehaviour
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
                 = "You have successfully registered call for founds";
         }
+        else if (indexPSelf == 7 && indexSelf == 0)
+        {
+            panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "You have successfully registered call for founds";
+        }
         else
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text

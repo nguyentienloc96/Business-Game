@@ -64,6 +64,7 @@ public class Country : MonoBehaviour
     public DataColChart[] dataColChartCompetitors = new DataColChart[12];
 
     private float convertPercent = 0.01f;
+    private string[] lsTypeFounder = new string[3] { "Marketing", "Product", "Human Resources" };
 
     public void Start()
     {
@@ -152,7 +153,7 @@ public class Country : MonoBehaviour
             if (i == 7)
             {
                 bigBranch[i].nameBigBranch = "Funding";
-                bigBranch[i].smallBranch = new STBranch[9];
+                bigBranch[i].smallBranch = new STBranch[4];
                 bigBranch[i].smallBranch[0].nameSmallBranch = "Find a co-founder";
                 bigBranch[i].smallBranch[1].nameSmallBranch = "Borrow money";
                 bigBranch[i].smallBranch[2].nameSmallBranch = "Capital";
@@ -746,10 +747,9 @@ public class Country : MonoBehaviour
             if (indexSelf == 0)//Find a co-founder
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                ST += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * HST * convertPercent;
-                STDT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f) * HST * convertPercent;
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = UnityEngine.Random.Range(1, 3);
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
             if (indexSelf == 1)//Borrow money
             {
@@ -1125,28 +1125,16 @@ public class Country : MonoBehaviour
         }
     }
 
-    public void ResetDataCol()
-    {
-        for (int j = 1; j < 12; j++)
-        {
-            for (int k = 0; k < 7; k++)
-            {
-                dataColChartMain[j].valueCol[k] = 0;
-                dataColChartCompetitors[j].valueCol[k] = 0;
-            }
-        }
-    }
-
     int indexCapital = 0;
     public void Capital()
     {
         if (bigBranch[7].smallBranch[2].moneyDTBD > 0)
         {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame
-               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayBD))).TotalDays) <= 30)
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayBD))).TotalDays) <= 30 * 6)
             {
                 if (((long)((TimeSpan)(GameManager.Instance.dateGame
-               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayS))).TotalDays) == 2f && bigBranch[7].smallBranch[2].moneyDTBD <= 6)
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayS))).TotalDays) == 6f && bigBranch[7].smallBranch[2].moneyDTBD <= 6)
                 {
                     UIManager.Instance.panelInfoCapital.SetActive(true);
                     UIManager.Instance.panelInfoCapital.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
@@ -1154,8 +1142,8 @@ public class Country : MonoBehaviour
                     UIManager.Instance.panelInfoCapital.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoCapital());
                     UIManager.Instance.panelInfoCapital.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesCapital());
                     UIManager.Instance.panelInfoCapital.transform.GetChild(0).GetComponent<Text>().text
-                        = "You have successfully received the capital in" +
-                        WorldManager.Instance.lsCapital[bigBranch[7].smallBranch[2].moneyDTBD-1] + "round";
+                        = "You have successfully received the capital in " +
+                        WorldManager.Instance.lsCapital[bigBranch[7].smallBranch[2].moneyDTBD - 1] + " round";
                 }
             }
         }
@@ -1168,6 +1156,65 @@ public class Country : MonoBehaviour
             else
             {
                 bigBranch[7].smallBranch[2].isRunning = true;
+            }
+        }
+    }
+
+    int typeCoFounder = 0;
+    int typeBranchCoFounder = 0;
+    float percentMoneyCoFounder = 0;
+    int percentCapitalCoFounder = 0;
+
+    public void FindACoFounder()
+    {
+        if (bigBranch[7].smallBranch[0].moneyDTBD > 0)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame
+               - DateTime.Parse(bigBranch[7].smallBranch[0].investmentDayBD))).TotalDays) == 30 && bigBranch[7].smallBranch[0].moneyDTS > 0)
+            {
+                bigBranch[7].smallBranch[0].moneyDTS--;
+                UIManager.Instance.panelFindACoFounder.SetActive(true);
+                typeCoFounder = UnityEngine.Random.Range(1, 4);
+                if (typeCoFounder == 1)
+                {
+                    typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
+                    percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%"; 
+                }
+                else if (typeCoFounder == 2)
+                {
+                    typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
+                    percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
+                    percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
+                    + GameConfig.Instance.dollarStartGame / percentMoneyCoFounder + "$"
+                    + " / Capital : " + percentCapitalCoFounder + "%";
+                }
+                else if (typeCoFounder == 3)
+                {
+                    typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
+                    percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
+                    percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                     = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
+                    + GameConfig.Instance.dollarStartGame * percentMoneyCoFounder + "$"
+                    + " / Capital : " + percentCapitalCoFounder + "%";
+                }
+                else if (typeCoFounder == 4)
+                {
+                    percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
+                    percentCapitalCoFounder = UnityEngine.Random.Range(25, 75);
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                     = "Rich man / Money :"
+                    + GameConfig.Instance.dollarStartGame / percentMoneyCoFounder + "$"
+                    + " / Capital : " + percentCapitalCoFounder + "%";
+                }
+                UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
+                UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+                UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoFindACoFounder());
+                UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesFindACoFounder());
             }
         }
     }
@@ -1193,6 +1240,8 @@ public class Country : MonoBehaviour
         if (bigBranch[7].smallBranch[2].moneyDTBD != 6)
         {
             bigBranch[7].smallBranch[2].moneyDTBD++;
+            bigBranch[7].smallBranch[2].investmentDayS
+                = GameManager.Instance.dateGame.AddDays(30 * (bigBranch[7].smallBranch[2].moneyDTBD - 1)).ToString();
         }
         else
         {
@@ -1210,10 +1259,57 @@ public class Country : MonoBehaviour
         }
     }
 
+    public void OnClickNoFindACoFounder()
+    {
+        UIManager.Instance.panelFindACoFounder.SetActive(false);
+        if (bigBranch[7].smallBranch[0].moneyDTS == 0)
+        {
+            bigBranch[7].smallBranch[0].moneyDTBD = 0;
+            bigBranch[7].smallBranch[0].isRunning = false;
+        }
+    }
+
+    public void OnClickYesFindACoFounder()
+    {
+        UIManager.Instance.panelFindACoFounder.SetActive(false);
+        float temp = 0f;
+        if (typeCoFounder == 1)
+            temp = 1.5f;
+        else if (typeCoFounder == 2)
+            temp = 1.2f;
+        else if (typeCoFounder == 3)
+            temp = 1.2f;
+        else if (typeCoFounder == 4)
+            temp = 2f;
+
+        if(typeBranchCoFounder == 1)
+        {
+            MKT = temp * MKT;
+        }
+        else if (typeBranchCoFounder == 2)
+        {
+            MKT = temp * SP;
+        }
+        if (typeBranchCoFounder == 3)
+        {
+            MKT = temp * NS;
+        }
+    }
+
     public void HidePanelInfo()
     {
         WorldManager.Instance.panelInfo.SetActive(false);
     }
 
-
+    public void ResetDataCol()
+    {
+        for (int j = 1; j < 12; j++)
+        {
+            for (int k = 0; k < 7; k++)
+            {
+                dataColChartMain[j].valueCol[k] = 0;
+                dataColChartCompetitors[j].valueCol[k] = 0;
+            }
+        }
+    }
 }

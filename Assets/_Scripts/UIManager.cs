@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour
     public GameObject SELFTRAINING;
     public GameObject SelfTraining;
     public Text txtGDPCountry;
-    public GameObject panelInfoCapital;
 
     [Header("DateTime")]
     #region DateTime  
@@ -63,6 +62,8 @@ public class UIManager : MonoBehaviour
     public Text coinSelf;
     public GameObject panelBuyCompetitor;
     public GameObject panelBankLoan;
+    public GameObject panelInfoCapital;
+    public GameObject panelFindACoFounder;
 
     [Header("SRD")]
     public GameObject btnEasy;

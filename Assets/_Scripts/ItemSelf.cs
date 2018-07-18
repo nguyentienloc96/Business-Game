@@ -23,7 +23,8 @@ public class ItemSelf : MonoBehaviour
         if (indexPSelf == 2 && indexSelf == 3)
         {
             WorldManager.Instance.minSlider2 = GameConfig.Instance.SR_b_Min;
-        }else if (indexPSelf == 0 && indexSelf == 1)
+        }
+        else if (indexPSelf == 0 && indexSelf == 1)
         {
             WorldManager.Instance.minSlider2 = GameConfig.Instance.PP_f_Min;
         }
@@ -40,13 +41,24 @@ public class ItemSelf : MonoBehaviour
             WorldManager.Instance.minSlider2 = 1000;
         }
         WorldManager.Instance.seltCoin2.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.minSlider2);
-        if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
+        if (indexPSelf == 7 && indexSelf == 2)
         {
             WorldManager.Instance.sliderEvole.SetActive(true);
+            WorldManager.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(false);
+            WorldManager.Instance.sliderEvole.transform.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
-            WorldManager.Instance.sliderEvole.SetActive(false);
+            if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
+            {
+                WorldManager.Instance.sliderEvole.SetActive(true);
+                WorldManager.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(true);
+                WorldManager.Instance.sliderEvole.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                WorldManager.Instance.sliderEvole.SetActive(false);
+            }
         }
 
         UIManager.Instance.SelfTraining.SetActive(true);

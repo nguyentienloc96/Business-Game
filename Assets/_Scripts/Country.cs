@@ -67,6 +67,11 @@ public class Country : MonoBehaviour
 
     public void Start()
     {
+        ResetCountry();
+    }
+
+    public void ResetCountry()
+    {
         for (int i = 0; i < 12; i++)
         {
             dataColChartMain[i].nameCol = (i + 1).ToString();
@@ -152,6 +157,7 @@ public class Country : MonoBehaviour
                 bigBranch[i].smallBranch[1].nameSmallBranch = "Borrow money";
                 bigBranch[i].smallBranch[2].nameSmallBranch = "Capital";
                 bigBranch[i].smallBranch[3].nameSmallBranch = "Bank loan";
+                bigBranch[i].smallBranch[2].moneyDTS = 100;
             }
         }
     }
@@ -227,7 +233,7 @@ public class Country : MonoBehaviour
 
         I0 = min * 100;
         I0DT = minDT * 100;
-        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn *convertPercent);
+        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
     }
 
     public void OnClickCountry()
@@ -756,23 +762,30 @@ public class Country : MonoBehaviour
                 if (PlayerPrefs.GetInt("Count Borrow money") == 5)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                    WorldManager.Instance.sliderEvole.SetActive(false);
                 }
 
             }
             if (indexSelf == 2)//Capital
             {
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                ST += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * HST * convertPercent;
-                STDT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * UnityEngine.Random.Range(0.25f, 2f) * HST * convertPercent;
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS >= 5)
+                {
+                    indexCapital = 0;
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;
+                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                    WorldManager.Instance.sliderEvole.SetActive(false);
+                }
             }
             if (indexSelf == 3)//bank Loan
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
-                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 GameManager.Instance.main.dollars += moneyDT;
+                Debug.Log(moneyDT + "   " + GameManager.Instance.main.dollars);
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
         }
 
@@ -819,6 +832,7 @@ public class Country : MonoBehaviour
         BuyACompetitor();
         BankLoan();
         BorrowMoney();
+        Capital();
     }
 
     public void FactoryWorkshopLoop()
@@ -1013,6 +1027,7 @@ public class Country : MonoBehaviour
                         GameManager.Instance.main.dollars = 0;
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
                         GameManager.Instance.main.lsCoutryReady.Remove(this);
+                        ResetCountry();
                         info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                         bigBranch[7].smallBranch[3].isRunning = false;
                     }
@@ -1046,6 +1061,7 @@ public class Country : MonoBehaviour
                         GameManager.Instance.main.dollars = 0;
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
                         GameManager.Instance.main.lsCoutryReady.Remove(this);
+                        ResetCountry();
                         info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                         bigBranch[7].smallBranch[3].isRunning = false;
                     }
@@ -1120,4 +1136,84 @@ public class Country : MonoBehaviour
             }
         }
     }
+
+    int indexCapital = 0;
+    public void Capital()
+    {
+        if (bigBranch[7].smallBranch[2].moneyDTBD > 0)
+        {
+            if (((long)((TimeSpan)(GameManager.Instance.dateGame
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayBD))).TotalDays) <= 30)
+            {
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayS))).TotalDays) == 2f && bigBranch[7].smallBranch[2].moneyDTBD <= 6)
+                {
+                    UIManager.Instance.panelInfoCapital.SetActive(true);
+                    UIManager.Instance.panelInfoCapital.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
+                    UIManager.Instance.panelInfoCapital.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
+                    UIManager.Instance.panelInfoCapital.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoCapital());
+                    UIManager.Instance.panelInfoCapital.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesCapital());
+                    UIManager.Instance.panelInfoCapital.transform.GetChild(0).GetComponent<Text>().text
+                        = "You have successfully received the capital in" +
+                        WorldManager.Instance.lsCapital[bigBranch[7].smallBranch[2].moneyDTBD-1] + "round";
+                }
+            }
+        }
+        else
+        {
+            if (bigBranch[7].smallBranch[2].moneyDTS >= 5)
+            {
+                bigBranch[7].smallBranch[2].isRunning = false;
+            }
+            else
+            {
+                bigBranch[7].smallBranch[2].isRunning = true;
+            }
+        }
+    }
+
+    public void OnClickNoCapital()
+    {
+        indexCapital++;
+        UIManager.Instance.panelInfoCapital.SetActive(false);
+        bigBranch[7].smallBranch[2].investmentDayS = GameManager.Instance.dateGame.ToString();
+        if (indexCapital >= 3)
+        {
+            bigBranch[7].smallBranch[2].moneyDTBD = 0;
+            bigBranch[7].smallBranch[2].moneyDTS = 0;
+            bigBranch[7].smallBranch[2].isRunning = false;
+        }
+    }
+
+    public void OnClickYesCapital()
+    {
+        indexCapital = 0;
+        UIManager.Instance.panelInfoCapital.SetActive(false);
+        bigBranch[7].smallBranch[2].investmentDayS = GameManager.Instance.dateGame.ToString();
+        if (bigBranch[7].smallBranch[2].moneyDTBD != 6)
+        {
+            bigBranch[7].smallBranch[2].moneyDTBD++;
+        }
+        else
+        {
+            bigBranch[7].smallBranch[2].moneyDTBD = 0;
+            float X = UnityEngine.Random.Range(1f, 5f);
+            long PX = (long)(X * 0.15f * bigBranch[7].smallBranch[2].moneyDTS);
+            bigBranch[7].smallBranch[2].moneyDTS -= PX;
+            long moneyX = (long)(X * GameManager.Instance.main.dollars);
+            GameManager.Instance.main.dollars += moneyX;
+            WorldManager.Instance.panelInfo.SetActive(true);
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "You have successfully received the capital " + moneyX + "$";
+            Invoke("HidePanelInfo", 2f);
+            bigBranch[7].smallBranch[2].isRunning = false;
+        }
+    }
+
+    public void HidePanelInfo()
+    {
+        WorldManager.Instance.panelInfo.SetActive(false);
+    }
+
+
 }

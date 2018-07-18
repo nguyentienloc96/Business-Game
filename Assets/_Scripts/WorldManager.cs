@@ -36,6 +36,7 @@ public class WorldManager : MonoBehaviour
 
     [Header("ItemSelf")]
     public List<Transform> lsItemSelf = new List<Transform>();
+    public string[] lsCapital = new string[6] { "Seed Round", "Seri A", "Self Employer", "seri B", "ICO", "IPO" };
 
     void Awake()
     {
@@ -50,7 +51,7 @@ public class WorldManager : MonoBehaviour
         {
             Transform item = Instantiate(itemWord, contentWord).transform;
             item.name = DataUpdate.Instance.lstData_NameCountry[i].name;
-            
+
             item.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:000}", i);
             item.GetChild(1).GetComponent<Text>().text = DataUpdate.Instance.lstData_NameCountry[i].name;
             lsCountry.Add(item.GetComponent<Country>());
@@ -72,7 +73,7 @@ public class WorldManager : MonoBehaviour
     public void SliderWord()
     {
         long index = (maxSlider - minSlider) / 1000;
-        LSlider = minSlider + (long)(seltTraining.value * index) *1000;
+        LSlider = minSlider + (long)(seltTraining.value * index) * 1000;
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
         {
@@ -95,7 +96,7 @@ public class WorldManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
 
-        lsCountry[idSelectWord].SetSmallBranch(indexPSelf,indexSelf,LSlider2);
+        lsCountry[idSelectWord].SetSmallBranch(indexPSelf, indexSelf, LSlider2);
         lsCountry[idSelectWord].PullData();
         GameManager.Instance.main.dollars -= LSlider2;
         panelInfo.SetActive(true);
@@ -103,6 +104,11 @@ public class WorldManager : MonoBehaviour
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
                 = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$ ";
+        }
+        else if (indexPSelf == 7 && indexSelf == 2)
+        {
+            panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "You have successfully registered call for founds";
         }
         else
         {
@@ -148,7 +154,7 @@ public class WorldManager : MonoBehaviour
             idSelectWord = 0;
             UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;
             for (int i = 0; i < lsCountry.Count; i++)
-            { 
+            {
                 lsCountry[i].gameObject.SetActive(true);
                 if (i <= 8)
                     yield return new WaitForSeconds(0.15f);
@@ -165,7 +171,7 @@ public class WorldManager : MonoBehaviour
                 lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             {
-                
+
                 GameManager.Instance.main.lsCoutryReady[0].transform.GetChild(3).gameObject.SetActive(true);
                 idSelectWord = GameManager.Instance.main.lsCoutryReady[0].ID;
             }
@@ -218,4 +224,5 @@ public class WorldManager : MonoBehaviour
                 "You do not have enough money ";
         }
     }
+
 }

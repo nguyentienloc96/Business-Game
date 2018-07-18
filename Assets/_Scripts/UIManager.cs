@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject SELFTRAINING;
     public GameObject SelfTraining;
     public Text txtGDPCountry;
+    public GameObject panelInfoCapital;
 
     [Header("DateTime")]
     #region DateTime  

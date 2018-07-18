@@ -1172,7 +1172,6 @@ public class Country : MonoBehaviour
     int typeBranchCoFounder = 0;
     float percentMoneyCoFounder = 0;
     int percentCapitalCoFounder = 0;
-
     public void FindACoFounder()
     {
         if (bigBranch[7].smallBranch[0].moneyDTBD > 0)

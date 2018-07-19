@@ -72,7 +72,10 @@ public class WorldManager : MonoBehaviour
 
     public void SliderWord()
     {
-        long index = (maxSlider - minSlider) / 1000;
+        long moneyMax = 0;
+        if (GameManager.Instance.main.dollars < GameConfig.Instance.dollarStartGame)
+            moneyMax = GameManager.Instance.main.dollars;
+        long index = (moneyMax - minSlider) / 1000;
         LSlider = minSlider + (long)(seltTraining.value * index) * 1000;
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
@@ -160,9 +163,12 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;
             for (int i = 0; i < lsCountry.Count; i++)
             {
-                lsCountry[i].gameObject.SetActive(true);
-                if (i <= 8)
-                    yield return new WaitForSeconds(0.15f);
+                if (lsCountry[i].L <= 0)
+                {
+                    lsCountry[i].gameObject.SetActive(true);
+                    if (i <= 8)
+                        yield return new WaitForSeconds(0.15f);
+                }
             }
         }
         else
@@ -216,6 +222,7 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L - lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
+            lsCountry[idSelectWord].gameObject.SetActive(false);
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
             {
                 UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));

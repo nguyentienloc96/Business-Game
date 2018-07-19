@@ -3099,22 +3099,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1ba874d03bd3a1e449437c464b2253c9, type: 3}
-    m_FontSize: 25
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "B\u1EA1n ph\u1EA3i \u0111\u1EA7u t\u01B0 \u0111\u1EE7 b\u1EA3y ng\xE0nh
-    theo \u0111\xFAng t\u1EC9 l\u1EC7 nh\u01B0 sau :\r\n- Product : 20\r\n- Marketing
-    : 15\r\n- Market : 15\r\n- Location : 10\r\n- Employees : 20\r\n- Terrorist management
-    : 10\r\n- Selftraning : 10\r\n\u0110\u1EC3 \u0111\u1EA1t \u0111\u01B0\u1EE3c l\u1EE3i
-    nhu\u1EADn cao nh\u1EA5t !"
+  m_Text: "Let\u2019s enjoy it !"
 --- !u!222 &319933549
 CanvasRenderer:
   m_ObjectHideFlags: 0

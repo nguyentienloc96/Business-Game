@@ -142,6 +142,10 @@ public class UIManager : MonoBehaviour
     public void OnclickTHONGSO()
     {
         AudioManager.Instance.Play("Click");
+        if (indexScene == 0)
+        {
+            WorldManager.Instance.OnEnableWord(false);
+        }
         indexScene = 1;
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
@@ -154,7 +158,6 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
-        WorldManager.Instance.OnEnableWord(false);
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
@@ -172,7 +175,10 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM1()
     {
         AudioManager.Instance.Play("Click");
-
+        if(indexScene == 0)
+        {
+            WorldManager.Instance.OnEnableWord(false);
+        }
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -186,7 +192,6 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH2.gameObject.SetActive(true);
         btnBRANCH3.gameObject.SetActive(true);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[0].name;
@@ -211,7 +216,10 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM2()
     {
         AudioManager.Instance.Play("Click");
-
+        if (indexScene == 0)
+        {
+            WorldManager.Instance.OnEnableWord(false);
+        }
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -225,7 +233,6 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH2.gameObject.SetActive(true);
         btnBRANCH3.gameObject.SetActive(true);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[3].name;
@@ -246,7 +253,10 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM3()
     {
         AudioManager.Instance.Play("Click");
-
+        if (indexScene == 0)
+        {
+            WorldManager.Instance.OnEnableWord(false);
+        }
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -260,7 +270,6 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(true);
         SelfTraining.SetActive(false);
-        WorldManager.Instance.OnEnableWord(false);
         btnBRANCH3.gameObject.SetActive(false);
         btnBRANCH1.transform.GetChild(0).GetComponent<Text>().text = GameManager.Instance.arreconomicSegments[6].name;
         btnBRANCH1.transform.GetComponent<Branch>().index = 6;
@@ -515,7 +524,10 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
         DataPlayer.Instance.SaveDataPlayer();
-        Application.Quit();
+        isPlay = false;
+        panelLoading.SetActive(false);
+        menuGame.SetActive(false);
+        panelWin.SetActive(false);
     }
 
     public void BtnRestore()

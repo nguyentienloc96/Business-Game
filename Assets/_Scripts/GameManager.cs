@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             if (PlayerPrefs.GetFloat("X4TimeGame") != 4f)
             {
-                DeltaTimeGame = 0.5f;
+                DeltaTimeGame = 0.25f;
                 UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
             }
             else
@@ -247,9 +247,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            DeltaTimeGame = 0.5f;
+            DeltaTimeGame = 0.25f;
             UIManager.Instance.btnX4.image.sprite = UIManager.Instance.spX4;
-            PlayerPrefs.SetFloat("X4TimeGame", 0.5f);
+            PlayerPrefs.SetFloat("X4TimeGame", 0.25f);
         }
     }
 

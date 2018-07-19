@@ -57,7 +57,7 @@ public class Ads : MonoBehaviour
     {
         if (timeAds >= 5 && timeAds <= GameConfig.Instance.timeInterAds / 2)
         {
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
         GameConfig.Instance.id_inter_android = "ca-app-pub-6285794272989840/5632501293"; //test
         if (!isLoadAds && GameConfig.Instance.id_inter_android != null)
         {
@@ -68,17 +68,17 @@ public class Ads : MonoBehaviour
             isLoadAds = true;
             Debug.Log("Load Ads - "+ interstitalAd.IsLoaded().ToString());
         }
-#elif UNITY_IOS
-        if (!isLoadAds && GameConfig.Instance.id_inter_ios != null)
-        {
-            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
-            AdRequest requestInterAd = new AdRequest.Builder().Build();
-            interstitalAd.LoadAd(requestInterAd);
-            isShowAds = false;
-            isLoadAds = true;
-            Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
-        }
-#endif
+//#elif UNITY_IOS
+//        if (!isLoadAds && GameConfig.Instance.id_inter_ios != null)
+//        {
+//            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
+//            AdRequest requestInterAd = new AdRequest.Builder().Build();
+//            interstitalAd.LoadAd(requestInterAd);
+//            isShowAds = false;
+//            isLoadAds = true;
+//            Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
+//        }
+//#endif
         }
     }
 
@@ -119,6 +119,10 @@ public class Ads : MonoBehaviour
         if (Advertisement.IsReady())
         {
             Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
+        }
+        else
+        {
+            Debug.Log(Advertisement.IsReady());
         }
     }
 

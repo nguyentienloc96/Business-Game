@@ -19,7 +19,7 @@
   "keyIAP_btc300": "300",
   "keyIAP_btc5000": "5000",
 
-  "TimeInterAds": 180,
+  "TimeInterAds": 60,
 
   "InMin": 10000,
   "InMax": 50000,

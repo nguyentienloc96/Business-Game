@@ -170,6 +170,9 @@ public class UIManager : MonoBehaviour
             handTutorial.SetActive(false);
             infoTutorial.SetActive(true);
         }
+
+        Ads.Instance.RequestAd();
+        Ads.Instance.ShowInterstitialAd();
     }
 
     public void OnclickNHOM1()
@@ -211,6 +214,8 @@ public class UIManager : MonoBehaviour
             Turorial(btnBRANCH2.gameObject, new Vector3(-33f, 308f, 0), Vector3.zero);
         }
 
+        Ads.Instance.RequestAd();
+        Ads.Instance.ShowInterstitialAd();
     }
 
     public void OnclickNHOM2()
@@ -248,6 +253,9 @@ public class UIManager : MonoBehaviour
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
 
+        Ads.Instance.RequestAd();
+        Ads.Instance.ShowInterstitialAd();
+
     }
 
     public void OnclickNHOM3()
@@ -281,6 +289,9 @@ public class UIManager : MonoBehaviour
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
+
+        Ads.Instance.RequestAd();
+        Ads.Instance.ShowInterstitialAd();
     }
 
     public void PlayGame()

@@ -32,11 +32,11 @@ public class Ads : MonoBehaviour
     {
         //RequestAd();
 
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
         Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
-#elif UNITY_IOS
-         Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
-#endif
+//#elif UNITY_IOS
+//         Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
+//#endif
     }
 
     void Update()

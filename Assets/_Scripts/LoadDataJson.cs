@@ -162,6 +162,9 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.id_video_ios = objJson["id_video_ios"];
             GameConfig.Instance.nameVideoUnityAds = objJson["nameVideoUnityAds"];
             GameConfig.Instance.dollarVideoUnityAds = objJson["dollarVideoUnityAds"].AsLong;
+            IAP.btc50 = objJson["keyIAP_btc50"];
+            IAP.btc300 = objJson["keyIAP_btc300"];
+            IAP.btc5000 = objJson["keyIAP_btc5000"];
 
             GameConfig.Instance.Ipc = objJson["Ipc"].AsFloat;
 

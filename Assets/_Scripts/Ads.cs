@@ -138,6 +138,9 @@ public class Ads : MonoBehaviour
                 Time.timeScale = 1;
                 timeVideo = 0;
                 GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
+                WorldManager.Instance.panelInfo.SetActive(true);
+                WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
+                UIManager.Instance.panelDollars.SetActive(false);
                 Invoke("HidePanelInfo", 2f);
                 break;
             case ShowResult.Skipped:

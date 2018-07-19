@@ -276,9 +276,9 @@ public class GameManager : MonoBehaviour
     {
         Ads.Instance.ShowAdsUnity();
         //main.dollars += dollars;
-        WorldManager.Instance.panelInfo.SetActive(true);
-        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
-        UIManager.Instance.panelDollars.SetActive(false);
+        //WorldManager.Instance.panelInfo.SetActive(true);
+        //WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
+        //UIManager.Instance.panelDollars.SetActive(false);
         //Invoke("HidePanelInfo", 5f);
     }
 }

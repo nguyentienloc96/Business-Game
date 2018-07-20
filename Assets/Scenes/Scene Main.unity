@@ -7819,8 +7819,11 @@ MonoBehaviour:
   id_inter_ios: 
   id_video_android: 
   id_video_ios: 
+  id_video_android_admob: 
+  id_video_ios_admob: 
   nameVideoUnityAds: 
   dollarVideoUnityAds: 0
+  timeVideoAds: 0
   InMin: 10000
   InMax: 50000
   Ipc: 0.1
@@ -23972,7 +23975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1974008709
 RectTransform:
   m_ObjectHideFlags: 0

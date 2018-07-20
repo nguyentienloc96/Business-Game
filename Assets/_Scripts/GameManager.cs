@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
 
                     if (sumTime >= 8f)
                     {
-                        DataPlayer.Instance.SaveDataPlayer();
+                        //DataPlayer.Instance.SaveDataPlayer();
                         sumTime = 0;
                     }
                 }

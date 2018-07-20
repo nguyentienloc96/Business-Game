@@ -9,8 +9,10 @@ public class Ads : MonoBehaviour
 {
     [Header("Admob")]
     InterstitialAd interstitalAd;
+    RewardBasedVideoAd rewardVideo;
 
     [Header("UnityAds")]
+    //public GameObject buttonVideo;
     bool isLoadAds = false;
     bool isShowAds = false;
 
@@ -31,8 +33,9 @@ public class Ads : MonoBehaviour
     void Start()
     {
         //RequestAd();
-
-//#if UNITY_ANDROID
+        this.rewardVideo = RewardBasedVideoAd.Instance;
+        rewardVideo.OnAdClosed += HandleRewardBasedVideoClosed;
+        //#if UNITY_ANDROID
         Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
 //#elif UNITY_IOS
 //         Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
@@ -44,9 +47,9 @@ public class Ads : MonoBehaviour
         timeAds += Time.deltaTime;
         timeVideo += Time.deltaTime;
 
-        //if (timeVideo >= 120)
+        //if (timeVideo >= GameConfig.Instance.timeVideoAds)
         //{
-        //Hiện nút xem video
+        //    //Hiện nút xem video
         //}
     }
 
@@ -106,7 +109,27 @@ public class Ads : MonoBehaviour
         }
     }
 
-
+    public void RequestRewardVideo()
+    {
+        if(timeVideo >=0 && timeVideo < GameConfig.Instance.timeVideoAds/1.5f)
+        {
+            if (!rewardVideo.IsLoaded())
+            {
+                AdRequest request = new AdRequest.Builder().Build();
+                this.rewardVideo.LoadAd(request, GameConfig.Instance.id_inter_android);
+            }
+        }        
+    }
+    public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
+    {       
+        Time.timeScale = 1;
+        timeVideo = 0;
+        GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
+        WorldManager.Instance.panelInfo.SetActive(true);
+        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
+        UIManager.Instance.panelDollars.SetActive(false);
+        Invoke("HidePanelInfo", 2f);
+    }
 
     #endregion
 
@@ -116,14 +139,26 @@ public class Ads : MonoBehaviour
         //#if UNITY_EDITOR
         //        StartCoroutine(WaitForAd());
         //#endif
-        if (Advertisement.IsReady())
-        {
-            Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
-        }
-        else
-        {
-            Debug.Log(Advertisement.IsReady());
-        }
+        //if (timeVideo < GameConfig.Instance.timeVideoAds)
+        //{
+        //    RequestRewardVideo();
+        //}
+        //else
+        //{
+            if (Advertisement.IsReady())
+            {
+                Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
+            }
+            else
+            {
+                Debug.Log(Advertisement.IsReady());
+                //if (rewardVideo.IsLoaded())
+                //{
+                //    rewardVideo.Show();
+                //    Debug.Log("Show video admob");
+                //}
+            }
+        //}
     }
 
     IEnumerator WaitForAd()
@@ -162,6 +197,17 @@ public class Ads : MonoBehaviour
         GameManager.Instance.HidePanelInfo();
     }
     #endregion
+    private void OnDestroy()
+    {
+        DataPlayer.Instance.SaveDataPlayer();
+    }
 
-
+    private void OnApplicationPause(bool pause)
+    {
+        if(pause == true)
+        {
+            DataPlayer.Instance.SaveDataPlayer();
+        }
+    }
+    
 }

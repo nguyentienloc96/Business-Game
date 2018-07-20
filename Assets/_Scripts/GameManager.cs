@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public DateTime dateStartPlay;
     public int modePlay;
     public int SRD;
+    public bool isTutorial;
 
     [Header("DateTime")]
     public DateTime dateGame;
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("isDoneTutorial", 0);
         }
-
+        isTutorial = false;
     }
 
     void Start()
@@ -133,7 +134,6 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             if (time >= DeltaTimeGame)
             {
-                sumTime += DeltaTimeGame;
                 int month = dateGame.Month;
                 int year = dateGame.Year;
                 dateGame = dateGame.AddDays(1f);
@@ -184,10 +184,15 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                if (sumTime >= 8f)
+                if (!isTutorial)
                 {
-                    DataPlayer.Instance.SaveDataPlayer();
-                    sumTime = 0;
+                    sumTime += DeltaTimeGame;
+
+                    if (sumTime >= 8f)
+                    {
+                        DataPlayer.Instance.SaveDataPlayer();
+                        sumTime = 0;
+                    }
                 }
                 PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();

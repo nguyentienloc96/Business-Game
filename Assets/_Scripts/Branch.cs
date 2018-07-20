@@ -95,7 +95,7 @@ public class Branch : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
 
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             if (index == 1)
             {

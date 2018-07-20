@@ -78,7 +78,7 @@ public class WorldManager : MonoBehaviour
         long index = (moneyMax - minSlider) / 1000;
         LSlider = minSlider + (long)(seltTraining.value * index) * 1000;
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject, new Vector3(88, -182f, 0), new Vector3(0, 0, 0f));
         }
@@ -89,7 +89,7 @@ public class WorldManager : MonoBehaviour
         long index = (maxSlider - minSlider2) / 1000;
         LSlider2 = minSlider2 + (long)(seltTraining2.value * index) * 1000;
         seltCoin2.text = ConvertNumber.convertNumber_DatDz(LSlider2);
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(2).gameObject, new Vector3(744f, -419f, 0), new Vector3(0, 0, 180f));
         }
@@ -129,7 +129,7 @@ public class WorldManager : MonoBehaviour
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         seltCoin2.text = minSlider2.ToString();
         Invoke("HidePanelInfo", 2f);
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             UIManager.Instance.Turorial(UIManager.Instance.btnTHONGSO.gameObject, new Vector3(-500f, -431f, 0), new Vector3(0, 0, 180f));
         }
@@ -157,17 +157,22 @@ public class WorldManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
             if (idSelectWord != -1)
                 lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
-            lsCountry[0].transform.GetChild(3).gameObject.SetActive(true);
-            if (PlayerPrefs.GetInt("isDoneTutorial") != 0)
-            {
-                lsCountry[0].OnClickCountry();
-            }
-            idSelectWord = 0;
             UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsCountry[0].nameCountry;
+            bool isSelected = false;
             for (int i = 0; i < lsCountry.Count; i++)
             {
                 if (lsCountry[i].L <= 0)
                 {
+                    if (!isSelected)
+                    {
+                        lsCountry[i].transform.GetChild(3).gameObject.SetActive(true);
+                        if (PlayerPrefs.GetInt("isDoneTutorial") != 0 && !GameManager.Instance.isTutorial)
+                        {
+                            lsCountry[i].OnClickCountry();
+                        }
+                        idSelectWord = i;
+                        isSelected = true;
+                    }
                     lsCountry[i].gameObject.SetActive(true);
                     if (i <= 8)
                         yield return new WaitForSeconds(0.15f);
@@ -226,7 +231,7 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L - lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             lsCountry[idSelectWord].gameObject.SetActive(false);
-            if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+            if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
                 UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));
             }

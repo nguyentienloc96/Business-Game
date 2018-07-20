@@ -268,7 +268,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
-            if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+            if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
                 UIManager.Instance.Turorial(UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).GetChild(2).gameObject, new Vector3(744f, -244f, 0), new Vector3(0, 0, 180f));
             }

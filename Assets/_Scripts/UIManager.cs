@@ -114,8 +114,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        setSRD(1);
-        ModeGame(0);
+        setSRDOnclick(1);
+        ModeGameOnclick(0);
     }
 
     public void OnclickWORD()
@@ -163,12 +163,13 @@ public class UIManager : MonoBehaviour
         ResetBranch();
         if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             GameManager.Instance.main.lsCoutryReady[0].OnClickCountry();
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Destroy(mainTutorial);
             panelTutorial.SetActive(true);
             handTutorial.SetActive(false);
             infoTutorial.SetActive(true);
+            WorldManager.Instance.panelInfo.SetActive(false);
         }
 
         Ads.Instance.RequestAd();
@@ -209,7 +210,7 @@ public class UIManager : MonoBehaviour
         btnBRANCH1.transform.GetComponent<Branch>().LoadDataBranch();
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(btnBRANCH2.gameObject, new Vector3(-33f, 308f, 0), Vector3.zero);
         }
@@ -294,12 +295,13 @@ public class UIManager : MonoBehaviour
         Ads.Instance.ShowInterstitialAd();
     }
 
-    public void PlayGame()
+    public void PlayGameOnclick()
     {
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
         PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        GameManager.Instance.isTutorial = false;
         ResetGame();
         btnX4.image.sprite = spX1;
         menuGame.SetActive(false);
@@ -309,7 +311,29 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
+        {
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
+        }
+    }
+
+    public void TutorialOnclick()
+    {
+        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Stop("Menu");
+        AudioManager.Instance.Play("GamePlay");
+        PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        GameManager.Instance.isTutorial = true;
+        ResetGame();
+        btnX4.image.sprite = spX1;
+        menuGame.SetActive(false);
+        Loading(false);
+        isPlay = true;
+        GameManager.Instance.LoadDate();
+        GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
+        GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
+        OnclickWORD();
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
         }
@@ -328,7 +352,7 @@ public class UIManager : MonoBehaviour
         handTutorial.transform.localEulerAngles = angleHnad;
     }
 
-    public void setSRD(int SRD)
+    public void setSRDOnclick(int SRD)
     {
         AudioManager.Instance.Play("Click");
 
@@ -366,7 +390,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ModeGame(int mode)
+    public void ModeGameOnclick(int mode)
     {
         AudioManager.Instance.Play("Click");
 
@@ -383,11 +407,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Continue()
+    public void ContinueOnclick()
     {
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
+        GameManager.Instance.isTutorial = false;
         DataPlayer.Instance.LoadDataPlayer();
         GameManager.Instance.SetDate();
         Loading(false);
@@ -395,7 +420,7 @@ public class UIManager : MonoBehaviour
         OnclickWORD();
     }
 
-    public void RePlay()
+    public void RePlayOnclick()
     {
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("OverWin");
@@ -413,7 +438,7 @@ public class UIManager : MonoBehaviour
         OnclickWORD();
     }
 
-    public void BackToMenu()
+    public void BackToMenuOnclick()
     {
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("OverWin");
@@ -455,7 +480,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Click");
 
         panelEror.SetActive(false);
-        if (PlayerPrefs.GetInt("isDoneTutorial") == 0)
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(btnNHOM1.gameObject, new Vector3(-219f, -429f, 0), new Vector3(0, 0, 180f));
         }
@@ -466,8 +491,16 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Click");
 
         panelTutorial.SetActive(false);
-        DataPlayer.Instance.SaveDataPlayer();
-        PlayerPrefs.SetInt("isDoneTutorial", 1);
+        if (!GameManager.Instance.isTutorial)
+        {
+            DataPlayer.Instance.SaveDataPlayer();
+            PlayerPrefs.SetInt("isDoneTutorial", 1);
+        }
+        else
+        {
+            BackToMenuOnclick();
+            GameManager.Instance.isTutorial = false;
+        }
     }
 
     public void BtnShare()
@@ -545,7 +578,7 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
         ResetGame();
-        PlayGame();
+        PlayGameOnclick();
         panelSetting.SetActive(false);
     }
 

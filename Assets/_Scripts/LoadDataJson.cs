@@ -216,11 +216,37 @@ public class LoadDataJson : MonoBehaviour
             {
                 DataUpdate.DataNameCountry data = new DataUpdate.DataNameCountry();
                 data.name = objJson[i]["name"];
-                data.gdp = objJson[i]["gdp"].AsLong*1000000;
+                data.gdp = objJson[i]["gdp"].AsLong * 1000000;
                 DataUpdate.Instance.lstData_NameCountry.Add(data);
             }
+
+            SelectionSort(DataUpdate.Instance.lstData_NameCountry);
         }
         //Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ ConvertNumber.convertNumber_DatDz(DataUpdate.Instance.lstData_NameCountry[0].gdp));
+    }
+
+
+    void SelectionSort(List<DataUpdate.DataNameCountry> a)
+    {
+        int maxValueIndex = 0;
+        for (int i = 0; i < a.Count - 1; i++)
+        {
+            maxValueIndex = i;
+            for (int j = i + 1; j < a.Count; j++)
+            {
+                if (a[j].gdp > a[maxValueIndex].gdp)
+                {
+                    maxValueIndex = j;
+                }
+            }
+
+            if (maxValueIndex != i)
+            {
+                DataUpdate.DataNameCountry temp = a[i];
+                a[i] = a[maxValueIndex];
+                a[maxValueIndex] = temp;
+            }
+        }
     }
 
     string loadJson(string _nameJson)

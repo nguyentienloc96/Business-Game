@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-Build from DATNHK-TT-D3 at 7/20/2018 9:33:55 PM
-=======
-Build from DESKTOP-8TJOP7T at 7/20/2018 9:23:57 PM
->>>>>>> a6d554a8aabebb791fe80ad3380d09d32d76286e
+Build from DATNHK-TT-D3 at 7/20/2018 9:49:13 PM

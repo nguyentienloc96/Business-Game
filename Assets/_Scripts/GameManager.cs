@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour
     }
 
     int checkMonth = 0;
+    float sumTime = 0;
     void Update()
     {
         if (UIManager.Instance.isPlay)
@@ -132,12 +133,13 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             if (time >= DeltaTimeGame)
             {
-                UpdateDataUser(main);
+                sumTime += DeltaTimeGame;
                 int month = dateGame.Month;
                 int year = dateGame.Year;
                 dateGame = dateGame.AddDays(1f);
                 SetDate();
-                if(dateGame.Month == 1)
+                UpdateDataUser(main);
+                if (dateGame.Month == 1)
                 {
                     for (int i = 0; i < main.lsCoutryReady.Count; i++)
                     {
@@ -182,13 +184,13 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                DataPlayer.Instance.SaveDataPlayer();
+                if (sumTime >= 8f)
+                {
+                    DataPlayer.Instance.SaveDataPlayer();
+                    sumTime = 0;
+                }
                 PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();
-                for (int i = 0; i < main.lsCoutryReady.Count; i++)
-                {
-                    main.lsCoutryReady[i].UpdateDay();
-                }
                 time = 0;
             }
         }
@@ -200,6 +202,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < main.lsCoutryReady.Count; i++)
         {
             main.lsCoutryReady[i].Interest();
+            main.lsCoutryReady[i].UpdateDay();
         }
     }
 

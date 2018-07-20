@@ -101,7 +101,10 @@ public class WorldManager : MonoBehaviour
 
         lsCountry[idSelectWord].SetSmallBranch(indexPSelf, indexSelf, LSlider2);
         lsCountry[idSelectWord].PullData();
-        GameManager.Instance.main.dollars -= LSlider2;
+        if (indexPSelf != 7)
+        {
+            GameManager.Instance.main.dollars -= LSlider2;
+        }
         panelInfo.SetActive(true);
         if (indexPSelf == 7 && (indexSelf == 3 || indexSelf == 1))
         {

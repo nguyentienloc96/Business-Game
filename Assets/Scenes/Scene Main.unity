@@ -7819,8 +7819,11 @@ MonoBehaviour:
   id_inter_ios: 
   id_video_android: 
   id_video_ios: 
+  id_video_android_admob: 
+  id_video_ios_admob: 
   nameVideoUnityAds: 
   dollarVideoUnityAds: 0
+  timeVideoAds: 0
   InMin: 10000
   InMax: 50000
   Ipc: 0.1
@@ -13696,7 +13699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000096294525}
+  m_AnchoredPosition: {x: 0, y: 0.000060176186}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1062959244

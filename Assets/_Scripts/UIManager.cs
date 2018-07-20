@@ -568,10 +568,7 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
         DataPlayer.Instance.SaveDataPlayer();
-        isPlay = false;
-        panelLoading.SetActive(false);
-        menuGame.SetActive(false);
-        panelWin.SetActive(false);
+        BackToMenuOnclick();
     }
 
     public void BtnRestore()

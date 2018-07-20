@@ -287,10 +287,10 @@ public class Country : MonoBehaviour
                 UIManager.Instance.COLCHART.transform
                     .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
 
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+                //UIManager.Instance.COLCHART.transform
+                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                //UIManager.Instance.COLCHART.transform
+                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
             }
             else
             {
@@ -301,10 +301,10 @@ public class Country : MonoBehaviour
                 UIManager.Instance.COLCHART.transform
                     .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
 
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+                //UIManager.Instance.COLCHART.transform
+                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+                //UIManager.Instance.COLCHART.transform
+                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
             }
         }
         else if (UIManager.Instance.indexScene == 2)

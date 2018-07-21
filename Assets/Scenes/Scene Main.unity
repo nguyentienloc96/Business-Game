@@ -17900,10 +17900,10 @@ RectTransform:
   m_Father: {fileID: 200633222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -641, y: -3.1700134}
-  m_SizeDelta: {x: 1150, y: -25}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -42, y: -3}
+  m_SizeDelta: {x: 1154, y: 425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275591202
 MonoBehaviour:
@@ -23808,8 +23808,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -59, y: -3.17}
-  m_SizeDelta: {x: 80, y: -25}
+  m_AnchoredPosition: {x: -59, y: -3}
+  m_SizeDelta: {x: 80, y: -2.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825918227
 MonoBehaviour:
@@ -24653,6 +24653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1914675109}
   - component: {fileID: 1914675108}
+  - component: {fileID: 1914675110}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -24709,6 +24710,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1914675110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914675107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3deecf3e86e09a4488d1075dc04d9fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScreenshotName: screenshot.png
 --- !u!1 &1938321965 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1761252240733870, guid: 165a9f4dbc93f604caa07f7c7ba863ac,

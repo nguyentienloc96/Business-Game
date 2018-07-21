@@ -153,11 +153,14 @@ public class GameManager : MonoBehaviour
                     {
                         main.lsCoutryReady[i].PullData();
                     }
-                    checkMonth++;
-                    if (checkMonth >= GameConfig.Instance.dTime)
+                    if (main.lsCoutryReady.Count > 0)
                     {
-                        NewsGame();
-                        checkMonth = 0;
+                        checkMonth++;
+                        if (checkMonth >= GameConfig.Instance.dTime)
+                        {
+                            NewsGame();
+                            checkMonth = 0;
+                        }
                     }
                 }
                 if (modePlay == 1)
@@ -222,9 +225,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
+
     public void HidePanelInfo()
-    {       
+    {
         WorldManager.Instance.panelInfo.SetActive(false);
     }
 
@@ -234,7 +237,7 @@ public class GameManager : MonoBehaviour
         News.Instance.GetNews();
         WorldManager.Instance.panelInfo.SetActive(true);
         string info = main.lsCoutryReady[ID].nameCountry + "\n"
-            + News.Instance.NewChoosed.content + +News.Instance.valueNews + "%";
+            + News.Instance.NewChoosed.content + " " + News.Instance.valueNews + "%";
         WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = info;
         main.lsCoutryReady[ID].lstNew.Add(info);
         if (main.lsCoutryReady[ID].lstNew.Count > 10)

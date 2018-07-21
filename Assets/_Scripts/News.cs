@@ -15,11 +15,6 @@ public class News : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Update()
-    {
-        
-    }
-
     public struct NewItems
     {
         public string content;
@@ -37,7 +32,7 @@ public class News : MonoBehaviour
         int r = Random.Range(0, lstNews.Count);
         valueNews = GameManager.Instance.SRD * Random.Range(1, 10);
         NewChoosed = lstNews[r];
-        Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + valueNews + "%");
+        Debug.Log("<color=yellow>News: </color>" + NewChoosed.content + " " + valueNews + "%");
     }
 
     public void SetResultNew(int ID)

@@ -112,12 +112,6 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
-    {
-        setSRDOnclick(1);
-        ModeGameOnclick(0);
-    }
-
     public void OnclickWORD()
     {
         AudioManager.Instance.Play("Click");
@@ -359,6 +353,7 @@ public class UIManager : MonoBehaviour
         if (SRD == 1)
         {
             GameManager.Instance.SRD = GameConfig.Instance.Srd_easy;
+            Debug.Log(GameConfig.Instance.Srd_easy);
             btnEasy.transform.GetChild(1).gameObject.SetActive(true);
             btnMedium.transform.GetChild(1).gameObject.SetActive(false);
             btnHard.transform.GetChild(1).gameObject.SetActive(false);
@@ -618,6 +613,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.main.lsCoutryReady[i].L = 0;
             GameManager.Instance.main.lsCoutryReady[i].LDT = 0;
+            GameManager.Instance.main.lsCoutryReady[i].lstNew.Clear();
         }
         GameManager.Instance.main.lsCoutryReady.Clear();
     }

@@ -161,6 +161,7 @@ public class Country : MonoBehaviour
                 bigBranch[i].smallBranch[2].moneyDTS = 100;
             }
         }
+        lstNew.Clear();
     }
 
     public void PullData()

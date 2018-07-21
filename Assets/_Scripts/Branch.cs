@@ -5,16 +5,15 @@ using UnityEngine.UI;
 
 public class Branch : MonoBehaviour
 {
-    public static bool isCanOnClick;
     public int index = 0;
 
     public void LoadDataBranch()
     {
-        if (!isCanOnClick)
+        if (!UIManager.Instance.isLoadItemBranch)
         {
             if (GameManager.Instance.main.lsCoutryReady.Count <= 0)
                 return;
-            isCanOnClick = true;
+            UIManager.Instance.isLoadItemBranch = true;
             StopAllCoroutines();
             UIManager.Instance.SelfTraining.SetActive(false);
             UIManager.Instance.ResetBranch();
@@ -102,7 +101,7 @@ public class Branch : MonoBehaviour
                 UIManager.Instance.Turorial(WorldManager.Instance.lsItemSelf[1].gameObject, new Vector3(-368f, 98f, 0), Vector3.zero);
             }
         }
-        isCanOnClick = false;
+        UIManager.Instance.isLoadItemBranch = false;
     }
 
 }

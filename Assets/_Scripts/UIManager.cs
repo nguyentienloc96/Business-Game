@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelBankLoan;
     public GameObject panelInfoCapital;
     public GameObject panelFindACoFounder;
+    public bool isLoadItemBranch = false;
 
     [Header("SRD")]
     public GameObject btnEasy;
@@ -131,6 +132,7 @@ public class UIManager : MonoBehaviour
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
+        isLoadItemBranch = false;
     }
 
     public void OnclickTHONGSO()
@@ -165,7 +167,7 @@ public class UIManager : MonoBehaviour
             infoTutorial.SetActive(true);
             WorldManager.Instance.panelInfo.SetActive(false);
         }
-
+        isLoadItemBranch = false;
         Ads.Instance.RequestAd();
         Ads.Instance.ShowInterstitialAd();
     }
@@ -450,12 +452,15 @@ public class UIManager : MonoBehaviour
     {
         txtGold.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.dollars);
         txtBitCoin.text = ConvertNumber.convertNumber_DatDz(GameManager.Instance.main.bitCoin);
-        btnBRANCH1.interactable = !Branch.isCanOnClick;
-        btnBRANCH2.interactable = !Branch.isCanOnClick;
-        btnBRANCH3.interactable = !Branch.isCanOnClick;
-        btnNHOM1.interactable = !Branch.isCanOnClick;
-        btnNHOM2.interactable = !Branch.isCanOnClick;
-        btnNHOM3.interactable = !Branch.isCanOnClick;
+        if (indexScene == 2)
+        {
+            btnBRANCH1.interactable = !isLoadItemBranch;
+            btnBRANCH2.interactable = !isLoadItemBranch;
+            btnBRANCH3.interactable = !isLoadItemBranch;
+        }
+        btnNHOM1.interactable = !isLoadItemBranch;
+        btnNHOM2.interactable = !isLoadItemBranch;
+        btnNHOM3.interactable = !isLoadItemBranch;
     }
 
     public void ResetBranch()

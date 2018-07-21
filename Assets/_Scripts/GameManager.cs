@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (modePlay == 1)
                 {
-                    if (year - dateStartPlay.Year >= 5 || UIManager.Instance.isPlay)
+                    if (year - dateStartPlay.Year >= 5 && UIManager.Instance.isPlay)
                     {
                         UIManager.Instance.isPlay = false;
                         if (main.dollars > 1000000000)

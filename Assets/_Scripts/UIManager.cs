@@ -295,6 +295,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Stop("Menu");
         AudioManager.Instance.Play("GamePlay");
         PlayerPrefs.SetFloat("X4TimeGame", 4f);
+        GameManager.Instance.DeltaTimeGame = 4f;
         GameManager.Instance.isTutorial = false;
         ResetGame();
         btnX4.image.sprite = spX1;
@@ -484,7 +485,6 @@ public class UIManager : MonoBehaviour
     public void DoneTutorial()
     {
         AudioManager.Instance.Play("Click");
-
         panelTutorial.SetActive(false);
         if (!GameManager.Instance.isTutorial)
         {

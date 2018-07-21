@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject itemSelf;
     public Transform contentSelf;
 
-    private float DeltaTimeGame = 4;
+    public float DeltaTimeGame = 4;
 
     void Awake()
     {

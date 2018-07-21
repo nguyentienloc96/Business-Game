@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
     }
 
     int checkMonth = 0;
-    float sumTime = 0;
+    //float sumTime = 0;
     void Update()
     {
         if (UIManager.Instance.isPlay)
@@ -164,7 +164,6 @@ public class GameManager : MonoBehaviour
                 {
                     if (year - dateStartPlay.Year >= 5)
                     {
-                        Time.timeScale = 0;
                         UIManager.Instance.isPlay = false;
                         if (main.dollars > 1000000000)
                         {
@@ -184,16 +183,16 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                if (!isTutorial)
-                {
-                    sumTime += DeltaTimeGame;
+                //if (!isTutorial)
+                //{
+                //    sumTime += DeltaTimeGame;
 
-                    if (sumTime >= 8f)
-                    {
-                        //DataPlayer.Instance.SaveDataPlayer();
-                        sumTime = 0;
-                    }
-                }
+                //    if (sumTime >= 8f)
+                //    {
+                //        //DataPlayer.Instance.SaveDataPlayer();
+                //        sumTime = 0;
+                //    }
+                //}
                 PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();
                 time = 0;

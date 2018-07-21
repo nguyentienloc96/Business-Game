@@ -18,6 +18,7 @@ public class GameConfig : MonoBehaviour
     public float timeScale = 4;
     public long dollarStartGame = 50000;
     public long bitcoinStartGame = 10;
+    public string stringStart;
     public string linkGame_android;
     public string linkGame_ios;
 

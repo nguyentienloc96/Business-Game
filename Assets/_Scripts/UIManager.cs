@@ -91,6 +91,7 @@ public class UIManager : MonoBehaviour
     public GameObject handTutorial;
     public GameObject mainTutorial;
     public GameObject infoTutorial;
+    public GameObject info5Years;
 
     [Header("Continue")]
     public Button btnContinue;
@@ -308,6 +309,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
+        if (GameManager.Instance.modePlay == 1)
+        {
+            info5Years.SetActive(true);
+            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
+            Invoke("HidePanelInfo", 5f);
+
+        }
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
@@ -434,6 +442,12 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
         GameManager.Instance.main.dollars = 50000 * GameManager.Instance.SRD;
         OnclickWORD();
+        if(GameManager.Instance.modePlay == 1)
+        {
+            info5Years.SetActive(true);
+            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
+            Invoke("HidePanelInfo", 5f);
+        }
     }
 
     public void BackToMenuOnclick()
@@ -621,5 +635,10 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.main.lsCoutryReady[i].lstNew.Clear();
         }
         GameManager.Instance.main.lsCoutryReady.Clear();
+    }
+
+    public void HidePanelInfo()
+    {
+        info5Years.SetActive(false);
     }
 }

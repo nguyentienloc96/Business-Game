@@ -147,6 +147,7 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.timeScale = objJson["TimeScale"].AsFloat;
             GameConfig.Instance.dollarStartGame = objJson["DollarStart"].AsLong;
             GameConfig.Instance.bitcoinStartGame = objJson["BitCoinStart"].AsLong;
+            GameConfig.Instance.stringStart = objJson["StringStart"];
             GameConfig.Instance.timeInterAds = objJson["TimeInterAds"].AsFloat;
             GameConfig.Instance.InMin = objJson["InMin"].AsLong;
             GameConfig.Instance.InMax = objJson["InMax"].AsLong;

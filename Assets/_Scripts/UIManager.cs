@@ -504,6 +504,7 @@ public class UIManager : MonoBehaviour
     public void DoneTutorial()
     {
         AudioManager.Instance.Play("Click");
+        infoTutorial.SetActive(false);
         panelTutorial.SetActive(false);
         if (!GameManager.Instance.isTutorial)
         {

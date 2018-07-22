@@ -114,11 +114,6 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void OnclickWORD()
     {
         AudioManager.Instance.Play("Click");

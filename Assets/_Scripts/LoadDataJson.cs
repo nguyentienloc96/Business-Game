@@ -206,6 +206,7 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.HR_ic = objJson["HR_ic"].AsInt;
 
             GameConfig.Instance.dTime = objJson["Dtime"].AsInt;
+            GameManager.Instance.SRD = GameConfig.Instance.Srd_easy;
         }
     }
 

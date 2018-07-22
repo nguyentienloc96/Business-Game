@@ -223,6 +223,8 @@ public class Country : MonoBehaviour
 
         for (int i = 1; i < 7; i++)
         {
+            Debug.Log("min   :" + i + " " + minArray[i]);
+
             if (minArray[i] < min)
             {
                 min = minArray[i];
@@ -232,7 +234,7 @@ public class Country : MonoBehaviour
                 minDT = minArrayDT[i];
             }
         }
-
+        Debug.Log("min   :" + min);
         I0 = min * 100;
         I0DT = minDT * 100;
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
@@ -445,11 +447,16 @@ public class Country : MonoBehaviour
                 {
                     if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS >= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD)
                     {
+                        MARKET += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * HMARKET * convertPercent;
+                        MARKETDT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD * HMARKET * convertPercent * UnityEngine.Random.Range(1f, 10f);
                         bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 0;
                         bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS -= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD;
+
                     }
                     else
                     {
+                        MARKET += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * HMARKET * convertPercent;
+                        MARKETDT += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * HMARKET * convertPercent * UnityEngine.Random.Range(1f, 10f);
                         bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
                         bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD -= bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS;
                     }
@@ -470,7 +477,7 @@ public class Country : MonoBehaviour
                     {
                         if (UnityEngine.Random.Range(0f, 1f) <= 0.05f)
                         {
-                            MKT += 20 * moneyDT * HMKT * convertPercent;
+                            MARKET += 20 * moneyDT * HMARKET * convertPercent;
                         }
                     }
                 }
@@ -1189,7 +1196,7 @@ public class Country : MonoBehaviour
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                     UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%"; 
+                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 2)
                 {
@@ -1293,7 +1300,7 @@ public class Country : MonoBehaviour
         else if (typeCoFounder == 4)
             temp = 2f;
 
-        if(typeBranchCoFounder == 1)
+        if (typeBranchCoFounder == 1)
         {
             MKT = temp * MKT;
         }

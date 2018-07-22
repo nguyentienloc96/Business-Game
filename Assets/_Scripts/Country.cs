@@ -221,9 +221,9 @@ public class Country : MonoBehaviour
         minArrayDT.Add(minSTDT);
         float minDT = minArray[0];
 
-        for (int i = 1; i < 7; i++)
+        for (int i = 0; i < 7; i++)
         {
-            Debug.Log("min   :" + i + " " + minArray[i]);
+            Debug.Log("min " + i + " : " + minArray[i]);
 
             if (minArray[i] < min)
             {
@@ -234,7 +234,7 @@ public class Country : MonoBehaviour
                 minDT = minArrayDT[i];
             }
         }
-        Debug.Log("min   :" + min);
+        Debug.Log("min T :" + min);
         I0 = min * 100;
         I0DT = minDT * 100;
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);

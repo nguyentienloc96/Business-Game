@@ -439,8 +439,8 @@ public class UIManager : MonoBehaviour
         Loading(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
-        GameManager.Instance.main.bitCoin = 10 * GameManager.Instance.SRD;
-        GameManager.Instance.main.dollars = 50000 * GameManager.Instance.SRD;
+        GameManager.Instance.main.bitCoin = (long)(10 * GameManager.Instance.SRD);
+        GameManager.Instance.main.dollars = (long)(50000 * GameManager.Instance.SRD);
         OnclickWORD();
         if(GameManager.Instance.modePlay == 1)
         {

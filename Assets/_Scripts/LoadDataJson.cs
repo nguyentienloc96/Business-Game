@@ -153,9 +153,9 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.InMax = objJson["InMax"].AsLong;
             GameConfig.Instance.linkGame_android = objJson["link_android"];
             GameConfig.Instance.linkGame_ios = objJson["link_ios"];
-            GameConfig.Instance.Srd_easy = objJson["easy"].AsInt;
-            GameConfig.Instance.Srd_medium = objJson["medium"].AsInt;
-            GameConfig.Instance.Srd_hard = objJson["hard"].AsInt;
+            GameConfig.Instance.Srd_easy = objJson["easy"].AsFloat;
+            GameConfig.Instance.Srd_medium = objJson["medium"].AsFloat;
+            GameConfig.Instance.Srd_hard = objJson["hard"].AsFloat;
             GameConfig.Instance.Srd_crazy = objJson["crazy"].AsInt;
             GameConfig.Instance.id_inter_android = objJson["id_inter_android"];
             GameConfig.Instance.id_inter_ios = objJson["id_inter_ios"];

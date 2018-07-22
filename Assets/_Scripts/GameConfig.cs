@@ -72,8 +72,8 @@ public class GameConfig : MonoBehaviour
 
     public int s;
 
-    public int Srd_easy;
-    public int Srd_medium;
-    public int Srd_hard;
-    public int Srd_crazy;
+    public float Srd_easy;
+    public float Srd_medium;
+    public float Srd_hard;
+    public float Srd_crazy;
 }

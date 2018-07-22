@@ -19,7 +19,7 @@ public class DataPlayer : MonoBehaviour
 
     public int modePlay; //Chế độ chơi
 
-    public int srd; //độ khó
+    public float srd; //độ khó
 
     public long dollars; //tiền
 

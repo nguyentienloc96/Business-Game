@@ -92,7 +92,7 @@ public class News : MonoBehaviour
                 else
                 {
                     GameManager.Instance.main.lsCoutryReady[ID].bigBranch[2].smallBranch[1].moneyDTBD +=
-                        (((long)(set * GameManager.Instance.main.lsCoutryReady[ID].MARKET) / 3) * GameManager.Instance.SRD);
+                        (long)(((set * GameManager.Instance.main.lsCoutryReady[ID].MARKET) / 3) * GameManager.Instance.SRD);
                 }
                 return;
             }

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public DateTime dateStartPlay;
     public int modePlay;
-    public int SRD;
+    public float SRD;
     public bool isTutorial;
 
     [Header("DateTime")]

@@ -98,13 +98,19 @@ public class WorldManager : MonoBehaviour
     public void Evole()
     {
         AudioManager.Instance.Play("Click");
-
-        lsCountry[idSelectWord].SetSmallBranch(indexPSelf, indexSelf, LSlider2);
-        lsCountry[idSelectWord].PullData();
+        if (GameManager.Instance.main.dollars < 1000)
+            return;
         if (indexPSelf != 7)
         {
             GameManager.Instance.main.dollars -= LSlider2;
+            if (GameManager.Instance.main.dollars < 1000)
+            {
+                sliderEvole.SetActive(false);
+            }
         }
+        lsCountry[idSelectWord].SetSmallBranch(indexPSelf, indexSelf, LSlider2);
+        lsCountry[idSelectWord].PullData();
+
         panelInfo.SetActive(true);
         if (indexPSelf == 7 && (indexSelf == 3 || indexSelf == 1))
         {

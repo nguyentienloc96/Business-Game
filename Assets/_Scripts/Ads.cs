@@ -79,6 +79,16 @@ public class Ads : MonoBehaviour
                 isLoadAds = true;
                 Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
             }
+#else
+            GameConfig.Instance.id_inter_android = "ca-app-pub-6285794272989840/5632501293"; //test
+            if (!isLoadAds && GameConfig.Instance.id_inter_android != null)
+            {
+                interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
+                AdRequest requestInterAd = new AdRequest.Builder().Build();
+                interstitalAd.LoadAd(requestInterAd);
+                isLoadAds = true;
+                Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
+            }
 #endif
         }
     }

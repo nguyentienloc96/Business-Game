@@ -14,10 +14,10 @@ public class Ads : MonoBehaviour
     [Header("UnityAds")]
     //public GameObject buttonVideo;
     bool isLoadAds = false;
-    bool isShowAds = false;
+    //bool isShowAds = false;
 
     [Header("Time")]
-    public float timeAds;
+    public float timeAds = 1;
     public float timeVideo;
 
     public static Ads Instance = new Ads();
@@ -32,14 +32,14 @@ public class Ads : MonoBehaviour
 
     void Start()
     {
-        //RequestAd();
+        RequestAd();
         this.rewardVideo = RewardBasedVideoAd.Instance;
-        rewardVideo.OnAdClosed += HandleRewardBasedVideoClosed;
-        //#if UNITY_ANDROID
+        //rewardVideo.OnAdClosed += HandleRewardBasedVideoClosed;
+#if UNITY_ANDROID
         Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
-//#elif UNITY_IOS
-//         Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
-//#endif
+#elif UNITY_IOS
+                 Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
+#endif
     }
 
     void Update()
@@ -58,30 +58,28 @@ public class Ads : MonoBehaviour
 
     public void RequestAd()
     {
-        if (timeAds >= 5 && timeAds <= GameConfig.Instance.timeInterAds / 2)
+        if (timeAds >= 0 && timeAds <= GameConfig.Instance.timeInterAds / 1.5f)
         {
-//#if UNITY_ANDROID
+#if UNITY_ANDROID
         GameConfig.Instance.id_inter_android = "ca-app-pub-6285794272989840/5632501293"; //test
         if (!isLoadAds && GameConfig.Instance.id_inter_android != null)
         {
             interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_android);
             AdRequest requestInterAd = new AdRequest.Builder().Build();
-            interstitalAd.LoadAd(requestInterAd);           
-            isShowAds = false;
+            interstitalAd.LoadAd(requestInterAd);                      
             isLoadAds = true;
             Debug.Log("Load Ads - "+ interstitalAd.IsLoaded().ToString());
         }
-//#elif UNITY_IOS
-//        if (!isLoadAds && GameConfig.Instance.id_inter_ios != null)
-//        {
-//            interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
-//            AdRequest requestInterAd = new AdRequest.Builder().Build();
-//            interstitalAd.LoadAd(requestInterAd);
-//            isShowAds = false;
-//            isLoadAds = true;
-//            Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
-//        }
-//#endif
+#elif UNITY_IOS
+            if (!isLoadAds && GameConfig.Instance.id_inter_ios != null)
+            {
+                interstitalAd = new InterstitialAd(GameConfig.Instance.id_inter_ios);
+                AdRequest requestInterAd = new AdRequest.Builder().Build();
+                interstitalAd.LoadAd(requestInterAd);
+                isLoadAds = true;
+                Debug.Log("Load Ads - " + interstitalAd.IsLoaded().ToString());
+            }
+#endif
         }
     }
 
@@ -92,12 +90,11 @@ public class Ads : MonoBehaviour
             return;
         }
 
-        if (interstitalAd != null && !isShowAds)
+        if (interstitalAd != null)
         {
             if (interstitalAd.IsLoaded())
             {
                 interstitalAd.Show();
-                isShowAds = true;
                 isLoadAds = false;
                 timeAds = 0;
                 Debug.Log("Show Ads");
@@ -109,27 +106,27 @@ public class Ads : MonoBehaviour
         }
     }
 
-    public void RequestRewardVideo()
-    {
-        if(timeVideo >=0 && timeVideo < GameConfig.Instance.timeVideoAds/1.5f)
-        {
-            if (!rewardVideo.IsLoaded())
-            {
-                AdRequest request = new AdRequest.Builder().Build();
-                this.rewardVideo.LoadAd(request, GameConfig.Instance.id_inter_android);
-            }
-        }        
-    }
-    public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
-    {       
-        Time.timeScale = 1;
-        timeVideo = 0;
-        GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
-        WorldManager.Instance.panelInfo.SetActive(true);
-        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
-        UIManager.Instance.panelDollars.SetActive(false);
-        Invoke("HidePanelInfo", 2f);
-    }
+    //public void RequestRewardVideo()
+    //{
+    //    if (timeVideo >= 0 && timeVideo < GameConfig.Instance.timeVideoAds / 1.5f)
+    //    {
+    //        if (!rewardVideo.IsLoaded())
+    //        {
+    //            AdRequest request = new AdRequest.Builder().Build();
+    //            this.rewardVideo.LoadAd(request, GameConfig.Instance.id_inter_android);
+    //        }
+    //    }
+    //}
+    //public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
+    //{
+    //    Time.timeScale = 1;
+    //    timeVideo = 0;
+    //    GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
+    //    WorldManager.Instance.panelInfo.SetActive(true);
+    //    WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
+    //    UIManager.Instance.panelDollars.SetActive(false);
+    //    Invoke("HidePanelInfo", 2f);
+    //}
 
     #endregion
 
@@ -139,12 +136,12 @@ public class Ads : MonoBehaviour
         //#if UNITY_EDITOR
         //        StartCoroutine(WaitForAd());
         //#endif
-        //if (timeVideo < GameConfig.Instance.timeVideoAds)
-        //{
-        //    RequestRewardVideo();
-        //}
-        //else
-        //{
+        if (timeVideo < GameConfig.Instance.timeVideoAds)
+        {
+            return;
+        }
+        else
+        {
             if (Advertisement.IsReady())
             {
                 Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
@@ -152,13 +149,9 @@ public class Ads : MonoBehaviour
             else
             {
                 Debug.Log(Advertisement.IsReady());
-                //if (rewardVideo.IsLoaded())
-                //{
-                //    rewardVideo.Show();
-                //    Debug.Log("Show video admob");
-                //}
+                ShowInterstitialAd();
             }
-        //}
+        }
     }
 
     IEnumerator WaitForAd()
@@ -204,10 +197,10 @@ public class Ads : MonoBehaviour
 
     private void OnApplicationPause(bool pause)
     {
-        if(pause == true)
+        if (pause == true)
         {
             DataPlayer.Instance.SaveDataPlayer();
         }
     }
-    
+
 }

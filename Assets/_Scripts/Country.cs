@@ -624,7 +624,9 @@ public class Country : MonoBehaviour
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
-                NS += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * HNS * convertPercent;
+                LC += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * HNS * convertPercent;
+                LCDT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 2f) * HL * convertPercent;
+                NS += bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * HL * convertPercent;
                 NSDT += UnityEngine.Random.Range(1000f, bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS * 2f) * HNS * convertPercent;
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 0;
             }

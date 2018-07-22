@@ -271,6 +271,7 @@ public class Country : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
+                WorldManager.Instance.lsCountry[1].transform.GetChild(3).gameObject.SetActive(true);
                 UIManager.Instance.Turorial(UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).GetChild(2).gameObject, new Vector3(744f, -244f, 0), new Vector3(0, 0, 180f));
             }
         }

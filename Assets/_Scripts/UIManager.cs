@@ -504,6 +504,8 @@ public class UIManager : MonoBehaviour
     public void DoneTutorial()
     {
         AudioManager.Instance.Play("Click");
+        infoTutorial.SetActive(false);
+        handTutorial.SetActive(true);
         panelTutorial.SetActive(false);
         if (!GameManager.Instance.isTutorial)
         {
@@ -512,6 +514,13 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            ResetGame();
+            if (WorldManager.Instance.idSelectWord != -1)
+                WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            for (int i = 0; i < WorldManager.Instance.lsCountry.Count; i++)
+            {               
+                WorldManager.Instance.lsCountry[i].gameObject.SetActive(true);
+            }
             BackToMenuOnclick();
             GameManager.Instance.isTutorial = false;
         }

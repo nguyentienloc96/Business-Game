@@ -215,7 +215,8 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        WorldManager.Instance.maxSlider = (long)(main.dollars * 0.95f);
+        WorldManager.Instance.maxSlider2 = (long)(main.dollars * 0.95f);
+        WorldManager.Instance.maxSlider = (long)(main.dollars * 0.1f);
         if (contentSelf.childCount > 0)
         {
             if (WorldManager.Instance.lsItemSelf.Count > WorldManager.Instance.indexSelf)

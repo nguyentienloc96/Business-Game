@@ -176,7 +176,7 @@ public class UIManager : MonoBehaviour
     public void OnclickNHOM1()
     {
         AudioManager.Instance.Play("Click");
-        if(indexScene == 0)
+        if (indexScene == 0)
         {
             WorldManager.Instance.OnEnableWord(false);
         }
@@ -309,13 +309,16 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
+        info5Years.SetActive(true);
         if (GameManager.Instance.modePlay == 1)
         {
-            info5Years.SetActive(true);
             info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
-            Invoke("HidePanelInfo", 5f);
-
         }
+        else
+        {
+            info5Years.transform.GetChild(0).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
+        }
+        Invoke("HidePanelInfo", 5f);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
@@ -442,7 +445,17 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.main.bitCoin = (long)(10 * GameManager.Instance.SRD);
         GameManager.Instance.main.dollars = (long)(50000 * GameManager.Instance.SRD);
         OnclickWORD();
-        if(GameManager.Instance.modePlay == 1)
+        info5Years.SetActive(true);
+        if (GameManager.Instance.modePlay == 1)
+        {
+            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
+        }
+        else
+        {
+            info5Years.transform.GetChild(0).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
+        }
+        Invoke("HidePanelInfo", 5f);
+        if (GameManager.Instance.modePlay == 1)
         {
             info5Years.SetActive(true);
             info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
@@ -452,6 +465,7 @@ public class UIManager : MonoBehaviour
 
     public void BackToMenuOnclick()
     {
+        StopAllCoroutines();
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("OverWin");
         AudioManager.Instance.Stop("GamePlay");
@@ -518,7 +532,7 @@ public class UIManager : MonoBehaviour
             if (WorldManager.Instance.idSelectWord != -1)
                 WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             for (int i = 0; i < WorldManager.Instance.lsCountry.Count; i++)
-            {               
+            {
                 WorldManager.Instance.lsCountry[i].gameObject.SetActive(true);
             }
             BackToMenuOnclick();
@@ -637,7 +651,7 @@ public class UIManager : MonoBehaviour
 
     public void ResetGame()
     {
-        for(int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
+        for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
             GameManager.Instance.main.lsCoutryReady[i].L = 0;
             GameManager.Instance.main.lsCoutryReady[i].LDT = 0;

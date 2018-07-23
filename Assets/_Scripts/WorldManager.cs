@@ -33,6 +33,7 @@ public class WorldManager : MonoBehaviour
     public GameObject panelInfo;
     public long LSlider2 = 1000;
     public long minSlider2 = 1000;
+    public long maxSlider2 = 47000;
 
     [Header("ItemSelf")]
     public List<Transform> lsItemSelf = new List<Transform>();
@@ -72,10 +73,7 @@ public class WorldManager : MonoBehaviour
 
     public void SliderWord()
     {
-        long moneyMax = 0;
-        if (GameManager.Instance.main.dollars < GameConfig.Instance.dollarStartGame)
-            moneyMax = GameManager.Instance.main.dollars;
-        long index = (moneyMax - minSlider) / 1000;
+        long index = (maxSlider - minSlider) / 1000;
         LSlider = minSlider + (long)(seltTraining.value * index) * 1000;
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
@@ -86,7 +84,7 @@ public class WorldManager : MonoBehaviour
 
     public void SliderSelf()
     {
-        long index = (maxSlider - minSlider2) / 1000;
+        long index = (maxSlider2 - minSlider2) / 1000;
         LSlider2 = minSlider2 + (long)(seltTraining2.value * index) * 1000;
         seltCoin2.text = ConvertNumber.convertNumber_DatDz(LSlider2);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)

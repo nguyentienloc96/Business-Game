@@ -69,6 +69,10 @@ public class Country : MonoBehaviour
     public void Start()
     {
         ResetCountry();
+
+        indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money", 0);
+
+        indexCapital = PlayerPrefs.GetInt("Count Capital", 0);
     }
 
     public void ResetCountry()
@@ -223,7 +227,7 @@ public class Country : MonoBehaviour
 
         for (int i = 0; i < 7; i++)
         {
-            Debug.Log("min " + i + " : " + minArray[i]);
+            //Debug.Log("min " + i + " : " + minArray[i]);
 
             if (minArray[i] < min)
             {
@@ -234,7 +238,7 @@ public class Country : MonoBehaviour
                 minDT = minArrayDT[i];
             }
         }
-        Debug.Log("min T :" + min);
+        //Debug.Log("min T :" + min);
         I0 = min * 100;
         I0DT = minDT * 100;
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
@@ -253,9 +257,30 @@ public class Country : MonoBehaviour
         {
             UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
-            if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider && L == 0)
+            if (L == 0)
             {
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(true);
+                if (GameManager.Instance.main.dollars < 10000)
+                {
+                    WorldManager.Instance.seltTraining.value = 0;
+                    WorldManager.Instance.LSlider = GameManager.Instance.main.dollars;
+                    UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                }
+                else
+                {
+                    if (WorldManager.Instance.maxSlider <= 10000)
+                    {
+                        WorldManager.Instance.seltTraining.value = 0;
+                        WorldManager.Instance.LSlider = 10000;
+                        UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        WorldManager.Instance.seltTraining.value = 0;
+                        WorldManager.Instance.LSlider = 10000;
+                        UIManager.Instance.PieChart1.transform.GetChild(2).GetChild(0).gameObject.SetActive(true);
+                    }
+                }
                 UIManager.Instance.POSITIONSELECT.SetActive(true);
                 UIManager.Instance.POSITIONSELECT.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = nameCountry;
             }
@@ -264,9 +289,8 @@ public class Country : MonoBehaviour
                 UIManager.Instance.POSITIONSELECT.SetActive(false);
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
             }
-            WorldManager.Instance.seltTraining.value = 0;
-            WorldManager.Instance.LSlider = 10000;
-            WorldManager.Instance.seltCoin.text = WorldManager.Instance.LSlider.ToString();
+
+            WorldManager.Instance.seltCoin.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.LSlider);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)L / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - L - LDT) / (float)GDP);
@@ -772,13 +796,13 @@ public class Country : MonoBehaviour
             }
             if (indexSelf == 1)//Borrow money
             {
-                int count = PlayerPrefs.GetInt("Count Borrow money", 0);
-                PlayerPrefs.SetInt("Count Borrow money", count++);
+                indexBorrowMoney++;
+                PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
                 int IndexRandom = UnityEngine.Random.Range(1, 5);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT * IndexRandom;
                 GameManager.Instance.main.dollars += moneyDT * IndexRandom;
-                if (PlayerPrefs.GetInt("Count Borrow money") == 5)
+                if (indexBorrowMoney >= 5)
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                     WorldManager.Instance.sliderEvole.SetActive(false);
@@ -787,15 +811,13 @@ public class Country : MonoBehaviour
             }
             if (indexSelf == 2)//Capital
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS >= 5)
-                {
-                    indexCapital = 0;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
-                    WorldManager.Instance.sliderEvole.SetActive(false);
-                }
+                indexCapital = 0;
+                PlayerPrefs.SetInt("Count Capital", indexCapital);
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = UnityEngine.Random.Range(1, 6);
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
             if (indexSelf == 3)//bank Loan
             {
@@ -1098,6 +1120,7 @@ public class Country : MonoBehaviour
         }
     }
 
+    int indexBorrowMoney = 0;
     public void BorrowMoney()
     {
         if (bigBranch[7].smallBranch[1].moneyDTBD > 0)
@@ -1110,12 +1133,14 @@ public class Country : MonoBehaviour
                     GameManager.Instance.main.dollars = 0;
                     info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
+                    indexBorrowMoney = 0;
+                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
                 }
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
                     bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD / 2;
-                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTBD / 2) + " in " + nameCountry;
+                    info = "You’ve just paid the debt " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTBD / 2) + "$ in " + nameCountry;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1130,6 +1155,8 @@ public class Country : MonoBehaviour
                     bigBranch[7].smallBranch[1].moneyDTBD = 0;
                     info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
+                    indexBorrowMoney = 0;
+                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
                 }
                 else
                 {
@@ -1137,6 +1164,8 @@ public class Country : MonoBehaviour
                     bigBranch[7].smallBranch[1].moneyDTBD -= bigBranch[7].smallBranch[1].moneyDTBD;
                     info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                     bigBranch[7].smallBranch[1].isRunning = false;
+                    indexBorrowMoney = 0;
+                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1150,10 +1179,10 @@ public class Country : MonoBehaviour
         if (bigBranch[7].smallBranch[2].moneyDTBD > 0)
         {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame
-               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayBD))).TotalDays) <= 30 * 6)
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayBD))).TotalDays) <= 30)
             {
                 if (((long)((TimeSpan)(GameManager.Instance.dateGame
-               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayS))).TotalDays) == 6f && bigBranch[7].smallBranch[2].moneyDTBD <= 6)
+               - DateTime.Parse(bigBranch[7].smallBranch[2].investmentDayS))).TotalDays) == 6f)
                 {
                     UIManager.Instance.panelInfoCapital.SetActive(true);
                     UIManager.Instance.panelInfoCapital.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
@@ -1164,17 +1193,6 @@ public class Country : MonoBehaviour
                         = "You have successfully received the capital in " +
                         WorldManager.Instance.lsCapital[bigBranch[7].smallBranch[2].moneyDTBD - 1] + " round";
                 }
-            }
-        }
-        else
-        {
-            if (bigBranch[7].smallBranch[2].moneyDTS >= 5)
-            {
-                bigBranch[7].smallBranch[2].isRunning = false;
-            }
-            else
-            {
-                bigBranch[7].smallBranch[2].isRunning = true;
             }
         }
     }
@@ -1239,9 +1257,10 @@ public class Country : MonoBehaviour
 
     public void OnClickNoCapital()
     {
-        indexCapital++;
         UIManager.Instance.panelInfoCapital.SetActive(false);
         bigBranch[7].smallBranch[2].investmentDayS = GameManager.Instance.dateGame.ToString();
+        indexCapital++;
+        PlayerPrefs.SetInt("Count Capital", indexCapital);
         if (indexCapital >= 3)
         {
             bigBranch[7].smallBranch[2].moneyDTBD = 0;
@@ -1252,29 +1271,21 @@ public class Country : MonoBehaviour
 
     public void OnClickYesCapital()
     {
-        indexCapital = 0;
         UIManager.Instance.panelInfoCapital.SetActive(false);
         bigBranch[7].smallBranch[2].investmentDayS = GameManager.Instance.dateGame.ToString();
-        if (bigBranch[7].smallBranch[2].moneyDTBD != 6)
-        {
-            bigBranch[7].smallBranch[2].moneyDTBD++;
-            bigBranch[7].smallBranch[2].investmentDayS
-                = GameManager.Instance.dateGame.AddDays(30 * (bigBranch[7].smallBranch[2].moneyDTBD - 1)).ToString();
-        }
-        else
-        {
-            bigBranch[7].smallBranch[2].moneyDTBD = 0;
-            float X = UnityEngine.Random.Range(1f, 5f);
-            long PX = (long)(X * 0.15f * bigBranch[7].smallBranch[2].moneyDTS);
-            bigBranch[7].smallBranch[2].moneyDTS -= PX;
-            long moneyX = (long)(X * GameManager.Instance.main.dollars);
-            GameManager.Instance.main.dollars += moneyX;
-            WorldManager.Instance.panelInfo.SetActive(true);
-            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text
-                = "You have successfully received the capital " + moneyX + "$";
-            Invoke("HidePanelInfo", 2f);
-            bigBranch[7].smallBranch[2].isRunning = false;
-        }
+        bigBranch[7].smallBranch[2].moneyDTBD = 0;
+        float X = UnityEngine.Random.Range(1f, 5f);
+        long PX = (long)(X * 0.15f * bigBranch[7].smallBranch[2].moneyDTS);
+        bigBranch[7].smallBranch[2].moneyDTS -= PX;
+        long moneyX = (long)(X * GameManager.Instance.main.dollars);
+        GameManager.Instance.main.dollars += moneyX;
+        WorldManager.Instance.panelInfo.SetActive(true);
+        WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text
+            = "You have successfully received the capital " + moneyX + "$";
+        Invoke("HidePanelInfo", 2f);
+        bigBranch[7].smallBranch[2].isRunning = false;
+        indexCapital = 0;
+        PlayerPrefs.SetInt("Count Capital", indexCapital);
     }
 
     public void OnClickNoFindACoFounder()

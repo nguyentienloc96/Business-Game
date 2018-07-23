@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-Build from DESKTOP-8TJOP7T at 7/22/2018 11:34:57 PM
-=======
-<<<<<<< HEAD
-Build from DATNHK-TT-D3 at 7/22/2018 11:29:45 PM
-=======
-<<<<<<< HEAD
-Build from DESKTOP-8TJOP7T at 7/22/2018 11:13:07 PM
-=======
-Build from DATNHK-TT-D3 at 7/22/2018 11:26:52 PM
->>>>>>> 47f9b02a46982a6fb84902c4d2031aaa7793afa2
->>>>>>> 4a08bd2b9b6ddd124f2d33aaaeb6f8ab698850f8
->>>>>>> afbddda2546d481e95196f7f468da03a68f670b5
+Build from DESKTOP-8TJOP7T at 7/23/2018 9:39:28 PM

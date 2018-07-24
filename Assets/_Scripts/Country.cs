@@ -307,18 +307,7 @@ public class Country : MonoBehaviour
             {
                 WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / ((float)L + (float)LDT));
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / ((float)L + (float)LDT));
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
-                UIManager.Instance.COLCHART.transform
-                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-
-                //UIManager.Instance.COLCHART.transform
-                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                //UIManager.Instance.COLCHART.transform
-                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+                LoadDataChart();
             }
         }
         else if (UIManager.Instance.indexScene == 2)
@@ -326,6 +315,23 @@ public class Country : MonoBehaviour
             WorldManager.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
             WorldManager.Instance.seltCoin2.text = 10000.ToString();
         }
+    }
+
+    public void LoadDataChart()
+    {
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / ((float)L + (float)LDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / ((float)L + (float)LDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
+        Debug.Log(L + " / " + LDT + " / " + " / " + ((float)(L) / ((float)L + (float)LDT)) + " / " + ((float)(LDT) / ((float)L + (float)LDT)));
+        UIManager.Instance.COLCHART.transform
+        .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+        UIManager.Instance.COLCHART.transform
+            .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
+        //UIManager.Instance.COLCHART.transform
+        //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+        //UIManager.Instance.COLCHART.transform
+        //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
     }
 
     public void SetSmallBranch(int indexPSelf, int indexSelf, long moneyDT)

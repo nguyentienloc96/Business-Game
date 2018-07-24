@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -128,7 +126,6 @@ public class GameManager : MonoBehaviour
     }
 
     int checkMonth = 0;
-    //float sumTime = 0;
     void Update()
     {
         if (UIManager.Instance.isPlay)
@@ -163,6 +160,12 @@ public class GameManager : MonoBehaviour
                             NewsGame();
                             checkMonth = 0;
                         }
+                        if(WorldManager.Instance.idSelectWord < main.lsCoutryReady.Count 
+                            && WorldManager.Instance.idSelectWord != 1 && UIManager.Instance.indexScene == 1)
+                        {
+                            main.lsCoutryReady[WorldManager.Instance.idSelectWord].LoadDataChart();
+                        }
+
                     }
                 }
                 if (modePlay == 1)
@@ -188,16 +191,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                //if (!isTutorial)
-                //{
-                //    sumTime += DeltaTimeGame;
 
-                //    if (sumTime >= 8f)
-                //    {
-                //        //DataPlayer.Instance.SaveDataPlayer();
-                //        sumTime = 0;
-                //    }
-                //}
                 PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();
                 time = 0;
@@ -293,14 +287,5 @@ public class GameManager : MonoBehaviour
         //WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
         //UIManager.Instance.panelDollars.SetActive(false);
         //Invoke("HidePanelInfo", 5f);
-    }
-
-    public IEnumerator ActionTimer(float time, UnityAction actionBegin = null, UnityAction actionEnd = null)
-    {
-        if (actionBegin != null)
-            actionBegin();
-        yield return new WaitForSeconds(time);
-        if (actionEnd != null)
-            actionEnd();
     }
 }

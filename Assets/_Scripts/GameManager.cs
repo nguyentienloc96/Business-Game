@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -291,5 +293,14 @@ public class GameManager : MonoBehaviour
         //WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
         //UIManager.Instance.panelDollars.SetActive(false);
         //Invoke("HidePanelInfo", 5f);
+    }
+
+    public IEnumerator ActionTimer(float time, UnityAction actionBegin = null, UnityAction actionEnd = null)
+    {
+        if (actionBegin != null)
+            actionBegin();
+        yield return new WaitForSeconds(time);
+        if (actionEnd != null)
+            actionEnd();
     }
 }

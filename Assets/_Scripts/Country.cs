@@ -1227,7 +1227,7 @@ public class Country : MonoBehaviour
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                     UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                     = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    + GameConfig.Instance.dollarStartGame / percentMoneyCoFounder + "$"
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
                     + " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 3)
@@ -1237,7 +1237,7 @@ public class Country : MonoBehaviour
                     percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
                     UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                      = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    + GameConfig.Instance.dollarStartGame * percentMoneyCoFounder + "$"
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
                     + " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 4)
@@ -1246,13 +1246,14 @@ public class Country : MonoBehaviour
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 75);
                     UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                      = "Rich man / Money :"
-                    + GameConfig.Instance.dollarStartGame / percentMoneyCoFounder + "$"
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
                     + " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoFindACoFounder());
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesFindACoFounder());
+                Invoke("HidePanelFindACoFounder", 8 * GameManager.Instance.DeltaTimeGame);
             }
         }
     }
@@ -1307,13 +1308,24 @@ public class Country : MonoBehaviour
         UIManager.Instance.panelFindACoFounder.SetActive(false);
         float temp = 0f;
         if (typeCoFounder == 1)
+        {
             temp = 1.5f;
+        }
         else if (typeCoFounder == 2)
+        {
             temp = 1.2f;
+            GameManager.Instance.main.dollars += (long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder);
+        }
         else if (typeCoFounder == 3)
+        {
             temp = 1.2f;
+            GameManager.Instance.main.dollars += (long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder);
+        }
         else if (typeCoFounder == 4)
+        {
             temp = 2f;
+            GameManager.Instance.main.dollars += (long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder);
+        }
 
         if (typeBranchCoFounder == 1)
         {
@@ -1323,10 +1335,19 @@ public class Country : MonoBehaviour
         {
             MKT = temp * SP;
         }
-        if (typeBranchCoFounder == 3)
+        else if (typeBranchCoFounder == 3)
         {
             MKT = temp * NS;
         }
+        else if (typeBranchCoFounder == 3)
+        {
+            MKT = temp * NS;
+        }
+    }
+
+    public void HidePanelFindACoFounder()
+    {
+        UIManager.Instance.panelFindACoFounder.SetActive(false);
     }
 
     public void HidePanelInfo()
@@ -1345,4 +1366,5 @@ public class Country : MonoBehaviour
             }
         }
     }
+
 }

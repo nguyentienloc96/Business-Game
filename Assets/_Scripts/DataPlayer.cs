@@ -133,23 +133,23 @@ public class DataPlayer : MonoBehaviour
                 ct.HKH = lsData[i]["HKH"].AsFloat;
                 ct.HST = lsData[i]["HST"].AsFloat;
 
-                ct.I0 = lsData[i]["I0"].AsFloat;
-                ct.SP = lsData[i]["SP"].AsFloat;
-                ct.MKT = lsData[i]["MKT"].AsFloat;
-                ct.MARKET = lsData[i]["MAKRET"].AsFloat;
-                ct.LC = lsData[i]["LC"].AsFloat;
-                ct.KH = lsData[i]["KH"].AsFloat;
-                ct.NS = lsData[i]["NS"].AsFloat;
-                ct.ST = lsData[i]["ST"].AsFloat;
+                ct.I0 = lsData[i]["I0"].AsDouble;
+                ct.SP = lsData[i]["SP"].AsDouble;
+                ct.MKT = lsData[i]["MKT"].AsDouble;
+                ct.MARKET = lsData[i]["MAKRET"].AsDouble;
+                ct.LC = lsData[i]["LC"].AsDouble;
+                ct.KH = lsData[i]["KH"].AsDouble;
+                ct.NS = lsData[i]["NS"].AsDouble;
+                ct.ST = lsData[i]["ST"].AsDouble;
 
-                ct.I0DT = lsData[i]["I0DT"].AsFloat;
-                ct.SPDT = lsData[i]["SPDT"].AsFloat;
-                ct.MKTDT = lsData[i]["MKTDT"].AsFloat;
-                ct.MARKETDT = lsData[i]["MAKRETDT"].AsFloat;
-                ct.LCDT = lsData[i]["LCDT"].AsFloat;
-                ct.KHDT = lsData[i]["KHDT"].AsFloat;
-                ct.NSDT = lsData[i]["NSDT"].AsFloat;
-                ct.STDT = lsData[i]["STDT"].AsFloat;
+                ct.I0DT = lsData[i]["I0DT"].AsDouble;
+                ct.SPDT = lsData[i]["SPDT"].AsDouble;
+                ct.MKTDT = lsData[i]["MKTDT"].AsDouble;
+                ct.MARKETDT = lsData[i]["MAKRETDT"].AsDouble;
+                ct.LCDT = lsData[i]["LCDT"].AsDouble;
+                ct.KHDT = lsData[i]["KHDT"].AsDouble;
+                ct.NSDT = lsData[i]["NSDT"].AsDouble;
+                ct.STDT = lsData[i]["STDT"].AsDouble;
 
                 ct.lstNew = new List<string>();
                 for (int k = 0; k < lsData[i]["lstNew"].Count; k++)
@@ -181,10 +181,10 @@ public class DataPlayer : MonoBehaviour
                 for (int j = 0; j < dataColChartMain.Count; j++)
                 {
                     ct.dataColChartMain[j].nameCol = dataColChartMain[j]["nameCol"];
-                    ct.dataColChartMain[j].valueCol = new int[dataColChartMain[j]["valueCol"].Count];
+                    ct.dataColChartMain[j].valueCol = new long[dataColChartMain[j]["valueCol"].Count];
                     for (int k = 0; k < dataColChartMain[j]["valueCol"].Count; k++)
                     {
-                        ct.dataColChartMain[j].valueCol[k] = dataColChartMain[j]["valueCol"][k].AsInt;
+                        ct.dataColChartMain[j].valueCol[k] = dataColChartMain[j]["valueCol"][k].AsLong;
                     }
                     
                 }
@@ -194,10 +194,10 @@ public class DataPlayer : MonoBehaviour
                 for (int j = 0; j < dataColChartCompetitors.Count; j++)
                 {
                     ct.dataColChartCompetitors[j].nameCol = dataColChartCompetitors[j]["nameCol"];
-                    ct.dataColChartCompetitors[j].valueCol = new int[dataColChartCompetitors[j]["valueCol"].Count];
+                    ct.dataColChartCompetitors[j].valueCol = new long[dataColChartCompetitors[j]["valueCol"].Count];
                     for (int k = 0; k < dataColChartCompetitors[j]["valueCol"].Count; k++)
                     {
-                        ct.dataColChartCompetitors[j].valueCol[k] = dataColChartCompetitors[j]["valueCol"][k].AsInt;
+                        ct.dataColChartCompetitors[j].valueCol[k] = dataColChartCompetitors[j]["valueCol"][k].AsLong;
                     }
 
                 }

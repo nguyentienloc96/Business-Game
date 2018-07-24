@@ -10,23 +10,23 @@ public class world : MonoBehaviour
     public long L = 0;
     public long LDT = 0;
 
-    public float I0 = 0f;
-    public float SP = 0f;
-    public float MKT = 0f;
-    public float MARKET = 0f;
-    public float LC = 0f;
-    public float KH = 0f;
-    public float NS = 0f;
-    public float ST = 0f;
+    public double I0 = 0f;
+    public double SP = 0f;
+    public double MKT = 0f;
+    public double MARKET = 0f;
+    public double LC = 0f;
+    public double KH = 0f;
+    public double NS = 0f;
+    public double ST = 0f;
 
-    public float I0DT = 0f;
-    public float SPDT = 0f;
-    public float MKTDT = 0f;
-    public float MARKETDT = 0f;
-    public float LCDT = 0f;
-    public float KHDT = 0f;
-    public float NSDT = 0f;
-    public float STDT = 0f;
+    public double I0DT = 0f;
+    public double SPDT = 0f;
+    public double MKTDT = 0f;
+    public double MARKETDT = 0f;
+    public double LCDT = 0f;
+    public double KHDT = 0f;
+    public double NSDT = 0f;
+    public double STDT = 0f;
 
     public DataColChart[] dataColChartMain = new DataColChart[12];
     public DataColChart[] dataColChartCompetitors = new DataColChart[12];

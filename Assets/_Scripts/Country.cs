@@ -40,23 +40,23 @@ public class Country : MonoBehaviour
     public float HNS;
     public float HST;
 
-    public float I0 = 0f;
-    public float SP = 0f;
-    public float MKT = 0f;
-    public float MARKET = 0f;
-    public float LC = 0f;
-    public float KH = 0f;
-    public float NS = 0f;
-    public float ST = 0f;
+    public double I0 = 0f;
+    public double SP = 0f;
+    public double MKT = 0f;
+    public double MARKET = 0f;
+    public double LC = 0f;
+    public double KH = 0f;
+    public double NS = 0f;
+    public double ST = 0f;
 
-    public float I0DT = 0f;
-    public float SPDT = 0f;
-    public float MKTDT = 0f;
-    public float MARKETDT = 0f;
-    public float LCDT = 0f;
-    public float KHDT = 0f;
-    public float NSDT = 0f;
-    public float STDT = 0f;
+    public double I0DT = 0f;
+    public double SPDT = 0f;
+    public double MKTDT = 0f;
+    public double MARKETDT = 0f;
+    public double LCDT = 0f;
+    public double KHDT = 0f;
+    public double NSDT = 0f;
+    public double STDT = 0f;
 
     public STBigBranch[] bigBranch = new STBigBranch[8];
 
@@ -80,9 +80,9 @@ public class Country : MonoBehaviour
         for (int i = 0; i < 12; i++)
         {
             dataColChartMain[i].nameCol = (i + 1).ToString();
-            dataColChartMain[i].valueCol = new int[7];
+            dataColChartMain[i].valueCol = new long[7];
             dataColChartCompetitors[i].nameCol = (i + 1).ToString();
-            dataColChartCompetitors[i].valueCol = new int[7];
+            dataColChartCompetitors[i].valueCol = new long[7];
         }
 
         for (int i = 0; i < bigBranch.Length; i++)
@@ -191,39 +191,39 @@ public class Country : MonoBehaviour
 
     public void Interest()
     {
-        List<float> minArray = new List<float>();
-        float minSP = SP / GameConfig.Instance.TL_sp;
+        List<double> minArray = new List<double>();
+        double minSP = SP / GameConfig.Instance.TL_sp;
         minArray.Add(minSP);
-        float minMKT = MKT / GameConfig.Instance.TL_mkt;
+        double minMKT = MKT / GameConfig.Instance.TL_mkt;
         minArray.Add(minMKT);
-        float minMARKET = MARKET / GameConfig.Instance.TL_maket;
+        double minMARKET = MARKET / GameConfig.Instance.TL_maket;
         minArray.Add(minMARKET);
-        float minL = LC / GameConfig.Instance.TL_lo;
+        double minL = LC / GameConfig.Instance.TL_lo;
         minArray.Add(minL);
-        float minNS = NS / GameConfig.Instance.TL_ns;
+        double minNS = NS / GameConfig.Instance.TL_ns;
         minArray.Add(minNS);
-        float minKH = KH / GameConfig.Instance.TL_kh;
+        double minKH = KH / GameConfig.Instance.TL_kh;
         minArray.Add(minKH);
-        float minST = ST / GameConfig.Instance.TL_st;
+        double minST = ST / GameConfig.Instance.TL_st;
         minArray.Add(minST);
-        float min = minArray[0];
+        double min = minArray[0];
 
-        List<float> minArrayDT = new List<float>();
-        float minSPDT = SPDT / GameConfig.Instance.TL_sp;
+        List<double> minArrayDT = new List<double>();
+        double minSPDT = SPDT / GameConfig.Instance.TL_sp;
         minArrayDT.Add(minSPDT);
-        float minMKTDT = MKTDT / GameConfig.Instance.TL_mkt;
+        double minMKTDT = MKTDT / GameConfig.Instance.TL_mkt;
         minArrayDT.Add(minMKTDT);
-        float minMARKETDT = MARKETDT / GameConfig.Instance.TL_maket;
+        double minMARKETDT = MARKETDT / GameConfig.Instance.TL_maket;
         minArrayDT.Add(minMARKETDT);
-        float minLDT = LCDT / GameConfig.Instance.TL_lo;
+        double minLDT = LCDT / GameConfig.Instance.TL_lo;
         minArrayDT.Add(minLDT);
-        float minNSDT = NSDT / GameConfig.Instance.TL_ns;
+        double minNSDT = NSDT / GameConfig.Instance.TL_ns;
         minArrayDT.Add(minNSDT);
-        float minKHDT = KHDT / GameConfig.Instance.TL_kh;
+        double minKHDT = KHDT / GameConfig.Instance.TL_kh;
         minArrayDT.Add(minKHDT);
-        float minSTDT = STDT / GameConfig.Instance.TL_st;
+        double minSTDT = STDT / GameConfig.Instance.TL_st;
         minArrayDT.Add(minSTDT);
-        float minDT = minArray[0];
+        double minDT = minArray[0];
 
         for (int i = 0; i < 7; i++)
         {
@@ -238,6 +238,7 @@ public class Country : MonoBehaviour
         }
         I0 = min * 100;
         I0DT = minDT * 100;
+        Debug.Log("I0 : " + I0 + " / I0DT : " + I0DT);
         L += (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
         LDT += (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
@@ -322,7 +323,7 @@ public class Country : MonoBehaviour
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / ((float)L + (float)LDT));
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / ((float)L + (float)LDT));
         UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
-        Debug.Log(L + " / " + LDT + " / " + " / " + ((float)(L) / ((float)L + (float)LDT)) + " / " + ((float)(LDT) / ((float)L + (float)LDT)));
+        Debug.Log("L : " + L + " / LDT : " + LDT);
         UIManager.Instance.COLCHART.transform
         .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
         UIManager.Instance.COLCHART.transform

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public struct DataColChart
 {
     public string nameCol;
-    public int[] valueCol;
+    public long[] valueCol;
 }
 public class ColumnChart : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class ColumnChart : MonoBehaviour
 
     public void loadData()
     {
-        int maxX = 0;
+        long maxX = 0;
         for (int i = 0; i < lsItem.Length; i++)
         {
             for (int j = 0; j < lsItem[i].transform.childCount; j++)
@@ -69,7 +69,7 @@ public class ColumnChart : MonoBehaviour
         }
     }
 
-    IEnumerator ColChart(DataColChart datacol, GameObject item, int maxX)
+    IEnumerator ColChart(DataColChart datacol, GameObject item, long maxX)
     {
         for (int j = 0; j < datacol.valueCol.Length; j++)
         {

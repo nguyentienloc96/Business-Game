@@ -65,7 +65,8 @@ public class ItemSelf : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(0).gameObject, new Vector3(744f, -177f, 0), new Vector3(0, 0, 180f));
+            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(0).gameObject,
+               UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(0).GetChild(2).transform.position, new Vector3(0, 0, 180f));
         }
     }
 

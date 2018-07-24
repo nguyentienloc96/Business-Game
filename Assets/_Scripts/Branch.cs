@@ -98,7 +98,8 @@ public class Branch : MonoBehaviour
         {
             if (index == 1)
             {
-                UIManager.Instance.Turorial(WorldManager.Instance.lsItemSelf[1].gameObject, new Vector3(-368f, 98f, 0), Vector3.zero);
+                UIManager.Instance.Turorial(WorldManager.Instance.lsItemSelf[1].gameObject,
+                    WorldManager.Instance.lsItemSelf[1].GetChild(1).transform.position, Vector3.zero);
             }
         }
         UIManager.Instance.isLoadItemBranch = false;

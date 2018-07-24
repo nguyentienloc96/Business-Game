@@ -78,7 +78,8 @@ public class WorldManager : MonoBehaviour
         seltCoin.text = ConvertNumber.convertNumber_DatDz(LSlider);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject, new Vector3(88, -182f, 0), new Vector3(0, 0, 0f));
+            UIManager.Instance.Turorial(UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).gameObject,
+                UIManager.Instance.POSITIONSELECT.transform.GetChild(1).GetChild(2).transform.position, new Vector3(0, 0, 0f));
         }
     }
 
@@ -89,7 +90,8 @@ public class WorldManager : MonoBehaviour
         seltCoin2.text = ConvertNumber.convertNumber_DatDz(LSlider2);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(2).gameObject, new Vector3(744f, -419f, 0), new Vector3(0, 0, 180f));
+            UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(2).gameObject,
+                UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(2).transform.position, new Vector3(0, 0, 180f));
         }
     }
 
@@ -135,7 +137,8 @@ public class WorldManager : MonoBehaviour
         Invoke("HidePanelInfo", 2f);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            UIManager.Instance.Turorial(UIManager.Instance.btnTHONGSO.gameObject, new Vector3(-500f, -431f, 0), new Vector3(0, 0, 180f));
+            UIManager.Instance.Turorial(UIManager.Instance.btnTHONGSO.gameObject,
+                UIManager.Instance.btnTHONGSO.transform.position, new Vector3(0, 0, 180f));
         }
     }
 
@@ -237,7 +240,8 @@ public class WorldManager : MonoBehaviour
             lsCountry[idSelectWord].gameObject.SetActive(false);
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
-                UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject, new Vector3(-31f, -242f, 0), new Vector3(0, 0, 0));
+                UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject,
+                    UIManager.Instance.panelEror.transform.GetChild(1).transform.position, new Vector3(0, 0, 0));
             }
         }
         else

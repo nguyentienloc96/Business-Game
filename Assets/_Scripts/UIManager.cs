@@ -209,7 +209,7 @@ public class UIManager : MonoBehaviour
         panelSetting.SetActive(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            Turorial(btnBRANCH2.gameObject, new Vector3(-33f, 308f, 0), Vector3.zero);
+            Turorial(btnBRANCH2.gameObject, btnBRANCH2.transform.position, Vector3.zero);
         }
 
         Ads.Instance.RequestAd();
@@ -321,7 +321,7 @@ public class UIManager : MonoBehaviour
         Invoke("HidePanelInfo", 5f);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject, WorldManager.Instance.lsCountry[1].transform.position, Vector3.zero);
         }
     }
 
@@ -343,7 +343,7 @@ public class UIManager : MonoBehaviour
         OnclickWORD();
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            Turorial(WorldManager.Instance.lsCountry[1].gameObject, new Vector3(-795f, 217f, 0), Vector3.zero);
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject, WorldManager.Instance.lsCountry[1].transform.position, Vector3.zero);
         }
     }
 
@@ -356,7 +356,7 @@ public class UIManager : MonoBehaviour
         mainTutorial.SetActive(true);
         mainTutorial.transform.SetAsFirstSibling();
         mainTutorial.transform.position = pos;
-        handTutorial.transform.localPosition = posHand;
+        handTutorial.transform.position = posHand;
         handTutorial.transform.localEulerAngles = angleHnad;
     }
 
@@ -511,7 +511,7 @@ public class UIManager : MonoBehaviour
         panelEror.SetActive(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            Turorial(btnNHOM1.gameObject, new Vector3(-219f, -429f, 0), new Vector3(0, 0, 180f));
+            Turorial(btnNHOM1.gameObject, btnNHOM1.transform.position, new Vector3(0, 0, 180f));
         }
     }
 

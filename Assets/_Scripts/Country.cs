@@ -875,6 +875,7 @@ public class Country : MonoBehaviour
         BankLoan();
         BorrowMoney();
         Capital();
+        FindACoFounder();
     }
 
     public void FactoryWorkshopLoop()

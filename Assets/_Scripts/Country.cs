@@ -238,7 +238,6 @@ public class Country : MonoBehaviour
         }
         I0 = min * 100;
         I0DT = minDT * 100;
-        Debug.Log("I0 : " + I0 + " / I0DT : " + I0DT);
         L += (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
         LDT += (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
@@ -323,6 +322,7 @@ public class Country : MonoBehaviour
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / ((float)L + (float)LDT));
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / ((float)L + (float)LDT));
         UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
+        Debug.Log("I0 : " + I0 + " / I0DT : " + I0DT);
         Debug.Log("L : " + L + " / LDT : " + LDT);
         UIManager.Instance.COLCHART.transform
         .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;

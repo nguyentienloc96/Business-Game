@@ -10,7 +10,7 @@ public class ItemSelf : MonoBehaviour
 
     public void OnclickSelf()
     {
-        if (WorldManager.Instance.lsItemSelf.Count - 1 > WorldManager.Instance.indexSelf)
+        if (WorldManager.Instance.lsItemSelf.Count > WorldManager.Instance.indexSelf)
         {
             WorldManager.Instance.lsItemSelf[WorldManager.Instance.indexSelf].GetChild(1).GetChild(1).gameObject.SetActive(false);
         }

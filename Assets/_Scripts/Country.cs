@@ -227,8 +227,6 @@ public class Country : MonoBehaviour
 
         for (int i = 0; i < 7; i++)
         {
-            //Debug.Log("min " + i + " : " + minArray[i]);
-
             if (minArray[i] < min)
             {
                 min = minArray[i];
@@ -238,9 +236,10 @@ public class Country : MonoBehaviour
                 minDT = minArrayDT[i];
             }
         }
-        //Debug.Log("min T :" + min);
         I0 = min * 100;
         I0DT = minDT * 100;
+        L += (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
+        LDT += (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
         GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
     }
 
@@ -304,27 +303,13 @@ public class Country : MonoBehaviour
         }
         else if (UIManager.Instance.indexScene == 1)
         {
-            if (I0 != 0)
+            if (L != 0)
             {
                 WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / ((float)L + (float)LDT));
+                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / ((float)L + (float)LDT));
                 UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
-                UIManager.Instance.COLCHART.transform
-                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-
-                //UIManager.Instance.COLCHART.transform
-                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                //UIManager.Instance.COLCHART.transform
-                //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-            }
-            else
-            {
-                UIManager.Instance.PieChart2.SetActive(true);
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadNote();
                 UIManager.Instance.COLCHART.transform
                 .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
                 UIManager.Instance.COLCHART.transform

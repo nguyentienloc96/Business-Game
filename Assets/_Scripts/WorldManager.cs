@@ -226,7 +226,7 @@ public class WorldManager : MonoBehaviour
 
             GameManager.Instance.main.dollars -= LSlider;
             lsCountry[idSelectWord].L = LSlider;
-            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(1000, (lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L)) / 1000) * 1000;
+            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(0.15f,0.45f) * lsCountry[idSelectWord].GDP);
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);

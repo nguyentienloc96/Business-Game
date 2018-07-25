@@ -133,7 +133,7 @@ public class WorldManager : MonoBehaviour
                 = "You have successfully invested " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$ ";
         }
         sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
-        seltCoin2.text = minSlider2.ToString();
+        seltCoin2.text = ConvertNumber.convertNumber_DatDz(minSlider2);
         Invoke("HidePanelInfo", 2f);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {

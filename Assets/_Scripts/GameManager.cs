@@ -161,9 +161,12 @@ public class GameManager : MonoBehaviour
                             checkMonth = 0;
                         }
                         if(WorldManager.Instance.idSelectWord < main.lsCoutryReady.Count 
-                            && WorldManager.Instance.idSelectWord != 1 && UIManager.Instance.indexScene == 1)
+                           && UIManager.Instance.indexScene == 1)
                         {
-                            main.lsCoutryReady[WorldManager.Instance.idSelectWord].LoadDataChart();
+                            if (WorldManager.Instance.idSelectWord != -1)
+                                main.lsCoutryReady[WorldManager.Instance.idSelectWord].LoadDataChart();
+                            else
+                                world_main.LoadDataChart();
                         }
 
                     }

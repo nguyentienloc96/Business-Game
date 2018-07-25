@@ -75,21 +75,21 @@ public class world : MonoBehaviour
     {
         PushWord();
         int month = GameManager.Instance.dateGame.Month - 1;
-        dataColChartMain[month].valueCol[0] = (int)(SP);
-        dataColChartMain[month].valueCol[1] = (int)(MKT);
-        dataColChartMain[month].valueCol[2] = (int)(MARKET);
-        dataColChartMain[month].valueCol[3] = (int)(LC);
-        dataColChartMain[month].valueCol[4] = (int)(KH);
-        dataColChartMain[month].valueCol[5] = (int)(NS);
-        dataColChartMain[month].valueCol[6] = (int)(ST);
+        dataColChartMain[month].valueCol[0] = (long)(SP);
+        dataColChartMain[month].valueCol[1] = (long)(MKT);
+        dataColChartMain[month].valueCol[2] = (long)(MARKET);
+        dataColChartMain[month].valueCol[3] = (long)(LC);
+        dataColChartMain[month].valueCol[4] = (long)(KH);
+        dataColChartMain[month].valueCol[5] = (long)(NS);
+        dataColChartMain[month].valueCol[6] = (long)(ST);
 
-        dataColChartCompetitors[month].valueCol[0] = (int)(SPDT);
-        dataColChartCompetitors[month].valueCol[1] = (int)(MKTDT);
-        dataColChartCompetitors[month].valueCol[2] = (int)(MARKETDT);
-        dataColChartCompetitors[month].valueCol[3] = (int)(LCDT);
-        dataColChartCompetitors[month].valueCol[4] = (int)(KHDT);
-        dataColChartCompetitors[month].valueCol[5] = (int)(NSDT);
-        dataColChartCompetitors[month].valueCol[6] = (int)(STDT);
+        dataColChartCompetitors[month].valueCol[0] = (long)(SPDT);
+        dataColChartCompetitors[month].valueCol[1] = (long)(MKTDT);
+        dataColChartCompetitors[month].valueCol[2] = (long)(MARKETDT);
+        dataColChartCompetitors[month].valueCol[3] = (long)(LCDT);
+        dataColChartCompetitors[month].valueCol[4] = (long)(KHDT);
+        dataColChartCompetitors[month].valueCol[5] = (long)(NSDT);
+        dataColChartCompetitors[month].valueCol[6] = (long)(STDT);
 
     }
 
@@ -119,39 +119,29 @@ public class world : MonoBehaviour
             WorldManager.Instance.idSelectWord = ID;
             transform.GetChild(1).gameObject.SetActive(true);
             PushWord();
-            if (I0 != 0)
+            if (L != 0)
             {
                 WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(I0) / (float)(I0 + I0DT));
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(I0DT) / (float)(I0 + I0DT));
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
-                UIManager.Instance.COLCHART.transform
-                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+                LoadDataChart();
             }
-            else
-            {
-                UIManager.Instance.PieChart2.SetActive(true);
-                UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadNote();
-                UIManager.Instance.COLCHART.transform
-                .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
-                UIManager.Instance.COLCHART.transform
-                    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
-            }
-
         }
+    }
+
+    public void LoadDataChart()
+    {
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / (float)(L + LDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)(L + LDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
+        UIManager.Instance.COLCHART.transform
+        .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;
+        UIManager.Instance.COLCHART.transform
+            .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
+
+        //UIManager.Instance.COLCHART.transform
+        //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartCompetitors;
+        //UIManager.Instance.COLCHART.transform
+        //    .GetChild(1).GetChild(0).GetChild(0).GetComponent<ColumnChart>().loadData();
     }
 
     public void Update()

@@ -143,6 +143,13 @@ public class UIManager : MonoBehaviour
         {
             WorldManager.Instance.OnEnableWord(false);
         }
+        else
+        {
+            if (WorldManager.Instance.idSelectWord == -1)
+            {
+                WorldManager.Instance.OnEnableWord(false);
+            }
+        }
         indexScene = 1;
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
@@ -179,6 +186,13 @@ public class UIManager : MonoBehaviour
         if (indexScene == 0)
         {
             WorldManager.Instance.OnEnableWord(false);
+        }
+        else
+        {
+            if(WorldManager.Instance.idSelectWord == -1)
+            {
+                WorldManager.Instance.OnEnableWord(false);
+            }
         }
         indexScene = 2;
         ResetBranch();
@@ -223,6 +237,13 @@ public class UIManager : MonoBehaviour
         {
             WorldManager.Instance.OnEnableWord(false);
         }
+        else
+        {
+            if (WorldManager.Instance.idSelectWord == -1)
+            {
+                WorldManager.Instance.OnEnableWord(false);
+            }
+        }
         indexScene = 2;
         ResetBranch();
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
@@ -262,6 +283,13 @@ public class UIManager : MonoBehaviour
         if (indexScene == 0)
         {
             WorldManager.Instance.OnEnableWord(false);
+        }
+        else
+        {
+            if (WorldManager.Instance.idSelectWord == -1)
+            {
+                WorldManager.Instance.OnEnableWord(false);
+            }
         }
         indexScene = 2;
         ResetBranch();

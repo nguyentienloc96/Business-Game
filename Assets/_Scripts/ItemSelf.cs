@@ -74,8 +74,11 @@ public class ItemSelf : MonoBehaviour
     {
         if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
         {
-            WorldManager.Instance.sliderEvole.SetActive(!WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
-            .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning);
+            if (WorldManager.Instance.idSelectWord != -1)
+            {
+                WorldManager.Instance.sliderEvole.SetActive(!WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
+                .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning);
+            }
         }
         else
         {
@@ -89,8 +92,11 @@ public class ItemSelf : MonoBehaviour
         {
             if (WorldManager.Instance.lsItemSelf.Count > indexSelf)
             {
-                transform.GetChild(1).GetComponent<Button>().interactable = !WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
-                .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
+                if (WorldManager.Instance.idSelectWord != -1)
+                {
+                    transform.GetChild(1).GetComponent<Button>().interactable = !WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord]
+                    .bigBranch[indexPSelf].smallBranch[indexSelf].isRunning;
+                }
             }
         }
     }

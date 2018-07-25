@@ -197,7 +197,6 @@ public class WorldManager : MonoBehaviour
                 lsCountry[idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
             if (GameManager.Instance.main.lsCoutryReady.Count > 0)
             {
-
                 GameManager.Instance.main.lsCoutryReady[0].transform.GetChild(3).gameObject.SetActive(true);
                 idSelectWord = GameManager.Instance.main.lsCoutryReady[0].ID;
             }
@@ -228,6 +227,7 @@ public class WorldManager : MonoBehaviour
             lsCountry[idSelectWord].L = LSlider;
             lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(0.15f,0.45f) * lsCountry[idSelectWord].GDP);
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
+            SelectionSort(lsCountry);
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
@@ -253,4 +253,26 @@ public class WorldManager : MonoBehaviour
         }
     }
 
+    void SelectionSort(List<Country> ls)
+    {
+        int minValueIndex = 0;
+        for (int i = 0; i < ls.Count - 1; i++)
+        {
+            minValueIndex = i;
+            for (int j = i + 1; j < ls.Count; j++)
+            {
+                if (ls[j].ID < ls[minValueIndex].ID)
+                {
+                    minValueIndex = j;
+                }
+            }
+
+            if (minValueIndex != i)
+            {
+                Country temp = ls[i];
+                ls[i] = ls[minValueIndex];
+                ls[minValueIndex] = temp;
+            }
+        }
+    }
 }

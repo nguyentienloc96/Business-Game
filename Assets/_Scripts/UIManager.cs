@@ -626,6 +626,7 @@ public class UIManager : MonoBehaviour
         else
         {
             panelSetting.SetActive(true);
+            AudioManager.Instance.sliderSound.value = PlayerPrefs.GetFloat("Volume Sound");
         }
     }
 

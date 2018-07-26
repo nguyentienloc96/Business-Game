@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Sound
@@ -29,6 +28,8 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
+    public Slider sliderSound;
+
     private void Awake()
     {
         if (Instance != null)
@@ -37,8 +38,11 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        float volume = PlayerPrefs.GetFloat("Volume Sound", 1f);
+
         foreach (Sound s in sounds)
         {
+            s.volume = volume;
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
@@ -51,7 +55,6 @@ public class AudioManager : MonoBehaviour
     public void Start()
     {
         Play("Menu");
-
     }
 
     public void Play(string name)
@@ -101,5 +104,15 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Stop();
         }
+    }
+
+    public void SliderVolume(Slider _slider)
+    {
+        foreach(Sound s in sounds)
+        {
+            s.source.volume = _slider.value;
+        }
+
+        PlayerPrefs.SetFloat("Volume Sound", _slider.value);
     }
 }

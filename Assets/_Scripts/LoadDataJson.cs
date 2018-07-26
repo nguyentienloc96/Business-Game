@@ -55,6 +55,7 @@ public class LoadDataJson : MonoBehaviour
 
         //News.Instance.GetNews();
     }
+
     public void LoadDataUpdateJson()
     {
         var objJson = SimpleJSON.JSON.Parse(loadJson(dataUpdateJson));
@@ -229,7 +230,6 @@ public class LoadDataJson : MonoBehaviour
         }
         //Debug.Log(DataUpdate.Instance.lstData_NameCountry[0].name + " "+ ConvertNumber.convertNumber_DatDz(DataUpdate.Instance.lstData_NameCountry[0].gdp));
     }
-
 
     void SelectionSort(List<DataUpdate.DataNameCountry> a)
     {

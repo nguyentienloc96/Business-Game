@@ -108,7 +108,7 @@ public class DataPlayer : MonoBehaviour
         if (objJson != null)
         {
             GameManager.Instance.modePlay = objJson["modePlay"].AsInt;
-            GameManager.Instance.SRD = objJson["srd"].AsInt;
+            GameManager.Instance.SRD = objJson["srd"].AsFloat;
             GameManager.Instance.main.dollars = objJson["dollars"].AsLong;
             GameManager.Instance.main.bitCoin = objJson["btc"].AsLong;
             PlayerPrefs.SetInt(KeyPlayerPrefs.ISOFFADS, objJson["isOffAds"].AsInt);

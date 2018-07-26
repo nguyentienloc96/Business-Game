@@ -1245,7 +1245,6 @@ public class Country : MonoBehaviour
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoFindACoFounder());
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesFindACoFounder());
-                Invoke("HidePanelFindACoFounder", 8 * GameManager.Instance.DeltaTimeGame);
             }
         }
     }
@@ -1335,11 +1334,6 @@ public class Country : MonoBehaviour
         {
             MKT = temp * NS;
         }
-    }
-
-    public void HidePanelFindACoFounder()
-    {
-        UIManager.Instance.panelFindACoFounder.SetActive(false);
     }
 
     public void HidePanelInfo()

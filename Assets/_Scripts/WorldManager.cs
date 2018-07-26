@@ -220,7 +220,7 @@ public class WorldManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Click");
 
-        if (GameManager.Instance.main.dollars >= LSlider)
+        if (GameManager.Instance.main.dollars >= LSlider && GameManager.Instance.main.dollars > 0)
         {
 
             GameManager.Instance.main.dollars -= LSlider;

@@ -70,9 +70,11 @@ public class Country : MonoBehaviour
     {
         ResetCountry();
 
-        indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money", 0);
+        indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money" + ID, 0);
 
-        indexCapital = PlayerPrefs.GetInt("Count Capital", 0);
+        indexCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
+
+        indexTypeCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
     }
 
     public void ResetCountry()
@@ -163,6 +165,7 @@ public class Country : MonoBehaviour
                 bigBranch[i].smallBranch[2].nameSmallBranch = "Capital";
                 bigBranch[i].smallBranch[3].nameSmallBranch = "Bank loan";
                 bigBranch[i].smallBranch[2].moneyDTS = 100;
+
             }
         }
         lstNew.Clear();
@@ -790,7 +793,7 @@ public class Country : MonoBehaviour
             if (indexSelf == 1)//Borrow money
             {
                 indexBorrowMoney++;
-                PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
+                PlayerPrefs.SetInt("Count Borrow money" + ID, indexBorrowMoney);
                 int IndexRandom = UnityEngine.Random.Range(1, 5);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT * IndexRandom;
@@ -805,10 +808,10 @@ public class Country : MonoBehaviour
             if (indexSelf == 2)//Capital
             {
                 indexCapital = 0;
-                PlayerPrefs.SetInt("Count Capital", indexCapital);
+                PlayerPrefs.SetInt("Count Capital"+ID, indexCapital);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = UnityEngine.Random.Range(1, 6);
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 WorldManager.Instance.sliderEvole.SetActive(false);
             }
@@ -1128,7 +1131,7 @@ public class Country : MonoBehaviour
                     info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
                     indexBorrowMoney = 0;
-                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
+                    PlayerPrefs.SetInt("Count Borrow money" + ID, indexBorrowMoney);
                 }
                 else
                 {
@@ -1150,7 +1153,7 @@ public class Country : MonoBehaviour
                     info = "You do not have enough money to pay the debt and your company in " + nameCountry + " has lost ";
                     bigBranch[7].smallBranch[1].isRunning = false;
                     indexBorrowMoney = 0;
-                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
+                    PlayerPrefs.SetInt("Count Borrow money" + ID, indexBorrowMoney);
                 }
                 else
                 {
@@ -1159,7 +1162,7 @@ public class Country : MonoBehaviour
                     info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                     bigBranch[7].smallBranch[1].isRunning = false;
                     indexBorrowMoney = 0;
-                    PlayerPrefs.SetInt("Count Borrow money", indexBorrowMoney);
+                    PlayerPrefs.SetInt("Count Borrow money" + ID, indexBorrowMoney);
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1168,6 +1171,7 @@ public class Country : MonoBehaviour
     }
 
     int indexCapital = 0;
+    int indexTypeCapital = 0;
     public void Capital()
     {
         if (bigBranch[7].smallBranch[2].moneyDTBD > 0)
@@ -1185,7 +1189,7 @@ public class Country : MonoBehaviour
                     UIManager.Instance.panelInfoCapital.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => OnClickYesCapital());
                     UIManager.Instance.panelInfoCapital.transform.GetChild(0).GetComponent<Text>().text
                         = "You have successfully received the capital in " +
-                        WorldManager.Instance.lsCapital[bigBranch[7].smallBranch[2].moneyDTBD - 1] + " round";
+                        WorldManager.Instance.lsCapital[indexTypeCapital] + " round";
                 }
             }
         }
@@ -1254,11 +1258,10 @@ public class Country : MonoBehaviour
         UIManager.Instance.panelInfoCapital.SetActive(false);
         bigBranch[7].smallBranch[2].investmentDayS = GameManager.Instance.dateGame.ToString();
         indexCapital++;
-        PlayerPrefs.SetInt("Count Capital", indexCapital);
+        PlayerPrefs.SetInt("Count Capital" + ID, indexCapital);
         if (indexCapital >= 3)
         {
             bigBranch[7].smallBranch[2].moneyDTBD = 0;
-            bigBranch[7].smallBranch[2].moneyDTS = 0;
             bigBranch[7].smallBranch[2].isRunning = false;
         }
     }
@@ -1279,7 +1282,11 @@ public class Country : MonoBehaviour
         Invoke("HidePanelInfo", 2f);
         bigBranch[7].smallBranch[2].isRunning = false;
         indexCapital = 0;
-        PlayerPrefs.SetInt("Count Capital", indexCapital);
+        indexTypeCapital++;
+        if (indexTypeCapital > 6)
+            indexTypeCapital = 0;
+        PlayerPrefs.SetInt("Type Capital" + ID, indexTypeCapital);
+        PlayerPrefs.SetInt("Count Capital" + ID, indexCapital);
     }
 
     public void OnClickNoFindACoFounder()

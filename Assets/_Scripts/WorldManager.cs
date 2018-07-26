@@ -238,6 +238,7 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].L - lsCountry[idSelectWord].LDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             lsCountry[idSelectWord].gameObject.SetActive(false);
+            PlayerPrefs.SetInt("Type Capital" + idSelectWord, 0);
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
                 UIManager.Instance.Turorial(UIManager.Instance.panelEror.transform.GetChild(1).gameObject,

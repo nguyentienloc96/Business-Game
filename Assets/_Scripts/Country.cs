@@ -70,9 +70,24 @@ public class Country : MonoBehaviour
     {
         ResetCountry();
 
+        if (!PlayerPrefs.HasKey("Count Borrow money" + ID))
+        {
+            PlayerPrefs.SetFloat("Count Borrow money" + ID, 0);
+        }
+
         indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money" + ID, 0);
 
+        if (!PlayerPrefs.HasKey("Type Capital" + ID))
+        {
+            PlayerPrefs.SetFloat("Type Capital" + ID, 0);
+        }
+
         indexCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
+
+        if (!PlayerPrefs.HasKey("Count Capital" + ID))
+        {
+            PlayerPrefs.SetFloat("Count Capital" + ID, 0);
+        }
 
         indexTypeCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
     }

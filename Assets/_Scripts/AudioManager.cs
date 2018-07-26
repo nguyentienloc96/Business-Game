@@ -12,7 +12,7 @@ public class Sound
     [Range(0f, 1f)]
     public float volume;
 
-    [Range(0.1f,3f)]
+    [Range(0.1f, 3f)]
     public float pitch;
 
     public bool loop;
@@ -38,7 +38,12 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        float volume = PlayerPrefs.GetFloat("Volume Sound", 1f);
+        if (!PlayerPrefs.HasKey("Volume Sound"))
+        {
+            PlayerPrefs.SetFloat("Volume Sound", 1f);
+        }
+
+        float volume = PlayerPrefs.GetFloat("Volume Sound");
 
         foreach (Sound s in sounds)
         {
@@ -79,7 +84,7 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
-    public void Mute(string name,bool mute)
+    public void Mute(string name, bool mute)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -108,7 +113,7 @@ public class AudioManager : MonoBehaviour
 
     public void SliderVolume(Slider _slider)
     {
-        foreach(Sound s in sounds)
+        foreach (Sound s in sounds)
         {
             s.source.volume = _slider.value;
         }

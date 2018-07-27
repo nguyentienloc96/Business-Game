@@ -115,7 +115,10 @@ public class world : MonoBehaviour
     {
         if (UIManager.Instance.indexScene == 1)
         {
-            WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            if (WorldManager.Instance.idSelectWord != -1)
+            {
+                WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].transform.GetChild(3).gameObject.SetActive(false);
+            }
             WorldManager.Instance.idSelectWord = ID;
             transform.GetChild(1).gameObject.SetActive(true);
             PushWord();

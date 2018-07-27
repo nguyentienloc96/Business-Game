@@ -20,7 +20,7 @@
 	  "major": "Lo1"
   },
   "4": {
-    "Content": "The internet has crashed",
+    "Content": "The internet has crashed, The marketings are reduced by ",
     "isUseful": false,
 	  "major": "Mkt1"
   },
@@ -35,17 +35,17 @@
 	  "major": "Lo1"
   },
   "7": {
-    "Content": "Opening a commercial seaport",
+    "Content": "Opening a commercial seaport, The transports increased by ",
     "isUseful": true,
 	  "major": "Lo1"
   },
   "8": {
-    "Content": "Opening a commercial airport",
+    "Content": "Opening a commercial airport, The transports increased by ",
     "isUseful": true,
 	  "major": "Lo1"
   },
   "9": {
-    "Content": "UNESCO has just certified a cultural heritage",
+    "Content": "UNESCO has just certified a cultural heritage, he marketings increased by ",
     "isUseful": true,
 	  "major": "Mkt1"
   },
@@ -60,7 +60,7 @@
 	  "major": "Mkt1"
   },
   "12": {
-    "Content": "The drought have just occurred",
+    "Content": "The drought have just occurred, The products decreased by ",
     "isUseful": false,
 	  "major": "SP1"
   },
@@ -83,5 +83,10 @@
     "Content": "The percentage of highly qualified workers decreased by ",
     "isUseful": false,
 	  "major": "NS1"
+  },
+  "17": {
+    "Content": "The crime rates increased by  ",
+    "isUseful": false,
+	  "major": "Market1"
   }
 }

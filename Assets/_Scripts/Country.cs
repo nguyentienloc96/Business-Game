@@ -94,6 +94,27 @@ public class Country : MonoBehaviour
 
     public void ResetCountry()
     {
+        L = 0;
+        LDT = 0;
+
+        I0 = 0f;
+        SP = 0f;
+        MKT = 0f;
+        MARKET = 0f;
+        LC = 0f;
+        KH = 0f;
+        NS = 0f;
+        ST = 0f;
+
+        I0DT = 0f;
+        SPDT = 0f;
+        MKTDT = 0f;
+        MARKETDT = 0f;
+        LCDT = 0f;
+        KHDT = 0f;
+        NSDT = 0f;
+        STDT = 0f;
+
         for (int i = 0; i < 12; i++)
         {
             dataColChartMain[i].nameCol = (i + 1).ToString();
@@ -823,7 +844,7 @@ public class Country : MonoBehaviour
             if (indexSelf == 2)//Capital
             {
                 indexCapital = 0;
-                PlayerPrefs.SetInt("Count Capital"+ID, indexCapital);
+                PlayerPrefs.SetInt("Count Capital" + ID, indexCapital);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = 1;

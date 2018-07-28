@@ -707,9 +707,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
-            GameManager.Instance.main.lsCoutryReady[i].L = 0;
-            GameManager.Instance.main.lsCoutryReady[i].LDT = 0;
-            GameManager.Instance.main.lsCoutryReady[i].lstNew.Clear();
+            GameManager.Instance.main.lsCoutryReady[i].ResetCountry();
         }
         GameManager.Instance.main.lsCoutryReady.Clear();
     }

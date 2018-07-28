@@ -336,6 +336,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.LoadDate();
         if (GameConfig.Instance.bitCoin > GameConfig.Instance.bitcoinStartGame)
         {
+            GameManager.Instance.main.bitCoin = GameConfig.Instance.bitCoin;
+        }
+        else
+        {
             GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         }
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
@@ -475,6 +479,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.LoadDate();
         if (GameConfig.Instance.bitCoin > GameConfig.Instance.bitcoinStartGame)
         {
+            GameManager.Instance.main.bitCoin = GameConfig.Instance.bitCoin;
+        }
+        else
+        {
             GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         }
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
@@ -510,6 +518,7 @@ public class UIManager : MonoBehaviour
         menuGame.SetActive(true);
         isPlay = false;
         GameConfig.Instance.bitCoin = GameManager.Instance.main.bitCoin;
+        PlayerPrefs.SetInt("BitCoin", (int)GameManager.Instance.main.bitCoin);
         if (PlayerPrefs.GetInt("isData") == 0)
         {
             btnContinue.interactable = false;

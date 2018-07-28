@@ -14,9 +14,6 @@ public class LoadDataJson : MonoBehaviour
         }
         Instance = this;
         //DontDestroyOnLoad(this);
-        //string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
-        //File.Delete(_path);
-        //PlayerPrefs.DeleteAll();
     }
 
     private void Start()
@@ -213,12 +210,13 @@ public class LoadDataJson : MonoBehaviour
             GameManager.Instance.SRD = GameConfig.Instance.Srd_easy;
         }
 
-        string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
-        string dataAsJson = File.ReadAllText(_path);
-        var objJsonDollars = SimpleJSON.JSON.Parse(dataAsJson);
-        if (objJsonDollars != null)
+        if (PlayerPrefs.HasKey("BitCoin")){
+            GameConfig.Instance.bitCoin = PlayerPrefs.GetInt("BitCoin");
+        }
+        else
         {
-            GameConfig.Instance.bitCoin = objJson["btc"].AsLong;
+            PlayerPrefs.SetInt("BitCoin", 10);
+            GameConfig.Instance.bitCoin = PlayerPrefs.GetInt("BitCoin");
         }
     }
 

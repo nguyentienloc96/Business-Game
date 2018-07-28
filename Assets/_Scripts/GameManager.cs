@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
                             NewsGame();
                             checkMonth = 0;
                         }
-                        if(WorldManager.Instance.idSelectWord < main.lsCoutryReady.Count 
+                        if (WorldManager.Instance.idSelectWord < main.lsCoutryReady.Count
                            && UIManager.Instance.indexScene == 1)
                         {
                             if (WorldManager.Instance.idSelectWord != -1)
@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
                             UIManager.Instance.isPlay = false;
                         }
                         GameConfig.Instance.bitCoin = main.bitCoin;
+                        PlayerPrefs.SetInt("BitCoin", (int)main.bitCoin);
                         PlayerPrefs.SetInt("isData", 0);
                     }
                 }

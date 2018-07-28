@@ -11482,7 +11482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04e805a4a4e3a14991ce9183282b61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexScene: 0
+  indexScene: -1
   menuGame: {fileID: 513830780}
   MAP: {fileID: 2074723616}
   PieChart1: {fileID: 1365685518}

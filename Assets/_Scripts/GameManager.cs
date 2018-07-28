@@ -192,10 +192,11 @@ public class GameManager : MonoBehaviour
                             UIManager.Instance.panelGameOver.SetActive(true);
                             UIManager.Instance.isPlay = false;
                         }
+                        GameConfig.Instance.bitCoin = main.bitCoin;
+                        PlayerPrefs.SetInt("isData", 0);
                     }
                 }
 
-                PlayerPrefs.SetInt("isData", 1);
                 UpdateUI();
                 time = 0;
             }

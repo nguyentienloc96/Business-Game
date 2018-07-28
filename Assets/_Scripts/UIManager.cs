@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Events;
+using System.IO;
 
 public class UIManager : MonoBehaviour
 {
 
     public static UIManager Instance;
-    public int indexScene = 0;
+    public int indexScene = -1;
 
     [Header("MenuGame")]
     public GameObject menuGame;
@@ -334,7 +334,10 @@ public class UIManager : MonoBehaviour
         Loading(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
-        GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
+        if (GameConfig.Instance.bitCoin > GameConfig.Instance.bitcoinStartGame)
+        {
+            GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
+        }
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
         info5Years.SetActive(true);
@@ -470,8 +473,11 @@ public class UIManager : MonoBehaviour
         Loading(false);
         isPlay = true;
         GameManager.Instance.LoadDate();
-        GameManager.Instance.main.bitCoin = (long)(10 * GameManager.Instance.SRD);
-        GameManager.Instance.main.dollars = (long)(50000 * GameManager.Instance.SRD);
+        if (GameConfig.Instance.bitCoin > GameConfig.Instance.bitcoinStartGame)
+        {
+            GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
+        }
+        GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
         OnclickWORD();
         info5Years.SetActive(true);
         if (GameManager.Instance.modePlay == 1)
@@ -494,6 +500,7 @@ public class UIManager : MonoBehaviour
     public void BackToMenuOnclick()
     {
         StopAllCoroutines();
+        indexScene = -1;
         AudioManager.Instance.Play("Click");
         AudioManager.Instance.Stop("OverWin");
         AudioManager.Instance.Stop("GamePlay");
@@ -502,6 +509,15 @@ public class UIManager : MonoBehaviour
         panelWin.SetActive(false);
         menuGame.SetActive(true);
         isPlay = false;
+        GameConfig.Instance.bitCoin = GameManager.Instance.main.bitCoin;
+        if (PlayerPrefs.GetInt("isData") == 0)
+        {
+            btnContinue.interactable = false;
+        }
+        else
+        {
+            btnContinue.interactable = true;
+        }
     }
 
     public void Update()
@@ -648,7 +664,7 @@ public class UIManager : MonoBehaviour
     public void ExitGame()
     {
         AudioManager.Instance.Play("Click");
-        Application.Quit();
+        //Application.Quit();
     }
 
     public void AddMoney(Slider slider)

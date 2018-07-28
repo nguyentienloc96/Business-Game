@@ -14,6 +14,9 @@ public class LoadDataJson : MonoBehaviour
         }
         Instance = this;
         //DontDestroyOnLoad(this);
+        //string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
+        //File.Delete(_path);
+        //PlayerPrefs.DeleteAll();
     }
 
     private void Start()
@@ -208,6 +211,14 @@ public class LoadDataJson : MonoBehaviour
 
             GameConfig.Instance.dTime = objJson["Dtime"].AsInt;
             GameManager.Instance.SRD = GameConfig.Instance.Srd_easy;
+        }
+
+        string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
+        string dataAsJson = File.ReadAllText(_path);
+        var objJsonDollars = SimpleJSON.JSON.Parse(dataAsJson);
+        if (objJsonDollars != null)
+        {
+            GameConfig.Instance.bitCoin = objJson["btc"].AsLong;
         }
     }
 

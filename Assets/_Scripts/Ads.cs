@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
-using System;
+using System.IO;
+
 public class Ads : MonoBehaviour
 {
     [Header("Admob")]
@@ -202,14 +202,36 @@ public class Ads : MonoBehaviour
     #endregion
     private void OnDestroy()
     {
-        DataPlayer.Instance.SaveDataPlayer();
+        if (UIManager.Instance.indexScene != -1)
+        {
+            DataPlayer.Instance.SaveDataPlayer();
+            PlayerPrefs.SetInt("isData", 1);
+        }
     }
 
     private void OnApplicationPause(bool pause)
     {
         if (pause == true)
         {
-            DataPlayer.Instance.SaveDataPlayer();
+            if (UIManager.Instance.indexScene != -1)
+            {
+                DataPlayer.Instance.SaveDataPlayer();
+                PlayerPrefs.SetInt("isData", 1);
+            }
+        }
+        else
+        {
+            if (UIManager.Instance.indexScene == -1)
+            {
+                if (PlayerPrefs.GetInt("isData") == 0)
+                {
+                    UIManager.Instance.btnContinue.interactable = false;
+                }
+                else
+                {
+                    UIManager.Instance.btnContinue.interactable = true;
+                }
+            }
         }
     }
 

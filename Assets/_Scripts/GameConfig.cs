@@ -76,4 +76,6 @@ public class GameConfig : MonoBehaviour
     public float Srd_medium;
     public float Srd_hard;
     public float Srd_crazy;
+
+    public long bitCoin;
 }

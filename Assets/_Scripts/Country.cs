@@ -1207,7 +1207,7 @@ public class Country : MonoBehaviour
     }
 
     int indexCapital = 0;
-    int indexTypeCapital = 0;
+    public int indexTypeCapital = 0;
     public void Capital()
     {
         if (bigBranch[7].smallBranch[2].moneyDTBD > 0)
@@ -1323,6 +1323,11 @@ public class Country : MonoBehaviour
             indexTypeCapital = 0;
         PlayerPrefs.SetInt("Type Capital" + ID, indexTypeCapital);
         PlayerPrefs.SetInt("Count Capital" + ID, indexCapital);
+        if (WorldManager.Instance.indexPSelf == 7 && WorldManager.Instance.indexSelf == 2)
+        {
+            WorldManager.Instance.txtInfo.text = WorldManager.Instance.lsItemSelf[2].GetComponent<ItemSelf>().info
+                + WorldManager.Instance.lsCapital[indexTypeCapital];
+        }
     }
 
     public void OnClickNoFindACoFounder()

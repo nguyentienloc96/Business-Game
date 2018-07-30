@@ -18,7 +18,7 @@ public class ItemSelf : MonoBehaviour
         WorldManager.Instance.indexPSelf = indexPSelf;
         WorldManager.Instance.indexSelf = indexSelf;
         WorldManager.Instance.txtLabel.text = label;
-        WorldManager.Instance.txtInfo.text = info;
+
         WorldManager.Instance.sliderEvole.transform.GetChild(0).GetChild(2).GetComponent<Slider>().value = 0;
         if (indexPSelf == 2 && indexSelf == 3)
         {
@@ -40,15 +40,27 @@ public class ItemSelf : MonoBehaviour
         {
             WorldManager.Instance.minSlider2 = 1000;
         }
+        if (indexPSelf == 7 && indexSelf == 2)
+        {
+            WorldManager.Instance.txtInfo.text = info
+                + WorldManager.Instance.lsCapital[WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].indexTypeCapital];
+        }
+        else
+        {
+            WorldManager.Instance.txtInfo.text = info;
+        }
+
         WorldManager.Instance.seltCoin2.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.minSlider2);
         if (indexPSelf == 7 && (indexSelf == 2 || indexSelf == 0))
         {
+            
             WorldManager.Instance.sliderEvole.SetActive(true);
             WorldManager.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(false);
             WorldManager.Instance.sliderEvole.transform.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
+           
             if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
             {
                 WorldManager.Instance.sliderEvole.SetActive(true);

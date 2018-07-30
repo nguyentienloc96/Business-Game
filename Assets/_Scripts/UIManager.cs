@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
     public GameObject handTutorial;
     public GameObject mainTutorial;
     public GameObject infoTutorial;
-    public GameObject info5Years;
+    public GameObject infoStart;
 
     [Header("Continue")]
     public Button btnContinue;
@@ -114,7 +114,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    public void OnclickWORD()
+    public void OnclickWORD(bool isStart)
     {
         AudioManager.Instance.Play("Click");
         indexScene = 0;
@@ -129,7 +129,8 @@ public class UIManager : MonoBehaviour
         PieChart2.SetActive(false);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
-        WorldManager.Instance.OnEnableWord(true);
+        if (!isStart)
+            WorldManager.Instance.OnEnableWord(true);
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
@@ -189,7 +190,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if(WorldManager.Instance.idSelectWord == -1)
+            if (WorldManager.Instance.idSelectWord == -1)
             {
                 WorldManager.Instance.OnEnableWord(false);
             }
@@ -343,20 +344,20 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         }
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
-        OnclickWORD();
-        info5Years.SetActive(true);
+        OnclickWORD(true);
+        infoStart.SetActive(true);
         if (GameManager.Instance.modePlay == 1)
         {
-            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
+            infoStart.transform.GetChild(1).GetComponent<Text>().text = GameConfig.Instance.stringStart;
         }
         else
         {
-            info5Years.transform.GetChild(0).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
+            infoStart.transform.GetChild(1).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
         }
-        Invoke("HidePanelInfo", 5f);
+        //Invoke("HidePanelInfo", 5f);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
-            Turorial(WorldManager.Instance.lsCountry[1].gameObject, WorldManager.Instance.lsCountry[1].transform.position, Vector3.zero);
+            Turorial(infoStart.transform.GetChild(2).gameObject, infoStart.transform.GetChild(2).position, Vector3.zero);
         }
     }
 
@@ -375,7 +376,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.LoadDate();
         GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
-        OnclickWORD();
+        OnclickWORD(false);
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Turorial(WorldManager.Instance.lsCountry[1].gameObject, WorldManager.Instance.lsCountry[1].transform.position, Vector3.zero);
@@ -461,7 +462,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.SetDate();
         Loading(false);
         isPlay = true;
-        OnclickWORD();
+        OnclickWORD(false);
     }
 
     public void RePlayOnclick()
@@ -486,23 +487,17 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.main.bitCoin = GameConfig.Instance.bitcoinStartGame;
         }
         GameManager.Instance.main.dollars = GameConfig.Instance.dollarStartGame;
-        OnclickWORD();
-        info5Years.SetActive(true);
+        OnclickWORD(true);
+        infoStart.SetActive(true);
         if (GameManager.Instance.modePlay == 1)
         {
-            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
+            infoStart.transform.GetChild(1).GetComponent<Text>().text = GameConfig.Instance.stringStart;
         }
         else
         {
-            info5Years.transform.GetChild(0).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
+            infoStart.transform.GetChild(1).GetComponent<Text>().text = "You start a IT company, and it will become an Unicorn";
         }
-        Invoke("HidePanelInfo", 5f);
-        if (GameManager.Instance.modePlay == 1)
-        {
-            info5Years.SetActive(true);
-            info5Years.transform.GetChild(0).GetComponent<Text>().text = GameConfig.Instance.stringStart;
-            Invoke("HidePanelInfo", 5f);
-        }
+        //Invoke("HidePanelInfo", 5f);
     }
 
     public void BackToMenuOnclick()
@@ -715,6 +710,16 @@ public class UIManager : MonoBehaviour
 
     public void HidePanelInfo()
     {
-        info5Years.SetActive(false);
+        infoStart.SetActive(false);
+    }
+
+    public void YesStart()
+    {
+        infoStart.SetActive(false);
+        WorldManager.Instance.OnEnableWord(true);
+        if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
+        {
+            Turorial(WorldManager.Instance.lsCountry[1].gameObject, WorldManager.Instance.lsCountry[1].transform.position, Vector3.zero);
+        }
     }
 }

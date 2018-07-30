@@ -166,7 +166,6 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.dollarVideoUnityAds = objJson["dollarVideoUnityAds"].AsLong;
             GameConfig.Instance.id_video_android_admob = objJson["id_video_android_admob"];
             GameConfig.Instance.id_video_ios_admob = objJson["id_video_ios_admob"];
-            GameConfig.Instance.timeVideoAds = objJson["timeVideoAds"].AsFloat;
 
             GameConfig.Instance.Ipc = objJson["Ipc"].AsFloat;
 

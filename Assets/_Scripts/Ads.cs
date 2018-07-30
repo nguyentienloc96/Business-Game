@@ -11,13 +11,12 @@ public class Ads : MonoBehaviour
     RewardBasedVideoAd rewardVideo;
 
     [Header("UnityAds")]
-    //public GameObject buttonVideo;
+    public GameObject buttonVideo;
     bool isLoadAds = false;
     //bool isShowAds = false;
 
     [Header("Time")]
     public float timeAds = 1;
-    public float timeVideo;
 
     public static Ads Instance = new Ads();
     void Awake()
@@ -44,7 +43,7 @@ public class Ads : MonoBehaviour
     void Update()
     {
         timeAds += Time.deltaTime;
-        timeVideo += Time.deltaTime;
+        
 
         //if (timeVideo >= GameConfig.Instance.timeVideoAds)
         //{
@@ -145,8 +144,9 @@ public class Ads : MonoBehaviour
         //#if UNITY_EDITOR
         //        StartCoroutine(WaitForAd());
         //#endif
-        if (timeVideo < GameConfig.Instance.timeVideoAds)
+        if (timeAds < GameConfig.Instance.timeInterAds)
         {
+            buttonVideo.GetComponent<Button>().interactable = false;
             WorldManager.Instance.panelInfo.SetActive(true);
             WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ads is not ready";
             Invoke("HidePanelInfo", 2f);
@@ -199,6 +199,7 @@ public class Ads : MonoBehaviour
     //}
     void HidePanelInfo()
     {
+        buttonVideo.GetComponent<Button>().interactable = true;
         GameManager.Instance.HidePanelInfo();
     }
     #endregion

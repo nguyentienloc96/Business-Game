@@ -655,6 +655,9 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.Play("Click");
         DataPlayer.Instance.SaveDataPlayer();
         PlayerPrefs.SetInt("isData", 1);
+        StopAllCoroutines();
+        POSITIONSELECT.SetActive(false);
+        panelEror.SetActive(false);
         BackToMenuOnclick();
     }
 

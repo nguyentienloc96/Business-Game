@@ -2,8 +2,6 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
-using UnityEngine.Advertisements;
-using System.IO;
 
 public class Ads : MonoBehaviour
 {
@@ -148,53 +146,56 @@ public class Ads : MonoBehaviour
         //#endif
         if (timeVideo < GameConfig.Instance.timeVideoAds)
         {
-            return;
+            WorldManager.Instance.panelInfo.SetActive(true);
+            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "Ads is not ready";
+            Invoke("HidePanelInfo", 2f);
+            //return;
         }
         else
         {
-            if (Advertisement.IsReady())
-            {
-                Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
-            }
-            else
-            {
-                Debug.Log(Advertisement.IsReady());
+            //if (Advertisement.IsReady())
+            //{
+            //    Advertisement.Show(GameConfig.Instance.nameVideoUnityAds, new ShowOptions() { resultCallback = HandleUnityAdsCallback });
+            //}
+            //else
+            //{
+            //    Debug.Log(Advertisement.IsReady());
                 ShowInterstitialAd();
-            }
+            //}
         }
     }
 
-    IEnumerator WaitForAd()
-    {
+    //IEnumerator WaitForAd()
+    //{
 
-        while (Advertisement.isShowing)
-            yield return null;
+    //    while (Advertisement.isShowing)
+    //        yield return null;
 
-    }
+    //}
 
-    void HandleUnityAdsCallback(ShowResult result)
-    {
-        switch (result)
-        {
-            case ShowResult.Finished:
-                Time.timeScale = 1;
-                timeVideo = 0;
-                GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
-                WorldManager.Instance.panelInfo.SetActive(true);
-                WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
-                UIManager.Instance.panelDollars.SetActive(false);
-                Invoke("HidePanelInfo", 2f);
-                break;
-            case ShowResult.Skipped:
-                Time.timeScale = 1;
-                timeVideo = 0;
-                //GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds/2;                
-                break;
-            case ShowResult.Failed:
-                Time.timeScale = 1;
-                break;
-        }
-    }
+    //void HandleUnityAdsCallback(ShowResult result)
+    //{
+    //    switch (result)
+    //    {
+    //        case ShowResult.Finished:
+    //            Time.timeScale = 1;
+    //            timeVideo = 0;
+    //            GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds;
+    //            WorldManager.Instance.panelInfo.SetActive(true);
+    //            WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text = "You just received " + ConvertNumber.convertNumber_DatDz(GameConfig.Instance.dollarVideoUnityAds) + "$ ";
+    //            UIManager.Instance.panelDollars.SetActive(false);
+    //            Invoke("HidePanelInfo", 2f);
+    //            break;
+    //        case ShowResult.Skipped:
+    //            Time.timeScale = 1;
+    //            timeVideo = 0;
+    //            //GameManager.Instance.main.dollars += GameConfig.Instance.dollarVideoUnityAds/2;                
+    //            break;
+    //        case ShowResult.Failed:
+    //            Time.timeScale = 1;
+    //            break;
+    //    }
+    //}
     void HidePanelInfo()
     {
         GameManager.Instance.HidePanelInfo();

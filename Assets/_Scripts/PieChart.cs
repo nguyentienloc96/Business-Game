@@ -101,7 +101,7 @@ public class PieChart : MonoBehaviour
                 {
                     peiObj.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = string.Format("{0:0.00}%", dataPei[i].valuePei * 100);
                 }
-                peiObj.transform.GetChild(0).GetChild(0).transform.localPosition = new Vector3(0f, 158f + 35f * (dataPei.Length - i - 1), 0f);
+                //peiObj.transform.GetChild(0).GetChild(0).transform.localPosition = new Vector3(0f, 158f + 35f * (dataPei.Length - i - 1), 0f);
             }
             else
             {

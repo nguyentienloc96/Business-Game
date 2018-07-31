@@ -636,17 +636,20 @@ public class UIManager : MonoBehaviour
         else
         {
             panelNew.SetActive(true);
-            for (int i = 0; i < 10; i++)
+            if (WorldManager.Instance.idSelectWord != -1)
             {
-                if (i < WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew.Count)
+                for (int i = 0; i < 10; i++)
                 {
-                    panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-                    panelNew.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>().text
-                        = GameManager.Instance.main.lsCoutryReady[WorldManager.Instance.idSelectWord].lstNew[i];
-                }
-                else
-                {
-                    panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+                    if (i < WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew.Count)
+                    {
+                        panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+                        panelNew.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>().text
+                            = GameManager.Instance.main.lsCoutryReady[WorldManager.Instance.idSelectWord].lstNew[i];
+                    }
+                    else
+                    {
+                        panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+                    }
                 }
             }
         }

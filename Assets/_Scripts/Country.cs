@@ -1233,42 +1233,38 @@ public class Country : MonoBehaviour
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentMoneyCoFounder = 0f;
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
-                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    //= "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%";
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "A guy is extremely good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to have " + percentCapitalCoFounder + "% share.";
                 }
                 else if (typeCoFounder == 2)
                 {
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
-                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    //= "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
-                    //+ " / Capital : " + percentCapitalCoFounder + "%";
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "A guy is expert at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
+                    + " to have " + percentCapitalCoFounder + "% share.";
                 }
                 else if (typeCoFounder == 3)
                 {
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
-                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    // = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
-                    //+ " / Capital : " + percentCapitalCoFounder + "%";
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "A guy is very good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
+                    + " to have " + percentCapitalCoFounder + "% share.";
                 }
                 else if (typeCoFounder == 4)
                 {
                     percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 75);
-                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    // = "Rich man / Money :"
-                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
-                    //+ " / Capital : " + percentCapitalCoFounder + "%";
+                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    = "One guy offers "
+                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
+                    + " for " + percentCapitalCoFounder + "% share of company. Do you agree?";
                 }
-                UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                = "One guy offers "
-                + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
-                + " for " + percentCapitalCoFounder + "% share of company. Do you agree?";
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoFindACoFounder());

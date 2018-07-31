@@ -114,6 +114,22 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        if(Screen.width == 2436 && Screen.height == 1125)
+        {
+            PieChart2.transform.GetChild(0).localPosition = new Vector3(PieChart2.transform.GetChild(0).localPosition.x
+                , 271f
+                , PieChart2.transform.GetChild(0).localPosition.z);
+            PieChart2.transform.GetChild(0).localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            PieChart2.transform.GetChild(1).localPosition = new Vector3(-205f, 162f
+                , PieChart2.transform.GetChild(0).localPosition.z);
+            PieChart2.transform.GetChild(2).localPosition = new Vector3(PieChart2.transform.GetChild(0).localPosition.x
+                , -79f
+                , PieChart2.transform.GetChild(0).localPosition.z);
+        }
+    }
+
     public void OnclickWORD(bool isStart)
     {
         AudioManager.Instance.Play("Click");

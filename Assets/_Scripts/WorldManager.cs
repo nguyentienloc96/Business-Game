@@ -57,7 +57,7 @@ public class WorldManager : MonoBehaviour
             item.GetChild(1).GetComponent<Text>().text = DataUpdate.Instance.lstData_NameCountry[i].name;
             lsCountry.Add(item.GetComponent<Country>());
             item.GetComponent<Country>().ID = i;
-            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp / UnityEngine.Random.Range(90, 110);
+            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp;
             item.GetComponent<Country>().nameCountry = DataUpdate.Instance.lstData_NameCountry[i].name;
             item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
             item.GetComponent<Country>().HSP = UnityEngine.Random.Range(50, 200);

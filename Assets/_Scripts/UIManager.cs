@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        if(Screen.width == 2436 && Screen.height == 1125)
+        if (Screen.width == 2436 && Screen.height == 1125)
         {
             PieChart2.transform.GetChild(0).localPosition = new Vector3(PieChart2.transform.GetChild(0).localPosition.x
                 , 271f
@@ -635,9 +635,9 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            panelNew.SetActive(true);
             if (WorldManager.Instance.idSelectWord != -1)
             {
+                panelNew.SetActive(true);
                 for (int i = 0; i < 10; i++)
                 {
                     if (i < WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew.Count)

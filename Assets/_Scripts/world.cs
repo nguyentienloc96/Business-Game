@@ -7,6 +7,10 @@ public class world : MonoBehaviour
 
     public int ID;
     public string nameCountry;
+
+    public long Sum = 0;
+    public long SumDT = 0;
+
     public long L = 0;
     public long LDT = 0;
 
@@ -36,6 +40,9 @@ public class world : MonoBehaviour
         ResetInfo();
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
+            Sum += GameManager.Instance.main.lsCoutryReady[i].Sum;
+            SumDT += GameManager.Instance.main.lsCoutryReady[i].SumDT;
+
             L += GameManager.Instance.main.lsCoutryReady[i].L;
             LDT += GameManager.Instance.main.lsCoutryReady[i].LDT;
 
@@ -133,8 +140,8 @@ public class world : MonoBehaviour
 
     public void LoadDataChart()
     {
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(L) / (float)(L + LDT));
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(LDT) / (float)(L + LDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(Sum) / (float)(Sum + SumDT));
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(SumDT) / (float)(Sum + SumDT));
         UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
         UIManager.Instance.COLCHART.transform
         .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;

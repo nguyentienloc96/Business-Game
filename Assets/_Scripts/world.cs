@@ -41,7 +41,7 @@ public class world : MonoBehaviour
         ResetInfo();
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
-
+            GDP += GameManager.Instance.main.lsCoutryReady[i].GDP;
             Sum += GameManager.Instance.main.lsCoutryReady[i].Sum;
             SumDT += GameManager.Instance.main.lsCoutryReady[i].SumDT;
 

@@ -61,7 +61,7 @@ public class ItemSelf : MonoBehaviour
         else
         {
            
-            if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
+            if (WorldManager.Instance.maxSlider2 > WorldManager.Instance.minSlider2)
             {
                 WorldManager.Instance.sliderEvole.SetActive(true);
                 WorldManager.Instance.sliderEvole.transform.GetChild(0).gameObject.SetActive(true);
@@ -84,7 +84,7 @@ public class ItemSelf : MonoBehaviour
 
     public void UpdateShow()
     {
-        if (WorldManager.Instance.maxSlider > WorldManager.Instance.minSlider2)
+        if (WorldManager.Instance.maxSlider2 > WorldManager.Instance.minSlider2)
         {
             if (WorldManager.Instance.idSelectWord != -1)
             {

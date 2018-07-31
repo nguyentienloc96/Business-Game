@@ -67,6 +67,27 @@ public class WorldManager : MonoBehaviour
             item.GetComponent<Country>().HKH = UnityEngine.Random.Range(50, 200);
             item.GetComponent<Country>().HL = UnityEngine.Random.Range(50, 200);
             item.GetComponent<Country>().HST = UnityEngine.Random.Range(50, 200);
+
+            if (!PlayerPrefs.HasKey("Count Borrow money" + i))
+            {
+                PlayerPrefs.SetFloat("Count Borrow money" + i, 0);
+            }
+
+            item.GetComponent<Country>().indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money" + i, 0);
+
+            if (!PlayerPrefs.HasKey("Type Capital" + i))
+            {
+                PlayerPrefs.SetFloat("Type Capital" + i, 0);
+            }
+
+            item.GetComponent<Country>().indexCapital = PlayerPrefs.GetInt("Count Capital" + i, 0);
+
+            if (!PlayerPrefs.HasKey("Count Capital" + i))
+            {
+                PlayerPrefs.SetFloat("Count Capital" + i, 0);
+            }
+
+            item.GetComponent<Country>().indexTypeCapital = PlayerPrefs.GetInt("Count Capital" + i, 0);
         }
         minSlider = GameConfig.Instance.InMin;
     }

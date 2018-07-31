@@ -69,27 +69,6 @@ public class Country : MonoBehaviour
     public void Start()
     {
         ResetCountry();
-
-        if (!PlayerPrefs.HasKey("Count Borrow money" + ID))
-        {
-            PlayerPrefs.SetFloat("Count Borrow money" + ID, 0);
-        }
-
-        indexBorrowMoney = PlayerPrefs.GetInt("Count Borrow money" + ID, 0);
-
-        if (!PlayerPrefs.HasKey("Type Capital" + ID))
-        {
-            PlayerPrefs.SetFloat("Type Capital" + ID, 0);
-        }
-
-        indexCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
-
-        if (!PlayerPrefs.HasKey("Count Capital" + ID))
-        {
-            PlayerPrefs.SetFloat("Count Capital" + ID, 0);
-        }
-
-        indexTypeCapital = PlayerPrefs.GetInt("Count Capital" + ID, 0);
     }
 
     public void ResetCountry()
@@ -621,15 +600,9 @@ public class Country : MonoBehaviour
         {
             if (indexSelf == 0)//Build a shop
             {
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD < 10000)
-                {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
-                }
-                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD >= 10000)
-                {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
-                }
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
             else if (indexSelf == 1)//Link with agencies shop
             {
@@ -1153,7 +1126,7 @@ public class Country : MonoBehaviour
         }
     }
 
-    int indexBorrowMoney = 0;
+    public int indexBorrowMoney = 0;
     public void BorrowMoney()
     {
         if (bigBranch[7].smallBranch[1].moneyDTBD > 0)
@@ -1206,7 +1179,7 @@ public class Country : MonoBehaviour
         }
     }
 
-    int indexCapital = 0;
+    public int indexCapital = 0;
     public int indexTypeCapital = 0;
     public void Capital()
     {
@@ -1248,39 +1221,44 @@ public class Country : MonoBehaviour
                 if (typeCoFounder == 1)
                 {
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
+                    percentMoneyCoFounder = 0f;
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
-                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%";
+                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    //= "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 2)
                 {
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
-                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                    = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
-                    + " / Capital : " + percentCapitalCoFounder + "%";
+                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    //= "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
+                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
+                    //+ " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 3)
                 {
                     typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                     percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
-                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                     = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
-                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
-                    + " / Capital : " + percentCapitalCoFounder + "%";
+                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    // = "Founder " + lsTypeFounder[typeBranchCoFounder] + " / Money :"
+                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
+                    //+ " / Capital : " + percentCapitalCoFounder + "%";
                 }
                 else if (typeCoFounder == 4)
                 {
                     percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
                     percentCapitalCoFounder = UnityEngine.Random.Range(25, 75);
-                    UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                     = "Rich man / Money :"
-                    + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
-                    + " / Capital : " + percentCapitalCoFounder + "%";
+                    //UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                    // = "Rich man / Money :"
+                    //+ ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
+                    //+ " / Capital : " + percentCapitalCoFounder + "%";
                 }
+                UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
+                = "One guy offers "
+                + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
+                + " for " + percentCapitalCoFounder + "% share of company. Do you agree?";
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.Instance.panelFindACoFounder.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => OnClickNoFindACoFounder());
@@ -1316,18 +1294,19 @@ public class Country : MonoBehaviour
         WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text
             = "You have successfully received the capital " + moneyX + "$";
         Invoke("HidePanelInfo", 2f);
-        bigBranch[7].smallBranch[2].isRunning = false;
         indexCapital = 0;
         indexTypeCapital++;
-        if (indexTypeCapital > 6)
-            indexTypeCapital = 0;
-        PlayerPrefs.SetInt("Type Capital" + ID, indexTypeCapital);
-        PlayerPrefs.SetInt("Count Capital" + ID, indexCapital);
-        if (WorldManager.Instance.indexPSelf == 7 && WorldManager.Instance.indexSelf == 2)
+        if (indexTypeCapital < 6)
         {
-            WorldManager.Instance.txtInfo.text = WorldManager.Instance.lsItemSelf[2].GetComponent<ItemSelf>().info
-                + WorldManager.Instance.lsCapital[indexTypeCapital];
+            bigBranch[7].smallBranch[2].isRunning = false;
+            if (WorldManager.Instance.indexPSelf == 7 && WorldManager.Instance.indexSelf == 2)
+            {
+                WorldManager.Instance.txtInfo.text = WorldManager.Instance.lsItemSelf[2].GetComponent<ItemSelf>().info
+                    + WorldManager.Instance.lsCapital[indexTypeCapital];
+            }
         }
+        PlayerPrefs.SetInt("Type Capital" + ID, indexTypeCapital);
+        PlayerPrefs.SetInt("Count Capital" + ID, indexCapital); 
     }
 
     public void OnClickNoFindACoFounder()

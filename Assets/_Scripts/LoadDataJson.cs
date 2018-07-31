@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class LoadDataJson : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class LoadDataJson : MonoBehaviour
         }
         Instance = this;
         //DontDestroyOnLoad(this);
+        //PlayerPrefs.DeleteAll();
     }
 
     private void Start()

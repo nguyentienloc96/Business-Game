@@ -7,6 +7,7 @@ public class world : MonoBehaviour
 
     public int ID;
     public string nameCountry;
+    public long GDP = 0;
 
     public long Sum = 0;
     public long SumDT = 0;
@@ -40,6 +41,7 @@ public class world : MonoBehaviour
         ResetInfo();
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
+
             Sum += GameManager.Instance.main.lsCoutryReady[i].Sum;
             SumDT += GameManager.Instance.main.lsCoutryReady[i].SumDT;
 
@@ -102,7 +104,7 @@ public class world : MonoBehaviour
 
     void ResetInfo()
     {
-        L = LDT = 0;
+        L = LDT = Sum = SumDT = 0;
 
         I0 = SP = MKT = MARKET = LC = KH = NS = ST = 0f;
 
@@ -140,8 +142,15 @@ public class world : MonoBehaviour
 
     public void LoadDataChart()
     {
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(Sum) / (float)(Sum + SumDT));
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(SumDT) / (float)(Sum + SumDT));
+        float PercentDT = ((float)LDT / (float)GDP);
+        float Percent = ((float)Sum / (float)GDP);
+        if (Percent > 1 - PercentDT)
+        {
+            Percent = 1 - PercentDT;
+        }
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
         UIManager.Instance.COLCHART.transform
         .GetChild(0).GetChild(0).GetChild(0).GetComponent<ColumnChart>().dataCol = dataColChartMain;

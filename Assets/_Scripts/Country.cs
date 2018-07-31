@@ -77,8 +77,7 @@ public class Country : MonoBehaviour
 
     public void ResetCountry()
     {
-        L = 0;
-        LDT = 0;
+        L = LDT = Sum = SumDT = 0;
 
         I0 = 0f;
         SP = 0f;
@@ -341,8 +340,15 @@ public class Country : MonoBehaviour
 
     public void LoadDataChart()
     {
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = ((float)(Sum) / ((float)Sum + (float)SumDT));
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(SumDT) / ((float)Sum + (float)SumDT));
+        float PercentDT = ((float)LDT / (float)GDP);
+        float Percent = ((float)Sum / (float)GDP);
+        if(Percent > 1 - PercentDT)
+        {
+            Percent = 1 - PercentDT;
+        }
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().LoadData();
         //Debug.Log("I0 : " + I0 + " / I0DT : " + I0DT);
         //Debug.Log("L : " + L + " / LDT : " + LDT);

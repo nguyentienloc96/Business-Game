@@ -22,6 +22,7 @@ public class PieChart : MonoBehaviour
 
     public GameObject[] itemNoteCol;
 
+    public long I0You = 0;
     public void LoadData()
     {
         StopAllCoroutines();
@@ -85,7 +86,14 @@ public class PieChart : MonoBehaviour
             }
             GameObject noteObj = Instantiate(notePrefab, noteParent);
             noteObj.transform.GetChild(0).GetComponent<RawImage>().texture = textureFromSprite(dataPei[i].spPei);
-            noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei;
+            if (i == 0)
+            {
+                noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei + " I0 : " + ConvertNumber.convertNumber_DatDz(I0You) + "$";
+            }
+            else
+            {
+                noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei;
+            }
 
             if (dataPei[i].valuePei < 0.05)
             {
@@ -114,9 +122,9 @@ public class PieChart : MonoBehaviour
             }
 
         }
-        if(itemNoteCol.Length > 0)
+        if (itemNoteCol.Length > 0)
         {
-            for(int i = 0; i < itemNoteCol.Length; i++)
+            for (int i = 0; i < itemNoteCol.Length; i++)
             {
                 itemNoteCol[i].SetActive(true);
                 yield return new WaitForSeconds(0.15f);

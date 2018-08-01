@@ -74,7 +74,7 @@ public class ItemSelf : MonoBehaviour
         }
 
         UIManager.Instance.SelfTraining.SetActive(true);
-
+        WorldManager.Instance.LSlider2 = WorldManager.Instance.minSlider2;
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             UIManager.Instance.Turorial(UIManager.Instance.SelfTraining.transform.GetChild(2).GetChild(0).gameObject,

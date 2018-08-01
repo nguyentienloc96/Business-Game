@@ -346,6 +346,7 @@ public class Country : MonoBehaviour
         {
             Percent = 1 - PercentDT;
         }
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = (long)Sum;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;
@@ -545,7 +546,7 @@ public class Country : MonoBehaviour
 
                 if (UnityEngine.Random.Range(0, 100) <= T)
                 {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = 400;
+                    bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
                 }
             }
             else if (indexSelf == 4)//Local Economy research
@@ -1075,9 +1076,9 @@ public class Country : MonoBehaviour
                     if (L > (long)(moneyVay * GameConfig.Instance.Bx))
                     {
                         GameManager.Instance.main.dollars = 0;
-                        L -= (long)(moneyVay * GameConfig.Instance.Bx);
-                        bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
+                        L -= (long)(moneyVay * GameConfig.Instance.Bx);           
                         info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
+                        bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     }
                     else
                     {

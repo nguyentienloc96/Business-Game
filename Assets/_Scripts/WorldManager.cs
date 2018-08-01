@@ -256,6 +256,7 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
                 "You have successfully invested " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ in " + lsCountry[idSelectWord].nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().I0You = (long)lsCountry[idSelectWord].Sum;
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].Sum / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].SumDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].Sum - lsCountry[idSelectWord].SumDT) / (float)lsCountry[idSelectWord].GDP);

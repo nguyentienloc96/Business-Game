@@ -104,7 +104,7 @@ public class world : MonoBehaviour
 
     void ResetInfo()
     {
-        L = LDT = Sum = SumDT = 0;
+        GDP = L = LDT = Sum = SumDT = 0;
 
         I0 = SP = MKT = MARKET = LC = KH = NS = ST = 0f;
 
@@ -148,6 +148,7 @@ public class world : MonoBehaviour
         {
             Percent = 1 - PercentDT;
         }
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = (long)Sum;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;

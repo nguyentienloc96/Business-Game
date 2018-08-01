@@ -644,7 +644,7 @@ public class UIManager : MonoBehaviour
                     {
                         panelNew.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
                         panelNew.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>().text
-                            = GameManager.Instance.main.lsCoutryReady[WorldManager.Instance.idSelectWord].lstNew[i];
+                            = WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].lstNew[i];
                     }
                     else
                     {

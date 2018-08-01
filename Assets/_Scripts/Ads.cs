@@ -2,7 +2,6 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
-using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour
 {
@@ -30,25 +29,20 @@ public class Ads : MonoBehaviour
 
     void Start()
     {
+        //PlayerPrefs.DeleteAll();
         RequestAd();
         this.rewardVideo = RewardBasedVideoAd.Instance;
         //rewardVideo.OnAdClosed += HandleRewardBasedVideoClosed;
-#if UNITY_ANDROID
-        Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
-#elif UNITY_IOS
-                 Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
-#endif
-    }
+// #if UNITY_ANDROID
+        // Advertisement.Initialize(GameConfig.Instance.id_video_android, true);
+// #elif UNITY_IOS
+                 // Advertisement.Initialize(GameConfig.Instance.id_video_ios, true);
+// #endif
+     }
 
     void Update()
     {
         timeAds += Time.deltaTime;
-        
-
-        //if (timeVideo >= GameConfig.Instance.timeVideoAds)
-        //{
-        //    //Hiện nút xem video
-        //}
     }
 
     #region ===ADMOB===

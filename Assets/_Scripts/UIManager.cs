@@ -156,18 +156,6 @@ public class UIManager : MonoBehaviour
     public void OnclickTHONGSO()
     {
         AudioManager.Instance.Play("Click");
-        if (indexScene == 0)
-        {
-            WorldManager.Instance.OnEnableWord(false);
-        }
-        else
-        {
-            if (WorldManager.Instance.idSelectWord == -1)
-            {
-                WorldManager.Instance.OnEnableWord(false);
-            }
-        }
-        indexScene = 1;
         btnWORD.transform.GetChild(1).gameObject.SetActive(false);
         btnTHONGSO.transform.GetChild(1).gameObject.SetActive(true);
         btnNHOM1.transform.GetChild(1).gameObject.SetActive(false);
@@ -176,14 +164,31 @@ public class UIManager : MonoBehaviour
         MAP.SetActive(false);
         PieChart1.SetActive(false);
         COLCHART.SetActive(true);
-        PieChart2.SetActive(false);
+        PieChart2.SetActive(true);
         SELFTRAINING.SetActive(false);
         SelfTraining.SetActive(false);
         panelNew.SetActive(false);
         panelSetting.SetActive(false);
         ResetBranch();
-        if (GameManager.Instance.main.lsCoutryReady.Count > 0)
+        if (indexScene == 0)
+        {
+            WorldManager.Instance.OnEnableWord(false);
+            indexScene = 1;
             GameManager.Instance.main.lsCoutryReady[0].OnClickCountry();
+        }
+        else
+        {
+            indexScene = 1;
+            if (WorldManager.Instance.idSelectWord == -1)
+            {
+                GameManager.Instance.world_main.OnClickWorld();
+            }
+            else
+            {
+                if (GameManager.Instance.main.lsCoutryReady.Count > 0)
+                    WorldManager.Instance.lsCountry[WorldManager.Instance.idSelectWord].OnClickCountry();
+            }
+        }
         if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
         {
             Destroy(mainTutorial);

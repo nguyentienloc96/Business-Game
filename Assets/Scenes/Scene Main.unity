@@ -19478,16 +19478,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 1ba874d03bd3a1e449437c464b2253c9, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 30
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ban dau tu thanh cong 100000$ v\xE0o  nameCountry"
+  m_Text: "Viet Nam\nBan dau tu thanh cong 100000$ v\xE0o  nameCountry"
 --- !u!222 &1356618956
 CanvasRenderer:
   m_ObjectHideFlags: 0

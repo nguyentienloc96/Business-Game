@@ -816,13 +816,9 @@ public class Country : MonoBehaviour
                 PlayerPrefs.SetInt("Count Borrow money" + ID, indexBorrowMoney);
                 int IndexRandom = UnityEngine.Random.Range(1, 5);
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT * IndexRandom;
-                GameManager.Instance.main.dollars += moneyDT * IndexRandom;
-                if (indexBorrowMoney >= 5)
-                {
-                    bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
-                    WorldManager.Instance.sliderEvole.SetActive(false);
-                }
+                bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS += moneyDT * IndexRandom;
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
 
             }
             if (indexSelf == 2)//Capital
@@ -1140,7 +1136,26 @@ public class Country : MonoBehaviour
     public int indexBorrowMoney = 0;
     public void BorrowMoney()
     {
-        if (bigBranch[7].smallBranch[1].moneyDTBD > 0)
+        if (bigBranch[7].smallBranch[1].moneyDTS > 0)
+        {
+            if ((long)((TimeSpan)(GameManager.Instance.dateGame
+                - DateTime.Parse(bigBranch[7].smallBranch[1].investmentDayBD))).TotalDays == 30)
+            {
+                bigBranch[7].smallBranch[1].moneyDTBD = bigBranch[7].smallBranch[1].moneyDTS;
+                GameManager.Instance.main.dollars += bigBranch[7].smallBranch[1].moneyDTS;
+                bigBranch[7].smallBranch[1].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                UIManager.Instance.panelBankLoan.SetActive(true);
+                UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[1].moneyDTS) + "$ ";
+                bigBranch[7].smallBranch[1].moneyDTS = 0;
+                Invoke("HideBankLoan", 5f);
+                if (indexBorrowMoney < 5)
+                {
+                    bigBranch[7].smallBranch[1].isRunning = false;
+                    WorldManager.Instance.sliderEvole.SetActive(true);
+                }
+            }
+        }
+        else if (bigBranch[7].smallBranch[1].moneyDTBD > 0)
         {
             if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[7].smallBranch[1].investmentDayBD))).TotalDays == 365)
             {
@@ -1245,7 +1260,7 @@ public class Country : MonoBehaviour
                         percentMoneyCoFounder = 0f;
                         percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
-                        = nameCountry +"\n"+ "A guy is extremely good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to have " + percentCapitalCoFounder + "% share.";
+                        = nameCountry + "\n" + "A guy is extremely good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to have " + percentCapitalCoFounder + "% share.";
                     }
                     else if (typeCoFounder == 2)
                     {
@@ -1416,6 +1431,11 @@ public class Country : MonoBehaviour
                 dataColChartCompetitors[j].valueCol[k] = 0;
             }
         }
+    }
+
+    public void HideBankLoan()
+    {
+        UIManager.Instance.panelBankLoan.SetActive(false);
     }
 
 }

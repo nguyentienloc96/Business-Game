@@ -133,10 +133,15 @@ public class WorldManager : MonoBehaviour
         lsCountry[idSelectWord].PullData();
 
         panelInfo.SetActive(true);
-        if (indexPSelf == 7 && (indexSelf == 3 || indexSelf == 1))
+        if (indexPSelf == 7 && indexSelf == 3)
         {
             panelInfo.transform.GetChild(0).GetComponent<Text>().text
                 = "You have successfully borrowed " + ConvertNumber.convertNumber_DatDz(LSlider2) + "$ ";
+        }
+        else if (indexPSelf == 7 && indexSelf == 1)
+        {
+            panelInfo.transform.GetChild(0).GetComponent<Text>().text
+                = "You have successfully borrowed";
         }
         else if (indexPSelf == 7 && indexSelf == 2)
         {
@@ -246,7 +251,7 @@ public class WorldManager : MonoBehaviour
 
             GameManager.Instance.main.dollars -= LSlider;
             lsCountry[idSelectWord].L = LSlider;
-            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(0.15f,0.45f) * lsCountry[idSelectWord].GDP);
+            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(0.15f, 0.45f) * lsCountry[idSelectWord].GDP);
             lsCountry[idSelectWord].Sum = lsCountry[idSelectWord].L;
             lsCountry[idSelectWord].SumDT = lsCountry[idSelectWord].LDT;
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);

@@ -27,11 +27,8 @@ public class Country : MonoBehaviour
     public string nameCountry;
     public long GDP;
 
-    public long Sum = 0;
-    public long SumDT = 0;
-
-    public long L = 0;
-    public long LDT = 0;
+    public long I = 0;
+    public long IDT = 0;
     [Range(50, 200)]
     public float Mn;
     public List<string> lstNew = new List<string>();
@@ -77,7 +74,7 @@ public class Country : MonoBehaviour
 
     public void ResetCountry()
     {
-        L = LDT = Sum = SumDT = 0;
+        I = IDT = 0;
 
         I0 = 0f;
         SP = 0f;
@@ -259,9 +256,9 @@ public class Country : MonoBehaviour
         }
         I0 = min * 100;
         I0DT = minDT * 100;
-        Sum = L + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
-        SumDT = LDT + (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
-        GameManager.Instance.main.dollars += (long)(L * GameConfig.Instance.Ipc / 100) + (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD * Mn * convertPercent);
+        I += (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
+        //IDT += (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
+        GameManager.Instance.main.dollars += (long)(I * GameConfig.Instance.Ipc * convertPercent);
     }
 
     public void OnClickCountry()
@@ -277,7 +274,7 @@ public class Country : MonoBehaviour
         {
             UIManager.Instance.txtGDPCountry.text = "GDP : " + ConvertNumber.convertNumber_DatDz(GDP) + " <size=38>$</size>";
             UIManager.Instance.PieChart1.SetActive(true);
-            if (L == 0)
+            if (I == 0)
             {
                 UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(true);
                 if (GameManager.Instance.main.dollars < 10000)
@@ -311,9 +308,9 @@ public class Country : MonoBehaviour
             }
 
             WorldManager.Instance.seltCoin.text = ConvertNumber.convertNumber_DatDz(WorldManager.Instance.LSlider);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)Sum / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(SumDT) / (float)GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - Sum - SumDT) / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)I / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(IDT) / (float)GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(GDP - I - IDT) / (float)GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             if (PlayerPrefs.GetInt("isDoneTutorial") == 0 || GameManager.Instance.isTutorial)
             {
@@ -324,7 +321,7 @@ public class Country : MonoBehaviour
         }
         else if (UIManager.Instance.indexScene == 1)
         {
-            if (L != 0)
+            if (I != 0)
             {
                 WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
@@ -340,13 +337,13 @@ public class Country : MonoBehaviour
 
     public void LoadDataChart()
     {
-        float PercentDT = ((float)LDT / (float)GDP);
-        float Percent = ((float)Sum / (float)GDP);
+        float PercentDT = ((float)IDT / (float)GDP);
+        float Percent = ((float)I / (float)GDP);
         if (Percent > 1 - PercentDT)
         {
             Percent = 1 - PercentDT;
         }
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = (long)Sum;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = I;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;
@@ -548,6 +545,8 @@ public class Country : MonoBehaviour
                 {
                     bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTS = moneyDT;
                 }
+                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                WorldManager.Instance.sliderEvole.SetActive(false);
             }
             else if (indexSelf == 4)//Local Economy research
             {
@@ -612,6 +611,7 @@ public class Country : MonoBehaviour
             if (indexSelf == 0)//Build a shop
             {
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
@@ -836,7 +836,6 @@ public class Country : MonoBehaviour
                 bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD = moneyDT;
                 GameManager.Instance.main.dollars += moneyDT;
-                Debug.Log(moneyDT + "   " + GameManager.Instance.main.dollars);
                 bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
                 WorldManager.Instance.sliderEvole.SetActive(false);
             }
@@ -989,10 +988,11 @@ public class Country : MonoBehaviour
         {
             if ((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[0].investmentDayBD))).TotalDays <= 365 * 3)
             {
-                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[0].investmentDayBD))).TotalDays) % 30 == 0)
+                if (((long)((TimeSpan)(GameManager.Instance.dateGame - DateTime.Parse(bigBranch[4].smallBranch[0].investmentDayS))).TotalDays) == 30)
                 {
                     LC += bigBranch[4].smallBranch[0].moneyDTBD * GameConfig.Instance.SC_bx * HL * convertPercent;
-                    LCDT += UnityEngine.Random.Range(1000f, bigBranch[4].smallBranch[0].moneyDTBD * GameConfig.Instance.SC_bx * 2f) * HL * convertPercent;
+                    LCDT += UnityEngine.Random.Range(0f, bigBranch[4].smallBranch[0].moneyDTBD * GameConfig.Instance.SC_bx * 2f) * HL * convertPercent;
+                    bigBranch[4].smallBranch[0].investmentDayS = GameManager.Instance.dateGame.ToString();
                 }
             }
             else
@@ -1041,20 +1041,23 @@ public class Country : MonoBehaviour
         if (bigBranch[2].smallBranch[3].moneyDTBD > 0)
         {
             if (((long)((TimeSpan)(GameManager.Instance.dateGame
-                - DateTime.Parse(bigBranch[2].smallBranch[3].investmentDayBD))).TotalDays) % 30 == 0)
+                - DateTime.Parse(bigBranch[2].smallBranch[3].investmentDayBD))).TotalDays) == 30)
             {
                 if (bigBranch[2].smallBranch[3].moneyDTS > 0)
                 {
                     UIManager.Instance.panelBuyCompetitor.SetActive(true);
                     UIManager.Instance.panelBuyCompetitor.transform.GetChild(0).GetComponent<Text>().text
                         = "You've successfully purchased a competitor in " + nameCountry;
-                    I0 += bigBranch[2].smallBranch[3].moneyDTBD * GameConfig.Instance.SR_bp;
+                    I += (long)(bigBranch[2].smallBranch[3].moneyDTBD * GameConfig.Instance.SR_bp);
+                    Debug.Log(bigBranch[2].smallBranch[3].moneyDTBD * GameConfig.Instance.SR_bp);
+                    bigBranch[2].smallBranch[3].moneyDTBD = bigBranch[2].smallBranch[3].moneyDTS = 0;
                 }
                 else
                 {
                     GameManager.Instance.main.dollars += bigBranch[2].smallBranch[3].moneyDTBD;
                     bigBranch[2].smallBranch[3].moneyDTBD = bigBranch[2].smallBranch[3].moneyDTS = 0;
                 }
+                bigBranch[2].smallBranch[3].isRunning = false;
             }
         }
     }
@@ -1069,10 +1072,10 @@ public class Country : MonoBehaviour
                 if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD / 2)
                 {
                     long moneyVay = bigBranch[7].smallBranch[3].moneyDTBD / 2 - GameManager.Instance.main.dollars;
-                    if (L > (long)(moneyVay * GameConfig.Instance.Bx))
+                    if (I > (long)(moneyVay * GameConfig.Instance.Bx))
                     {
                         GameManager.Instance.main.dollars = 0;
-                        L -= (long)(moneyVay * GameConfig.Instance.Bx);
+                        I -= (long)(moneyVay * GameConfig.Instance.Bx);
                         info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
                         bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     }
@@ -1102,10 +1105,10 @@ public class Country : MonoBehaviour
                 if (GameManager.Instance.main.dollars < bigBranch[7].smallBranch[3].moneyDTBD)
                 {
                     long moneyVay = bigBranch[7].smallBranch[3].moneyDTBD - GameManager.Instance.main.dollars;
-                    if (L > (long)(moneyVay * GameConfig.Instance.Bx))
+                    if (I > (long)(moneyVay * GameConfig.Instance.Bx))
                     {
                         GameManager.Instance.main.dollars = 0;
-                        L -= (long)(moneyVay * GameConfig.Instance.Bx);
+                        I -= (long)(moneyVay * GameConfig.Instance.Bx);
                         bigBranch[7].smallBranch[3].moneyDTBD = 0;
                         info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
                         bigBranch[7].smallBranch[3].isRunning = false;

@@ -9,11 +9,8 @@ public class world : MonoBehaviour
     public string nameCountry;
     public long GDP = 0;
 
-    public long Sum = 0;
-    public long SumDT = 0;
-
-    public long L = 0;
-    public long LDT = 0;
+    public long I = 0;
+    public long IDT = 0;
 
     public double I0 = 0f;
     public double SP = 0f;
@@ -42,11 +39,9 @@ public class world : MonoBehaviour
         for (int i = 0; i < GameManager.Instance.main.lsCoutryReady.Count; i++)
         {
             GDP += GameManager.Instance.main.lsCoutryReady[i].GDP;
-            Sum += GameManager.Instance.main.lsCoutryReady[i].Sum;
-            SumDT += GameManager.Instance.main.lsCoutryReady[i].SumDT;
 
-            L += GameManager.Instance.main.lsCoutryReady[i].L;
-            LDT += GameManager.Instance.main.lsCoutryReady[i].LDT;
+            I += GameManager.Instance.main.lsCoutryReady[i].I;
+            IDT += GameManager.Instance.main.lsCoutryReady[i].IDT;
 
             I0 += GameManager.Instance.main.lsCoutryReady[i].I0;
             SP += GameManager.Instance.main.lsCoutryReady[i].SP;
@@ -104,7 +99,7 @@ public class world : MonoBehaviour
 
     void ResetInfo()
     {
-        GDP = L = LDT = Sum = SumDT = 0;
+        GDP = I = IDT = 0;
 
         I0 = SP = MKT = MARKET = LC = KH = NS = ST = 0f;
 
@@ -131,7 +126,7 @@ public class world : MonoBehaviour
             WorldManager.Instance.idSelectWord = ID;
             transform.GetChild(1).gameObject.SetActive(true);
             PushWord();
-            if (L != 0)
+            if (I != 0)
             {
                 WorldManager.Instance.maxSlider = (long)(GameManager.Instance.main.dollars * 0.95f);
                 UIManager.Instance.PieChart2.SetActive(true);
@@ -142,13 +137,13 @@ public class world : MonoBehaviour
 
     public void LoadDataChart()
     {
-        float PercentDT = ((float)LDT / (float)GDP);
-        float Percent = ((float)Sum / (float)GDP);
+        float PercentDT = ((float)IDT / (float)GDP);
+        float Percent = ((float)I / (float)GDP);
         if (Percent > 1 - PercentDT)
         {
             Percent = 1 - PercentDT;
         }
-        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = (long)Sum;
+        UIManager.Instance.PieChart2.GetComponent<PieChart>().I0You = I;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[0].valuePei = Percent;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[1].valuePei = PercentDT;
         UIManager.Instance.PieChart2.GetComponent<PieChart>().dataPei[2].valuePei = 1 - Percent - PercentDT;

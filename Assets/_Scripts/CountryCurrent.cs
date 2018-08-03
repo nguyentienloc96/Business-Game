@@ -9,11 +9,8 @@ public class CountryCurrent {
     public string nameCountry;
     public long GDP;
 
-    public long Sum = 0;
-    public long SumDT = 0;
-
-    public long L = 0;
-    public long LDT = 0;
+    public long I = 0;
+    public long IDT = 0;
     public float Mn;
     public List<string> lstNew = new List<string>();
 

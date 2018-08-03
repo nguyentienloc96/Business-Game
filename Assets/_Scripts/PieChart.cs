@@ -88,7 +88,7 @@ public class PieChart : MonoBehaviour
             noteObj.transform.GetChild(0).GetComponent<RawImage>().texture = textureFromSprite(dataPei[i].spPei);
             if (i == 0)
             {
-                noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei + " I0 : " + ConvertNumber.convertNumber_DatDz(I0You) + "$";
+                noteObj.transform.GetChild(1).GetComponent<Text>().text = dataPei[i].namePei + " : " + ConvertNumber.convertNumber_DatDz(I0You) + "$";
             }
             else
             {

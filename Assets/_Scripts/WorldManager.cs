@@ -129,6 +129,7 @@ public class WorldManager : MonoBehaviour
                 sliderEvole.SetActive(false);
             }
         }
+
         lsCountry[idSelectWord].SetSmallBranch(indexPSelf, indexSelf, LSlider2);
         lsCountry[idSelectWord].PullData();
 
@@ -194,7 +195,7 @@ public class WorldManager : MonoBehaviour
             bool isSelected = false;
             for (int i = 0; i < lsCountry.Count; i++)
             {
-                if (lsCountry[i].L <= 0)
+                if (lsCountry[i].I <= 0)
                 {
                     if (!isSelected)
                     {
@@ -250,21 +251,19 @@ public class WorldManager : MonoBehaviour
         {
 
             GameManager.Instance.main.dollars -= LSlider;
-            lsCountry[idSelectWord].L = LSlider;
-            lsCountry[idSelectWord].LDT = (long)(UnityEngine.Random.Range(0.15f, 0.45f) * lsCountry[idSelectWord].GDP);
-            lsCountry[idSelectWord].Sum = lsCountry[idSelectWord].L;
-            lsCountry[idSelectWord].SumDT = lsCountry[idSelectWord].LDT;
+            lsCountry[idSelectWord].I = LSlider;
+            lsCountry[idSelectWord].IDT = (long)(UnityEngine.Random.Range(0.15f, 0.45f) * lsCountry[idSelectWord].GDP);
             GameManager.Instance.main.lsCoutryReady.Add(lsCountry[idSelectWord]);
-            SelectionSort(lsCountry);
+            SelectionSort(GameManager.Instance.main.lsCoutryReady);
             UIManager.Instance.POSITIONSELECT.SetActive(false);
             UIManager.Instance.panelEror.SetActive(true);
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
-                "You have successfully invested " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].L) + "$ in " + lsCountry[idSelectWord].nameCountry;
+                "You have successfully invested " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].I) + "$ in " + lsCountry[idSelectWord].nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().I0You = (long)lsCountry[idSelectWord].Sum;
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].Sum / (float)lsCountry[idSelectWord].GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].SumDT) / (float)lsCountry[idSelectWord].GDP);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].Sum - lsCountry[idSelectWord].SumDT) / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().I0You = (long)(lsCountry[idSelectWord].I+ lsCountry[idSelectWord].I0);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].I / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].IDT) / (float)lsCountry[idSelectWord].GDP);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].I - lsCountry[idSelectWord].IDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().LoadData();
             lsCountry[idSelectWord].gameObject.SetActive(false);
             PlayerPrefs.SetInt("Type Capital" + idSelectWord, 0);

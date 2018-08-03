@@ -50,11 +50,8 @@ public class DataPlayer : MonoBehaviour
             ct.nameCountry = GameManager.Instance.main.lsCoutryReady[i].nameCountry;
             ct.GDP = GameManager.Instance.main.lsCoutryReady[i].GDP;
 
-            ct.Sum = GameManager.Instance.main.lsCoutryReady[i].Sum;
-            ct.SumDT = GameManager.Instance.main.lsCoutryReady[i].SumDT;
-
-            ct.L = GameManager.Instance.main.lsCoutryReady[i].L;
-            ct.LDT = GameManager.Instance.main.lsCoutryReady[i].LDT;
+            ct.I = GameManager.Instance.main.lsCoutryReady[i].I;
+            ct.IDT = GameManager.Instance.main.lsCoutryReady[i].IDT;
             ct.Mn = GameManager.Instance.main.lsCoutryReady[i].Mn;
 
             ct.HSP = GameManager.Instance.main.lsCoutryReady[i].HSP;
@@ -126,11 +123,8 @@ public class DataPlayer : MonoBehaviour
                 int ID = lsData[i]["ID"].AsInt;
                 Country ct = WorldManager.Instance.lsCountry[ID];
 
-                ct.Sum = lsData[i]["Sum"].AsLong;
-                ct.SumDT = lsData[i]["SumDT"].AsLong;
-
-                ct.L = lsData[i]["L"].AsLong;
-                ct.LDT = lsData[i]["LDT"].AsLong;
+                ct.I = lsData[i]["I"].AsLong;
+                ct.IDT = lsData[i]["IDT"].AsLong;
                 ct.Mn = lsData[i]["Mn"].AsFloat;
 
                 ct.HSP = lsData[i]["HSP"].AsFloat;

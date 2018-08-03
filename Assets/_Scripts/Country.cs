@@ -257,6 +257,10 @@ public class Country : MonoBehaviour
         I0 = min * 100;
         I0DT = minDT * 100;
         I += (long)(I0 * GameConfig.Instance.s * GameManager.Instance.SRD);
+        if (I + IDT > GDP)
+        {
+            I = GDP - IDT;
+        }
         //IDT += (long)(I0DT * GameConfig.Instance.s * GameManager.Instance.SRD);
         GameManager.Instance.main.dollars += (long)(I * GameConfig.Instance.Ipc * convertPercent);
     }

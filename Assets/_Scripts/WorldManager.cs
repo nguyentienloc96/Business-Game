@@ -57,16 +57,16 @@ public class WorldManager : MonoBehaviour
             item.GetChild(1).GetComponent<Text>().text = DataUpdate.Instance.lstData_NameCountry[i].name;
             lsCountry.Add(item.GetComponent<Country>());
             item.GetComponent<Country>().ID = i;
-            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp;
+            item.GetComponent<Country>().GDP = DataUpdate.Instance.lstData_NameCountry[i].gdp / Random.Range(90, 110);
             item.GetComponent<Country>().nameCountry = DataUpdate.Instance.lstData_NameCountry[i].name;
-            item.GetComponent<Country>().Mn = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HSP = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HMKT = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HMARKET = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HNS = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HKH = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HL = UnityEngine.Random.Range(50, 200);
-            item.GetComponent<Country>().HST = UnityEngine.Random.Range(50, 200);
+            item.GetComponent<Country>().Mn = Random.Range(50, 200);
+            item.GetComponent<Country>().HSP = Random.Range(50, 200);
+            item.GetComponent<Country>().HMKT = Random.Range(50, 200);
+            item.GetComponent<Country>().HMARKET = Random.Range(50, 200);
+            item.GetComponent<Country>().HNS = Random.Range(50, 200);
+            item.GetComponent<Country>().HKH = Random.Range(50, 200);
+            item.GetComponent<Country>().HL = Random.Range(50, 200);
+            item.GetComponent<Country>().HST = Random.Range(50, 200);
 
             if (!PlayerPrefs.HasKey("Count Borrow money" + i))
             {
@@ -260,7 +260,7 @@ public class WorldManager : MonoBehaviour
             UIManager.Instance.panelEror.transform.GetChild(0).GetComponent<Text>().text =
                 "You have successfully invested " + ConvertNumber.convertNumber_DatDz(lsCountry[idSelectWord].I) + "$ in " + lsCountry[idSelectWord].nameCountry;
             UIManager.Instance.PieChart1.transform.GetChild(2).gameObject.SetActive(false);
-            UIManager.Instance.PieChart1.GetComponent<PieChart>().I0You = (long)(lsCountry[idSelectWord].I+ lsCountry[idSelectWord].I0);
+            UIManager.Instance.PieChart1.GetComponent<PieChart>().I0You = (long)(lsCountry[idSelectWord].I + lsCountry[idSelectWord].I0);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[0].valuePei = ((float)lsCountry[idSelectWord].I / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[1].valuePei = ((float)(lsCountry[idSelectWord].IDT) / (float)lsCountry[idSelectWord].GDP);
             UIManager.Instance.PieChart1.GetComponent<PieChart>().dataPei[2].valuePei = ((float)(lsCountry[idSelectWord].GDP - lsCountry[idSelectWord].I - lsCountry[idSelectWord].IDT) / (float)lsCountry[idSelectWord].GDP);

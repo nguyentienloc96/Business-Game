@@ -1237,11 +1237,14 @@ public class Country : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                bigBranch[7].smallBranch[2].isRunning = false;
+            }
         }
         else
         {
             bigBranch[7].smallBranch[2].isRunning = true;
-            UIManager.Instance.panelInfoCapital.SetActive(false);
         }
     }
 
@@ -1336,7 +1339,7 @@ public class Country : MonoBehaviour
         GameManager.Instance.main.dollars += moneyX;
         WorldManager.Instance.panelInfo.SetActive(true);
         WorldManager.Instance.panelInfo.transform.GetChild(0).GetComponent<Text>().text
-            = "You have successfully received the capital " + moneyX + "$";
+            = "You have successfully received the capital " + ConvertNumber.convertNumber_DatDz(moneyX) + "$";
         Invoke("HidePanelInfo", 2f);
         indexCapital = 0;
         indexTypeCapital++;

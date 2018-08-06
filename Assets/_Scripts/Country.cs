@@ -189,21 +189,21 @@ public class Country : MonoBehaviour
     public void PullData()
     {
         int month = GameManager.Instance.dateGame.Month - 1;
-        dataColChartMain[month].valueCol[0] = (int)(SP);
-        dataColChartMain[month].valueCol[1] = (int)(MKT);
-        dataColChartMain[month].valueCol[2] = (int)(MARKET);
-        dataColChartMain[month].valueCol[3] = (int)(LC);
-        dataColChartMain[month].valueCol[4] = (int)(KH);
-        dataColChartMain[month].valueCol[5] = (int)(NS);
-        dataColChartMain[month].valueCol[6] = (int)(ST);
+        dataColChartMain[month].valueCol[0] = (long)(SP);
+        dataColChartMain[month].valueCol[1] = (long)(MKT);
+        dataColChartMain[month].valueCol[2] = (long)(MARKET);
+        dataColChartMain[month].valueCol[3] = (long)(LC);
+        dataColChartMain[month].valueCol[4] = (long)(KH);
+        dataColChartMain[month].valueCol[5] = (long)(NS);
+        dataColChartMain[month].valueCol[6] = (long)(ST);
 
-        dataColChartCompetitors[month].valueCol[0] = (int)(SPDT);
-        dataColChartCompetitors[month].valueCol[1] = (int)(MKTDT);
-        dataColChartCompetitors[month].valueCol[2] = (int)(MARKETDT);
-        dataColChartCompetitors[month].valueCol[3] = (int)(LCDT);
-        dataColChartCompetitors[month].valueCol[4] = (int)(KHDT);
-        dataColChartCompetitors[month].valueCol[5] = (int)(NSDT);
-        dataColChartCompetitors[month].valueCol[6] = (int)(STDT);
+        dataColChartCompetitors[month].valueCol[0] = (long)(SPDT);
+        dataColChartCompetitors[month].valueCol[1] = (long)(MKTDT);
+        dataColChartCompetitors[month].valueCol[2] = (long)(MARKETDT);
+        dataColChartCompetitors[month].valueCol[3] = (long)(LCDT);
+        dataColChartCompetitors[month].valueCol[4] = (long)(KHDT);
+        dataColChartCompetitors[month].valueCol[5] = (long)(NSDT);
+        dataColChartCompetitors[month].valueCol[6] = (long)(STDT);
 
     }
 
@@ -867,7 +867,7 @@ public class Country : MonoBehaviour
             }
         }
 
-        NS = (min * (GameConfig.Instance.HR_ph + GameConfig.Instance.HR_cc + GameConfig.Instance.HR_ae + GameConfig.Instance.HR_ic)) * GameManager.Instance.SRD * HNS * convertPercent;
+        NS += (min * (GameConfig.Instance.HR_ph + GameConfig.Instance.HR_cc + GameConfig.Instance.HR_ae + GameConfig.Instance.HR_ic)) * GameManager.Instance.SRD * HNS * convertPercent;
         bigBranch[6].smallBranch[3].moneyDTS -= min * GameConfig.Instance.HR_ph;
         bigBranch[6].smallBranch[4].moneyDTS -= min * GameConfig.Instance.HR_cc;
         bigBranch[6].smallBranch[5].moneyDTS -= min * GameConfig.Instance.HR_ae;

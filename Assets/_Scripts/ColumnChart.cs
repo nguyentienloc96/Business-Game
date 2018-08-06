@@ -60,7 +60,7 @@ public class ColumnChart : MonoBehaviour
 
         for (int i = 0; i <= 10; i++)
         {
-            arrayX[i].text = ((maxX / 10) * i).ToString();
+            arrayX[i].text = ConvertNumber.convertNumber_DatDz((maxX / 10) * i);
         }
 
         for (int i = 0; i < dataCol.Length; i++)

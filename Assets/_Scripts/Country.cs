@@ -614,10 +614,13 @@ public class Country : MonoBehaviour
         {
             if (indexSelf == 0)//Build a shop
             {
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
-                bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
+                if (bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD <= 0)
+                {
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayBD = GameManager.Instance.dateGame.ToString();
+                    bigBranch[indexPSelf].smallBranch[indexSelf].investmentDayS = GameManager.Instance.dateGame.ToString();
+                }
                 bigBranch[indexPSelf].smallBranch[indexSelf].moneyDTBD += moneyDT;
-                bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
+                //bigBranch[indexPSelf].smallBranch[indexSelf].isRunning = true;
             }
             else if (indexSelf == 1)//Link with agencies shop
             {
@@ -1002,7 +1005,7 @@ public class Country : MonoBehaviour
             else
             {
                 bigBranch[4].smallBranch[0].moneyDTBD = 0;
-                bigBranch[4].smallBranch[0].isRunning = false;
+                //bigBranch[4].smallBranch[0].isRunning = false;
             }
         }
     }

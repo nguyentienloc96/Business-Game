@@ -184,6 +184,8 @@ public class WorldManager : MonoBehaviour
     {
         if (isWord)
         {
+            int sumCoutry = 0;
+
             for (int i = 0; i < lsCountry.Count; i++)
             {
                 lsCountry[i].gameObject.SetActive(false);
@@ -208,8 +210,9 @@ public class WorldManager : MonoBehaviour
                         isSelected = true;
                     }
                     lsCountry[i].gameObject.SetActive(true);
-                    if (i <= 8)
+                    if (sumCoutry <= 10)
                         yield return new WaitForSeconds(0.15f);
+                    sumCoutry++;
                 }
             }
         }

@@ -1098,9 +1098,9 @@ public class Country : MonoBehaviour
                 }
                 else
                 {
+                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
                     bigBranch[7].smallBranch[3].moneyDTBD -= bigBranch[7].smallBranch[3].moneyDTBD / 2;
-                    info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD / 2) + " in " + nameCountry;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
                 UIManager.Instance.panelBankLoan.transform.GetChild(0).GetComponent<Text>().text = info;
@@ -1266,12 +1266,19 @@ public class Country : MonoBehaviour
                 {
                     bigBranch[7].smallBranch[0].moneyDTS--;
                     UIManager.Instance.panelFindACoFounder.SetActive(true);
-                    typeCoFounder = UnityEngine.Random.Range(1, 4);
+
                     if (typeCoFounder == 1)
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = 0f;
-                        percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                        }
+                        else
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                        }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is extremely good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to have " + percentCapitalCoFounder + "% share.";
                     }
@@ -1279,7 +1286,14 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
-                        percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                        }
+                        else
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                        }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is expert at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
                         + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame / percentMoneyCoFounder)) + "$"
@@ -1289,7 +1303,14 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
-                        percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
+                        }
+                        else
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                        }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is very good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
                         + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"
@@ -1298,7 +1319,14 @@ public class Country : MonoBehaviour
                     else if (typeCoFounder == 4)
                     {
                         percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
-                        percentCapitalCoFounder = UnityEngine.Random.Range(25, 75);
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
+                        }
+                        else
+                        {
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                        }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "One guy offers "
                         + ConvertNumber.convertNumber_DatDz((long)(GameConfig.Instance.dollarStartGame * percentMoneyCoFounder)) + "$"

@@ -1266,7 +1266,7 @@ public class Country : MonoBehaviour
                 {
                     bigBranch[7].smallBranch[0].moneyDTS--;
                     UIManager.Instance.panelFindACoFounder.SetActive(true);
-
+                    typeCoFounder = UnityEngine.Random.Range(1, 4);
                     if (typeCoFounder == 1)
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);

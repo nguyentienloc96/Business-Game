@@ -1133,8 +1133,8 @@ public class Country : MonoBehaviour
                 else
                 {
                     GameManager.Instance.main.dollars -= bigBranch[7].smallBranch[3].moneyDTBD;
-                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
                     info = "You have just successfully repayment " + ConvertNumber.convertNumber_DatDz(bigBranch[7].smallBranch[3].moneyDTBD) + " in " + nameCountry;
+                    bigBranch[7].smallBranch[3].moneyDTBD = 0;
                     bigBranch[7].smallBranch[3].isRunning = false;
                 }
                 UIManager.Instance.panelBankLoan.SetActive(true);
@@ -1271,7 +1271,7 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = 0f;
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }
@@ -1286,7 +1286,7 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }
@@ -1303,7 +1303,7 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 75)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
                         }
@@ -1319,7 +1319,7 @@ public class Country : MonoBehaviour
                     else if (typeCoFounder == 4)
                     {
                         percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
+                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }

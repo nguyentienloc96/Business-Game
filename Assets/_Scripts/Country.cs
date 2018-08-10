@@ -1257,7 +1257,7 @@ public class Country : MonoBehaviour
     int percentCapitalCoFounder = 0;
     public void FindACoFounder()
     {
-        if (bigBranch[7].smallBranch[2].moneyDTS > 5)
+        if (bigBranch[7].smallBranch[2].moneyDTS >= 25)
         {
             if (bigBranch[7].smallBranch[0].moneyDTBD > 0)
             {
@@ -1271,13 +1271,13 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = 0f;
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
+                        if (bigBranch[7].smallBranch[2].moneyDTS - 5 >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }
                         else
                         {
-                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS - 5);
                         }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is extremely good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to have " + percentCapitalCoFounder + "% share.";
@@ -1286,13 +1286,13 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(2f, 2.5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
+                        if (bigBranch[7].smallBranch[2].moneyDTS - 5 >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }
                         else
                         {
-                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS - 5);
                         }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is expert at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
@@ -1303,13 +1303,13 @@ public class Country : MonoBehaviour
                     {
                         typeBranchCoFounder = UnityEngine.Random.Range(0, 2);
                         percentMoneyCoFounder = UnityEngine.Random.Range(1f, 1.5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 75)
+                        if (bigBranch[7].smallBranch[2].moneyDTS - 5 >= 75)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(50, 75);
                         }
                         else
                         {
-                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS - 5);
                         }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "A guy is very good at " + lsTypeFounder[typeBranchCoFounder] + " want to join start-up , he likes to invest "
@@ -1319,13 +1319,13 @@ public class Country : MonoBehaviour
                     else if (typeCoFounder == 4)
                     {
                         percentMoneyCoFounder = UnityEngine.Random.Range(3f, 5f);
-                        if (bigBranch[7].smallBranch[2].moneyDTS >= 50)
+                        if (bigBranch[7].smallBranch[2].moneyDTS - 5 >= 50)
                         {
                             percentCapitalCoFounder = UnityEngine.Random.Range(25, 50);
                         }
                         else
                         {
-                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS);
+                            percentCapitalCoFounder = UnityEngine.Random.Range(5, (int)bigBranch[7].smallBranch[2].moneyDTS - 5);
                         }
                         UIManager.Instance.panelFindACoFounder.transform.GetChild(0).GetComponent<Text>().text
                         = nameCountry + "\n" + "One guy offers "
